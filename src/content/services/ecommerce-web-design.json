@@ -1,0 +1,95 @@
+{
+  "title": "Ecommerce Web Design",
+  "slug": "ecommerce-web-design",
+  "shortTitle": "Ecommerce Web Design",
+  "metaTitle": "Ecommerce Design Agency | Lancashire Web Designers",
+  "metaDescription": "Specialist ecommerce design agency building high-converting Shopify and custom online stores. Engineered for speed, checkout flow, and revenue growth.",
+  "primaryKeyword": "ecommerce design agency",
+  "secondaryKeywords": [
+    "ecommerce web design",
+    "shopify web design",
+    "custom ecommerce development",
+    "online store design"
+  ],
+  "heroHeading": "Ecommerce Design Agency",
+  "heroSubheading": "High-converting online stores engineered for frictionless checkout experiences, lightning page speeds, and sustainable revenue growth.",
+  "icon": "shopping-bag",
+  "summary": "As an experienced ecommerce design agency, Lancashire Web Designers builds high-performance online stores that turn casual browsers into repeat purchasers. We craft bespoke storefronts on Shopify, WooCommerce, and modern headless commerce architectures, eliminating slow checkout friction, optimizing mobile product discovery, and engineering conversion-focused buying funnels that maximize your average order value.",
+  "benefits": [
+    "Optimized mobile checkout journeys designed to minimize cart abandonment",
+    "Lightning-fast product catalogue filtering and instant instant-search indexing",
+    "Tailored merchant administration dashboards with inventory and warehouse syncing",
+    "Robust conversion rate optimization (CRO) built directly into product layout architecture",
+    "Seamless integration with leading UK payment gateways (Stripe, Apple Pay, Klarna, PayPal)"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Catalogue & Customer Journey Blueprint",
+      "description": "We analyze your SKU architecture, category hierarchies, shipping rules, and buyer behavior to structure intuitive product browsing and checkout workflows."
+    },
+    {
+      "step": 2,
+      "title": "Conversion-Centric Storefront Design",
+      "description": "Designing high-impact product pages, sticky 'Add to Bag' mobile controls, clear trust signals, social proof widgets, and streamlined single-page checkouts."
+    },
+    {
+      "step": 3,
+      "title": "Custom Theme Development & App Integration",
+      "description": "Developing clean Liquid or custom front-end code with zero unnecessary third-party plugins that drag down storefront performance."
+    },
+    {
+      "step": 4,
+      "title": "Payment, Shipping & ERP Automation Testing",
+      "description": "Comprehensive sandbox testing of payment capture, multi-currency processing, automatic tax calculations, stock synchronization, and carrier dispatch."
+    },
+    {
+      "step": 5,
+      "title": "Storefront Launch & Post-Launch Support",
+      "description": "Executing zero-downtime domain pointing, 301 redirection of legacy product URLs, merchant order fulfillment training, and initial conversion monitoring."
+    }
+  ],
+  "whatsIncluded": [
+    "Fully custom ecommerce storefront design tailored to your product catalog",
+    "Clean, performant theme development adhering to strict Core Web Vitals standards",
+    "Configuration of payment gateways, shipping zones, tax rules, and transactional notifications",
+    "Full product data migration assistance for existing stores (up to 250 SKUs)",
+    "Comprehensive merchant fulfillment training and operating documentation",
+    "30-day post-launch technical warranty covering all checkout functionality"
+  ],
+  "whatsNotIncluded": [
+    "Product photography and commercial styling",
+    "Platform transaction fees or recurring Shopify/SaaS subscription costs",
+    "Manual data entry for thousands of unformatted product descriptions"
+  ],
+  "priceFrom": 500,
+  "priceUnit": "fixed project",
+  "priceNotes": "Complete ecommerce stores start from £500, with additional custom pages or product batches at +£50.",
+  "techStack": ["Shopify", "Liquid", "WooCommerce", "Tailwind CSS", "TypeScript", "Stripe API"],
+  "typicalTimeline": "6-10 weeks",
+  "faqs": [
+    {
+      "question": "Which platform do you recommend: Shopify, WooCommerce, or bespoke?",
+      "answer": "For most retail businesses requiring dependable reliability, seamless payments, and low maintenance, Shopify is our top recommendation. For businesses with complex existing WordPress workflows or unique bespoke product configurators, WooCommerce or a headless setup provides greater architectural freedom. We help you choose the right platform based on your operating model.",
+      "display": true
+    },
+    {
+      "question": "How do you help prevent shopping cart abandonment?",
+      "answer": "Cart abandonment is usually caused by slow load speeds, hidden shipping fees, complex account registration forms, and lack of trusted payment options. We engineer stores with transparent shipping calculators, guest checkout by default, instant mobile payment options (Apple Pay, Google Pay), and lightning-fast checkout rendering.",
+      "display": true
+    },
+    {
+      "question": "Can you migrate my existing products, customers, and order history?",
+      "answer": "Yes. We manage secure migrations from platforms such as Magento, WooCommerce, BigCommerce, or custom legacy systems into modern Shopify or WooCommerce installations, ensuring customer accounts and SEO URL structures remain protected.",
+      "display": true
+    },
+    {
+      "question": "Will our team be able to manage orders and add new products independently?",
+      "answer": "Absolutely. You receive full training on daily operations: processing orders, managing inventory, printing shipping labels, creating discount codes, and adding new product collections without touching code.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "web-design-and-marketing", "website-support"],
+  "order": 3,
+  "featured": true
+}

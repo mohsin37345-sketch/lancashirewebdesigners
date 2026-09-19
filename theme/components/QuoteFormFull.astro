@@ -1,0 +1,355 @@
+---
+import Icon from './Icon.astro';
+import { site } from 'src/data/site';
+
+const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
+---
+
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-sm">
+  <!-- Progress Bar Header (Controlled via JS, hidden when JS disabled) -->
+  <div id="step-progress-wrapper" class="mb-8">
+    <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+      <span id="step-indicator-text">Step 1 of 4: Project Scope</span>
+      <span id="step-percentage">25% Complete</span>
+    </div>
+    <div class="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+      <div id="step-progress-bar" class="bg-blue-600 h-full w-1/4 transition-all duration-300"></div>
+    </div>
+  </div>
+
+  <form id="full-quote-form" class="space-y-8" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <input type="hidden" name="access_key" value={formAccessKey} />
+    <!-- Honeypot -->
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+    <input type="hidden" id="form-start-time" name="form_time_ms" value="" />
+
+    <!-- STEP 1: Project Type & Business Category -->
+    <fieldset id="quote-step-1" class="space-y-6">
+      <legend class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+        1. What type of project are you planning?
+      </legend>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+          Select Primary Project Scope <span class="text-blue-600">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {[
+            { id: 'type-bespoke', label: 'Bespoke Brochure Website', desc: '5-10 custom pages for services/consultancy' },
+            { id: 'type-b2b', label: 'B2B Lead Generation Engine', desc: 'Multi-service platform with qualification funnels' },
+            { id: 'type-wp', label: 'WordPress Projects & WooCommerce', desc: 'Custom theme, plugins & CMS build' },
+            { id: 'type-ecom', label: 'Ecommerce Store (Shopify / Bespoke)', desc: 'Transactional store with product catalog' },
+            { id: 'type-redesign', label: 'Full Website Redesign', desc: 'Overhaul an existing legacy site for speed & SEO' },
+            { id: 'type-landing', label: 'High-Converting Landing Page', desc: 'Targeted single-page campaign for paid traffic' },
+            { id: 'type-care', label: 'Website Care & Hosting Support', desc: 'Ongoing edge hosting, updates, and SLA support' },
+            { id: 'type-other', label: 'Other / Custom Requirement', desc: 'Tailored web app, portal, or bespoke scope' }
+          ].map((item, idx) => (
+            <label class="flex items-start gap-3 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/80 hover:border-blue-300 dark:hover:border-blue-700 cursor-pointer transition-colors">
+              <input type="radio" name="project_type" value={item.label} checked={idx === 0} class="mt-1 text-blue-600 focus:ring-blue-500" />
+              <div>
+                <div class="text-sm font-bold text-slate-800 dark:text-slate-200">{item.label}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400">{item.desc}</div>
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        <div>
+          <label for="business-type" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Business Model
+          </label>
+          <select id="business-type" name="business_type" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+            <option value="B2B (Business to Business)">B2B (Commercial / Industrial / Professional)</option>
+            <option value="B2C (Business to Consumer)">B2C (Consumer Products / Services)</option>
+            <option value="Local Trade / High Street">Local Trade / High Street Firm</option>
+            <option value="Online Retailer">Online Retailer / Brand</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label for="industry-sector" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Industry / Sector
+          </label>
+          <input type="text" id="industry-sector" name="industry" placeholder="e.g. Precision Engineering, Legal, Architecture" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- STEP 2: Scale, Features & Readiness -->
+    <fieldset id="quote-step-2" class="space-y-6">
+      <legend class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+        2. Scope, Architecture & Content Readiness
+      </legend>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="estimated-pages" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Approximate Page Count
+          </label>
+          <select id="estimated-pages" name="page_count" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+            <option value="1-5 pages (Focused brochure)">1–5 pages (Focused brochure)</option>
+            <option value="6-12 pages (Standard multi-service)" selected>6–12 pages (Standard multi-service)</option>
+            <option value="13-25 pages (Large corporate)">13–25 pages (Large corporate)</option>
+            <option value="25+ pages or large catalog">25+ pages / Extensive catalog</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="asset-readiness" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Content Readiness
+          </label>
+          <select id="asset-readiness" name="content_readiness" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+            <option value="Copy & branding ready">Copy, photos, and branding 100% ready</option>
+            <option value="Partially ready">Partially ready (Need assistance refining)</option>
+            <option value="Starting from scratch">Starting from scratch (Need copywriting guidance)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
+          Key Functional Capabilities Needed
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5">
+          {[
+            'Custom Enquiry Funnels',
+            'Interactive Estimator / Calculator',
+            'Online Booking System',
+            'Stripe / Payment Gateway',
+            'Headless CMS for Articles/Case Studies',
+            'CRM / Webhook Integration',
+            'Member Portal / Client Login',
+            'Multi-Currency / Multilingual',
+            'Strict WCAG 2.2 AA Conformance'
+          ].map((feature) => (
+            <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
+              <input type="checkbox" name="features[]" value={feature} class="rounded text-blue-600 focus:ring-blue-500" />
+              <span>{feature}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- STEP 3: Timeline & Commercial Budget -->
+    <fieldset id="quote-step-3" class="space-y-6">
+      <legend class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+        3. Commercial Investment & Target Milestones
+      </legend>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="budget-band" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Target Budget Range <span class="text-blue-600">*</span>
+          </label>
+          <select id="budget-band" name="budget" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+            <option value="£1,500 - £2,500 (Bespoke Brochure)">£1,500 – £2,500 (Bespoke Brochure)</option>
+            <option value="£2,500 - £4,500 (B2B Lead Engine)" selected>£2,500 – £4,500 (B2B Growth Platform)</option>
+            <option value="£4,500 - £8,000 (Complex / Ecommerce)">£4,500 – £8,000 (Custom Ecommerce / Portal)</option>
+            <option value="£8,000+ (Enterprise scope)">£8,000+ (Enterprise Architecture)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="target-launch" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Target Launch Window
+          </label>
+          <select id="target-launch" name="timeline" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
+            <option value="Immediate (Within 4 weeks)">Urgent (Within 4 weeks)</option>
+            <option value="1-2 months" selected>Standard (1–2 months)</option>
+            <option value="2-3 months">Flexible (2–3 months)</option>
+            <option value="Planning for next quarter">Future Quarter Discovery</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- STEP 4: Contact Information & Consent -->
+    <fieldset id="quote-step-4" class="space-y-6">
+      <legend class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+        4. Where should we send your detailed specification?
+      </legend>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="quote-name" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Full Name <span class="text-blue-600">*</span>
+          </label>
+          <input type="text" id="quote-name" name="name" required placeholder="David Harrison" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+        </div>
+        <div>
+          <label for="quote-email" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Work Email Address <span class="text-blue-600">*</span>
+          </label>
+          <input type="email" id="quote-email" name="email" required placeholder="david@company.co.uk" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="quote-phone" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Direct Telephone Number <span class="text-blue-600">*</span>
+          </label>
+          <input type="tel" id="quote-phone" name="phone" required placeholder="01254 000000" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+        </div>
+        <div>
+          <label for="quote-company" class="block text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 mb-1">
+            Company Name & Town
+          </label>
+          <input type="text" id="quote-company" name="company" placeholder="e.g. Harrison Engineering, Blackburn" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm" />
+        </div>
+      </div>
+
+      <!-- Consent Checkboxes (Two separate unticked checkboxes) -->
+      <div class="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-800">
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" id="consent-processing" name="consent_processing" required class="mt-1 rounded text-blue-600 focus:ring-blue-500" />
+          <span class="text-xs text-slate-600 dark:text-slate-400">
+            <strong>Required:</strong> I agree that Lancashire Web Designers may process my submitted project specifications and contact details in order to prepare a commercial proposal in accordance with the <a href="/privacy-policy/" class="text-blue-600 dark:text-blue-400 underline font-semibold" target="_blank">Privacy Policy</a>.
+          </span>
+        </label>
+
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input type="checkbox" id="consent-marketing" name="consent_marketing" class="mt-1 rounded text-blue-600 focus:ring-blue-500" />
+          <span class="text-xs text-slate-600 dark:text-slate-400">
+            <strong>Optional:</strong> Send me occasional technical guides on Core Web Vitals, conversion architecture, and UK web security. (Zero spam, unsubscribe anytime).
+          </span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Navigation & Step Controls -->
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
+      <button
+        type="button"
+        id="prev-step-btn"
+        class="hidden px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+      >
+        &larr; Previous Step
+      </button>
+
+      <button
+        type="button"
+        id="next-step-btn"
+        class="ml-auto inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift"
+      >
+        <span>Next Step</span>
+        <Icon name="arrow-right" class="w-4 h-4" />
+      </button>
+
+      <div class="flex items-center gap-3">
+        <a
+          href={`tel:${site.nap.phoneE164}`}
+          id="quote-phone-call-btn"
+          class="hidden sm:inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all"
+        >
+          <Icon name="phone" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
+          <span>Call {site.nap.phone}</span>
+        </a>
+
+        <button
+          type="submit"
+          id="quote-submit-btn"
+          class="hidden inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all hover-lift"
+        >
+          <span>Submit Specification</span>
+          <Icon name="check" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Progressive Enhancement Multi-Step Client Script -->
+<script is:inline>
+  (function () {
+    const steps = [
+      document.getElementById('quote-step-1'),
+      document.getElementById('quote-step-2'),
+      document.getElementById('quote-step-3'),
+      document.getElementById('quote-step-4')
+    ];
+
+    const prevBtn = document.getElementById('prev-step-btn');
+    const nextBtn = document.getElementById('next-step-btn');
+    const submitBtn = document.getElementById('quote-submit-btn');
+    const indicatorText = document.getElementById('step-indicator-text');
+    const percentageText = document.getElementById('step-percentage');
+    const progressBar = document.getElementById('step-progress-bar');
+    const startTimeInput = document.getElementById('form-start-time');
+
+    if (!steps[0] || !prevBtn || !nextBtn || !submitBtn) return;
+
+    if (startTimeInput) {
+      startTimeInput.value = Date.now().toString();
+    }
+
+    let currentStep = 0;
+    const stepTitles = [
+      'Step 1 of 4: Project Scope',
+      'Step 2 of 4: Architecture & Features',
+      'Step 3 of 4: Budget & Timeline',
+      'Step 4 of 4: Contact Details'
+    ];
+
+    function updateStepUI() {
+      steps.forEach((step, idx) => {
+        if (step) {
+          if (idx === currentStep) {
+            step.classList.remove('hidden');
+          } else {
+            step.classList.add('hidden');
+          }
+        }
+      });
+
+      if (indicatorText) indicatorText.textContent = stepTitles[currentStep];
+      const pct = Math.round(((currentStep + 1) / 4) * 100);
+      if (percentageText) percentageText.textContent = `${pct}% Complete`;
+      if (progressBar) progressBar.style.width = `${pct}%`;
+
+      if (currentStep === 0) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+
+      const phoneBtn = document.getElementById('quote-phone-call-btn');
+      if (currentStep === 3) {
+        nextBtn.classList.add('hidden');
+        submitBtn.classList.remove('hidden');
+        if (phoneBtn) phoneBtn.classList.remove('hidden');
+      } else {
+        nextBtn.classList.remove('hidden');
+        submitBtn.classList.add('hidden');
+        if (phoneBtn) phoneBtn.classList.add('hidden');
+      }
+
+      // Preserve state in sessionStorage
+      try {
+        sessionStorage.setItem('lwd_quote_step', currentStep.toString());
+      } catch (e) {}
+    }
+
+    // Initialize multi-step only if JS runs
+    updateStepUI();
+
+    nextBtn.addEventListener('click', () => {
+      if (currentStep < 3) {
+        currentStep++;
+        updateStepUI();
+        window.scrollTo({ top: steps[currentStep].offsetTop - 100, behavior: 'smooth' });
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateStepUI();
+        window.scrollTo({ top: steps[currentStep].offsetTop - 100, behavior: 'smooth' });
+      }
+    });
+  })();
+</script>

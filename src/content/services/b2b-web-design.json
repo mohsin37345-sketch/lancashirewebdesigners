@@ -1,0 +1,95 @@
+{
+  "title": "B2B Web Design",
+  "slug": "b2b-web-design",
+  "shortTitle": "B2B Web Design",
+  "metaTitle": "B2B Web Design Agency | Lancashire Web Designers",
+  "metaDescription": "B2B web design agency specialising in complex sales cycles, CRM integrations, and qualified lead generation. Built for measurable commercial growth.",
+  "primaryKeyword": "b2b web design agency",
+  "secondaryKeywords": [
+    "b2b website design agency",
+    "b2b web development",
+    "b2b web agency",
+    "b2b web design company"
+  ],
+  "heroHeading": "B2B Web Design Agency",
+  "heroSubheading": "High-impact digital platforms engineered for complex sales cycles, high-value contracts, and qualified inbound lead acquisition.",
+  "icon": "layers",
+  "summary": "As a dedicated b2b web design agency, Lancashire Web Designers builds custom commercial platforms that navigate complex, multi-stakeholder purchasing journeys. We understand that business-to-business transactions aren't impulsive consumer purchases — they require deep technical credibility, persuasive social proof, frictionless inquiry flows, and seamless integration with your CRM and sales pipelines.",
+  "benefits": [
+    "Information architecture structured specifically for committee-driven buying decisions",
+    "Frictionless gated content, whitepaper funnels, and enterprise consultation booking flows",
+    "Seamless API synchronisation with HubSpot, Salesforce, Pipedrive, and bespoke CRMs",
+    "Rigorous Core Web Vitals optimisation ensuring enterprise procurement teams experience zero friction",
+    "Demonstrable ROI tracking with end-to-end attribution pipelines from visit to closed opportunity"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Stakeholder & Pipeline Architecture",
+      "description": "We map your enterprise buyer personas, procurement criteria, and sales stages to structure page journeys that answer technical, financial, and operational concerns."
+    },
+    {
+      "step": 2,
+      "title": "Conversion UX & Lead Capture Design",
+      "description": "Designing high-trust proof points, interactive product selectors, ROI calculators, and multi-tier contact pathways that convert passive researchers into qualified sales prospects."
+    },
+    {
+      "step": 3,
+      "title": "Bespoke B2B Web Development & CRM Integration",
+      "description": "Writing performant front-end code and integrating your back-office systems, ensuring lead data flows straight into your CRM with UTM tracking and lead-scoring parameters."
+    },
+    {
+      "step": 4,
+      "title": "Security, Compliance & Load Auditing",
+      "description": "Performing comprehensive vulnerability scanning, strict GDPR compliance verification for consent and data handling, and load-time stress testing."
+    },
+    {
+      "step": 5,
+      "title": "Deployment & Sales Enablement Handover",
+      "description": "Deploying on global edge hosting infrastructure and providing training for marketing and sales teams on updating resources, publishing whitepapers, and reviewing inbound leads."
+    }
+  ],
+  "whatsIncluded": [
+    "Bespoke B2B website design aligned with corporate brand governance",
+    "Robust b2b web development with modern, clean static or headless architectures",
+    "Direct API integration with enterprise CRM, email automation, or ERP platforms",
+    "Interactive lead qualification forms with conditional routing and spam protection",
+    "Comprehensive GDPR cookie compliance mechanism and privacy architecture",
+    "Full technical documentation and sales enablement handover session"
+  ],
+  "whatsNotIncluded": [
+    "Custom video production and corporate photography",
+    "CRM subscription costs (HubSpot, Salesforce, etc.)",
+    "Ongoing outbound marketing or paid advertising management"
+  ],
+  "priceFrom": 300,
+  "priceUnit": "fixed project",
+  "priceNotes": "B2B web design starts from £300 for core lead generation architecture, with additional pages at +£50/page.",
+  "techStack": ["Astro", "Tailwind CSS", "TypeScript", "HubSpot API", "REST/GraphQL"],
+  "typicalTimeline": "6-8 weeks",
+  "faqs": [
+    {
+      "question": "How does a B2B website differ from a standard consumer website?",
+      "answer": "B2B websites cater to deliberate, rational evaluation processes involving multiple decision-makers—such as technical leads, financial controllers, and managing directors. Rather than quick impulses, B2B sites must establish domain authority, articulate precise commercial value, answer rigorous technical queries, and provide structured pathways for enterprise consultation.",
+      "display": true
+    },
+    {
+      "question": "Can our new B2B website connect directly with our existing CRM?",
+      "answer": "Yes. We integrate with major CRM and marketing automation platforms including HubSpot, Salesforce, Pipedrive, ActiveCampaign, and Zoho. Inquiries, demo requests, and gated asset downloads flow immediately into your sales pipeline with attribution data intact.",
+      "display": true
+    },
+    {
+      "question": "How do you handle technical B2B web development requirements?",
+      "answer": "Our b2b web development approach emphasizes performance, data hygiene, and security. We hand-code lightweight components that render instantly, ensure form inputs are thoroughly sanitized and validated, and maintain zero external dependency vulnerabilities.",
+      "display": true
+    },
+    {
+      "question": "What metrics do you track to prove commercial success?",
+      "answer": "We set up tracking for qualified lead submissions, demo requests, document downloads, engagement depth across key solution pages, and organic search impressions for high-intent B2B keywords.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "web-design-and-marketing", "website-support"],
+  "order": 2,
+  "featured": true
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Search Engine Optimisation",
+  "slug": "seo",
+  "shortTitle": "SEO Services",
+  "metaTitle": "SEO Services Lancashire | Lancashire Web Designers",
+  "metaDescription": "Data-driven SEO services for ambitious UK businesses. Technical search audits, local citations, high-intent keyword ranking, and sustainable organic traffic.",
+  "primaryKeyword": "seo services lancashire",
+  "secondaryKeywords": [
+    "search engine optimisation lancashire",
+    "technical seo audit",
+    "local seo lancashire",
+    "organic search marketing"
+  ],
+  "heroHeading": "Search Engine Optimisation",
+  "heroSubheading": "Dominating organic search with technical precision, high-intent commercial keyword targeting, and authoritative digital relevance.",
+  "icon": "search",
+  "summary": "Our search engine optimisation services help UK businesses earn sustainable top-tier visibility in Google organic search. Rather than chasing fleeting algorithm tricks, we focus on technical code perfection, sub-second page performance, rich Schema structured data, and content architectures engineered around genuine commercial intent.",
+  "benefits": [
+    "Technical SEO audits uncovering indexing barriers, broken redirects, and crawl inefficiencies",
+    "High-intent keyword research prioritising terms that generate qualified enquiries",
+    "Local SEO optimisation for Google Maps and high-authority UK citation networks",
+    "On-page content optimisation with structured JSON-LD schemas and semantic markup",
+    "Transparent monthly progress reports tracking keyword visibility and inbound revenue"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Comprehensive Technical & Competitive Audit",
+      "description": "Deep-crawl inspection of indexation, Core Web Vitals, backlink profiles, and competitor keyword positioning."
+    },
+    {
+      "step": 2,
+      "title": "Commercial Keyword Strategy",
+      "description": "Mapping buyer-intent search queries against core service pages to eliminate keyword cannibalisation."
+    },
+    {
+      "step": 3,
+      "title": "On-Page & Schema Optimisation",
+      "description": "Restructuring metadata, heading hierarchies, internal linking graphs, and implementing rich JSON-LD markup."
+    },
+    {
+      "step": 4,
+      "title": "Local & Authority Signals",
+      "description": "Optimising Google Business Profile, claiming structured UK citations, and earning high-quality regional backlinks."
+    },
+    {
+      "step": 5,
+      "title": "Continuous Monitoring & Performance Tuning",
+      "description": "Tracking rankings, organic clicks, and conversion rates with ongoing adjustments to meet algorithm updates."
+    }
+  ],
+  "whatsIncluded": [
+    "Full technical SEO codebase audit and remediation plan",
+    "Comprehensive keyword research with search volume and intent classification",
+    "Structured data and Schema.org markup implementation",
+    "Google Business Profile optimization and citation clean-up",
+    "Monthly keyword rank tracking and conversion attribution reporting"
+  ],
+  "whatsNotIncluded": [
+    "Spammy automated link-building schemes (we adhere strictly to Google Webmaster Guidelines)",
+    "Paid search ad spend (Google Ads management quoted separately)",
+    "Guaranteed '#1 rankings in 48 hours' (no legitimate agency can guarantee third-party algorithms)"
+  ],
+  "priceFrom": 70,
+  "priceUnit": "fixed audit",
+  "priceNotes": "Technical SEO audits and indexation setup start from £70.",
+  "techStack": ["Google Search Console", "Ahrefs", "Screaming Frog", "Semrush", "Google Analytics 4"],
+  "typicalTimeline": "3-6 month growth campaigns",
+  "faqs": [
+    {
+      "question": "How long does it take to see results from SEO?",
+      "answer": "While technical fixes and speed improvements provide immediate indexing benefits within weeks, significant ranking jumps for competitive commercial queries typically manifest within 3 to 6 months of steady optimization and content deployment.",
+      "display": true
+    },
+    {
+      "question": "What is the difference between local SEO and national SEO?",
+      "answer": "Local SEO focuses on capturing geographically constrained searches (e.g. 'accountants in Preston' or map pack results), heavily leveraging Google Business Profiles and local citations. National SEO focuses on broader commercial keywords without geographic modifiers, requiring deeper domain authority and extensive topic clustering.",
+      "display": true
+    },
+    {
+      "question": "Do you offer one-off technical audits without a recurring retainer?",
+      "answer": "Yes. We conduct standalone technical SEO audits that deliver a clear, prioritised punch list of codebase fixes, redirect maps, and content recommendations for your internal team to execute.",
+      "display": true
+    },
+    {
+      "question": "How do you track success?",
+      "answer": "We track organic impressions, click-through rates, keyword ranking positions, and most importantly, actual contact form enquiries and telephone conversions generated from organic search visitors.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["web-design-and-marketing", "bespoke-web-design", "website-support"],
+  "order": 6,
+  "featured": false
+}

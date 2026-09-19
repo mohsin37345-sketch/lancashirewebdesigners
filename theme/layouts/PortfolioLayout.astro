@@ -1,0 +1,118 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import CaseStudyMetrics from 'theme/components/CaseStudyMetrics.astro';
+
+export interface Props {
+  title: string;
+  client: string;
+  industry: string;
+  year: number;
+  description: string;
+  services?: string[];
+  techStack?: string[];
+  metrics?: { label: string; value: string; note?: string }[];
+  heroImage?: string;
+  liveUrl?: string;
+  breadcrumbs?: { name: string; url: string }[];
+}
+
+const {
+  title,
+  client,
+  industry,
+  year,
+  description,
+  services = [],
+  techStack = [],
+  metrics = [],
+  heroImage,
+  liveUrl,
+  breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Portfolio', url: '/portfolio/' },
+    { name: title, url: Astro.url.pathname }
+  ]
+} = Astro.props;
+---
+
+<BaseLayout
+  title={`${title} — Case Study | Lancashire Web Designers`}
+  description={description}
+  schemaType="portfolio"
+  breadcrumbs={breadcrumbs}
+  portfolioData={{
+    title,
+    client,
+    year,
+    image: heroImage
+  }}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 text-xs font-semibold mb-4">
+          <span>{client}</span>
+          <span>&bull;</span>
+          <span>{industry}</span>
+          <span>&bull;</span>
+          <span>{year}</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          {title}
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {description}
+        </p>
+
+        {(services.length > 0 || liveUrl) && (
+          <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
+            {services.length > 0 && (
+              <div class="flex flex-wrap gap-2 items-center">
+                <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Services:</span>
+                {services.map((s) => (
+                  <span class="text-xs font-medium px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {liveUrl && (
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700"
+              >
+                <span>Visit Live Website</span>
+                <span class="text-xs">&nearr;</span>
+              </a>
+            )}
+          </div>
+        )}
+
+        {techStack.length > 0 && (
+          <div class="mt-4 flex flex-wrap gap-2 items-center text-xs text-slate-500">
+            <span class="font-semibold uppercase tracking-wider">Tech:</span>
+            {techStack.map((t) => (
+              <span class="font-mono">{t}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-12">
+    {metrics.length > 0 && <CaseStudyMetrics metrics={metrics} />}
+    <slot />
+  </div>
+
+  <CTABand
+    heading="Inspired by what you see?"
+    subheading="Let's build a bespoke web solution tailored specifically to your commercial objectives."
+  />
+</BaseLayout>

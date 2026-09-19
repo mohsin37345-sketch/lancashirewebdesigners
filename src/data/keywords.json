@@ -1,0 +1,163 @@
+{
+  "rules": {
+    "titleMaxLength": 60,
+    "metaDescriptionMinLength": 140,
+    "metaDescriptionMaxLength": 160,
+    "titlePattern": "Primary Keyword | Modifier | Lancashire Web Designers"
+  },
+  "pages": [
+    {
+      "url": "/",
+      "primaryKeyword": "web design lancashire",
+      "searchVolume": 590,
+      "keywordDifficulty": 9,
+      "title": "Web Design Lancashire | Lancashire Web Designers",
+      "h1": "Web Design Lancashire",
+      "metaDescription": "Bespoke web design Lancashire businesses trust. High-performance, accessible websites engineered to drive enquiries and qualified leads. Get your quote.",
+      "secondaryKeywords": [
+        "website design lancashire",
+        "lancashire website design",
+        "web design agency lancashire"
+      ],
+      "supportingKeywords": [
+        "web agency lancashire",
+        "digital agency lancashire",
+        "web design north west"
+      ],
+      "stretchKeywords": [
+        "web design agency"
+      ]
+    },
+    {
+      "url": "/bespoke-web-design/",
+      "primaryKeyword": "bespoke web design",
+      "searchVolume": 2400,
+      "keywordDifficulty": 22,
+      "title": "Bespoke Web Design Agency | Lancashire Web Designers",
+      "h1": "Bespoke Web Design",
+      "metaDescription": "Bespoke web design engineered from the ground up for ambitious UK businesses. Hand-coded for speed, search visibility, and maximum conversion rates.",
+      "secondaryKeywords": [
+        "bespoke website design",
+        "bespoke web development",
+        "bespoke website development",
+        "bespoke web design agency"
+      ],
+      "supportingKeywords": [
+        "bespoke website",
+        "bespoke websites",
+        "bespoke web design services",
+        "bespoke web designs",
+        "bespoke design website",
+        "bespoke design",
+        "bespoke digital agency",
+        "bespoke web"
+      ]
+    },
+    {
+      "url": "/b2b-web-design/",
+      "primaryKeyword": "b2b web design agency",
+      "searchVolume": 880,
+      "keywordDifficulty": 28,
+      "title": "B2B Web Design Agency | Lancashire Web Designers",
+      "h1": "B2B Web Design Agency",
+      "metaDescription": "B2B web design agency specialising in complex sales cycles, CRM integrations, and qualified lead generation. Built for measurable commercial growth.",
+      "secondaryKeywords": [
+        "b2b website design agency",
+        "b2b web development",
+        "b2b web agency"
+      ],
+      "supportingKeywords": [
+        "b2b web design company",
+        "b2b website agency"
+      ]
+    },
+    {
+      "url": "/ecommerce-web-design/",
+      "primaryKeyword": "ecommerce design agency",
+      "searchVolume": 1000,
+      "keywordDifficulty": 52,
+      "title": "Ecommerce Design Agency | Lancashire Web Designers",
+      "h1": "Ecommerce Design Agency",
+      "metaDescription": "Specialist ecommerce design agency building high-converting Shopify and custom online stores. Engineered for speed, checkout flow, and revenue growth.",
+      "secondaryKeywords": [
+        "ecommerce web design",
+        "shopify web design"
+      ]
+    },
+    {
+      "url": "/web-design-and-marketing/",
+      "primaryKeyword": "web design and marketing",
+      "searchVolume": 390,
+      "keywordDifficulty": 19,
+      "title": "Web Design and Marketing | Lancashire Web Designers",
+      "h1": "Web Design and Marketing",
+      "metaDescription": "Integrated web design and marketing services designed to attract, engage, and convert your ideal customers. SEO, digital campaigns, and conversion UX.",
+      "secondaryKeywords": [
+        "website design and marketing",
+        "web marketing services",
+        "digital marketing website design",
+        "website design and marketing services"
+      ],
+      "supportingKeywords": [
+        "web design and marketing services",
+        "marketing website design",
+        "seo and web design services",
+        "seo & web design service"
+      ]
+    },
+    {
+      "url": "/website-support/",
+      "primaryKeyword": "web support agency",
+      "searchVolume": 320,
+      "keywordDifficulty": 43,
+      "title": "Web Support Agency | Care Plans | Lancashire Web Designers",
+      "h1": "Web Support Agency",
+      "metaDescription": "Dedicated web support agency providing proactive WordPress care, rapid security patching, uptime monitoring, and ongoing conversion optimisation.",
+      "secondaryKeywords": [
+        "website support agency",
+        "website redesign agency"
+      ]
+    },
+    {
+      "url": "/areas/web-design-preston/",
+      "primaryKeyword": "web design preston",
+      "searchVolume": 480,
+      "keywordDifficulty": 36,
+      "title": "Web Design Preston | Lancashire Web Designers",
+      "h1": "Web Design Preston",
+      "metaDescription": "High-performance web design Preston companies trust for qualified enquiries. Engineered for speed, local search dominance, and measurable ROI.",
+      "secondaryKeywords": [
+        "website design preston",
+        "digital agency preston",
+        "digital marketing preston",
+        "digital marketing agency preston",
+        "marketing agency preston"
+      ]
+    },
+    {
+      "url": "/areas/web-design-lancaster/",
+      "primaryKeyword": "web design lancaster",
+      "searchVolume": 260,
+      "keywordDifficulty": 15,
+      "title": "Web Design Lancaster | Lancashire Web Designers",
+      "h1": "Web Design Lancaster",
+      "metaDescription": "Strategic web design Lancaster enterprises trust. Fast, beautifully crafted websites built to elevate heritage brands and drive sustainable growth.",
+      "secondaryKeywords": [
+        "website design lancaster"
+      ]
+    },
+    {
+      "url": "/areas/web-design-blackburn/",
+      "primaryKeyword": "web design blackburn",
+      "searchVolume": 0,
+      "keywordDifficulty": 0,
+      "title": "Web Design Blackburn | Lancashire Web Designers",
+      "h1": "Web Design Blackburn",
+      "metaDescription": "Bespoke web design Blackburn businesses rely on. Fast, accessible websites crafted for local companies across East Lancashire and the M65 corridor.",
+      "secondaryKeywords": [
+        "website design blackburn",
+        "web designer blackburn"
+      ]
+    }
+  ]
+}

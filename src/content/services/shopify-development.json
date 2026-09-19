@@ -1,0 +1,94 @@
+{
+  "title": "Shopify Development",
+  "slug": "shopify-development",
+  "shortTitle": "Shopify Dev",
+  "metaTitle": "Shopify Development Lancashire | Lancashire Web Designers",
+  "metaDescription": "Custom Shopify development for UK retailers and online brands. Bespoke Liquid themes, custom app integrations, checkout optimisation, and speed tuning.",
+  "primaryKeyword": "shopify development lancashire",
+  "secondaryKeywords": [
+    "shopify plus agency",
+    "custom shopify theme",
+    "shopify speed optimisation",
+    "ecommerce shopify developer"
+  ],
+  "heroHeading": "Shopify Development",
+  "heroSubheading": "Bespoke Shopify theme engineering, frictionless checkout flows, and high-performance ecommerce development.",
+  "icon": "shopping-bag",
+  "summary": "We develop bespoke Shopify storefronts that turn browsers into paying buyers. By writing clean Liquid code and bespoke JavaScript without relying on app bloat, we deliver online stores that load rapidly on mobile networks and convert at industry-leading rates.",
+  "benefits": [
+    "Custom Liquid theme development tailored precisely to your brand guidelines",
+    "Significant reduction in recurring third-party Shopify app subscription costs",
+    "Engineered for sub-second mobile page loads and optimal Core Web Vitals",
+    "Advanced product filtering, bundle builders, and dynamic upsell pathways",
+    "Seamless integration with UK shipping carriers, ERP systems, and warehouse APIs"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Product Catalog & Merchant Discovery",
+      "description": "Evaluating SKU variations, collection groupings, tax structures, and international shipping requirements."
+    },
+    {
+      "step": 2,
+      "title": "Custom UX/UI Prototyping",
+      "description": "Designing high-converting product detail pages, sticky mobile add-to-bag drawers, and intuitive cart flows."
+    },
+    {
+      "step": 3,
+      "title": "Theme Development & Liquid Coding",
+      "description": "Developing modular Shopify Online Store 2.0 sections allowing your team to reorder page elements with ease."
+    },
+    {
+      "step": 4,
+      "title": "App Integration & Payment Setup",
+      "description": "Configuring Shopify Payments, Klarna, PayPal, Klaviyo marketing automations, and stock synchronization."
+    },
+    {
+      "step": 5,
+      "title": "Testing, Launch & Redirections",
+      "description": "Rigorous end-to-end sandbox purchase testing, legacy URL redirect mapping, and live DNS migration."
+    }
+  ],
+  "whatsIncluded": [
+    "Full custom Shopify Online Store 2.0 theme built from scratch",
+    "Configured payment gateway, taxes, and domestic/international shipping rules",
+    "Data migration of existing customer accounts, orders, and products",
+    "Basic email marketing automation setup (abandoned cart sequences)",
+    "Comprehensive merchant operating guide and video walkthrough"
+  ],
+  "whatsNotIncluded": [
+    "Monthly Shopify subscription fees and transaction processing rates",
+    "Product photography and editorial copy creation",
+    "Complex custom private app backend hosting (if external microservices required)"
+  ],
+  "priceFrom": 700,
+  "priceUnit": "fixed project",
+  "priceNotes": "Custom Shopify storefronts start from £700, with extra pages or custom features added transparently.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "Tailwind CSS", "Shopify GraphQL API"],
+  "typicalTimeline": "5-7 weeks",
+  "faqs": [
+    {
+      "question": "Why choose custom Shopify development instead of buying an off-the-shelf theme?",
+      "answer": "Off-the-shelf Shopify themes attempt to serve thousands of different business types, cramming hundreds of unused features and bloated scripts into your store. A custom Liquid theme contains only the exact code your store needs, dramatically speeding up mobile performance and increasing checkout conversion rates.",
+      "display": true
+    },
+    {
+      "question": "Can you migrate an existing WooCommerce or Magento store to Shopify?",
+      "answer": "Yes. We regularly execute full migrations, safely transferring your customer records, order history, product catalogues, and SEO redirect rules to ensure uninterrupted trading.",
+      "display": true
+    },
+    {
+      "question": "Do you help with Shopify Plus enterprise setups?",
+      "answer": "Yes. We work with high-volume merchants on Shopify Plus, implementing custom checkout scripts, B2B wholesale portals, and multi-currency international expansions.",
+      "display": true
+    },
+    {
+      "question": "How do you reduce the number of paid apps we need?",
+      "answer": "Many merchants pay hundreds of pounds each month for apps providing basic features like FAQ accordions, trust badges, product badges, and announcement bars. We build these native features directly into your theme code, eliminating recurring monthly app fees.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["ecommerce-web-design", "website-speed-optimisation", "seo"],
+  "order": 8,
+  "featured": false
+}

@@ -1,0 +1,18 @@
+{
+  "service": "ecommerce-web-design",
+  "location": "preston",
+  "uniqueIntro": "From independent retail innovators in Preston city centre to distribution hubs throughout Central Lancashire, our ecommerce web design services engineer online stores that scale. We combine bespoke visual design with lightning-fast Shopify and WooCommerce development, creating seamless shopping journeys that drive repeat orders and elevate average order value.",
+  "localAngle": "With Preston's excellent logistics connectivity across the North West via the M6 and M65, local retailers and wholesale brands possess significant operational advantages. We pair your supply-chain efficiency with state-of-the-art ecommerce technology that turns regional and national web visitors into lifetime customers.",
+  "faqs": [
+    {
+      "question": "Can you migrate our Preston store from WooCommerce to Shopify?",
+      "answer": "Yes. We manage full migrations, ensuring all products, customer accounts, past orders, and search engine redirect rules are transferred smoothly with zero downtime.",
+      "display": true
+    },
+    {
+      "question": "How quickly will our online store load for mobile customers?",
+      "answer": "Every store we engineer is optimized to achieve sub-second mobile page loads and pass Google Core Web Vitals, minimizing mobile cart abandonment and maximizing transactions.",
+      "display": true
+    }
+  ]
+}

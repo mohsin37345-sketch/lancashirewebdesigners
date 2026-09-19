@@ -1,0 +1,149 @@
+---
+import Icon from './Icon.astro';
+
+export interface Step {
+  number: string;
+  title: string;
+  description: string;
+  deliverable?: string;
+}
+
+export interface Props {
+  heading?: string;
+  subheading?: string;
+  steps?: Step[];
+  class?: string;
+}
+
+const defaultSteps: Step[] = [
+  {
+    number: '01',
+    title: 'Commercial Discovery',
+    description: 'We meet directly (in Lancashire or via video) to map your exact customer journey, commercial conversion goals, and architectural requirements.',
+    deliverable: 'Discovery brief & technical scope (Days 1–3)'
+  },
+  {
+    number: '02',
+    title: 'Bespoke UI/UX Design',
+    description: 'We produce custom high-fidelity design prototypes tailored exclusively to your brand. No off-the-shelf templates, no pre-made layouts.',
+    deliverable: 'Figma interactive prototype (Week 1–2)'
+  },
+  {
+    number: '03',
+    title: 'Clean Engineering & Build',
+    description: 'Your site is coded from scratch using Astro, modern TypeScript, and Tailwind CSS. Built for sub-second speeds, zero CLS, and strict accessibility.',
+    deliverable: 'Private staging environment (Weeks 2–4)'
+  },
+  {
+    number: '04',
+    title: 'Testing, Launch & IP Handover',
+    description: 'Rigorous cross-device testing, full UK legal compliance, 301 redirects, and domain cutover. Upon final milestone payment, 100% of the code transfers to you.',
+    deliverable: 'Live site & full copyright transfer (Week 3–6)'
+  }
+];
+
+const {
+  heading = 'Our 4-Stage Bespoke Build Process',
+  subheading = 'Transparent, milestone-driven, and managed directly by the senior developer building your project.',
+  steps = defaultSteps,
+  class: className = ''
+} = Astro.props;
+---
+
+<section class={`py-16 lg:py-24 ${className}`}>
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="max-w-2xl">
+      <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+        Transparent Delivery
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+        {heading}
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+        {subheading}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((step) => (
+        <div class="relative bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 lg:p-7 flex flex-col justify-between shadow-2xs">
+          <div class="space-y-4">
+            <div class="text-2xl font-black text-blue-600 dark:text-blue-400 font-mono">
+              {step.number}
+            </div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white tracking-tight">
+              {step.title}
+            </h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+
+          {step.deliverable && (
+            <div class="pt-4 mt-6 border-t border-slate-100 dark:border-slate-800/80">
+              <div class="text-[11px] font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                Key Milestone
+              </div>
+              <div class="text-xs font-semibold text-slate-800 dark:text-slate-200 mt-0.5 flex items-center gap-1.5">
+                <Icon name="check" class="w-3.5 h-3.5 text-emerald-600" />
+                <span>{step.deliverable}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <!-- Process Spotlight Card featuring Strategic Web Design Process -->
+    <div class="mt-12 rounded-3xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-8 lg:p-10">
+        <div class="lg:col-span-6 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60">
+            <Icon name="palette" class="w-3.5 h-3.5" />
+            <span>Design Thinking & Discovery</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Strategic Research Precedes Every Line of Code
+          </h3>
+          <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+            Before engineering begins, we map your brand identity, customer search intent, and conversion psychology. Every button placement, typographic hierarchy, and navigation flow is deliberately planned to guide high-intent commercial buyers directly into your sales pipeline.
+          </p>
+          <div class="grid grid-cols-2 gap-3 pt-2">
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/60">
+              <div class="text-xs font-bold text-slate-900 dark:text-white">User Intent Mapping</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Aligned with buyer journeys</div>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/60">
+              <div class="text-xs font-bold text-slate-900 dark:text-white">Brand Distinction</div>
+              <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">100% custom visual identity</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 relative">
+          <div class="rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 shadow-md group hover-lift transition-all duration-300">
+            <div class="aspect-[16/10] w-full overflow-hidden relative">
+              <img
+                src="/images/strategic-web-design-process-lancashire.webp"
+                alt="Design research and wireframing stage of a website project"
+                width="740"
+                height="493"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-60"></div>
+            </div>
+            <div class="absolute top-3 right-3 px-3 py-1.5 rounded-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-800 text-[11px] font-bold text-slate-800 dark:text-slate-200 shadow-sm flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+              <span>UX Discovery Phase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional Slot for extra content / notes -->
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+
+export interface FAQItem {
+  id?: string;
+  question: string;
+  answer: string;
+  display?: boolean;
+}
+
+export interface Props {
+  faqs?: FAQItem[];
+  heading?: string;
+  subheading?: string;
+  class?: string;
+}
+
+const {
+  faqs = [],
+  heading = 'Frequently Asked Questions',
+  subheading = 'Clear answers about our bespoke development process, pricing, and project deliverables.',
+  class: className = ''
+} = Astro.props;
+
+// Filter strictly for items where display is NOT false
+const visibleFaqs = faqs.filter((item) => item.display !== false);
+---
+
+{visibleFaqs.length > 0 && (
+  <section class={`py-16 lg:py-24 ${className}`}>
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto space-y-10">
+        <div class="text-center space-y-3">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Clear Answers
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            {heading}
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-base">
+            {subheading}
+          </p>
+        </div>
+
+        <div class="space-y-4" role="region" aria-label="FAQ Accordion">
+          {visibleFaqs.map((faq) => (
+            <details
+              class="group border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 overflow-hidden shadow-2xs transition-colors"
+            >
+              <summary
+                class="flex items-center justify-between p-5 sm:p-6 cursor-pointer select-none font-bold text-base sm:text-lg text-slate-900 dark:text-white group-open:text-blue-600 dark:group-open:text-blue-400 focus-visible:outline-2 focus-visible:outline-blue-600"
+              >
+                <span class="pr-4">{faq.question}</span>
+                <span class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center shrink-0 text-slate-500 group-open:rotate-180 group-open:bg-blue-50 group-open:text-blue-600 dark:group-open:bg-blue-950 dark:group-open:text-blue-400 transition-all duration-200">
+                  <Icon name="chevron-down" class="w-4 h-4" />
+                </span>
+              </summary>
+              <div class="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-800/60">
+                {faq.answer}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+)}

@@ -1,0 +1,46 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Icon from 'theme/components/Icon.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Page Not Found (404) | Lancashire Web Designers"
+  description="The page you requested does not exist or has moved. Return to Lancashire Web Designers homepage."
+  noindex={true}
+  nofollow={true}
+>
+  <div class="min-h-[70vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl w-full text-center space-y-6">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mx-auto shadow-inner">
+        <span class="text-3xl font-black font-mono">404</span>
+      </div>
+
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Page Not Found
+        </h1>
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          The requested address could not be located. It may have been relocated during our architectural build or entered incorrectly.
+        </p>
+      </div>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href="/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors"
+        >
+          <Icon name="arrow-right" class="w-4 h-4 rotate-180" />
+          <span>Return to Homepage</span>
+        </a>
+        <a
+          href="/sitemap/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm rounded-xl transition-colors"
+        >
+          <span>View Site Directory</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

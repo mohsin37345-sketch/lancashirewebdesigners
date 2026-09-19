@@ -1,0 +1,138 @@
+---
+import Icon from './Icon.astro';
+import { site } from 'src/data/site';
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
+---
+
+<div class={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm ${className}`}>
+  <form id="audit-form" class="space-y-6" data-email={site.email} novalidate>
+    <input type="hidden" name="access_key" value={formAccessKey} />
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+
+    <div class="space-y-4">
+      <div>
+        <label for="audit-url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+          Current Website URL <span class="text-blue-600">*</span>
+        </label>
+        <input
+          type="url"
+          id="audit-url"
+          name="website_url"
+          required
+          placeholder="https://www.yourcompany.co.uk"
+          class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="audit-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+          Your Business Email (Where to send the video teardown) <span class="text-blue-600">*</span>
+        </label>
+        <input
+          type="email"
+          id="audit-email"
+          name="email"
+          required
+          placeholder="director@yourcompany.co.uk"
+          class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+        />
+      </div>
+
+      <div>
+        <label for="audit-concern" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+          What is your primary concern right now? <span class="text-slate-400 font-normal">(Optional)</span>
+        </label>
+        <select
+          id="audit-concern"
+          name="primary_concern"
+          class="w-full px-4 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white text-sm"
+        >
+          <option value="Slow page load speeds / Poor Core Web Vitals">Slow mobile load times / Poor Core Web Vitals</option>
+          <option value="Getting traffic but zero enquiries or sales">Getting traffic but zero enquiries / low conversion</option>
+          <option value="Outdated visual look & feels unprofessional">Outdated visual branding compared to competitors</option>
+          <option value="Failing Google search visibility in Lancashire">Failing Google search rankings in Lancashire</option>
+          <option value="General comprehensive diagnostic">General technical review</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="audit-status" class="hidden p-4 rounded-xl text-xs font-medium" role="status" aria-live="polite"></div>
+
+    <button
+      type="submit"
+      id="audit-submit"
+      class="w-full inline-flex items-center justify-center gap-2 py-4 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift focus-visible:ring-2 focus-visible:ring-blue-500 disabled:opacity-50"
+    >
+      <span id="audit-btn-text">Request Free Engineering Audit</span>
+      <Icon name="arrow-right" class="w-4 h-4" />
+    </button>
+
+    <div class="flex items-center justify-center gap-4 text-[11px] text-slate-400 pt-2">
+      <span class="flex items-center gap-1">
+        <Icon name="check" class="w-3.5 h-3.5 text-emerald-500" />
+        No sales pitch
+      </span>
+      <span class="flex items-center gap-1">
+        <Icon name="check" class="w-3.5 h-3.5 text-emerald-500" />
+        Lighthouse telemetry breakdown
+      </span>
+      <span class="flex items-center gap-1">
+        <Icon name="check" class="w-3.5 h-3.5 text-emerald-500" />
+        Delivered in 48 hours
+      </span>
+    </div>
+  </form>
+</div>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('audit-form');
+    const statusDiv = document.getElementById('audit-status');
+    const submitBtn = document.getElementById('audit-submit');
+    const btnText = document.getElementById('audit-btn-text');
+
+    if (!form || !statusDiv || !submitBtn || !btnText) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const url = document.getElementById('audit-url').value.trim();
+      const email = document.getElementById('audit-email').value.trim();
+
+      if (!url || !email) {
+        statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
+        statusDiv.textContent = 'Please enter both your website URL and email address.';
+        statusDiv.classList.remove('hidden');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.textContent = 'Queueing Diagnostic...';
+      statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200';
+      statusDiv.textContent = 'Submitting URL for manual senior engineer review...';
+      statusDiv.classList.remove('hidden');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          window.location.href = '/thank-you/';
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        const directEmail = form.getAttribute('data-email') || 'mohsin37345@gmail.com';
+        statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
+        statusDiv.innerHTML = `Submission failed. Email your URL directly to <a href="mailto:${directEmail}" class="underline font-bold">${directEmail}</a>.`;
+      }
+    });
+  })();
+</script>

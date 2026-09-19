@@ -1,0 +1,207 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  compact?: boolean;
+  class?: string;
+}
+
+const { compact = true, class: className = '' } = Astro.props;
+
+const allRows = [
+  {
+    feature: 'Mobile Lighthouse',
+    icon: 'zap',
+    bespoke: '95–100',
+    template: '40–70',
+    pageBuilder: '25–55'
+  },
+  {
+    feature: 'Ownership',
+    icon: 'globe',
+    bespoke: 'Yours outright, host anywhere',
+    template: 'Licence restrictions',
+    pageBuilder: 'Locked to the platform'
+  },
+  {
+    feature: 'Ongoing risk',
+    icon: 'shield-check',
+    bespoke: 'Minimal attack surface',
+    template: 'Plugin exploits',
+    pageBuilder: 'Breaking updates'
+  },
+  {
+    feature: 'Code Quality & Bloat',
+    icon: 'code',
+    bespoke: 'Zero excess markup, clean semantic HTML5',
+    template: 'Thousands of lines of unused theme assets',
+    pageBuilder: '10–20 layers of wrapper divs per element'
+  },
+  {
+    feature: 'SEO & Structured Data',
+    icon: 'trending-up',
+    bespoke: 'Hand-crafted JSON-LD graphs & perfect semantics',
+    template: 'Basic, often broken schema output',
+    pageBuilder: 'Generic or missing local business schema'
+  },
+  {
+    feature: 'Design Uniqueness',
+    icon: 'palette',
+    bespoke: 'Tailored 1:1 to your exact commercial brand',
+    template: 'Shared with thousands of other websites',
+    pageBuilder: 'Constrained by builder grid limitations'
+  }
+];
+
+const rows = compact ? allRows.slice(0, 3) : allRows;
+---
+
+<section class={`py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-950 border-y border-slate-200/80 dark:border-slate-800/80 relative overflow-hidden transition-colors ${className}`}>
+  <!-- Subtle Architectural Background Grid & Ambient Gradient -->
+  <div class="absolute inset-0 hero-architectural-grid pointer-events-none opacity-40 dark:opacity-50"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-500/10 dark:bg-blue-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-cyan-400 border border-blue-200/60 dark:border-blue-800/60">
+          <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-cyan-400 animate-pulse"></span>
+          <span class="uppercase tracking-wider font-mono text-[11px] font-bold">Technical Truth</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+          Bespoke, Theme or Page Builder?
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+          Why engineering a website from scratch provides an insurmountable commercial advantage in speed, SEO positioning, and client conversion.
+        </p>
+      </div>
+
+      <!-- Quick Summary Metric Pill -->
+      <div class="hidden lg:flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-base">
+          ✓
+        </div>
+        <div class="text-left">
+          <div class="text-xs font-bold text-slate-900 dark:text-white">100% Clean Code</div>
+          <div class="text-[11px] text-slate-500 dark:text-slate-400">Zero template bloat guaranteed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modern Comparison Table Container -->
+    <div class="relative rounded-2xl sm:rounded-3xl border border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 shadow-xl backdrop-blur-xl overflow-hidden">
+      <!-- Top Multi-Color Accent Gradient Beam -->
+      <div class="h-1 w-full bg-gradient-to-r from-blue-600 via-cyan-400 via-fuchsia-500 to-indigo-600"></div>
+
+      <!-- Responsive Table with Column Highlight -->
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-left min-w-[760px]">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/90 text-xs font-mono">
+              <th class="py-4 px-5 font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200 w-[24%]">
+                Commercial Aspect
+              </th>
+              <th class="py-4 px-5 font-bold text-blue-600 dark:text-cyan-400 bg-blue-500/10 dark:bg-blue-950/70 border-x-2 border-blue-500/30 dark:border-blue-500/50 w-[28%] relative">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-bold tracking-normal font-sans text-slate-900 dark:text-white">Our Bespoke Build</span>
+                  <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-black bg-blue-600 text-white shadow-xs uppercase tracking-wider">
+                    Recommended
+                  </span>
+                </div>
+              </th>
+              <th class="py-4 px-5 font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 w-[24%]">
+                <div class="flex items-center justify-between">
+                  <span>Generic Theme</span>
+                  <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+                    ThemeForest
+                  </span>
+                </div>
+              </th>
+              <th class="py-4 px-5 font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 w-[24%]">
+                <div class="flex items-center justify-between">
+                  <span>DIY Page Builder</span>
+                  <span class="px-2 py-0.5 rounded text-[9px] font-mono font-bold bg-slate-200/80 dark:bg-slate-700 text-slate-700 dark:text-slate-200">
+                    Wix / Elementor
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-slate-100 dark:divide-slate-800/70 text-xs sm:text-sm">
+            {rows.map((row) => (
+              <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors group">
+                <!-- Feature with Icon -->
+                <td class="py-4 px-5 font-bold text-slate-900 dark:text-white">
+                  <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0 border border-slate-200/60 dark:border-slate-700/60 group-hover:text-blue-600 dark:group-hover:text-cyan-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-950/40 transition-colors">
+                      <Icon name={row.icon} class="w-4 h-4" />
+                    </div>
+                    <span>{row.feature}</span>
+                  </div>
+                </td>
+
+                <!-- Our Bespoke Build (Hero Column) -->
+                <td class="py-4 px-5 bg-blue-500/5 dark:bg-blue-950/40 border-x-2 border-blue-500/30 dark:border-blue-500/50">
+                  <div class="flex items-start gap-2.5">
+                    <span class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold shrink-0 mt-0.5 text-xs shadow-2xs">
+                      ✓
+                    </span>
+                    <span class="font-bold text-slate-900 dark:text-white leading-snug">
+                      {row.bespoke}
+                    </span>
+                  </div>
+                </td>
+
+                <!-- Generic Theme Template -->
+                <td class="py-4 px-5 text-slate-600 dark:text-slate-300">
+                  <div class="flex items-start gap-2.5">
+                    <span class="flex items-center justify-center w-4 h-4 rounded-full bg-rose-500/10 text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5 text-[10px]">
+                      ✕
+                    </span>
+                    <span class="leading-snug">
+                      {row.template}
+                    </span>
+                  </div>
+                </td>
+
+                <!-- DIY Page Builder -->
+                <td class="py-4 px-5 text-slate-600 dark:text-slate-300">
+                  <div class="flex items-start gap-2.5">
+                    <span class="flex items-center justify-center w-4 h-4 rounded-full bg-rose-500/10 text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5 text-[10px]">
+                      ✕
+                    </span>
+                    <span class="leading-snug">
+                      {row.pageBuilder}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Bottom Card Action Banner -->
+      <div class="p-5 sm:p-6 bg-slate-100/90 dark:bg-slate-800/95 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 text-left">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold shadow-md shadow-blue-600/20 shrink-0">
+            ⚡
+          </div>
+          <div>
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Ready for a high-performance bespoke build?</div>
+            <div class="text-xs text-slate-600 dark:text-slate-300">Get an itemised fixed-price estimate with guaranteed sub-second mobile speeds.</div>
+          </div>
+        </div>
+
+        <a
+          href="/get-a-quote/"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md shadow-blue-600/20 hover:shadow-lg hover:shadow-blue-600/30 transition-all hover-lift shrink-0"
+        >
+          <span>Get a Bespoke Quote</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

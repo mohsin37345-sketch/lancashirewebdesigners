@@ -1,0 +1,106 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import ComparisonTable from 'theme/components/ComparisonTable.astro';
+import { getEntry } from 'astro:content';
+
+const saEntry = await getEntry('serviceAreas', 'bespoke-web-design-preston');
+if (!saEntry) {
+  throw new Error('ServiceArea entry bespoke-web-design-preston not found');
+}
+const data = saEntry.data;
+
+const title = 'Bespoke Web Design Preston | Lancashire Web Designers';
+const description = 'Bespoke web design for Preston law firms, financial consultancies, and chartered practices. Hand-crafted code, sub-second speeds, and direct developer access.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Bespoke Web Design', url: '/bespoke-web-design/' },
+  { name: 'Preston', url: '/bespoke-web-design/preston/' }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="service"
+  breadcrumbs={breadcrumbs}
+  faqs={data.faqs}
+>
+  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <Hero
+    variant="location"
+    heading="Bespoke Web Design in Preston"
+    subheading="High-performance digital engineering crafted specifically for Preston professional consultancies, chartered surveyors, and corporate services around Winckley Square."
+    breadcrumbs={breadcrumbs}
+    badge="Preston Web Engineering • No Templates"
+    primaryCtaText="Get a Bespoke Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Professional Services Architecture
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Websites Built for Winckley Square Consultancies
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.uniqueIntro}
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.localAngle}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Preston Commercial Reach</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Designed for ambitious Preston businesses, professional practices, and tech service providers competing across the North West.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Sub-Second Load Times</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Hand-crafted architecture that loads under 0.4 seconds, converting qualified enterprise traffic before users bounce.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Total Code Ownership</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">100% bespoke codebase with zero recurring plugin licensing traps, proprietary lock-in, or hidden agency maintenance fees.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <ComparisonTable />
+
+  <section class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Preston Web Design FAQs
+        </h2>
+      </div>
+      <FAQ faqs={data.faqs} />
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <QuoteFormInline
+        heading="Start Your Preston Project"
+        subheading="Tell us about your requirements. We'll respond with a transparent, fixed-price proposal within 24 hours."
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Ready to elevate your Preston firm's digital presence?"
+    subheading="Partner directly with a senior UK engineer. Sub-second performance and zero bloat guaranteed."
+  />
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+const ga4Id = import.meta.env.PUBLIC_GA4_ID;
+---
+
+{ga4Id && (
+  <script is:inline define:vars={{ ga4Id }}>
+    (function () {
+      let loaded = false;
+      function loadAnalytics() {
+        if (loaded) return;
+        loaded = true;
+
+        // Cleanup event listeners
+        window.removeEventListener('scroll', loadAnalytics);
+        window.removeEventListener('mousemove', loadAnalytics);
+        window.removeEventListener('touchstart', loadAnalytics);
+        window.removeEventListener('keydown', loadAnalytics);
+
+        // Load GA4 script
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+        document.head.appendChild(script);
+
+        script.onload = function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', ga4Id, { anonymize_ip: true });
+        };
+      }
+
+      // Interaction triggers
+      window.addEventListener('scroll', loadAnalytics, { passive: true, once: true });
+      window.addEventListener('mousemove', loadAnalytics, { passive: true, once: true });
+      window.addEventListener('touchstart', loadAnalytics, { passive: true, once: true });
+      window.addEventListener('keydown', loadAnalytics, { passive: true, once: true });
+
+      // Fallback timer (3 seconds)
+      setTimeout(loadAnalytics, 3000);
+    })();
+  </script>
+)}

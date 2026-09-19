@@ -1,0 +1,183 @@
+---
+import { site } from 'src/data/site';
+import navData from 'src/data/navigation.json';
+import socialData from 'src/data/social.json';
+import Icon from './Icon.astro';
+
+const currentYear = new Date().getFullYear();
+const footerNav = navData.footerNav;
+
+// Active social networks
+const activeSocials = Object.entries(socialData).filter(
+  ([_, url]) => typeof url === 'string' && url.trim().length > 0
+);
+
+// Insurance info
+const hasInsurance =
+  (site.insurance?.publicLiability && site.insurance.publicLiability.trim().length > 0) ||
+  (site.insurance?.professionalIndemnity && site.insurance.professionalIndemnity.trim().length > 0);
+---
+
+<footer class="bg-slate-900 text-slate-300 border-t border-slate-800 transition-colors">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+      <!-- Brand & NAP Column -->
+      <div class="lg:col-span-2 space-y-6">
+        <a href="/" class="inline-block focus-visible:ring-2 focus-visible:ring-blue-600 rounded-md group" aria-label="Lancashire Web Designers Home">
+          <img
+            src="/images/logo-dark.webp"
+            alt="Lancashire Web Designers"
+            width="220"
+            height="58"
+            class="h-10 sm:h-12 w-auto object-contain group-hover:opacity-90 transition-opacity"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+
+        <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+          Lancashire-based web design and development studio. We engineer bespoke, lightning-fast, conversion-focused websites for businesses across Blackburn, Preston, Lancaster, and throughout the UK.
+        </p>
+
+        <!-- Canonical NAP Block inside <address> -->
+        <address class="not-italic text-sm text-slate-400 space-y-1.5 border-l-2 border-blue-500/40 pl-4 py-1">
+          <div class="font-bold text-slate-200 text-base">{site.name}</div>
+          {site.address.street && <div>{site.address.street}</div>}
+          <div>{site.address.town}, {site.address.county}, {site.address.postcode}</div>
+          {site.phone && (
+            <div>
+              Phone: <a href={`tel:${site.phoneE164 || site.phone}`} class="text-blue-400 hover:text-blue-300 transition-colors font-semibold">{site.phoneDisplay || site.phone}</a>
+            </div>
+          )}
+          <div>
+            Email: <a href={`mailto:${site.email}`} class="text-blue-400 hover:text-blue-300 transition-colors">{site.email}</a>
+          </div>
+          {site.companyNumber && (
+            <div class="text-xs text-slate-400">
+              Company No: {site.companyNumber}
+            </div>
+          )}
+          {site.vatNumber && (
+            <div class="text-xs text-slate-400">
+              VAT Registration: {site.vatNumber}
+            </div>
+          )}
+        </address>
+
+        <!-- Insurance statement where held -->
+        {hasInsurance && (
+          <div class="text-xs text-slate-500 bg-slate-800/50 p-3 rounded-lg border border-slate-800 max-w-sm">
+            Fully insured:
+            {site.insurance?.publicLiability && ` Public Liability cover to ${site.insurance.publicLiability}.`}
+            {site.insurance?.professionalIndemnity && ` Professional Indemnity cover to ${site.insurance.professionalIndemnity}.`}
+          </div>
+        )}
+
+        <!-- Social Icons (only active entries) -->
+        {activeSocials.length > 0 && (
+          <div class="flex items-center gap-3 pt-2">
+            {activeSocials.map(([network, url]) => (
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label={`Visit our ${network} profile`}
+              >
+                <Icon name={network} class="w-4 h-4" />
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Services Column -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">
+          Services
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {footerNav.services.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-blue-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Areas Column -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">
+          Areas Served
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {footerNav.areas.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-blue-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company & Legal Columns -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-200 mb-4">
+          Company & Legal
+        </h3>
+        <ul class="space-y-2.5 text-sm">
+          {footerNav.company.slice(0, 5).map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-blue-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+          {footerNav.legal.map((item) => (
+            <li>
+              <a href={item.href} class="text-slate-400 hover:text-blue-400 transition-colors">
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Copyright & Cookie Preferences -->
+    <div class="pt-8 mt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>
+        &copy; {currentYear} {site.name}. All rights reserved. Built bespoke in Lancashire, UK.
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="/sitemap/" class="hover:text-slate-400 transition-colors">
+          HTML Sitemap
+        </a>
+        <button
+          type="button"
+          id="cookie-preferences-btn"
+          class="hover:text-slate-300 underline underline-offset-4 transition-colors focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
+        >
+          Cookie Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  // Open CMP Cookie Preferences dialog when requested
+  document.getElementById('cookie-preferences-btn')?.addEventListener('click', function () {
+    if (typeof Cookiebot !== 'undefined') {
+      Cookiebot.renew();
+    } else if (typeof _ckyConfig !== 'undefined' && window.cookieyes) {
+      window.cookieyes('showBanner');
+    } else {
+      alert('Cookie preferences dialog is not active in this development environment.');
+    }
+  });
+</script>

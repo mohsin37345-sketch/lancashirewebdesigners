@@ -1,0 +1,96 @@
+{
+  "title": "Web Design and Marketing",
+  "slug": "web-design-and-marketing",
+  "shortTitle": "Web Design & Marketing",
+  "metaTitle": "Web Design and Marketing | Lancashire Web Designers",
+  "metaDescription": "Integrated web design and marketing services designed to attract, engage, and convert your ideal customers. SEO, digital campaigns, and conversion UX.",
+  "primaryKeyword": "web design and marketing",
+  "secondaryKeywords": [
+    "website design and marketing",
+    "web marketing services",
+    "digital marketing website design",
+    "website design and marketing services",
+    "seo and web design services"
+  ],
+  "heroHeading": "Web Design and Marketing",
+  "heroSubheading": "Cohesive web design and digital marketing engineered to turn search traffic into loyal, repeat customers.",
+  "icon": "trending-up",
+  "summary": "Combining strategic web design and marketing creates a unified digital growth system rather than treating website creation and customer acquisition as disconnected silos. At Lancashire Web Designers, we engineer websites built specifically to rank in organic search, capture commercial buyer intent, and convert incoming traffic into measurable revenue through conversion-focused design and targeted digital strategies.",
+  "benefits": [
+    "Websites engineered from day one to dominate organic search engine rankings",
+    "Dedicated conversion rate optimization (CRO) built into every landing page",
+    "Comprehensive lead tracking and marketing attribution from first click to sale",
+    "Cohesive brand messaging across search, social channels, and web touchpoints",
+    "Ongoing data-driven refinements that systematically lower customer acquisition costs"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Market & Search Intent Analysis",
+      "description": "We identify high-value commercial keywords, competitor vulnerabilities, and target customer search habits before laying out your website structure."
+    },
+    {
+      "step": 2,
+      "title": "Conversion UX & Lead Funnel Design",
+      "description": "Designing focused landing pages with clear value propositions, trust proof points, and friction-free lead capture mechanisms."
+    },
+    {
+      "step": 3,
+      "title": "Technical SEO & High-Speed Build",
+      "description": "Writing lightweight, accessible code optimized for Google Core Web Vitals, rich snippet Schema markup, and crawl efficiency."
+    },
+    {
+      "step": 4,
+      "title": "Analytics, Tracking & Funnel Setup",
+      "description": "Implementing server-side Google Tag Manager, GA4 custom event tracking, conversion goals, and privacy-compliant consent modes."
+    },
+    {
+      "step": 5,
+      "title": "Growth Activation & Campaign Integration",
+      "description": "Connecting your live site with organic search indexing, Google Business Profile, and paid ad landing page pipelines."
+    }
+  ],
+  "whatsIncluded": [
+    "Complete bespoke website design aligned with search intent and user journey",
+    "Comprehensive keyword strategy and on-page technical SEO optimization",
+    "Advanced GA4 event tracking and conversion goal measurement",
+    "Google Business Profile optimization and local search citation alignment",
+    "High-converting inquiry forms with automated email notifications",
+    "Post-launch growth review and quarterly strategic recommendations"
+  ],
+  "whatsNotIncluded": [
+    "Monthly media spend for Google Ads, Meta Ads, or LinkedIn sponsored posts",
+    "Third-party advertising management retainers (quoted separately if required)",
+    "Extensive weekly social media content management"
+  ],
+  "priceFrom": 600,
+  "priceUnit": "fixed project",
+  "priceNotes": "Integrated web design and marketing packages start from £600, with extra pages easily added at +£50/page.",
+  "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Google Tag Manager", "GA4", "Search Console"],
+  "typicalTimeline": "5-7 weeks",
+  "faqs": [
+    {
+      "question": "Why should web design and digital marketing be handled together?",
+      "answer": "When marketing agencies and web design studios work separately, they often work at cross-purposes. Designers may build pages that look striking but load slowly and lack SEO structure, while marketers attempt to drive paid traffic to pages that don't convert. Aligning design and marketing ensures your website is built from the foundation up to attract search traffic and systematically close deals.",
+      "display": true
+    },
+    {
+      "question": "How quickly will my new website start ranking on Google?",
+      "answer": "While technical fixes and Core Web Vitals improvements take effect almost immediately upon Google indexing your new site, competitive organic ranking typically builds steadily over 3 to 6 months as authority and content depth expand.",
+      "display": true
+    },
+    {
+      "question": "Do you provide ongoing SEO and marketing support after launch?",
+      "answer": "Yes. We offer flexible ongoing digital marketing retainers focusing on technical SEO maintenance, high-intent content publishing, local citation building, and conversion rate optimization.",
+      "display": true
+    },
+    {
+      "question": "How do you measure marketing ROI on the new site?",
+      "answer": "We establish precise conversion tracking in Google Analytics 4: tracking contact form submissions, telephone clicks, quote requests, and resource downloads so you know exactly which channels generate qualified revenue.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "b2b-web-design", "website-support"],
+  "order": 4,
+  "featured": true
+}

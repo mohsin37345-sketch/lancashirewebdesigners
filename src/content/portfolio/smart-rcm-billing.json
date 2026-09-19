@@ -1,0 +1,50 @@
+{
+  "title": "Smart RCM Billing — Modern Healthcare Positioning & Booking Funnel",
+  "slug": "smart-rcm-billing",
+  "client": "Smart RCM Billing",
+  "clientType": "B2B Healthcare Provider",
+  "industry": "Healthcare Informatics & Billing",
+  "year": 2024,
+  "services": [
+    "B2B Web Design",
+    "Conversion Rate Optimisation",
+    "Brand Positioning",
+    "On-Page SEO"
+  ],
+  "techStack": [
+    "WordPress",
+    "Elementor",
+    "Tailwind CSS",
+    "GA4"
+  ],
+  "brief": "A sister healthcare brand required distinct market positioning centered around modern clinical credibility, denial rate reduction, and an immediate meeting-booking workflow rather than an extensive multi-field form.",
+  "approach": "Developed a lighter, teal-accented layout with prominent clinical imagery and value-led messaging (\"We handle your medical billing so you can cut denials\"). Implemented sticky contact bars and direct calendar booking triggers to eliminate conversion friction.",
+  "outcome": "Delivered clear brand differentiation without cannibalising sister company messaging, producing a high-converting meeting booking funnel for medical practices.",
+  "metrics": [
+    {
+      "label": "Clinical Metric Prominence",
+      "value": "98%",
+      "note": "First-pass clean claims badge"
+    },
+    {
+      "label": "Funnel Architecture",
+      "value": "Direct Booking",
+      "note": "Eliminated inquiry drop-off"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/smart-rcm-billing.jpg",
+      "alt": "Smart RCM Billing website hero and Schedule a Meeting CTA",
+      "caption": "Modern healthcare layout with direct meeting booking and trust signals."
+    },
+    {
+      "src": "/images/portfolio/smart-rcm-infographics.jpg",
+      "alt": "Smart RCM Billing LinkedIn B2B infographic content",
+      "caption": "Scannable B2B infographic templates built for practice decision-makers."
+    }
+  ],
+  "liveUrl": "https://smartrcmbilling.us",
+  "featured": true,
+  "order": 2
+}

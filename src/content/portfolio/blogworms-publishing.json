@@ -1,0 +1,45 @@
+{
+  "title": "BlogWorms — High-Scale UK Editorial Publishing & Guides Engine",
+  "slug": "blogworms-publishing",
+  "client": "UK Content Network",
+  "clientType": "Digital Media Platform",
+  "industry": "Editorial Publishing & Consumer Guides",
+  "year": 2025,
+  "services": [
+    "Publishing Architecture",
+    "Speed Optimization",
+    "Topical Authority SEO",
+    "Core Web Vitals"
+  ],
+  "techStack": [
+    "Static Site Architecture",
+    "Tailwind CSS",
+    "Cloudflare CDN",
+    "Schema.org"
+  ],
+  "brief": "Construct a blisteringly fast UK consumer guide publication engineered for rapid topical indexing, Core Web Vitals perfection, and high search impression volume.",
+  "approach": "Architected structured topic clusters, automated Article schema, and optimized assets to achieve a 100/100 Lighthouse performance score on mobile devices.",
+  "outcome": "Grew organic search visibility to approximately 300,000 monthly Google impressions and over 3,000 monthly organic clicks.",
+  "metrics": [
+    {
+      "label": "Monthly Impressions",
+      "value": "300K+",
+      "note": "Google UK organic search visibility"
+    },
+    {
+      "label": "Organic Clicks",
+      "value": "3,000+",
+      "note": "Monthly compounding search traffic"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/blogworms-publishing.jpg",
+      "alt": "BlogWorms UK consumer guides and featured review articles",
+      "caption": "Speed-optimized UK publication engineered for high topical indexing and Core Web Vitals."
+    }
+  ],
+  "liveUrl": "https://blogworms.co.uk",
+  "featured": false,
+  "order": 10
+}

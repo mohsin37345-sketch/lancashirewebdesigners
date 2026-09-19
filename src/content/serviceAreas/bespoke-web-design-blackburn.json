@@ -1,0 +1,18 @@
+{
+  "service": "bespoke-web-design",
+  "location": "blackburn",
+  "uniqueIntro": "For expanding manufacturers, precision engineering companies, and commercial contractors across Blackburn and East Lancashire, off-the-shelf templates fail to convey operational excellence. Our bespoke web design services in Blackburn construct hand-coded, high-performance web applications specifically aligned with your industrial capabilities, technical certifications, and regional B2B contract acquisition pipelines.",
+  "localAngle": "Located directly along the M65 economic corridor, Blackburn businesses compete regionally across Manchester, Leeds, and Preston. A custom-engineered website delivers the sub-second speed, authoritative design, and conversion architecture required to win high-value commercial tenders against larger national competitors.",
+  "faqs": [
+    {
+      "question": "Why should Blackburn manufacturers invest in bespoke web design?",
+      "answer": "Procurement teams and commercial directors evaluate engineering partners based on rigor, precision, and authority. A template website with sluggish loading and generic stock graphics undermines credibility. Bespoke web design showcases your plant machinery, quality accreditations, and case studies with speed and polish.",
+      "display": true
+    },
+    {
+      "question": "Can we meet locally in Blackburn to discuss our website project?",
+      "answer": "Yes. We are based directly in Lancashire and regularly meet with local business owners and management teams across Blackburn, Darwen, and the Ribble Valley for discovery sessions and milestone reviews.",
+      "display": true
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import Icon from './Icon.astro';
+
+export interface ServiceItem {
+  title: string;
+  href: string;
+  description: string;
+  icon?: string;
+  priceFrom?: number;
+  benefits?: string[];
+  tag?: string;
+  color?: string;
+}
+
+export interface Props {
+  services?: ServiceItem[];
+  class?: string;
+}
+
+const { services = [], class: className = '' } = Astro.props;
+---
+
+{services.length > 0 ? (
+  <div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 ${className}`}>
+    {services.map((s) => (
+      <ServiceCard {...s} />
+    ))}
+  </div>
+) : (
+  <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-12 text-center max-w-xl mx-auto space-y-4">
+    <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+      <Icon name="code" class="w-6 h-6" />
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Bespoke Web Services</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400">
+      We build everything bespoke from the ground up: corporate brochure sites, B2B lead platforms, and high-volume ecommerce.
+    </p>
+    <a
+      href="/get-a-quote/"
+      class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors"
+    >
+      <span>Enquire About a Project</span>
+      <Icon name="arrow-right" class="w-4 h-4" />
+    </a>
+  </div>
+)}

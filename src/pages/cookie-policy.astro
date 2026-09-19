@@ -1,0 +1,115 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'what-are-cookies', text: '1. What Are Cookies?' },
+  { depth: 2, slug: 'how-we-use-cookies', text: '2. How We Use Cookies' },
+  { depth: 2, slug: 'cookie-audit-table', text: '3. Complete Cookie Audit Table' },
+  { depth: 2, slug: 'consent-mode-v2', text: '4. Google Consent Mode v2 & Architecture' },
+  { depth: 2, slug: 'managing-cookies', text: '5. How to Manage Your Preferences' }
+];
+
+const cookies = [
+  {
+    name: 'lwd-theme',
+    provider: `${site.name} (First Party)`,
+    purpose: 'Stores your preferred visual theme (light or dark mode) to prevent visual flashing during navigation.',
+    type: 'Essential / Functional',
+    duration: '1 Year'
+  },
+  {
+    name: 'CookieConsent / cky-consent',
+    provider: 'Consent Management Provider',
+    purpose: 'Stores your explicit cookie consent choices across browser sessions.',
+    type: 'Strictly Necessary',
+    duration: '1 Year'
+  },
+  {
+    name: '_cfuvid / cf_clearance',
+    provider: 'Cloudflare',
+    purpose: 'Used by Cloudflare Turnstile to prevent automated bots, DDoS attacks, and spam form submissions.',
+    type: 'Security / Necessary',
+    duration: 'Session / 30 Days'
+  },
+  {
+    name: '_ga / _ga_*',
+    provider: 'Google Analytics 4',
+    purpose: 'Calculates visitor, session, and campaign data for internal site analytics. Strictly blocked until opt-in.',
+    type: 'Analytics (Optional)',
+    duration: '2 Years'
+  }
+];
+---
+
+<LegalLayout
+  title="Cookie Policy"
+  description="Detailed cookie policy and complete audit table explaining our use of strictly necessary and analytics cookies under UK PECR."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    This Cookie Policy explains how <strong>{site.name}</strong> uses cookies and similar client-side storage technologies on our website. We believe in total transparency, zero tracking without explicit consent, and strict adherence to the UK Privacy and Electronic Communications Regulations (PECR) and UK GDPR.
+  </p>
+
+  <h2 id="what-are-cookies">1. What Are Cookies?</h2>
+  <p>
+    Cookies are small text files placed on your computer, smartphone, or device when you visit a website. They are widely used to allow websites to function properly, remember user preferences (such as dark mode selection), and provide high-level anonymised telemetry to site owners.
+  </p>
+
+  <h2 id="how-we-use-cookies">2. How We Use Cookies</h2>
+  <p>
+    We adopt a strict &ldquo;privacy by design&rdquo; engineering philosophy. By default, our site sets only <strong>strictly necessary</strong> and functional cookies required for core security, accessibility, and theme state.
+  </p>
+  <p>
+    We do <strong>not</strong> load advertising pixels, cross-site trackers, or non-essential analytics cookies until you have given your explicit, affirmative opt-in consent via our cookie consent banner. Rejecting non-essential cookies is just as simple as accepting them, and your choice never restricts your access to any part of our site.
+  </p>
+
+  <h2 id="cookie-audit-table">3. Complete Cookie Audit Table</h2>
+  <p>
+    Below is a complete audit of cookies and local storage tokens utilized across our website:
+  </p>
+
+  <div class="overflow-x-auto my-6">
+    <table class="w-full text-left text-xs sm:text-sm border-collapse border border-slate-200 dark:border-slate-800">
+      <thead>
+        <tr class="bg-slate-100 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-800 font-bold text-slate-900 dark:text-white">
+          <th class="p-3">Cookie Name</th>
+          <th class="p-3">Provider</th>
+          <th class="p-3">Purpose</th>
+          <th class="p-3">Category</th>
+          <th class="p-3">Duration</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+        {cookies.map((c) => (
+          <tr>
+            <td class="p-3 font-mono font-semibold text-blue-600 dark:text-blue-400">{c.name}</td>
+            <td class="p-3 text-slate-700 dark:text-slate-300">{c.provider}</td>
+            <td class="p-3 text-slate-600 dark:text-slate-400">{c.purpose}</td>
+            <td class="p-3 font-medium text-slate-700 dark:text-slate-300">{c.type}</td>
+            <td class="p-3 text-slate-500 dark:text-slate-400 whitespace-nowrap">{c.duration}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="consent-mode-v2">4. Google Consent Mode v2 & Architecture</h2>
+  <p>
+    Our website implements <strong>Google Consent Mode v2</strong> as an inline blocking script prior to any analytics initialization. All telemetry flags (<code>analytics_storage</code>, <code>ad_storage</code>, <code>ad_user_data</code>, and <code>ad_personalization</code>) are set to <code>'denied'</code> by default.
+  </p>
+  <p>
+    Furthermore, non-essential third-party scripts are interaction-gated and will not execute until user interaction (scroll, click, keydown) or positive consent is logged, ensuring zero negative impact on initial page performance or Core Web Vitals.
+  </p>
+
+  <h2 id="managing-cookies">5. How to Manage Your Preferences</h2>
+  <p>
+    You can alter or withdraw your cookie consent at any time. Simply click the <strong>Cookie Preferences</strong> link located in the footer of every page on this website to reopen the preference modal.
+  </p>
+  <p>
+    Alternatively, you can manage or block cookies through your browser settings. Please note that disabling strictly necessary cookies may impair the functionality and visual presentation of the website.
+  </p>
+</LegalLayout>

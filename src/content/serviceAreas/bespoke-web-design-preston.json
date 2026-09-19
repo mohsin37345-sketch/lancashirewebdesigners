@@ -1,0 +1,18 @@
+{
+  "service": "bespoke-web-design",
+  "location": "preston",
+  "uniqueIntro": "As Central Lancashire's commercial and professional epicentre, Preston demands websites that project unquestioned legal, financial, and consultative authority. Our bespoke web design services in Preston deliver hand-coded, sub-second web platforms tailored for established law firms, chartered wealth consultancies, and innovative commercial services headquartered around Winckley Square, Fulwood, and the Preston Docks.",
+  "localAngle": "Preston's position at the junction of the M6, M55, and West Coast Main Line makes it a natural magnet for top regional talent and business expansion. Our bespoke web development aligns your digital presence with this dynamic market, ensuring your practice ranks at the top of local organic search results and converts high-net-worth clients effortlessly.",
+  "faqs": [
+    {
+      "question": "How does bespoke web design support Preston professional practices?",
+      "answer": "Clients seeking legal, financial, or engineering consultancies expect seamless professionalism. Bespoke development eliminates clunky navigation, broken mobile elements, and slow loading times, replacing them with crisp typography, instant document downloads, and intuitive consultation booking tools.",
+      "display": true
+    },
+    {
+      "question": "Can you integrate our new Preston website with our client portal software?",
+      "answer": "Yes. We build clean, secure API connectors that integrate directly with enterprise practice management suites, CRM platforms, and secure client document vaults.",
+      "display": true
+    }
+  ]
+}

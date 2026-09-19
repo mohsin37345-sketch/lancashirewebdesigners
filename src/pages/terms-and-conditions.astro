@@ -1,0 +1,69 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'acceptance-of-terms', text: '1. Acceptance of Terms' },
+  { depth: 2, slug: 'intellectual-property', text: '2. Intellectual Property Rights' },
+  { depth: 2, slug: 'acceptable-use', text: '3. Acceptable Use Policy' },
+  { depth: 2, slug: 'disclaimers-liability', text: '4. Disclaimers & Limitation of Liability' },
+  { depth: 2, slug: 'third-party-links', text: '5. External Links & Third-Party Content' },
+  { depth: 2, slug: 'governing-law', text: '6. Governing Law & Jurisdiction' }
+];
+---
+
+<LegalLayout
+  title="Terms & Conditions of Website Use"
+  description="Terms and conditions governing the use of the Lancashire Web Designers website under the laws of England and Wales."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    Welcome to the website of <strong>{site.name}</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;). By accessing, browsing, or using this website, you agree to be legally bound by these Terms and Conditions of Website Use. If you disagree with any part of these terms, please discontinue use of the website immediately.
+  </p>
+
+  <h2 id="acceptance-of-terms">1. Acceptance of Terms</h2>
+  <p>
+    These terms apply solely to the use and browsing of this website. If you commission bespoke web design, bespoke development, or ongoing care plan services from us, your engagement will also be governed by our formal <a href="/terms-of-business/">Terms of Business</a>.
+  </p>
+
+  <h2 id="intellectual-property">2. Intellectual Property Rights</h2>
+  <p>
+    Unless otherwise stated, all intellectual property rights in this website, including but not limited to design layouts, copy, source code, typography, vector artwork, graphics, and branding, are owned by or licensed to {site.legalEntity || site.name}.
+  </p>
+  <ul>
+    <li>You may view, download, and print pages for your own personal or internal business review purposes.</li>
+    <li>You must not reproduce, duplicate, scrape, copy, sell, or exploit any portion of this website or our bespoke code architecture without our express written consent.</li>
+  </ul>
+
+  <h2 id="acceptable-use">3. Acceptable Use Policy</h2>
+  <p>
+    When accessing this website, you agree not to:
+  </p>
+  <ul>
+    <li>Use the website in any manner that causes, or may cause, damage to website performance, security, or availability.</li>
+    <li>Transmit or inject automated malware, trojans, worms, keyloggers, or malicious payloads.</li>
+    <li>Conduct unauthorized automated data scraping, harvesting, or systematic indexing outside standard search engine protocols.</li>
+    <li>Submit false, fraudulent, or defamatory information via our contact or quotation forms.</li>
+  </ul>
+
+  <h2 id="disclaimers-liability">4. Disclaimers & Limitation of Liability</h2>
+  <p>
+    The information on this website is provided for general informational purposes only. While we strive to ensure technical accuracy, we make no representations or warranties regarding completeness, timeliness, or fitness for a particular purpose.
+  </p>
+  <p>
+    Nothing in these terms shall exclude or limit our liability for death or personal injury resulting from our negligence, fraud or fraudulent misrepresentation, or any other liability that cannot be excluded under the laws of England and Wales.
+  </p>
+
+  <h2 id="third-party-links">5. External Links & Third-Party Content</h2>
+  <p>
+    This website may include hyperlinks to external third-party websites or services (e.g. tools, industry guides, or client platforms). These links are provided for reference only; we hold no responsibility for the content, privacy practices, or availability of external third-party sites.
+  </p>
+
+  <h2 id="governing-law">6. Governing Law & Jurisdiction</h2>
+  <p>
+    These Terms and Conditions shall be governed by and construed in accordance with the laws of England and Wales. Any disputes arising in connection with these terms shall be subject to the exclusive jurisdiction of the courts of England and Wales.
+  </p>
+</LegalLayout>

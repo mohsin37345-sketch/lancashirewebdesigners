@@ -1,0 +1,43 @@
+{
+  "title": "HVAC Duct Calculator — Interactive Engineering Sizing Tool & SEO Asset",
+  "slug": "hvac-duct-calculator",
+  "client": "Engineering Web Asset",
+  "clientType": "Interactive Utility Tool",
+  "industry": "Engineering & Construction Software",
+  "year": 2025,
+  "services": [
+    "Interactive Tool Engineering",
+    "Tool-Led SEO",
+    "Client-Side JavaScript Algorithms"
+  ],
+  "techStack": [
+    "Astro",
+    "Vanilla JavaScript",
+    "Tailwind CSS"
+  ],
+  "brief": "Develop an intuitive, precision duct-sizing web application (ductulator) that calculates CFM, friction rate, and duct dimensions in real time while naturally earning high-authority backlinks.",
+  "approach": "Coded responsive calculation formulas for both round metal and flexible ducting with zero external runtime dependencies. Added embeddable widget options and comprehensive sizing guide content.",
+  "outcome": "Ranks organically on page 1 for competitive mechanical engineering terms, attracting repeat organic visits and editorial industry backlinks.",
+  "metrics": [
+    {
+      "label": "Calculation Latency",
+      "value": "<5ms",
+      "note": "Instantaneous client-side reactive calculations"
+    },
+    {
+      "label": "Backlink Acquisition",
+      "value": "Passive",
+      "note": "Natural links earned from trade directories"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/hvac-duct-calculator.jpg",
+      "alt": "HVAC Duct Calculator free online duct sizing tool interface",
+      "caption": "Precision interactive engineering tool delivering real-time CFM and sizing calculations."
+    }
+  ],
+  "liveUrl": "https://hvacductcalculator.com",
+  "featured": false,
+  "order": 9
+}

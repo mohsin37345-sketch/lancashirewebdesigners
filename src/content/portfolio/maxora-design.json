@@ -1,0 +1,44 @@
+{
+  "title": "Maxora Design — Minimalist Monochrome Creative Agency Portfolio",
+  "slug": "maxora-design",
+  "client": "Maxora Design",
+  "clientType": "Creative Studio",
+  "industry": "Brand Strategy & Graphic Design",
+  "year": 2024,
+  "services": [
+    "Minimalist Web Design",
+    "Typography Engineering",
+    "Micro-Interactions"
+  ],
+  "techStack": [
+    "HTML5",
+    "Tailwind CSS",
+    "JavaScript",
+    "GSAP"
+  ],
+  "brief": "A high-end creative design studio required an editorial monochrome digital portfolio prioritizing typography, whitespace, and conversational client inquiry.",
+  "approach": "Crafted a bespoke, content-first layout with subtle micro-interactions, bold typography, and smooth transitions tailored to luxury brand prospects.",
+  "outcome": "Elevated creative authority, conveying sophistication and commanding higher agency project retainers.",
+  "metrics": [
+    {
+      "label": "Design Aesthetic",
+      "value": "Editorial",
+      "note": "Monochrome minimalist layout"
+    },
+    {
+      "label": "Navigation Flow",
+      "value": "Enquiry-Led",
+      "note": "Direct conversational client contact"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/maxora-design.jpg",
+      "alt": "Maxora Design minimal monochrome studio website showcase",
+      "caption": "Editorial-style design studio website with minimal monochrome aesthetics."
+    }
+  ],
+  "liveUrl": "https://maxoradesign.com",
+  "featured": false,
+  "order": 11
+}

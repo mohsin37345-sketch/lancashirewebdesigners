@@ -1,0 +1,66 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import PortfolioGrid from 'theme/components/PortfolioGrid.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Selected Portfolio & Client Projects | Lancashire Web Designers';
+const description = 'Explore our portfolio of bespoke web design and software engineering projects across Lancashire and the UK. Real case studies with measurable commercial outcomes.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Portfolio', url: '/portfolio/' }
+];
+
+const portfolioEntries = await getCollection('portfolio');
+const sortedEntries = portfolioEntries.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const portfolioItems = sortedEntries.map((entry) => ({
+  title: entry.data.title,
+  client: entry.data.client,
+  industry: entry.data.industry,
+  year: entry.data.year,
+  href: `/portfolio/${entry.data.slug || entry.id}/`,
+  brief: entry.data.brief,
+  services: entry.data.services,
+  metrics: entry.data.metrics,
+  image: entry.data.images?.[0]?.src
+}));
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="portfolio"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Selected Portfolio
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Explore our real-world client builds: hand-crafted websites, corporate platforms, and high-velocity ecommerce stores engineered for commercial performance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <PortfolioGrid items={portfolioItems} />
+    </div>
+  </div>
+
+  <CTABand
+    heading="Ready to build your company's next commercial asset?"
+    subheading="Speak directly with our principal technical architect to review your project scope."
+    primaryCtaText="Get a Bespoke Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Calculate Project Cost"
+    secondaryCtaHref="/website-cost-calculator/"
+  />
+</BaseLayout>

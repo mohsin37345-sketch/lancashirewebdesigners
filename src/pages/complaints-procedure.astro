@@ -1,0 +1,83 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'overview-principles', text: '1. Overview & Service Principles' },
+  { depth: 2, slug: 'stage-1-informal', text: '2. Stage 1: Informal Direct Resolution' },
+  { depth: 2, slug: 'stage-2-formal', text: '3. Stage 2: Formal Complaint Lodgement' },
+  { depth: 2, slug: 'timescales-investigation', text: '4. Investigation & Response Timescales' },
+  { depth: 2, slug: 'stage-3-escalation', text: '5. Stage 3: Senior Review & Escalation' },
+  { depth: 2, slug: 'external-remedies', text: '6. External Dispute Resolution & Legal Recourse' }
+];
+---
+
+<LegalLayout
+  title="Complaints Procedure"
+  description="Formal complaints procedure and dispute resolution framework for Lancashire Web Designers, detailing response timescales and escalation stages."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    At <strong>{site.name}</strong>, we take immense pride in our engineering precision and clear client communication. However, we recognise that occasionally misunderstandings or technical disagreements can arise. This Complaints Procedure sets out our formal process for resolving concerns quickly, fairly, and transparently.
+  </p>
+
+  <h2 id="overview-principles">1. Overview & Service Principles</h2>
+  <p>
+    We treat every complaint with seriousness and confidentiality. Our objectives when handling a dispute are:
+  </p>
+  <ul>
+    <li>To listen attentively to your concerns and acknowledge any shortcomings.</li>
+    <li>To resolve matters informally and collaboratively wherever possible.</li>
+    <li>To provide clear, milestone-backed remedies within transparent timescales.</li>
+    <li>To ensure no client is penalised or treated unfavourably for raising a legitimate issue.</li>
+  </ul>
+
+  <h2 id="stage-1-informal">2. Stage 1: Informal Direct Resolution</h2>
+  <p>
+    In the vast majority of cases, an informal conversation with your lead developer can resolve technical issues, revision questions, or scheduling queries immediately.
+  </p>
+  <p>
+    If you feel dissatisfied with any aspect of your project, we encourage you to contact your assigned project engineer directly via email or telephone. Most issues can be clarified or corrected within <strong>24 to 48 hours</strong>.
+  </p>
+
+  <h2 id="stage-2-formal">3. Stage 2: Formal Complaint Lodgement</h2>
+  <p>
+    If informal communication does not resolve your concern to your complete satisfaction, you may escalate the matter by lodging a formal complaint in writing.
+  </p>
+  <p>
+    Please submit your complaint by email to <a href={`mailto:${site.email}?subject=Formal%20Complaint%20Escalation`}>{site.email}</a> with the subject line <strong>&ldquo;Formal Complaint Escalation&rdquo;</strong>, including:
+  </p>
+  <ul>
+    <li>Your full name, company name, and project reference/invoice number.</li>
+    <li>A detailed factual summary of your concern and where you feel our service has fallen short of the agreed Statement of Work.</li>
+    <li>Copies of relevant emails, screenshots, or staging links.</li>
+    <li>Your proposed resolution or preferred corrective outcome.</li>
+  </ul>
+
+  <h2 id="timescales-investigation">4. Investigation & Response Timescales</h2>
+  <p>
+    Upon receipt of a formal complaint, we adhere strictly to the following timescales:
+  </p>
+  <ul>
+    <li><strong>Written Acknowledgment:</strong> Within <strong>2 business days</strong> of receipt, confirming that your complaint has been logged and assigned for formal investigation.</li>
+    <li><strong>Full Investigation:</strong> We review the project brief, commit history, staging records, and communications logs.</li>
+    <li><strong>Substantive Written Response:</strong> Within <strong>10 business days</strong> of acknowledgment, delivering a detailed written findings report and a concrete proposal for resolution (e.g. remedial coding, sprint adjustment, or commercial settlement).</li>
+  </ul>
+
+  <h2 id="stage-3-escalation">5. Stage 3: Senior Review & Escalation</h2>
+  <p>
+    If our substantive response does not resolve the matter, you may request an executive escalation within <strong>7 business days</strong>. A designated senior director who has not been directly involved in day-to-day coding will conduct an independent re-examination and issue a final studio position letter within <strong>10 business days</strong>.
+  </p>
+
+  <h2 id="external-remedies">6. External Dispute Resolution & Legal Recourse</h2>
+  <p>
+    If you remain dissatisfied following our final review, both parties agree to explore independent mediation in good faith before initiating formal court proceedings:
+  </p>
+  <ul>
+    <li><strong>Alternative Dispute Resolution (ADR):</strong> The parties may agree to refer the dispute to an accredited civil and commercial mediator certified by the Centre for Effective Dispute Resolution (CEDR).</li>
+    <li><strong>Legal Jurisdiction:</strong> Nothing in this procedure excludes or restricts either party&rsquo;s statutory rights or prevents either party from initiating legal proceedings in the courts of England and Wales in accordance with our <a href="/terms-of-business/">Terms of Business</a>.</li>
+  </ul>
+</LegalLayout>

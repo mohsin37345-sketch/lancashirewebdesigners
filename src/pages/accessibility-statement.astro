@@ -1,0 +1,88 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'commitment', text: '1. Our Accessibility Commitment' },
+  { depth: 2, slug: 'conformance-status', text: '2. WCAG 2.2 Level AA Conformance Status' },
+  { depth: 2, slug: 'technical-specifications', text: '3. Engineering Measures & Best Practices' },
+  { depth: 2, slug: 'known-limitations', text: '4. Known Limitations & Ongoing Improvements' },
+  { depth: 2, slug: 'assessment-methodology', text: '5. Testing & Assessment Methodology' },
+  { depth: 2, slug: 'feedback-contact', text: '6. Feedback & Accessibility Reporting Channel' },
+  { depth: 2, slug: 'enforcement-procedure', text: '7. UK Statutory Enforcement (EHRC)' }
+];
+---
+
+<LegalLayout
+  title="Accessibility Statement"
+  description="Formal accessibility statement for Lancashire Web Designers detailing WCAG 2.2 Level AA conformance, testing methodology, and reporting channels."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    <strong>{site.name}</strong> is committed to ensuring digital accessibility for people of all abilities. As a professional web design and engineering studio, we believe that an accessible, inclusive web is fundamental to good software design. We actively engineer our website to meet and exceed the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA standards.
+  </p>
+
+  <h2 id="commitment">1. Our Accessibility Commitment</h2>
+  <p>
+    We design and build digital experiences that empower everyone to perceive, understand, navigate, and interact with our content seamlessly. Accessibility is not an afterthought or an external overlay; it is baked directly into our semantic HTML markup, keyboard focus architecture, and fluid typography.
+  </p>
+
+  <h2 id="conformance-status">2. WCAG 2.2 Level AA Conformance Status</h2>
+  <p>
+    The Web Content Accessibility Guidelines (WCAG) define requirements for designers and developers to improve accessibility for people with disabilities. It defines three levels of conformance: Level A, Level AA, and Level AAA.
+  </p>
+  <p>
+    The website of {site.name} is <strong>fully conformant with WCAG 2.2 Level AA</strong>. &ldquo;Fully conformant&rdquo; means that the content completely satisfies all applicable success criteria without exception.
+  </p>
+
+  <h2 id="technical-specifications">3. Engineering Measures & Best Practices</h2>
+  <p>
+    To ensure a robust, accessible experience across all modern browsers and assistive technologies, we implement the following technical measures:
+  </p>
+  <ul>
+    <li><strong>Semantic Landmark Hierarchy:</strong> Correct use of HTML5 landmarks (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code>) allowing screen reader users to jump effortlessly between structural sections.</li>
+    <li><strong>Keyboard Navigation & Focus Rings:</strong> Every interactive link, button, accordion, and drawer can be operated exclusively via keyboard. Visible, high-contrast focus rings (<code>outline: 2px solid</code> with offset) are strictly preserved across all states.</li>
+    <li><strong>Skip-to-Content Link:</strong> A prominent keyboard-accessible skip link sits at the top of the DOM allowing users to bypass repetitive header navigation and jump straight to primary content.</li>
+    <li><strong>Accessible Mobile Navigation:</strong> The mobile drawer includes active ARIA state management (<code>aria-expanded</code>, <code>aria-hidden</code>), scroll locking, an active focus trap when open, and instant Escape key closure with focus returned to the trigger button.</li>
+    <li><strong>Strict Color Contrast:</strong> All text and essential graphical elements maintain a contrast ratio of at least <strong>4.5:1</strong> against adjacent backgrounds in both light and dark modes (and at least 3:1 for large text).</li>
+    <li><strong>Motion Reduction Compliance:</strong> All CSS transitions and micro-animations are wrapped in <code>@media (prefers-reduced-motion: reduce)</code> guards to prevent dizziness or vestibular distress.</li>
+    <li><strong>Descriptive Non-Generic Labels:</strong> All icon buttons and interactive SVGs include clear <code>aria-label</code> descriptions. We avoid bare &ldquo;click here&rdquo; or &ldquo;read more&rdquo; links.</li>
+  </ul>
+
+  <h2 id="known-limitations">4. Known Limitations & Ongoing Improvements</h2>
+  <p>
+    Despite our rigorous automated and manual audits, occasional third-party integrations (such as external consent management iframes or interactive map providers) may present minor constraints. We continuously monitor and remediate any anomalies.
+  </p>
+
+  <h2 id="assessment-methodology">5. Testing & Assessment Methodology</h2>
+  <p>
+    We assess the accessibility of our website through a combination of automated build-time linters, automated browser tests, and rigorous manual testing:
+  </p>
+  <ul>
+    <li>Automated scanning via Deque axe-core and Google Lighthouse CI asserting 100/100 accessibility scores on every build.</li>
+    <li>Full keyboard-only traversal using Tab, Shift+Tab, Enter, Space, and Escape keys across desktop and mobile viewports.</li>
+    <li>Testing with screen readers including Apple VoiceOver (macOS/iOS) and NVDA (Windows).</li>
+    <li>Contrast ratio validation using colour-difference algorithms.</li>
+  </ul>
+
+  <h2 id="feedback-contact">6. Feedback & Accessibility Reporting Channel</h2>
+  <p>
+    We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers, please let us know so we can investigate and remediate the issue promptly:
+  </p>
+  <ul>
+    <li><strong>Email:</strong> <a href={`mailto:${site.email}?subject=Accessibility%20Query`}>{site.email}</a></li>
+    {site.phone && <li><strong>Telephone:</strong> <a href={`tel:${site.phoneE164 || site.phone}`}>{site.phoneDisplay || site.phone}</a></li>}
+    {site.address.town && <li><strong>Studio Location:</strong> {site.address.town}, {site.address.county}</li>}
+  </ul>
+  <p>
+    We aim to respond to all accessibility feedback within <strong>2 business days</strong>.
+  </p>
+
+  <h2 id="enforcement-procedure">7. UK Statutory Enforcement (EHRC)</h2>
+  <p>
+    The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 and the Equality Act 2010 in Great Britain. If you are not satisfied with how we respond to your complaint, you can contact the <a href="https://www.equalityadvisoryservice.com/" target="_blank" rel="noopener noreferrer">Equality Advisory and Support Service (EASS)</a>.
+  </p>
+</LegalLayout>

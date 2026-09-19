@@ -1,0 +1,94 @@
+{
+  "title": "Landing Page Design",
+  "slug": "landing-page-design",
+  "shortTitle": "Landing Pages",
+  "metaTitle": "Landing Page Design Agency | Lancashire Web Designers",
+  "metaDescription": "High-converting landing page design for UK businesses running paid ads. Fast, persuasive, conversion-rate optimised pages that maximise advertising ROI.",
+  "primaryKeyword": "landing page design agency",
+  "secondaryKeywords": [
+    "ppc landing page design",
+    "conversion rate optimisation",
+    "lead capture page design",
+    "google ads landing page"
+  ],
+  "heroHeading": "Landing Page Design Agency",
+  "heroSubheading": "High-converting landing pages engineered to maximise return on ad spend for Google Ads, Meta Ads, and LinkedIn campaigns.",
+  "icon": "target",
+  "summary": "Stop wasting expensive advertising budget on generic website homepages that fail to convert. Our landing page design services engineer laser-focused, distraction-free destination pages tailored precisely to your paid advertising campaigns. Every element—from the headline hook to the form placement—is optimized to turn paid clicks into qualified sales enquiries.",
+  "benefits": [
+    "Elimination of navigation distractions to keep visitors focused on conversion",
+    "Sub-second mobile loading speeds that improve Google Ads Quality Scores",
+    "Tailored message matching between ad copy, keywords, and page headlines",
+    "Frictionless lead capture forms with progressive disclosure and instant validation",
+    "Built-in A/B testing architecture for continuous conversion rate improvement"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Campaign & Audience Analysis",
+      "description": "Auditing your target keywords, ad creative, demographic intent, and competitor offers."
+    },
+    {
+      "step": 2,
+      "title": "Conversion Wireframing & Value Hook",
+      "description": "Structuring the visual hierarchy, headline propositions, proof points, and call-to-action triggers."
+    },
+    {
+      "step": 3,
+      "title": "Design & High-Speed Development",
+      "description": "Hand-coding lightweight landing pages achieving perfect 100/100 mobile Google Lighthouse performance."
+    },
+    {
+      "step": 4,
+      "title": "Analytics & Pixel Integration",
+      "description": "Setting up conversion tracking pixels for Google Ads, Meta CAPI, LinkedIn Insight, and GA4."
+    },
+    {
+      "step": 5,
+      "title": "Launch & Split Testing Setup",
+      "description": "Connecting custom subdomains, initiating live traffic flow, and configuring split-variant monitoring."
+    }
+  ],
+  "whatsIncluded": [
+    "Bespoke high-converting landing page design with mobile-first layout",
+    "Ultra-lightweight development with sub-second page loads",
+    "Full integration with your CRM, email marketing platform, and calendar booking",
+    "Conversion pixel tracking setup with server-side tagging verification",
+    "A/B variant split template ready for ongoing experimentation"
+  ],
+  "whatsNotIncluded": [
+    "Direct advertising ad spend payable to Google or Meta",
+    "Ongoing pay-per-click ad account management (quoted separately)",
+    "Video production and commercial spokesperson licensing"
+  ],
+  "priceFrom": 100,
+  "priceUnit": "fixed project",
+  "priceNotes": "High-impact conversion landing pages start at £100 per standalone campaign page.",
+  "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Google Tag Manager", "PostHog"],
+  "typicalTimeline": "1-2 weeks",
+  "faqs": [
+    {
+      "question": "Why should I use a dedicated landing page instead of my homepage?",
+      "answer": "Homepages serve many different audiences and contain countless navigation links, social feeds, and diverse service offerings. When a user clicks a specific paid ad, they want immediate answers to that specific problem. Dedicated landing pages maintain 100% focus on that offer, removing all exit distractions and typically tripling conversion rates.",
+      "display": true
+    },
+    {
+      "question": "How does page speed affect my Google Ads costs?",
+      "answer": "Google Ads factors landing page experience and load speed directly into your Quality Score. Faster landing pages earn higher Quality Scores, which directly lowers your cost-per-click (CPC) and earns higher ad positions for less money.",
+      "display": true
+    },
+    {
+      "question": "Can the landing page connect to our existing domain?",
+      "answer": "Yes. We can deploy landing pages to custom subdirectories (e.g. yourdomain.co.uk/special-offer) or dedicated campaign subdomains (e.g. go.yourdomain.co.uk) without disrupting your main website.",
+      "display": true
+    },
+    {
+      "question": "Do you write the persuasive copy as well?",
+      "answer": "Yes. We offer commercial direct-response copywriting designed to grip attention, disarm objections, and compel decisive action.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["web-design-and-marketing", "website-speed-optimisation", "bespoke-web-design"],
+  "order": 10,
+  "featured": false
+}

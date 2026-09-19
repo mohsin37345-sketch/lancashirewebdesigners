@@ -1,0 +1,46 @@
+{
+  "title": "Haul UK International — B2B Wholesale Textiles & Footwear Portal",
+  "slug": "haul-uk-international",
+  "client": "Haul UK International",
+  "clientType": "B2B Wholesale Distributor",
+  "industry": "Textiles, Footwear & Supply Chain",
+  "town": "Watford",
+  "year": 2024,
+  "services": [
+    "B2B Web Design",
+    "Catalog Architecture",
+    "Inquiry Generation",
+    "Responsive Design"
+  ],
+  "techStack": [
+    "WordPress",
+    "WooCommerce B2B",
+    "Tailwind CSS",
+    "PHP"
+  ],
+  "brief": "A Watford-based international wholesale supplier needed an authoritative digital showroom to present its clothing, footwear, and textile lines and streamline commercial trade buyer inquiries.",
+  "approach": "Designed a clean, commercial brochure structure highlighting sourcing reliability, volume pricing advantages, and prominent trust badges, with direct quotation capture on every product category.",
+  "outcome": "Expanded verified wholesale trade buyer inquiries across UK high-street retailers and international distribution networks.",
+  "metrics": [
+    {
+      "label": "Target Market",
+      "value": "Wholesale B2B",
+      "note": "Trade buyers and retail chains"
+    },
+    {
+      "label": "Inquiry Pathway",
+      "value": "Direct Quote",
+      "note": "Optimized commercial trade intake"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/haul-uk-international.jpg",
+      "alt": "Haul UK International wholesale textiles and clothing brochure website",
+      "caption": "Authoritative B2B wholesale platform featuring clear trade inquiry funnels."
+    }
+  ],
+  "liveUrl": "https://haulukinternational.com",
+  "featured": false,
+  "order": 7
+}

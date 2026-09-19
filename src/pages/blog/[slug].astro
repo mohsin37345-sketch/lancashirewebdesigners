@@ -1,0 +1,45 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BlogLayout from 'theme/layouts/BlogLayout.astro';
+import CTABand from 'theme/components/CTABand.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post }
+  }));
+}
+
+export interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+if (!post) {
+  return Astro.redirect('/blog/');
+}
+
+const { Content } = await render(post);
+const { title, description, date, author, category, image } = post.data;
+---
+
+<BlogLayout
+  title={`${title} | Lancashire Web Designers`}
+  description={description}
+  date={date}
+  author={author}
+  category={category}
+  image={image}
+>
+  <div class="prose dark:prose-invert max-w-none text-slate-800 dark:text-slate-200">
+    <Content />
+  </div>
+
+  <CTABand
+    heading="Ready to elevate your digital presence?"
+    subheading="Speak directly with our senior development team for honest technical guidance."
+    primaryCtaText="Get a Project Quote"
+    primaryCtaHref="/get-a-quote/"
+  />
+</BlogLayout>

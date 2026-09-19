@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+---
+
+<div class="flex items-center gap-3">
+  <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+    Share article:
+  </span>
+  <div class="flex items-center gap-2">
+    <a
+      href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"
+      aria-label="Share on X (formerly Twitter)"
+    >
+      <Icon name="twitter" class="w-3.5 h-3.5" />
+    </a>
+
+    <a
+      href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"
+      aria-label="Share on LinkedIn"
+    >
+      <Icon name="linkedin" class="w-3.5 h-3.5" />
+    </a>
+
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"
+      aria-label="Share on Facebook"
+    >
+      <Icon name="facebook" class="w-3.5 h-3.5" />
+    </a>
+
+    <a
+      href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
+      class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors"
+      aria-label="Share via Email"
+    >
+      <Icon name="mail" class="w-3.5 h-3.5" />
+    </a>
+  </div>
+</div>

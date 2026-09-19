@@ -1,0 +1,95 @@
+{
+  "title": "Bespoke Web Design",
+  "slug": "bespoke-web-design",
+  "shortTitle": "Bespoke Web Design",
+  "metaTitle": "Bespoke Web Design Agency | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design engineered from the ground up for ambitious UK businesses. Hand-coded for speed, search visibility, and maximum conversion rates.",
+  "primaryKeyword": "bespoke web design",
+  "secondaryKeywords": [
+    "bespoke website design",
+    "bespoke web development",
+    "bespoke website development",
+    "bespoke web design agency"
+  ],
+  "heroHeading": "Bespoke Web Design",
+  "heroSubheading": "Bespoke web design engineered from the ground up for ambitious UK businesses. Hand-coded for speed, search visibility, and maximum conversion rates.",
+  "icon": "palette",
+  "summary": "Bespoke web design engineered from the ground up for ambitious UK businesses. At Lancashire Web Designers, we craft hand-coded, high-performance web platforms that outperform bloated off-the-shelf templates and slow page builders. Every pixel, layout structure, and interaction model is purposefully tailored to your distinct brand proposition, customer purchasing journey, and commercial growth objectives.",
+  "benefits": [
+    "Zero template bloat — sub-second initial load speeds on mobile networks",
+    "Hand-crafted component architectures designed exclusively for your workflow",
+    "Enterprise-grade Core Web Vitals performance directly improving organic search ranking",
+    "Strict WCAG 2.2 Level AA accessibility compliance across all screen sizes",
+    "Full intellectual property and code ownership upon completion with zero agency lock-in"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Commercial Discovery & Information Architecture",
+      "description": "We audit your competitive landscape, map your high-intent customer journeys, and define a clear sitemap and conversion blueprint before touching a line of design."
+    },
+    {
+      "step": 2,
+      "title": "Custom UI/UX & Interactive Prototyping",
+      "description": "We craft bespoke visual designs that reflect your exact brand personality, testing layout responsiveness and user flow ergonomics across desktop and mobile devices."
+    },
+    {
+      "step": 3,
+      "title": "Hand-Coded Front-End & CMS Development",
+      "description": "We translate approved designs into clean, modular code using modern static architectures or headless CMS integrations, guaranteeing peak security and instant rendering."
+    },
+    {
+      "step": 4,
+      "title": "Quality Assurance, Accessibility & Core Web Vitals Audit",
+      "description": "Rigorous cross-browser testing, automated Lighthouse performance audits, screen-reader validation, and technical schema checks prior to live deployment."
+    },
+    {
+      "step": 5,
+      "title": "Launch, DNS Transition & Milestone Handover",
+      "description": "Zero-downtime server migration, XML sitemap submission, Google Search Console verification, and structured handover of all code repository assets."
+    }
+  ],
+  "whatsIncluded": [
+    "Complete bespoke interface design with custom component library",
+    "Hand-coded semantic HTML5, modern CSS, and lightweight TypeScript",
+    "Lightweight, intuitive content management system tailored to your team",
+    "Complete technical on-page SEO setup (JSON-LD schemas, OpenGraph, sitemaps)",
+    "Full ownership of all source code, assets, and design files upon final payment",
+    "30 days of post-launch hyper-care warranty and technical support"
+  ],
+  "whatsNotIncluded": [
+    "Copywriting and brand photography (available as an optional project add-on)",
+    "Third-party software subscription licensing (CRM, ERP, payment gateways)",
+    "Ongoing monthly maintenance retainers after the 30-day warranty period"
+  ],
+  "priceFrom": 300,
+  "priceUnit": "fixed project",
+  "priceNotes": "Bespoke web design starts from £300 for a standard 1–5 page architecture, with additional pages at +£50/page.",
+  "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Vite", "Node.js"],
+  "typicalTimeline": "4-6 weeks",
+  "faqs": [
+    {
+      "question": "What actually constitutes 'bespoke web design' compared to a template?",
+      "answer": "A template website forces your brand into a pre-existing layout built with generic, one-size-fits-all code and dozens of unnecessary third-party plugins. Bespoke web design starts with a blank slate: we research your market, craft a custom visual identity, and write clean, purposeful code specifically for your business. The result is dramatically faster load speeds, superior Google rankings, and an interface that converts visitors into paying clients.",
+      "display": true
+    },
+    {
+      "question": "Will I be able to edit and update text and imagery myself?",
+      "answer": "Yes. We configure an intuitive, streamlined content management system tailored specifically to your content needs. You can easily publish case studies, update team bios, change service offerings, or post insights without touching code or accidentally breaking page layouts.",
+      "display": true
+    },
+    {
+      "question": "Who owns the intellectual property and code once the project is finished?",
+      "answer": "You own 100% of your website code, visual design assets, and content. Upon settlement of the final milestone invoice, we transfer full repository rights. We do not lock clients into proprietary systems or charge recurring licensing fees for code we built for you.",
+      "display": true
+    },
+    {
+      "question": "How do you ensure my bespoke website performs well on Google?",
+      "answer": "Every bespoke website we engineer incorporates technical SEO fundamentals by default: semantic heading hierarchies, sub-second Core Web Vitals loading, automated XML sitemaps, canonical tags, OpenGraph sharing metadata, and structured JSON-LD Schema markup tailored to your business profile.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["b2b-web-design", "ecommerce-web-design", "website-support"],
+  "order": 1,
+  "featured": true
+}

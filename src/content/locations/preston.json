@@ -1,0 +1,45 @@
+{
+  "town": "Preston",
+  "slug": "web-design-preston",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Preston | Lancashire Web Designers",
+  "metaDescription": "High-performance web design Preston companies trust for qualified enquiries. Engineered for speed, local search dominance, and measurable ROI.",
+  "primaryKeyword": "web design preston",
+  "intro": "When your organisation demands high-performance web design Preston companies trust to convert, Lancashire Web Designers constructs bespoke, ultra-performant digital platforms for commercial practices, corporate consultancies, and expanding service enterprises throughout Central Lancashire. Positioned as Lancashire's historic administrative, judicial, and professional centre, Preston businesses demand digital solutions that convey unshakeable credibility and commanding authority. We actively bypass off-the-shelf WordPress themes to deliver clean, custom-coded web software that loads in fractions of a second on mobile, ranks effectively for high-intent corporate search queries, and systematically converts visitors into qualified commercial enquiries. You partner directly with our principal technical architect throughout the entire engagement, guaranteeing seamless project delivery, transparent milestone billing, and complete intellectual property ownership upon final project launch.",
+  "localKnowledge": "Preston's historic city status, bolstered by the prestigious Preston Guild heritage and the rapid expansion of the University of Central Lancashire (UCLan) campus, makes it a pivotal hub for Northern commerce. From chartered accountancy partnerships and legal chambers established around Winckley Square to innovative technology ventures flourishing near the Preston Docks Marina and the Roman Way Industrial Estate, local organisations require web platforms that outpace regional competition. We engineer sophisticated web experiences that integrate smoothly with enterprise CRM systems, client enquiry portals, and automated booking infrastructure.",
+  "postcodes": ["PR1", "PR2", "PR4", "PR5"],
+  "nearbyAreas": [
+    { "name": "Broughton", "slug": "broughton" },
+    { "name": "Penwortham", "slug": "penwortham" },
+    { "name": "Blackburn", "slug": "web-design-blackburn" },
+    { "name": "Lancaster", "slug": "web-design-lancaster" },
+    { "name": "Leyland", "slug": "leyland" }
+  ],
+  "localIndustries": ["Legal & Financial Services", "Higher Education Tech", "Commercial Property", "Healthcare & Life Sciences"],
+  "servicesOffered": ["B2B Web Development", "Corporate Brochure Design", "Custom CRM Portals", "SEO Strategy", "Hosting & SLA Care"],
+  "localFaqs": [
+    {
+      "question": "Do you work with professional services firms in Preston city centre?",
+      "answer": "Yes. A core segment of our clientele includes solicitors, wealth management consultancies, chartered surveyors, and corporate advisers based around Winckley Square, Fulwood, and the Preston docks.",
+      "display": true
+    },
+    {
+      "question": "Can you migrate our legacy corporate website without losing search rankings?",
+      "answer": "Absolutely. We execute rigorous migration protocols, including comprehensive 301 URL redirect maps, preservation of canonical structures, and pre-launch keyword benchmarking to protect existing organic equity.",
+      "display": true
+    },
+    {
+      "question": "What performance standards do you guarantee for Preston clients?",
+      "answer": "We engineer every bespoke build to achieve 95+ scores on Google Mobile Lighthouse, sub-1.5 second Largest Contentful Paint (LCP), zero Cumulative Layout Shift (CLS), and strict WCAG 2.2 AA accessibility.",
+      "display": true
+    },
+    {
+      "question": "How do you structure project billing for Preston businesses?",
+      "answer": "We operate on fixed-price project quotes divided into clear milestone stages: an initial 40% discovery deposit, 30% upon prototype sign-off, and the final 30% balance upon staging completion prior to live deployment.",
+      "display": true
+    }
+  ],
+  "lat": 53.7632,
+  "lng": -2.7031,
+  "tier": 1
+}

@@ -1,0 +1,94 @@
+{
+  "title": "WordPress Development",
+  "slug": "wordpress-development",
+  "shortTitle": "WordPress Dev",
+  "metaTitle": "WordPress Development Lancashire | Lancashire Web Designers",
+  "metaDescription": "Custom, lightweight WordPress development. Custom Gutenberg blocks, zero-bloat code, headless setups, and enterprise security for UK businesses.",
+  "primaryKeyword": "wordpress development lancashire",
+  "secondaryKeywords": [
+    "custom wordpress agency",
+    "gutenberg block development",
+    "wordpress speed optimisation",
+    "bespoke wordpress theme"
+  ],
+  "heroHeading": "WordPress Development",
+  "heroSubheading": "High-speed, bespoke WordPress solutions built with clean custom code, tailored Gutenberg blocks, and zero plugin bloat.",
+  "icon": "code",
+  "summary": "We build fast, secure, custom WordPress websites that banish sluggish page builders and unstable plugin stacks. Our development approach pairs WordPress's familiar publishing interface with lightweight, bespoke themes and custom Gutenberg blocks engineered specifically for your editorial workflow.",
+  "benefits": [
+    "Hand-coded bespoke themes with zero dependence on bloated commercial builders (Elementor/Divi)",
+    "Tailored Gutenberg block suites giving your editorial team complete creative layout freedom",
+    "Sub-second mobile loading speeds adhering strictly to Google Core Web Vitals thresholds",
+    "Hardened security posture eliminating common attack vectors and third-party vulnerabilities",
+    "Headless WordPress options pairing WP as a content backend with an Astro or Next.js frontend"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Data Schema & Editorial Mapping",
+      "description": "Structuring custom post types, taxonomy structures, and field groups tailored to your business content needs."
+    },
+    {
+      "step": 2,
+      "title": "Bespoke Theme & Block Architecture",
+      "description": "Writing semantic HTML, lightweight CSS, and native React Gutenberg blocks for a seamless editing experience."
+    },
+    {
+      "step": 3,
+      "title": "Content Migration & Integration",
+      "description": "Cleanly migrating existing posts, pages, and metadata from legacy systems without link breakage."
+    },
+    {
+      "step": 4,
+      "title": "Security Hardening & Speed Tuning",
+      "description": "Implementing Redis object caching, WebP conversion, database optimization, and two-factor authentication."
+    },
+    {
+      "step": 5,
+      "title": "Deployment & Editorial Training",
+      "description": "Deploying to enterprise-grade WordPress hosting environments and walking your editorial team through the admin suite."
+    }
+  ],
+  "whatsIncluded": [
+    "100% custom-coded WordPress theme engineered from scratch",
+    "Custom Gutenberg block library tailored to your visual brand guidelines",
+    "Advanced Custom Fields (ACF Pro) schema setup for intuitive content editing",
+    "Full technical on-page SEO configuration and Yoast/RankMath integration",
+    "Comprehensive team training video tutorials and documentation"
+  ],
+  "whatsNotIncluded": [
+    "Support for deprecated visual builders (Divi, WP Bakery, Elementor)",
+    "Commercial plugin license fees where specialized third-party software is required",
+    "Ongoing server hosting fees (managed hosting recommendations provided)"
+  ],
+  "priceFrom": 500,
+  "priceUnit": "fixed project",
+  "priceNotes": "Custom WordPress developments start from £500, with extra pages easily added at +£50/page.",
+  "techStack": ["WordPress", "PHP 8.2+", "Gutenberg", "ACF Pro", "Tailwind CSS", "MySQL"],
+  "typicalTimeline": "4-6 weeks",
+  "faqs": [
+    {
+      "question": "Why avoid page builders like Elementor or Divi?",
+      "answer": "Page builders inject massive amounts of nested code, unused scripts, and redundant stylesheets that destroy mobile performance and Google Core Web Vitals scores. Our custom Gutenberg blocks provide identical visual flexibility with a fraction of the code weight.",
+      "display": true
+    },
+    {
+      "question": "Can you fix or speed up an existing slow WordPress site?",
+      "answer": "Yes. We offer forensic WordPress audits and refactoring services, stripping out bloated plugins, streamlining database queries, and implementing advanced caching to restore rapid load times.",
+      "display": true
+    },
+    {
+      "question": "Is WordPress secure for commercial business websites?",
+      "answer": "Yes, when built correctly. WordPress vulnerabilities almost always stem from poorly coded third-party plugins and weak passwords. By building custom themes with minimal plugins and establishing enterprise security hardening, WordPress is exceptionally resilient.",
+      "display": true
+    },
+    {
+      "question": "Can you migrate our content from an older website?",
+      "answer": "Yes. We execute automated and manual database migrations to carry across existing blog posts, news archives, customer records, and media libraries while preserving URL paths and SEO juice.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "website-support", "website-speed-optimisation"],
+  "order": 7,
+  "featured": false
+}

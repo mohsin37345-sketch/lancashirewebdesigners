@@ -1,0 +1,109 @@
+---
+import 'src/styles/global.css';
+import ConsentInit from 'theme/components/ConsentInit.astro';
+import SEOHead from 'theme/components/SEOHead.astro';
+import SchemaOrg from 'theme/components/SchemaOrg.astro';
+import Header from 'theme/components/Header.astro';
+import Footer from 'theme/components/Footer.astro';
+import StickyMobileBar from 'theme/components/StickyMobileBar.astro';
+import LazyScripts from 'theme/components/LazyScripts.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  ogImageAlt?: string;
+  schemaType?: 'home' | 'service' | 'location' | 'portfolio' | 'blog' | 'blog-post' | 'about' | 'contact' | 'legal' | 'article';
+  breadcrumbs?: { name: string; url: string }[];
+  faqs?: { question: string; answer: string; display?: boolean }[];
+  serviceData?: any;
+  locationData?: any;
+  portfolioData?: any;
+  blogData?: any;
+  reviews?: any[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  noindex,
+  nofollow,
+  ogType = 'website',
+  ogImage,
+  ogImageAlt,
+  schemaType = 'home',
+  breadcrumbs,
+  faqs,
+  serviceData,
+  locationData,
+  portfolioData,
+  blogData,
+  reviews
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-GB" dir="ltr" class="scroll-smooth">
+  <head>
+    <!-- Consent Mode v2 must be first in head -->
+    <ConsentInit />
+
+    <!-- SEO Meta, Favicons, Dark mode script, Font preloads -->
+    <SEOHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      noindex={noindex}
+      nofollow={nofollow}
+      ogType={ogType}
+      ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
+    />
+
+    <!-- Global & Page JSON-LD Schemas -->
+    <SchemaOrg
+      type={schemaType}
+      title={title}
+      description={description}
+      canonical={canonical}
+      breadcrumbs={breadcrumbs}
+      faqs={faqs}
+      serviceData={serviceData}
+      locationData={locationData}
+      portfolioData={portfolioData}
+      blogData={blogData}
+      reviews={reviews}
+    />
+
+    <slot name="head" />
+  </head>
+
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
+    <!-- Accessible Skip to Content Landmark -->
+    <a href="#main-content" class="skip-to-content">
+      Skip to content
+    </a>
+
+    <!-- Sticky Header -->
+    <Header />
+
+    <!-- Main Content Landmark -->
+    <main id="main-content" class="flex-1 w-full pb-16 sm:pb-0">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Sticky Mobile Conversion Bar -->
+    <StickyMobileBar />
+
+    <!-- Interaction-gated Analytics & Third-Party Scripts -->
+    <LazyScripts />
+  </body>
+</html>

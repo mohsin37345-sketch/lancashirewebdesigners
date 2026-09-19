@@ -1,0 +1,47 @@
+{
+  "title": "The Royals Removals — 200+ Page Regional Local SEO Lead Engine",
+  "slug": "the-royals-removals",
+  "client": "The Royals Removals",
+  "clientType": "Logistics & Transport Operator",
+  "industry": "Domestic & Commercial Removals",
+  "town": "Birmingham & West Midlands",
+  "year": 2025,
+  "services": [
+    "Programmatic Local SEO",
+    "Web Design",
+    "Conversion Funnels",
+    "Search Dominance"
+  ],
+  "techStack": [
+    "Astro",
+    "TypeScript",
+    "Tailwind CSS",
+    "Search Console",
+    "GA4"
+  ],
+  "brief": "A regional UK removals firm required complete digital search coverage across every town, borough, and district in the West Midlands to capture inbound quote requests at scale.",
+  "approach": "Architected a scalable programmatic local SEO hierarchy with 200+ unique town pages. Designed an above-the-fold quote form with a 15-minute callback pledge, integrated Trustpilot review badges, and deployed sticky mobile quote actions.",
+  "outcome": "Dominates regional search rankings across the West Midlands, generating 10–15 qualified, high-value commercial and domestic removals enquiries every week.",
+  "metrics": [
+    {
+      "label": "Programmatic Coverage",
+      "value": "200+ Pages",
+      "note": "Dedicated town, borough and county URLs"
+    },
+    {
+      "label": "Qualified Inquiries",
+      "value": "10–15 / wk",
+      "note": "Direct inbound phone and form leads"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/the-royals-removals.jpg",
+      "alt": "The Royals Removals homepage with 15-minute callback guarantee and quote form",
+      "caption": "Conversion-focused hero section with instant quote capture and Trustpilot social proof."
+    }
+  ],
+  "liveUrl": "https://theroyalsremovals.co.uk",
+  "featured": true,
+  "order": 4
+}

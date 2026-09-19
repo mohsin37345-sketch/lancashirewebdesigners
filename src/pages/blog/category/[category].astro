@@ -1,0 +1,83 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import BlogGrid from 'theme/components/BlogGrid.astro';
+import CTABand from 'theme/components/CTABand.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const categories = [...new Set(posts.map((p) => p.data.category.toLowerCase()))];
+  return categories.map((cat) => ({
+    params: { category: cat },
+    props: {
+      categoryName: cat,
+      posts: posts.filter((p) => p.data.category.toLowerCase() === cat)
+    }
+  }));
+}
+
+export interface Props {
+  categoryName: string;
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { categoryName, posts = [] } = Astro.props;
+if (!categoryName) {
+  return Astro.redirect('/blog/');
+}
+
+const formattedCategory = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+const title = `${formattedCategory} Articles | Lancashire Web Designers`;
+const description = `Read our latest articles and technical insights in ${formattedCategory}. Hand-crafted web engineering from Lancashire Web Designers.`;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+  { name: formattedCategory, url: Astro.url.pathname }
+];
+
+const postsList = posts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  href: `/blog/${post.id}/`,
+  date: post.data.date,
+  category: post.data.category,
+  author: post.data.author,
+  image: post.data.image
+}));
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="article"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Articles in {formattedCategory}
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Explore curated articles and development insights relating to {formattedCategory}.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <BlogGrid posts={postsList} />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Need specialized assistance in this area?"
+    subheading="Speak directly with our senior development team today."
+    primaryCtaText="Get a Project Quote"
+    primaryCtaHref="/get-a-quote/"
+  />
+</BaseLayout>

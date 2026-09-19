@@ -1,0 +1,104 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import HowItWorks from 'theme/components/HowItWorks.astro';
+import ComparisonTable from 'theme/components/ComparisonTable.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import FAQ from 'theme/components/FAQ.astro';
+
+const title = 'How We Work | Bespoke Website Delivery Process';
+const description = 'Our transparent 4-stage web development methodology: commercial discovery, custom Figma design, clean engineering, and zero-downtime launch.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'How It Works', url: '/how-it-works/' }
+];
+
+const processFaqs = [
+  {
+    question: 'How involved will our team need to be during the build?',
+    answer: 'We respect your time. We require your active involvement at three defined milestones: the initial 60-minute discovery workshop, the Figma design review, and the pre-launch staging walkthrough. Between milestones, we handle all engineering independently.'
+  },
+  {
+    question: 'What happens if we need revisions during the design phase?',
+    answer: 'Every bespoke proposal includes two dedicated revision rounds during the interactive Figma prototyping phase. We do not write a single line of production code until you are 100% delighted with the visual design and layout flow.'
+  },
+  {
+    question: 'Can you help us migrate our existing website content?',
+    answer: 'Yes. We audit your existing pages and safely migrate your approved text, imagery, past case studies, and blog articles, updating heading semantics and WebP image optimization along the way.'
+  },
+  {
+    question: 'Do you provide a warranty after the website goes live?',
+    answer: 'Yes. Every bespoke build includes a comprehensive 30-day post-launch warranty covering any unforeseen software defects or layout quirks, backed by immediate developer support.'
+  }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="article"
+  breadcrumbs={breadcrumbs}
+  faqs={processFaqs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          How We Deliver Bespoke Web Projects
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          A predictable, milestone-driven development process engineered to eliminate scope creep, protect delivery timelines, and ensure total transparency.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <HowItWorks />
+
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div class="max-w-3xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Payment & Milestones
+        </span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Transparent Milestone Billing
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          We never demand 100% upfront fees, nor do we trap clients into confusing retainers before delivering working software. Projects are divided into clear commercial milestones:
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-2">
+            <div class="text-2xl font-black text-blue-600">40%</div>
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Project Inception</div>
+            <div class="text-xs text-slate-500">Upon contract signing and discovery sprint kickoff.</div>
+          </div>
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-2">
+            <div class="text-2xl font-black text-blue-600">30%</div>
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Design Approval</div>
+            <div class="text-xs text-slate-500">Upon your formal sign-off of the Figma prototype.</div>
+          </div>
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-2">
+            <div class="text-2xl font-black text-blue-600">30%</div>
+            <div class="text-sm font-bold text-slate-900 dark:text-white">Final Deployment</div>
+            <div class="text-xs text-slate-500">Upon successful live launch and IP handover.</div>
+          </div>
+        </div>
+      </div>
+
+      <ComparisonTable />
+      <FAQ faqs={processFaqs} />
+    </div>
+  </article>
+
+  <CTABand
+    heading="Ready to discuss your project roadmap?"
+    subheading="Book a discovery conversation with our senior technical architect today."
+    primaryCtaText="Get a Bespoke Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Calculate Project Cost"
+    secondaryCtaHref="/website-cost-calculator/"
+  />
+</BaseLayout>

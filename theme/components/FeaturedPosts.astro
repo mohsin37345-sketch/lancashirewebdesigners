@@ -1,0 +1,89 @@
+---
+import BlogCard from './BlogCard.astro';
+import Icon from './Icon.astro';
+
+export interface PostSummary {
+  title: string;
+  description: string;
+  href: string;
+  date: string | Date;
+  category: string;
+  readingTime?: string;
+  image?: string;
+}
+
+export interface Props {
+  posts?: PostSummary[];
+  heading?: string;
+  subheading?: string;
+  class?: string;
+}
+
+const {
+  posts = [],
+  heading = 'Latest Insights & Articles',
+  subheading = 'Engineering insights, SEO strategies, and local Lancashire business guides.',
+  class: className = ''
+} = Astro.props;
+
+const hasPosts = posts && posts.length > 0;
+const topPosts = posts.slice(0, 3);
+---
+
+<section class={`py-16 lg:py-24 ${className}`}>
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Knowledge Base
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          {heading}
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2 text-base">
+          {subheading}
+        </p>
+      </div>
+
+      {hasPosts && (
+        <a
+          href="/blog/"
+          class="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300"
+        >
+          <span>View All Articles</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </a>
+      )}
+    </div>
+
+    {hasPosts ? (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {topPosts.map((post) => (
+          <BlogCard {...post} />
+        ))}
+      </div>
+    ) : (
+      <!-- Designed fallback card with CTA when blog collection is empty (never a blank section) -->
+      <div class="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 lg:p-12 text-center max-w-xl mx-auto space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+          <Icon name="layers" class="w-6 h-6" />
+        </div>
+        <h3 class="text-xl font-bold text-slate-900 dark:text-white">
+          Technical Articles Coming Soon
+        </h3>
+        <p class="text-sm text-slate-600 dark:text-slate-400">
+          We are preparing in-depth guides covering Core Web Vitals, bespoke versus WordPress performance benchmarks, and UK web accessibility standards.
+        </p>
+        <div class="pt-2">
+          <a
+            href="/get-a-quote/"
+            class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl transition-colors shadow-sm"
+          >
+            <span>Discuss Your Next Project</span>
+            <Icon name="arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

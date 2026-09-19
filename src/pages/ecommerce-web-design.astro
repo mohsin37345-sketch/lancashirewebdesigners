@@ -1,0 +1,170 @@
+---
+import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import Icon from 'theme/components/Icon.astro';
+import { getEntry } from 'astro:content';
+
+const serviceEntry = await getEntry('services', 'ecommerce-web-design');
+if (!serviceEntry) {
+  throw new Error('Service entry ecommerce-web-design not found');
+}
+const data = serviceEntry.data;
+---
+
+<ServiceLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  h1={data.heroHeading}
+  heroSubheading={data.heroSubheading}
+  serviceType="Ecommerce Web Design"
+  priceFrom={data.priceFrom}
+  faqs={data.faqs}
+>
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Section 1: In-depth Summary -->
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Transactional Excellence
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          A High-Performance Ecommerce Design Agency Driving Real Revenue
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          As a specialized <strong>ecommerce design agency</strong>, Lancashire Web Designers builds custom online stores designed to eliminate friction at every stage of the customer purchasing journey. We recognise that in modern ecommerce, every 100 milliseconds of page latency directly degrades checkout conversion rates, lowers average order value, and wastes valuable paid advertising investment.
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          Whether you are launching an ambitious direct-to-consumer brand on Shopify, migrating a multi-thousand SKU catalog from legacy WooCommerce, or requiring a high-speed headless storefront, we engineer custom storefronts that combine exquisite brand aesthetics with robust, sub-second transactional performance.
+        </p>
+      </div>
+
+      <!-- Section 2: Platform Comparison -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Platform Selection
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Choosing the Right Ecommerce Foundation
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            We advise objectively on the optimal platform architecture based on your inventory complexity and operational overhead.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="text-lg font-bold text-slate-900 dark:text-white">Shopify (Recommended)</div>
+            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Retail & DTC</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Unmatched checkout reliability, zero server maintenance overhead, seamless Apple Pay/Shop Pay integrations, and global compliance.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="text-lg font-bold text-slate-900 dark:text-white">WooCommerce</div>
+            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Custom Configurations</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Ideal for brands with complex bespoke product configurators, wholesale customer tiers, or deep existing WordPress integrations.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="text-lg font-bold text-slate-900 dark:text-white">Headless Commerce</div>
+            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Enterprise Scale</div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Sub-millisecond static frontends powered by Astro or Next.js connected via GraphQL to Shopify or custom microservices.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Key Benefits Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {data.benefits.map((benefit) => (
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Icon name="check" class="w-5 h-5" />
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Section 4: 5-Stage Build Process -->
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Launch Roadmap
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Our Ecommerce Development Process
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            Rigorous checkout testing, payment sandbox validation, and zero-downtime store migration.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.process.map((step) => (
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-3">
+              <div class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">Step {step.step}</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 5: Inclusions / Boundaries -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
+          <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
+            <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <span>Included in Every Store Build</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
+            {data.whatsIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span>Additional Storefront Services</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            {data.whatsNotIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 6: TechStack -->
+      <TechStack />
+
+      <!-- Section 7: FAQs -->
+      <FAQ faqs={data.faqs} />
+
+      <!-- Section 8: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Discuss Your Ecommerce Storefront"
+          subheading="Fixed-price development proposals and catalog migration plans delivered within 24 hours."
+        />
+      </div>
+    </div>
+  </article>
+</ServiceLayout>

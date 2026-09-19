@@ -1,0 +1,45 @@
+{
+  "title": "Bitlance Group Ltd — Corporate Digital & IT Consultancy Website",
+  "slug": "bitlance-group",
+  "client": "Bitlance Group Ltd",
+  "clientType": "Corporate Enterprise",
+  "industry": "IT Services & Digital Consultancy",
+  "year": 2024,
+  "services": [
+    "B2B Web Design",
+    "Corporate Identity",
+    "Front-End Engineering",
+    "Responsive Design"
+  ],
+  "techStack": [
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Vercel"
+  ],
+  "brief": "An IT consultancy and technology group required a bold, high-contrast corporate website to present multi-discipline digital transformation, e-commerce, and enterprise consultancy services.",
+  "approach": "Constructed an animated, technology-forward hero section with service-led information architecture, clear capability matrices, and seamless enterprise inquiry triggers.",
+  "outcome": "Established enterprise credibility and positioned the firm for competitive procurement bids and corporate client partnerships.",
+  "metrics": [
+    {
+      "label": "Visual Direction",
+      "value": "High-Tech",
+      "note": "Modern blue/dark enterprise theme"
+    },
+    {
+      "label": "Architecture",
+      "value": "Service-Led",
+      "note": "Multi-discipline consultancy structure"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/bitlance-group.jpg",
+      "alt": "Bitlance Group corporate website hero section and service navigation",
+      "caption": "High-contrast hero section engineered for corporate B2B consultancy."
+    }
+  ],
+  "liveUrl": "https://bitlancegroup.com",
+  "featured": true,
+  "order": 5
+}

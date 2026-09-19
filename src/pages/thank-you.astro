@@ -1,0 +1,48 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Icon from 'theme/components/Icon.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Enquiry Received | Thank You | Lancashire Web Designers"
+  description="Thank you for contacting Lancashire Web Designers. Your project details have been received and a senior engineer will review them promptly."
+  noindex={true}
+  nofollow={false}
+>
+  <div class="min-h-[70vh] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl w-full text-center space-y-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 lg:p-12 shadow-sm">
+      <div class="w-16 h-16 rounded-2xl bg-emerald-100 dark:bg-emerald-950/70 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto">
+        <Icon name="check" class="w-8 h-8" />
+      </div>
+
+      <div class="space-y-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
+          Enquiry Successfully Submitted
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Thank You for Reaching Out
+        </h1>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          Your project specifications have landed directly with our senior development team. We will review your brief and reply within one business day with initial technical thoughts and pricing clarity.
+        </p>
+      </div>
+
+      <div class="pt-6 border-t border-slate-200 dark:border-slate-800/80 space-y-3 text-xs text-slate-500 dark:text-slate-400">
+        <div>
+          In a rush? Feel free to explore our case studies or review our bespoke development methodology while you wait.
+        </div>
+        <div class="pt-2">
+          <a
+            href="/"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors"
+          >
+            <span>Return to Homepage</span>
+            <Icon name="arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

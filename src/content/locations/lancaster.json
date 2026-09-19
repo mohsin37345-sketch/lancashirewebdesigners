@@ -1,0 +1,45 @@
+{
+  "town": "Lancaster",
+  "slug": "web-design-lancaster",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Lancaster | Lancashire Web Designers",
+  "metaDescription": "Strategic web design Lancaster enterprises trust. Fast, beautifully crafted websites built to elevate heritage brands and drive sustainable growth.",
+  "primaryKeyword": "web design lancaster",
+  "intro": "When your brand demands high-performance web design Lancaster enterprises trust to capture high-value enquiries, Lancashire Web Designers engineers bespoke digital platforms for forward-thinking enterprises across North Lancashire, the Lune Valley, and Morecambe Bay. Blending Lancaster's rich architectural heritage with modern digital commerce, local businesses need web presences that stand out against national rivals while honoring regional roots. We engineer bespoke websites from scratch using modern component architectures, eliminating third-party theme vulnerabilities and bloated scripts. Whether you manage an established regional visitor attraction, an innovative research spinout, or an independent luxury hospitality brand, we deliver lightning-fast page speeds, intuitive user journeys, and robust search visibility that translates traffic into tangible revenue.",
+  "localKnowledge": "Lancaster boasts a distinctive economic identity anchored by Lancaster University's world-leading academic research facilities, the burgeoning health innovation campus, and historic cultural landmarks such as Lancaster Castle and the Ashton Memorial. From bespoke artisan retailers and boutique hotels nestled within the Georgian city centre to green technology ventures and digital creative studios operating along Caton Road and White Cross Business Park, Lancaster companies require sophisticated online representations. We craft accessible, elegant websites that convey distinctive brand prestige while delivering modern transactional and booking capabilities.",
+  "postcodes": ["LA1", "LA2", "LA3", "LA4"],
+  "nearbyAreas": [
+    { "name": "Morecambe", "slug": "morecambe" },
+    { "name": "Carnforth", "slug": "carnforth" },
+    { "name": "Preston", "slug": "web-design-preston" },
+    { "name": "Garstang", "slug": "garstang" },
+    { "name": "Blackburn", "slug": "web-design-blackburn" }
+  ],
+  "localIndustries": ["Hospitality & Tourism", "Higher Education Spinouts", "Environmental Science & Cleantech", "Artisan Retail & Creative"],
+  "servicesOffered": ["Bespoke Visual Web Design", "Shopify Storefronts", "Fast Booking Integration", "Digital Marketing & SEO", "Core Web Vitals Optimisation"],
+  "localFaqs": [
+    {
+      "question": "Can you integrate real-time booking engines for Lancaster hospitality businesses?",
+      "answer": "Yes. We seamlessly connect bespoke front-ends with major booking platforms, ticketing APIs, and table reservation engines while preserving sub-second mobile page speeds.",
+      "display": true
+    },
+    {
+      "question": "How do you ensure accessibility for public and education-linked Lancaster sites?",
+      "answer": "We audit every line of markup against WCAG 2.2 Level AA standards, ensuring full keyboard traversability, semantic landmarks, high contrast compliance, and screen-reader compatibility.",
+      "display": true
+    },
+    {
+      "question": "Do you provide ecommerce solutions for Lancaster retail brands?",
+      "answer": "Yes. We build custom Shopify storefronts and headless ecommerce architectures designed to convert mobile shoppers, manage complex SKU variations, and streamline inventory synchronisation.",
+      "display": true
+    },
+    {
+      "question": "What happens after our Lancaster website launches?",
+      "answer": "All projects include our 30-day comprehensive post-launch warranty. Furthermore, we provide monthly care plans covering enterprise edge hosting, continuous security scanning, and proactive maintenance.",
+      "display": true
+    }
+  ],
+  "lat": 54.0466,
+  "lng": -2.8007,
+  "tier": 1
+}

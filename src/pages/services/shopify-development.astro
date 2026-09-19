@@ -1,0 +1,121 @@
+---
+import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import Icon from 'theme/components/Icon.astro';
+import { getEntry } from 'astro:content';
+
+const serviceEntry = await getEntry('services', 'shopify-development');
+if (!serviceEntry) {
+  throw new Error('Service entry shopify-development not found');
+}
+const data = serviceEntry.data;
+---
+
+<ServiceLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  h1={data.heroHeading}
+  heroSubheading={data.heroSubheading}
+  serviceType="Shopify Development"
+  priceFrom={data.priceFrom}
+  faqs={data.faqs}
+>
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          High-Converting Liquid Engineering
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Custom Shopify Themes Engineered for Velocity & Sales
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Shopify provides the world's most reliable ecommerce backend, but bloated commercial themes and dozens of uncoordinated app scripts quickly degrade storefront speed and ruin mobile checkout conversion rates.
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          We write clean Liquid code and native theme components that replace expensive monthly app subscriptions. Your online store loads instantaneously, provides effortless product filtering, and captures maximum revenue from every visitor.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {data.benefits.map((benefit) => (
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Icon name="shopping-bag" class="w-5 h-5" />
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Storefront Advantage</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Storefront Build
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Our Shopify Development Lifecycle
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            Structured for seamless catalog migration and zero revenue disruption.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.process.map((step) => (
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-3">
+              <div class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">Step {step.step}</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
+          <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
+            <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <span>Included in Custom Shopify Builds</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
+            {data.whatsIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span>Platform Subscription Costs</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            {data.whatsNotIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <TechStack />
+      <FAQ faqs={data.faqs} />
+
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Enquire About Shopify Development"
+          subheading="Discuss your product catalog and migration needs with our Shopify technical specialist."
+        />
+      </div>
+    </div>
+  </article>
+</ServiceLayout>

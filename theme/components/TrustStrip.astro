@@ -1,0 +1,48 @@
+---
+import Icon from './Icon.astro';
+
+const trustPoints = [
+  {
+    icon: 'code',
+    title: '100% Bespoke Code',
+    description: 'Zero bloated themes or slow drag-and-drop builders.'
+  },
+  {
+    icon: 'zap',
+    title: 'Sub-Second Speeds',
+    description: 'Engineered for 95+ Core Web Vitals and instant page loads.'
+  },
+  {
+    icon: 'briefcase',
+    title: 'Direct Developer Access',
+    description: 'Work directly with the engineer building your site.'
+  },
+  {
+    icon: 'shield-check',
+    title: 'Owned Outright',
+    description: 'You own the code, content, and IP upon project completion.'
+  }
+];
+---
+
+<section class="border-y border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 py-8">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {trustPoints.map((point) => (
+        <div class="flex items-start gap-3.5">
+          <div class="w-10 h-10 rounded-xl bg-blue-100/70 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 flex items-center justify-center shrink-0">
+            <Icon name={point.icon} class="w-5 h-5" />
+          </div>
+          <div>
+            <div class="text-sm font-bold text-slate-900 dark:text-white">
+              {point.title}
+            </div>
+            <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+              {point.description}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

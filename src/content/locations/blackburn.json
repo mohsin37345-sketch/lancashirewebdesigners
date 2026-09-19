@@ -1,0 +1,45 @@
+{
+  "town": "Blackburn",
+  "slug": "web-design-blackburn",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Blackburn | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Blackburn businesses rely on. Fast, accessible websites crafted for local companies across East Lancashire and the M65 corridor.",
+  "primaryKeyword": "web design blackburn",
+  "intro": "When your enterprise demands high-performance web design Blackburn businesses trust to drive qualified enquiries, Lancashire Web Designers engineers bespoke digital platforms for ambitious East Lancashire companies. Headquartered directly in Blackburn, we collaborate closely with local precision engineering workshops, manufacturing companies, regional haulage operators, distribution hubs, and independent commercial service contractors across the borough. We deliberately reject slow, generic WordPress themes and bloated drag-and-drop page builders in favour of clean, hand-crafted code architectures that load in under a second on mobile networks. Every bespoke website we construct is designed around your specific commercial conversion goals, fully mobile-responsive, engineered to satisfy strict WCAG 2.2 Level AA accessibility guidelines, and owned outright by your company upon final milestone payment with zero restrictive agency lock-in.",
+  "localKnowledge": "As a studio based in Blackburn, we understand East Lancashire's unique commercial landscape firsthand. From the £250m Blackburn town-centre masterplan and the regeneration surrounding the Cathedral Quarter to the thriving industrial and logistics corridor running along Haslingden Road and Whitebirk toward the M65, Blackburn's commercial base is undergoing significant transformation. Local manufacturers, fabricators, and commercial suppliers cannot afford sluggish websites that fail to convert modern B2B buyers. We build bespoke digital infrastructure that positions Blackburn companies as authoritative market leaders across the North West and nationwide.",
+  "postcodes": ["BB1", "BB2", "BB3"],
+  "nearbyAreas": [
+    { "name": "Darwen", "slug": "darwen" },
+    { "name": "Accrington", "slug": "accrington" },
+    { "name": "Preston", "slug": "web-design-preston" },
+    { "name": "Burnley", "slug": "burnley" },
+    { "name": "Chorley", "slug": "chorley" }
+  ],
+  "localIndustries": ["Advanced Manufacturing", "Logistics & Haulage", "Textiles & Aerospace Supply", "Commercial Trade Services"],
+  "servicesOffered": ["Bespoke Web Design", "B2B Lead Engines", "Ecommerce Stores", "Website Redesign", "Maintenance Care Plans"],
+  "localFaqs": [
+    {
+      "question": "Can we meet in person in Blackburn to discuss our website project?",
+      "answer": "Yes, absolutely. Being based in Blackburn, we regularly meet local business owners, directors, and marketing managers at our offices, your premises, or a local business hub to conduct face-to-face discovery sessions.",
+      "display": true
+    },
+    {
+      "question": "How quickly can a bespoke Blackburn business website go live?",
+      "answer": "A focused bespoke brochure website typically launches within 4 to 6 weeks. Larger B2B portals or ecommerce websites with custom integrations generally take 8 to 10 weeks from initial wireframes to production deployment.",
+      "display": true
+    },
+    {
+      "question": "Do you help Blackburn companies rank higher on Google local search?",
+      "answer": "Yes. Every website we build features complete semantic HTML5, local schema graphs (LocalBusiness & PostalAddress), and technical on-page optimisation targeting Blackburn and East Lancashire search intent.",
+      "display": true
+    },
+    {
+      "question": "Do I own my website and code once the project is finished?",
+      "answer": "Yes, 100%. Upon final milestone settlement, full copyright and ownership of the bespoke code, templates, and content transfer completely to your business. We do not charge ongoing platform licensing fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.7488,
+  "lng": -2.4818,
+  "tier": 1
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Mindful Ecotherapy Center — E-Learning & Course Certification Platform",
+  "slug": "mindful-ecotherapy-center",
+  "client": "Mindful Ecotherapy Center",
+  "clientType": "Educational Institute",
+  "industry": "Continuing Education & Mental Health",
+  "year": 2024,
+  "services": [
+    "WooCommerce Development",
+    "LMS Integration",
+    "Learner Portals",
+    "Content Management"
+  ],
+  "techStack": [
+    "WordPress",
+    "WooCommerce",
+    "LMS Extension",
+    "PHP",
+    "Stripe"
+  ],
+  "brief": "An accredited mindfulness institute needed an integrated platform to sell certification courses, provide student portals, and publish academic research.",
+  "approach": "Built a customized WooCommerce learning management system with self-service student portals, automated certification issuance, and categorized educational publishing.",
+  "outcome": "Streamlined online course enrollment and automated digital certification delivery for thousands of students worldwide.",
+  "metrics": [
+    {
+      "label": "Platform Scope",
+      "value": "LMS + Store",
+      "note": "WooCommerce certification portal"
+    },
+    {
+      "label": "Automation",
+      "value": "Self-Service",
+      "note": "Instant student enrollment and access"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/mindful-ecotherapy-center.jpg",
+      "alt": "Mindful Ecotherapy Center course certification platform and educational portal",
+      "caption": "WordPress and WooCommerce platform selling certification courses with student portals."
+    }
+  ],
+  "liveUrl": "https://mindfulecotherapycenter.com",
+  "featured": false,
+  "order": 12
+}

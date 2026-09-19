@@ -1,0 +1,79 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import AreaCoverageMap from 'theme/components/AreaCoverageMap.astro';
+import LocationCard from 'theme/components/LocationCard.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Areas We Serve in Lancashire | Lancashire Web Designers';
+const description = 'Explore our Lancashire service locations. Bespoke web design and development across Blackburn, Preston, Lancaster, the M65 corridor, and beyond.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Areas', url: '/areas/' }
+];
+
+const locations = await getCollection('locations');
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="location"
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <Hero
+    variant="location"
+    heading="Lancashire Coverage Areas"
+    subheading="Based in Blackburn, we partner with expanding companies across Central and East Lancashire, North Lancashire, and the wider UK commercial landscape."
+    breadcrumbs={breadcrumbs}
+    badge="County-Wide Coverage • M65 Corridor"
+    primaryCtaText="Get a Local Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+
+  <div class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <AreaCoverageMap />
+
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Primary Hubs
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Dedicated Location Hubs
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            Discover tailored digital solutions engineered around local industry clusters and commercial networks.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {locations.map((loc) => (
+            <LocationCard
+              town={loc.data.town}
+              href={`/areas/web-design-${loc.data.town.toLowerCase()}/`}
+              county={loc.data.county}
+              description={loc.data.metaDescription}
+              postcodes={loc.data.postcodes}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <CTABand
+    heading="Are you located elsewhere in Lancashire or the UK?"
+    subheading="We collaborate seamlessly both locally and remotely with ambitious businesses nationwide."
+    primaryCtaText="Speak with an Engineer"
+    primaryCtaHref="/contact/"
+    secondaryCtaText="Get a Project Quote"
+    secondaryCtaHref="/get-a-quote/"
+  />
+</BaseLayout>

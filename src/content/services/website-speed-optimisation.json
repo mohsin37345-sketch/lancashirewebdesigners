@@ -1,0 +1,95 @@
+{
+  "title": "Website Speed Optimisation",
+  "slug": "website-speed-optimisation",
+  "shortTitle": "Speed Optimisation",
+  "metaTitle": "Website Speed Optimisation UK | Lancashire Web Designers",
+  "metaDescription": "Professional website speed optimisation services for WordPress, Shopify, and custom websites. Pass Core Web Vitals, improve SEO rankings, and boost conversions.",
+  "primaryKeyword": "website speed optimisation uk",
+  "secondaryKeywords": [
+    "core web vitals optimisation",
+    "speed up slow wordpress",
+    "page speed agency",
+    "improve google page speed"
+  ],
+  "heroHeading": "Website Speed Optimisation",
+  "heroSubheading": "Transforming sluggish websites into sub-second powerhouses that pass Google Core Web Vitals with straight 90+ Lighthouse scores.",
+  "icon": "zap",
+  "summary": "Every second of page load latency costs your business qualified leads, search engine rankings, and sales revenue. Our website speed optimisation service conducts deep-code audits, asset compression, cache architecture engineering, and server tuning to eliminate bloat and achieve lightning-fast loading speeds on mobile networks.",
+  "benefits": [
+    "Pass all three Google Core Web Vitals metrics (LCP, INP, CLS) guaranteed",
+    "Drastic reduction in mobile bounce rates and abandoned visits",
+    "Improved organic search engine positioning and crawl budget efficiency",
+    "Lower Google Ads Cost Per Click through improved landing page experience ratings",
+    "Lean, clean codebase with unneeded bloat and redundant JavaScript removed"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Forensic Waterfall & Performance Audit",
+      "description": "Profiling network request waterfalls, third-party script latency, database query bottlenecks, and server TTFB."
+    },
+    {
+      "step": 2,
+      "title": "Asset & Media Pipeline Optimisation",
+      "description": "Converting images to next-gen WebP/AVIF formats, setting strict responsive srcset attributes, and subsetting custom web fonts."
+    },
+    {
+      "step": 3,
+      "title": "Code Minimisation & Script Pruning",
+      "description": "Deferring non-critical JavaScript, removing dormant plugins, eliminating render-blocking CSS, and optimizing DOM size."
+    },
+    {
+      "step": 4,
+      "title": "Edge Caching & Server Architecture",
+      "description": "Implementing Cloudflare edge caching, HTTP/3 protocols, Brotli compression, and server-side object caching."
+    },
+    {
+      "step": 5,
+      "title": "Core Web Vitals Verification & Handover",
+      "description": "Conducting before-and-after Google PageSpeed Insights benchmarks and providing documentation on maintaining speed."
+    }
+  ],
+  "whatsIncluded": [
+    "Deep forensic speed audit identifying all bottlenecks",
+    "Full remediation of Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS)",
+    "Interaction to Next Paint (INP) JavaScript execution profiling and optimization",
+    "Image format modernization and responsive sizing configuration",
+    "Cloudflare edge CDN and caching setup",
+    "Before-and-after performance benchmark report"
+  ],
+  "whatsNotIncluded": [
+    "Resolution of performance limits inherent to low-cost unmanaged shared hosting (migration advice provided)",
+    "Removal of mission-critical third-party CRM tracking tools that the client refuses to defer",
+    "Complete website visual redesign"
+  ],
+  "priceFrom": 150,
+  "priceUnit": "fixed project",
+  "priceNotes": "Speed and Core Web Vitals optimization packages start from £150.",
+  "techStack": ["Chrome DevTools", "Cloudflare", "Lighthouse", "WebPageTest", "Redis"],
+  "typicalTimeline": "3-5 business days",
+  "faqs": [
+    {
+      "question": "Why is website speed so critical for modern businesses?",
+      "answer": "Research consistently proves that 53% of mobile visitors abandon a website if it takes longer than 3 seconds to load. Furthermore, Google officially uses Core Web Vitals as a direct organic ranking signal. Faster websites rank higher, engage visitors better, and convert more traffic into revenue.",
+      "display": true
+    },
+    {
+      "question": "Can you speed up my existing WordPress site without redesigning it?",
+      "answer": "Yes. Most speed issues are caused by unoptimized images, render-blocking scripts, dormant plugins, and lack of proper edge caching. We can dramatically improve performance while keeping your current design and content completely intact.",
+      "display": true
+    },
+    {
+      "question": "Do you guarantee a 90+ Google PageSpeed score?",
+      "answer": "On clean codebases and modern hosting environments, we routinely achieve 95-100 on desktop and 90+ on mobile. If third-party tracking scripts (like Facebook Pixel or HubSpot) impose hard limits, we isolate and defer them so real users still experience sub-second load times.",
+      "display": true
+    },
+    {
+      "question": "Will our website look or function differently after speed optimisation?",
+      "answer": "No. Visual styling and user functionality remain identical. The only difference is that elements render instantaneously and interactions respond without lag.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["website-support", "wordpress-development", "website-redesign"],
+  "order": 11,
+  "featured": false
+}

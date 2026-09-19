@@ -1,0 +1,45 @@
+{
+  "title": "Premier Pro Health — Virtual Primary Care & Telehealth Portal",
+  "slug": "premier-pro-health",
+  "client": "Premier Pro Health",
+  "clientType": "Healthcare Practice",
+  "industry": "Telehealth & Mental Health Services",
+  "year": 2024,
+  "services": [
+    "Healthcare Web Design",
+    "Patient Intake Integration",
+    "Accessibility",
+    "Mobile Optimization"
+  ],
+  "techStack": [
+    "WordPress",
+    "PHP",
+    "Tailwind CSS",
+    "Telehealth Booking API"
+  ],
+  "brief": "A virtual primary care and mental health clinical practice required a reassuring, accessible web platform built around a single primary action: booking virtual patient appointments.",
+  "approach": "Crafted an accessible, patient-centered layout featuring clinical staff credentials, accepted insurance information, and a seamless one-click scheduling flow.",
+  "outcome": "Maximized appointment bookings and eliminated scheduling drop-off for virtual medical consultations.",
+  "metrics": [
+    {
+      "label": "Primary Conversion",
+      "value": "Book Online",
+      "note": "Direct frictionless appointment scheduling"
+    },
+    {
+      "label": "Care Model",
+      "value": "Telehealth",
+      "note": "Integrated virtual primary care and therapy"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/premier-pro-health.jpg",
+      "alt": "Premier Pro Health virtual primary care and mental health portal",
+      "caption": "Clean, reassuring patient booking interface with direct clinician scheduling."
+    }
+  ],
+  "liveUrl": "https://premierprohealth.com",
+  "featured": false,
+  "order": 8
+}

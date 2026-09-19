@@ -1,0 +1,56 @@
+{
+  "title": "JHS Professionals — Medical Billing & RCM Platform",
+  "slug": "jhs-professionals",
+  "client": "JHS Professionals",
+  "clientType": "Healthcare B2B Services",
+  "industry": "Healthcare & Revenue Cycle Management",
+  "year": 2024,
+  "services": [
+    "Bespoke Web Design",
+    "Technical SEO",
+    "Lead Generation Funnels",
+    "GA4 & Tag Manager"
+  ],
+  "techStack": [
+    "WordPress",
+    "PHP",
+    "Tailwind CSS",
+    "Google Tag Manager",
+    "GA4"
+  ],
+  "brief": "A nationwide US medical billing and revenue cycle management company required an authoritative digital presence to capture practice manager consultation inquiries and rank for competitive state-level healthcare terms.",
+  "approach": "Engineered a conversion-focused website architecture featuring dedicated specialty and state-level landing pages for local search discovery. Built streamlined one-step consultation capture forms directly in the hero fold and configured end-to-end GA4 and Tag Manager conversion tracking.",
+  "outcome": "Established organic visibility across target regional healthcare queries while increasing qualified practice manager consultation submissions through friction-free lead capture.",
+  "metrics": [
+    {
+      "label": "Consultation Funnel",
+      "value": "One-Step",
+      "note": "High-converting hero lead form"
+    },
+    {
+      "label": "Search Architecture",
+      "value": "State-Level",
+      "note": "Geo-targeted practice specialty pages"
+    },
+    {
+      "label": "Tracking Infrastructure",
+      "value": "GA4 + GTM",
+      "note": "Full attribution on form completions"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/jhs-professionals.jpg",
+      "alt": "JHS Professionals medical billing homepage and consultation booking form",
+      "caption": "Homepage hero messaging and the Schedule A Free Consultation lead capture funnel."
+    },
+    {
+      "src": "/images/portfolio/jhs-social-campaigns.jpg",
+      "alt": "JHS Professionals educational content and denial management campaign assets",
+      "caption": "Branded educational post designs, denial reduction guides, and specialty updates."
+    }
+  ],
+  "liveUrl": "https://jhsprofessionals.com",
+  "featured": true,
+  "order": 1
+}

@@ -1,0 +1,37 @@
+---
+export interface Metric {
+  label: string;
+  value: string;
+  note?: string;
+}
+
+export interface Props {
+  metrics?: Metric[];
+  class?: string;
+}
+
+const { metrics = [], class: className = '' } = Astro.props;
+const hasMetrics = metrics && metrics.length > 0;
+---
+
+{hasMetrics && (
+  <section class={`py-8 px-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl ${className}`}>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      {metrics.map((m) => (
+        <div class="space-y-1">
+          <div class="text-3xl lg:text-4xl font-black text-blue-600 dark:text-blue-400 tracking-tight">
+            {m.value}
+          </div>
+          <div class="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+            {m.label}
+          </div>
+          {m.note && (
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">
+              {m.note}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+)}

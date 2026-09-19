@@ -1,0 +1,100 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  currentPage: number;
+  lastPage: number;
+  baseUrl: string;
+  totalItems?: number;
+  class?: string;
+}
+
+const {
+  currentPage,
+  lastPage,
+  baseUrl,
+  totalItems,
+  class: className = ''
+} = Astro.props;
+
+const prevUrl = currentPage > 1 ? (currentPage === 2 ? baseUrl : `${baseUrl}${currentPage - 1}/`) : undefined;
+const nextUrl = currentPage < lastPage ? `${baseUrl}${currentPage + 1}/` : undefined;
+
+// Helper to generate page numbers
+const pages = Array.from({ length: lastPage }, (_, i) => i + 1);
+---
+
+{lastPage > 1 && (
+  <nav aria-label="Pagination" class={`flex flex-col sm:flex-row items-center justify-between gap-4 py-8 border-t border-slate-200 dark:border-slate-800 ${className}`}>
+    {totalItems !== undefined && (
+      <div class="text-xs text-slate-500 dark:text-slate-400">
+        Showing page <span class="font-bold text-slate-900 dark:text-white">{currentPage}</span> of <span class="font-bold text-slate-900 dark:text-white">{lastPage}</span> ({totalItems} total articles)
+      </div>
+    )}
+
+    <div class="flex items-center gap-1.5">
+      <!-- Prev Button -->
+      {prevUrl ? (
+        <a
+          href={prevUrl}
+          class="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          rel="prev"
+        >
+          <Icon name="arrow-right" class="w-3.5 h-3.5 rotate-180" />
+          <span>Previous</span>
+        </a>
+      ) : (
+        <span
+          class="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-100 dark:border-slate-800/40 text-xs font-semibold text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-60"
+          aria-disabled="true"
+        >
+          <Icon name="arrow-right" class="w-3.5 h-3.5 rotate-180" />
+          <span>Previous</span>
+        </span>
+      )}
+
+      <!-- Numbered links -->
+      <div class="hidden sm:flex items-center gap-1">
+        {pages.map((p) => {
+          const isCurrent = p === currentPage;
+          const pageUrl = p === 1 ? baseUrl : `${baseUrl}${p}/`;
+          return isCurrent ? (
+            <span
+              class="w-8 h-8 rounded-lg bg-blue-600 text-white text-xs font-bold flex items-center justify-center shadow-xs"
+              aria-current="page"
+            >
+              {p}
+            </span>
+          ) : (
+            <a
+              href={pageUrl}
+              class="w-8 h-8 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-medium flex items-center justify-center transition-colors"
+            >
+              {p}
+            </a>
+          );
+        })}
+      </div>
+
+      <!-- Next Button -->
+      {nextUrl ? (
+        <a
+          href={nextUrl}
+          class="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          rel="next"
+        >
+          <span>Next</span>
+          <Icon name="arrow-right" class="w-3.5 h-3.5" />
+        </a>
+      ) : (
+        <span
+          class="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-100 dark:border-slate-800/40 text-xs font-semibold text-slate-400 dark:text-slate-600 cursor-not-allowed opacity-60"
+          aria-disabled="true"
+        >
+          <span>Next</span>
+          <Icon name="arrow-right" class="w-3.5 h-3.5" />
+        </span>
+      )}
+    </div>
+  </nav>
+)}

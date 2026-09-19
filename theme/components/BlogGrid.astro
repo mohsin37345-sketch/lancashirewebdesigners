@@ -1,0 +1,40 @@
+---
+import BlogCard from './BlogCard.astro';
+import Icon from './Icon.astro';
+
+export interface BlogPostItem {
+  title: string;
+  description: string;
+  href: string;
+  date: string | Date;
+  category: string;
+  author?: string;
+  image?: string;
+  readingTime?: string;
+}
+
+export interface Props {
+  posts?: BlogPostItem[];
+  class?: string;
+}
+
+const { posts = [], class: className = '' } = Astro.props;
+---
+
+{posts.length > 0 ? (
+  <div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ${className}`}>
+    {posts.map((post) => (
+      <BlogCard {...post} />
+    ))}
+  </div>
+) : (
+  <div class="max-w-xl mx-auto text-center py-16 px-6 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl space-y-4">
+    <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto">
+      <Icon name="layers" class="w-6 h-6" />
+    </div>
+    <h3 class="text-xl font-bold text-slate-900 dark:text-white">Editorial Articles Coming Soon</h3>
+    <p class="text-sm text-slate-600 dark:text-slate-400">
+      We are writing comprehensive technical breakdowns on bespoke web design, Core Web Vitals optimisation, and Lancashire digital marketing strategies.
+    </p>
+  </div>
+)}

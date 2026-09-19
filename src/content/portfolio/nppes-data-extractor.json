@@ -1,0 +1,46 @@
+{
+  "title": "NPPES Data Extractor — Healthcare Provider Registry Search & Export SaaS",
+  "slug": "nppes-data-extractor",
+  "client": "Healthcare Operations Team",
+  "clientType": "Internal SaaS Application",
+  "industry": "Healthcare Informatics & Web Tools",
+  "year": 2025,
+  "services": [
+    "Custom Web App Development",
+    "API Integration",
+    "Data Processing",
+    "UI/UX Design"
+  ],
+  "techStack": [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Vercel",
+    "NPPES Public API"
+  ],
+  "brief": "Healthcare outreach and recruitment personnel needed a fast, intuitive application to query the US federal NPPES registry by specialty taxonomy, state, and city, and export matching records to Excel.",
+  "approach": "Engineered a reactive single-page tool with instantaneous registry searching, multi-parameter filtering, batch extraction algorithms, and automated client-side spreadsheet generation.",
+  "outcome": "Replaced manual multi-hour data collation with rapid sub-minute automated Excel exports for thousands of provider records.",
+  "metrics": [
+    {
+      "label": "Processing Speed",
+      "value": "<60s",
+      "note": "Instantaneous batch query to spreadsheet"
+    },
+    {
+      "label": "Data Output",
+      "value": "Excel / CSV",
+      "note": "Directly formatted for CRM ingestion"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/nppes-data-extractor.jpg",
+      "alt": "NPPES Data Extractor registry search and filter interface",
+      "caption": "Intuitive dark-mode dashboard for querying federal healthcare registries."
+    }
+  ],
+  "liveUrl": "https://nppes-data-extractor.vercel.app",
+  "featured": false,
+  "order": 6
+}

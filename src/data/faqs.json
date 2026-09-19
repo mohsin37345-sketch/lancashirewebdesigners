@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bespoke-vs-template",
+    "question": "What does 'bespoke web design' actually mean compared to a template or page builder?",
+    "answer": "A bespoke website is designed from a completely blank canvas to match your exact commercial goals and brand identity, then custom-coded without bloated themes or drag-and-drop builders like Elementor or Divi. This ensures clean semantic HTML, sub-second page loads, unmatched security, and complete ownership without ongoing platform lock-in.",
+    "display": true
+  },
+  {
+    "id": "project-timeline",
+    "question": "How long does a bespoke web design project take from kick-off to launch?",
+    "answer": "A typical bespoke brochure website takes between 4 to 6 weeks from initial discovery and wireframing through to final deployment. More complex B2B portals or bespoke ecommerce platforms generally take 8 to 12 weeks, depending on integration requirements and content readiness.",
+    "display": true
+  },
+  {
+    "id": "ownership",
+    "question": "Do I own my website and code once the project is finished?",
+    "answer": "Yes, 100%. Upon final milestone settlement, full copyright and ownership of the bespoke code, design assets, and content transfer completely to you. We do not hold client websites hostage or charge licensing fees to keep your site online.",
+    "display": true
+  },
+  {
+    "id": "contact-person",
+    "question": "Will I have direct access to the web developer building my website?",
+    "answer": "Yes. You work directly with the senior engineer and designer responsible for your project. There are no junior account managers or sales intermediaries acting as a filter between your vision and technical execution.",
+    "display": true
+  },
+  {
+    "id": "ongoing-care",
+    "question": "Do you provide hosting, security updates, and ongoing website maintenance?",
+    "answer": "Yes. We offer transparent, monthly care plans covering enterprise edge hosting, continuous security scanning, automated offsite backups, Core Web Vitals monitoring, and dedicated developer hours for ongoing improvements.",
+    "display": true
+  },
+  {
+    "id": "hidden-staging-faq",
+    "question": "Is this an internal staging question?",
+    "answer": "This entry tests the display flag filter: when display is false, it must never appear on-page or in schema.",
+    "display": false
+  }
+]

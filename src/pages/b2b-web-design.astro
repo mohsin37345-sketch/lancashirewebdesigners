@@ -1,0 +1,151 @@
+---
+import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import Icon from 'theme/components/Icon.astro';
+import { getEntry } from 'astro:content';
+
+const serviceEntry = await getEntry('services', 'b2b-web-design');
+if (!serviceEntry) {
+  throw new Error('Service entry b2b-web-design not found');
+}
+const data = serviceEntry.data;
+---
+
+<ServiceLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  h1={data.heroHeading}
+  heroSubheading={data.heroSubheading}
+  serviceType="B2B Web Design"
+  priceFrom={data.priceFrom}
+  faqs={data.faqs}
+>
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Section 1: In-depth Summary & B2B Focus -->
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Commercial Lead Generation
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          A Strategic B2B Web Design Agency for Complex Buying Journeys
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          As a specialized <strong>b2b web design agency</strong>, we recognise that business-to-business transactions are never simple impulse purchases. Your corporate website must satisfy diverse procurement stakeholders—from technical evaluators requiring exhaustive specification sheets to financial directors examining compliance, security, and proven return on investment.
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          Generic marketing sites focus merely on surface aesthetic trends. In contrast, our B2B website design architecture establishes deep domain authority, articulates distinct commercial value, and provides friction-free lead qualification pathways. We replace passive digital brochures with active commercial platforms designed to turn senior industry researchers into contracted enterprise clients.
+        </p>
+      </div>
+
+      <!-- Section 2: Dedicated 200+ Word H2 on B2B Web Development -->
+      <div class="p-8 lg:p-12 rounded-3xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
+          <Icon name="code" class="w-3.5 h-3.5" />
+          <span>Engineering Architecture</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Technical B2B Web Development Engineered for Scalable Lead Generation
+        </h2>
+        <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 space-y-4 text-base leading-relaxed">
+          <p>
+            Modern <strong>b2b web development</strong> demands rigorous engineering standards that go far beyond standard visual styling. High-value enterprise customers and procurement departments evaluate your digital platform with extreme scrutiny. Sluggish page rendering, broken mobile tables, missing privacy compliance disclosures, or unhandled form validation errors signal technical neglect and immediately disqualify your firm from high-value supplier tenders.
+          </p>
+          <p>
+            Our specialized <strong>b2b web development</strong> methodology prioritises ultra-clean, component-based architectures hand-coded in modern static or headless frameworks. We engineer robust, typed API data pipelines that connect your customer-facing contact touchpoints directly to enterprise customer relationship management platforms, including HubSpot, Salesforce, Pipedrive, and ActiveCampaign. Inbound leads are instantly validated, enriched with source UTM parameters, and tagged with lead-scoring criteria before being automatically routed to your sales executives within seconds.
+          </p>
+          <p>
+            Furthermore, our development practices enforce rigorous enterprise data protection standards. We configure secure server-side form endpoints, automated anti-spam token validation that never frustrates legitimate corporate users, and granular GDPR-compliant consent architectures. Your corporate website renders in fractions of a second on global mobile networks, passes every Google Core Web Vitals benchmark, and scales effortlessly alongside your commercial pipeline without code fragility.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 3: Key Benefits Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {data.benefits.map((benefit) => (
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+              <Icon name="check" class="w-5 h-5" />
+            </div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Section 4: 5-Step Process -->
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Pipeline Alignment
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Our B2B Platform Development Process
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            Aligned with your sales cycle and marketing automation requirements.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {data.process.map((step) => (
+            <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-3">
+              <div class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400">Step {step.step}</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
+              <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 5: Inclusions / Boundaries -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
+          <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
+            <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <span>Included in Every B2B Build</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
+            {data.whatsIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span>Optional Scope Additions</span>
+          </h3>
+          <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
+            {data.whatsNotIncluded.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-slate-400 font-bold">&bull;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 6: TechStack -->
+      <TechStack />
+
+      <!-- Section 7: FAQs -->
+      <FAQ faqs={data.faqs} />
+
+      <!-- Section 8: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Discuss Your B2B Web Project"
+          subheading="Direct consultation with our principal technical architect. Fixed-scope enterprise proposals delivered within 24 hours."
+        />
+      </div>
+    </div>
+  </article>
+</ServiceLayout>

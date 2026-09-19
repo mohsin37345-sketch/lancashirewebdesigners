@@ -1,0 +1,134 @@
+---
+import LocationLayout from 'theme/layouts/LocationLayout.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import ServiceGrid from 'theme/components/ServiceGrid.astro';
+import Icon from 'theme/components/Icon.astro';
+import { getEntry } from 'astro:content';
+
+const locationEntry = await getEntry('locations', 'web-design-blackburn');
+if (!locationEntry) {
+  throw new Error('Location entry web-design-blackburn not found');
+}
+const data = locationEntry.data;
+
+const localServices = [
+  {
+    title: 'Bespoke Web Design Blackburn',
+    href: '/bespoke-web-design/blackburn/',
+    description: 'Custom-coded digital platforms built specifically for Blackburn manufacturers and expanding commercial firms.',
+    icon: 'palette',
+    priceFrom: 300,
+    benefits: ['Sub-second mobile speed', 'M65 tender readiness', 'Full code ownership']
+  },
+  {
+    title: 'B2B Lead Engineering',
+    href: '/b2b-web-design/',
+    description: 'Specialised B2B architectures engineered for East Lancashire supply chains, precision engineering, and logistics.',
+    icon: 'layers',
+    priceFrom: 300,
+    benefits: ['CRM pipeline integration', 'Buyer persona funnels', 'WCAG 2.2 AA accessibility']
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Managed security updates, 24/7 uptime monitoring, and dedicated developer hours for Blackburn firms.',
+    icon: 'shield-check',
+    priceFrom: 99,
+    benefits: ['Daily off-site backups', 'Zero contract lock-in', 'Safe staging updates']
+  }
+];
+---
+
+<LocationLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  town={data.town}
+  county={data.county}
+  postcodes={data.postcodes}
+  lat={data.lat}
+  lng={data.lng}
+  faqs={data.localFaqs}
+>
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Section 1: Intro Narrative -->
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Local Engineering Excellence
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Bespoke Web Design Blackburn Businesses Trust to Win Commercial Contracts
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.intro}
+        </p>
+      </div>
+
+      <!-- Section 2: Deep Local Knowledge -->
+      <div class="p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400">
+          <Icon name="map-pin" class="w-3.5 h-3.5" />
+          <span>On-the-Ground Context</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          East Lancashire Commercial Heritage & M65 Connectivity
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          {data.localKnowledge}
+        </p>
+        <div class="pt-4 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Local Industries Served:</span>
+          {data.localIndustries.map((ind) => (
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+              {ind}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 3: Tailored Services for Blackburn -->
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Tailored Solutions
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Specialist Services for Blackburn Businesses
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            High-performance web software crafted for regional manufacturers and service providers.
+          </p>
+        </div>
+
+        <ServiceGrid services={localServices} />
+      </div>
+
+      <!-- Section 4: Nearby Towns Internal Graph -->
+      <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-4">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Nearby East Lancashire Towns We Serve</h3>
+        <div class="flex flex-wrap gap-3">
+          {data.nearbyAreas.map((area) => (
+            <a
+              href={`/areas/${area.slug}/`}
+              class="px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+            >
+              {area.name} &rarr;
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 5: Local FAQs -->
+      <FAQ faqs={data.localFaqs} heading="Blackburn Web Design FAQs" />
+
+      <!-- Section 6: Direct Enquiry Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Start Your Blackburn Web Project"
+          subheading="Direct consultation with our principal developer. Fixed-price proposals delivered within 24 hours."
+        />
+      </div>
+    </div>
+  </article>
+</LocationLayout>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import { getEntry } from 'astro:content';
+
+const saEntry = await getEntry('serviceAreas', 'ecommerce-web-design-preston');
+if (!saEntry) {
+  throw new Error('ServiceArea entry ecommerce-web-design-preston not found');
+}
+const data = saEntry.data;
+
+const title = 'Ecommerce Web Design Preston | Lancashire Web Designers';
+const description = 'High-converting ecommerce web design for Preston retailers and online brands. Custom Shopify and WooCommerce storefronts with sub-second checkout speeds.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Ecommerce Web Design', url: '/ecommerce-web-design/' },
+  { name: 'Preston', url: '/ecommerce-web-design/preston/' }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="service"
+  breadcrumbs={breadcrumbs}
+  faqs={data.faqs}
+>
+  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <Hero
+    variant="location"
+    heading="Ecommerce Web Design in Preston"
+    subheading="High-conversion online stores engineered for Preston retailers, wholesalers, and DTC brands across Central Lancashire."
+    breadcrumbs={breadcrumbs}
+    badge="Preston Ecommerce • Shopify & Custom"
+    primaryCtaText="Get a Store Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Conversion Engineering
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Scalable Commerce Architecture for Preston Retailers
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.uniqueIntro}
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.localAngle}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">High-Speed Checkout</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Optimized checkout flows engineered for Shopify, WooCommerce, and headless ecommerce to boost cart conversions.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Mobile-First UI/UX</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Fluid shopping experiences tailored for smartphone shoppers, delivering instant catalog browsing and one-touch purchasing.</p>
+        </div>
+        <div class="p-8 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 space-y-3">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Preston & UK Growth</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Integrated with UK payment gateways, automated inventory syncing, and high-performance technical SEO for organic scale.</p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <TechStack />
+
+  <section class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800/80">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Preston Ecommerce FAQs
+        </h2>
+      </div>
+      <FAQ faqs={data.faqs} />
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <QuoteFormInline
+        heading="Launch Your Preston Ecommerce Store"
+        subheading="Ready for a sub-second, frictionless online store? Get in touch for an itemised proposal within 24 hours."
+      />
+    </div>
+  </section>
+
+  <CTABand
+    heading="Scale your online sales with high-performance ecommerce."
+    subheading="Custom storefronts built for conversion speed. Direct developer delivery."
+  />
+</BaseLayout>

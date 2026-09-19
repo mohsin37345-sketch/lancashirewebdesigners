@@ -1,0 +1,119 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import TrustStrip from 'theme/components/TrustStrip.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import Icon from 'theme/components/Icon.astro';
+
+const title = 'About Us | Independent Lancashire Web Studio';
+const description = 'Learn about our engineering philosophy: 100% bespoke code, direct access to senior developers, and zero bloated agency overheads across Lancashire.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'About Us', url: '/about/' }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="about"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          An Engineering-First Web Studio in Lancashire
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          We founded Lancashire Web Designers on a simple premise: ambitious businesses deserve fast, bespoke digital platforms built directly by senior engineers without bloated agency middlemen.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <TrustStrip />
+
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Section 1: Philosophy -->
+      <div class="max-w-3xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Our Philosophy
+        </span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          The Problem with the Traditional Agency Model
+        </h2>
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          Most web design agencies operate like conveyor belts. You pitch to a charismatic account director, sign a hefty contract, and your project is immediately delegated to junior trainees or outsourced contractors who modify cheap commercial WordPress templates.
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          The result is almost always the same: a sluggish website that takes four seconds to load on a 4G connection, breaks every time a plugin updates, and fails to convert commercial visitors. We operate completely differently.
+        </p>
+      </div>
+
+      <!-- Section 2: 3 Pillars -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <Icon name="code" class="w-6 h-6" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">100% Hand-Crafted Code</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            We write clean semantic HTML, modern TypeScript, and Tailwind CSS from scratch. Zero unnecessary plugins, zero drag-and-drop page builders, and guaranteed 95+ Core Web Vitals.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <Icon name="briefcase" class="w-6 h-6" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Direct Developer Access</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            You communicate directly with the senior technical architect engineering your system. No account managers playing telephone, no misunderstood briefs, and instant answers.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <Icon name="shield-check" class="w-6 h-6" />
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Unconditional IP Ownership</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            When your final milestone invoice is paid, 100% of the repository, source code, and design assets are yours. We do not hold code hostage or charge recurring platform lock-in fees.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 3: Lancashire Roots -->
+      <div class="p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30 space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Regional Heritage & UK Reach
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Proudly Rooted in Lancashire, Serving the Whole of the UK
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          From our base in Blackburn along the M65 corridor, we work closely with manufacturing leaders, logistics networks, legal practices, and retail innovators across Preston, Lancaster, Burnley, Blackpool, and Central Lancashire. We also partner remotely with fast-growing B2B firms across the wider North West and London.
+        </p>
+        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+          Whether we meet face-to-face in your Lancashire boardroom or collaborate through high-efficiency video discovery workshops, you receive the same uncompromising engineering rigor.
+        </p>
+      </div>
+
+      <TechStack />
+    </div>
+  </article>
+
+  <CTABand
+    heading="Ready to build a website that delivers commercial results?"
+    subheading="Speak directly with a senior developer today. Fixed-price proposals delivered in 24 hours."
+    primaryCtaText="Get a Bespoke Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Our Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+</BaseLayout>

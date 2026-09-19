@@ -1,0 +1,104 @@
+---
+import Icon from './Icon.astro';
+
+export interface LinkItem {
+  title: string;
+  href: string;
+  description?: string;
+  badge?: string;
+}
+
+export interface Props {
+  heading?: string;
+  description?: string;
+  links?: LinkItem[];
+  currentPath?: string;
+  class?: string;
+}
+
+const defaultLinks: LinkItem[] = [
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Custom-built, ultra-fast websites designed from scratch.'
+  },
+  {
+    title: 'B2B Web Design',
+    href: '/b2b-web-design/',
+    description: 'High-converting lead generation engines for B2B brands.'
+  },
+  {
+    title: 'Ecommerce Web Design',
+    href: '/ecommerce-web-design/',
+    description: 'Scalable Shopify and custom transactional online stores.'
+  },
+  {
+    title: 'Web Design Blackburn',
+    href: '/areas/web-design-blackburn/',
+    description: 'Our home studio base serving local Blackburn enterprises.'
+  }
+];
+
+const {
+  heading = 'Explore Related Services & Areas',
+  description = 'Learn more about our bespoke digital engineering services and regional Lancashire coverage.',
+  links = [],
+  currentPath = Astro.url.pathname,
+  class: className = ''
+} = Astro.props;
+
+// Filter self-references
+const cleanCurrentPath = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+const filteredLinks = links.filter((l) => {
+  const cleanHref = l.href.endsWith('/') ? l.href : `${l.href}/`;
+  return cleanHref !== cleanCurrentPath;
+});
+
+// Fallback to default top-level links if filtered list is empty
+const displayLinks = filteredLinks.length > 0 ? filteredLinks : defaultLinks.filter((l) => l.href !== cleanCurrentPath);
+---
+
+<section class={`py-12 border-t border-slate-200 dark:border-slate-800 ${className}`}>
+  <div class="space-y-6">
+    <div>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+        {heading}
+      </h3>
+      {description && (
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          {description}
+        </p>
+      )}
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {displayLinks.map((item) => (
+        <a
+          href={item.href}
+          class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-300 dark:hover:border-blue-800 hover:shadow-sm transition-all group flex flex-col justify-between"
+        >
+          <div>
+            {item.badge && (
+              <span class="text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded mb-2 inline-block">
+                {item.badge}
+              </span>
+            )}
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              {item.title}
+            </div>
+            {item.description && (
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                {item.description}
+              </p>
+            )}
+          </div>
+
+          <div class="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs font-semibold text-blue-600 dark:text-blue-400">
+            <span>Learn More</span>
+            <Icon name="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

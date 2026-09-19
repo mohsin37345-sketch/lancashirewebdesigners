@@ -1,0 +1,95 @@
+{
+  "title": "Website Support & Maintenance",
+  "slug": "website-support",
+  "shortTitle": "Website Support",
+  "metaTitle": "Web Support Agency | Care Plans | Lancashire Web Designers",
+  "metaDescription": "Dedicated web support agency providing proactive WordPress care, rapid security patching, uptime monitoring, and ongoing conversion optimisation.",
+  "primaryKeyword": "web support agency",
+  "secondaryKeywords": [
+    "website support agency",
+    "website redesign agency",
+    "website maintenance services",
+    "wordpress support plans"
+  ],
+  "heroHeading": "Web Support Agency",
+  "heroSubheading": "Proactive website maintenance, continuous security hardening, and on-demand technical support to keep your business operating at peak performance.",
+  "icon": "shield-check",
+  "summary": "As an experienced web support agency, Lancashire Web Designers provides ongoing technical maintenance and proactive care for mission-critical business websites. We protect your digital investment with 24/7 uptime monitoring, daily off-site cloud backups, regular core security patching, Core Web Vitals performance tuning, and responsive developer support whenever you need site updates.",
+  "benefits": [
+    "Proactive security patching protecting your site from malware and vulnerabilities",
+    "Automated 24/7 uptime monitoring with rapid emergency incident response",
+    "Daily off-site cloud backups with single-click disaster recovery guarantees",
+    "Monthly performance audits maintaining sub-second mobile page speeds",
+    "Dedicated developer hours every month for content updates, tweaks, and feature additions"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Initial Codebase & Security Onboarding Audit",
+      "description": "We perform a thorough forensic inspection of your website code, plugins, hosting environment, and DNS records to resolve latent vulnerabilities."
+    },
+    {
+      "step": 2,
+      "title": "Automated Backup & Monitoring Implementation",
+      "description": "Configuring real-time uptime health checks, automated database backups to secure European cloud storage, and firewall protection layers."
+    },
+    {
+      "step": 3,
+      "title": "Staging Environment & Safe Updates",
+      "description": "All core and plugin updates are applied and regression-tested on a private staging replica before deploying to your production environment."
+    },
+    {
+      "step": 4,
+      "title": "Continuous Optimization & Speed Tuning",
+      "description": "Monthly caching adjustments, image compression checks, database table defragmentation, and broken link remediation."
+    },
+    {
+      "step": 5,
+      "title": "Transparent Monthly Reporting",
+      "description": "Receiving an executive summary detailing uptime metrics, security scans, completed tasks, and strategic performance recommendations."
+    }
+  ],
+  "whatsIncluded": [
+    "24/7 automated uptime and SSL certificate monitoring",
+    "Daily automated off-site backups with 30-day retention",
+    "Managed security updates and vulnerability patching in staging first",
+    "Dedicated developer support time for content changes and new features",
+    "Monthly executive health and performance reports",
+    "Priority emergency response for critical site downtime"
+  ],
+  "whatsNotIncluded": [
+    "Complete architectural redesigns (discounted rates apply for plan members)",
+    "External third-party API licensing costs",
+    "Resolution of hosting outages caused by unmanaged external budget hosting providers"
+  ],
+  "priceFrom": 99,
+  "priceUnit": "/month",
+  "priceNotes": "Monthly care plans start at £99/month for standard brochure sites, scaling to £249/month for complex ecommerce or high-traffic platforms.",
+  "techStack": ["WordPress", "Astro", "GitHub Actions", "Cloudflare", "Uptime Kuma", "AWS S3"],
+  "typicalTimeline": "Immediate onboarding (24-48 hours)",
+  "faqs": [
+    {
+      "question": "Can you support a website that you didn't build originally?",
+      "answer": "Yes. We regularly take over management of existing WordPress, WooCommerce, or custom sites built by other agencies. We begin with a comprehensive onboarding audit to review code quality, remove dormant plugins, and establish reliable backup routines.",
+      "display": true
+    },
+    {
+      "question": "What happens if our website goes offline outside business hours?",
+      "answer": "Our automated monitoring checks your site every 60 seconds from multiple global locations. If an outage is detected, automated alerts notify our on-call engineering team immediately to diagnose and restore service.",
+      "display": true
+    },
+    {
+      "question": "What can I use my included monthly developer hours for?",
+      "answer": "You can use your allocated time for anything you need: publishing new case studies, adding team members, updating pricing, testing new landing page variations, adding interactive forms, or installing analytics tracking tags.",
+      "display": true
+    },
+    {
+      "question": "Are there long-term contracts or cancellation penalties?",
+      "answer": "No. Our website care plans run on a rolling 30-day agreement. You can upgrade, downgrade, or cancel at any time with 30 days notice.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "b2b-web-design", "web-design-and-marketing"],
+  "order": 5,
+  "featured": true
+}

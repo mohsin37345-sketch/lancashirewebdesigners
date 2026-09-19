@@ -1,0 +1,127 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'data-controller', text: '1. Data Controller Identification' },
+  { depth: 2, slug: 'data-we-collect', text: '2. Personal Data We Collect' },
+  { depth: 2, slug: 'lawful-basis', text: '3. Lawful Basis for Processing' },
+  { depth: 2, slug: 'how-we-use-data', text: '4. How We Use Your Data' },
+  { depth: 2, slug: 'data-retention', text: '5. Data Retention Periods' },
+  { depth: 2, slug: 'third-party-processors', text: '6. Third-Party Data Processors' },
+  { depth: 2, slug: 'international-transfers', text: '7. International Data Transfers' },
+  { depth: 2, slug: 'data-subject-rights', text: '8. Your UK GDPR Statutory Rights' },
+  { depth: 2, slug: 'ico-complaints', text: '9. Right to Lodge a Complaint (ICO)' }
+];
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  description="Comprehensive UK GDPR & Data Protection Act 2018 privacy policy explaining how Lancashire Web Designers collects, processes, and safeguards client data."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    This Privacy Policy explains how <strong>{site.legalEntity || site.name}</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses, stores, and protects your personal information when you use our website or engage our bespoke web design and development services. We are fully committed to complying with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018.
+  </p>
+
+  <h2 id="data-controller">1. Data Controller Identification</h2>
+  <p>
+    For the purposes of the UK GDPR and the Data Protection Act 2018, the Data Controller responsible for your personal information is:
+  </p>
+  <ul>
+    <li><strong>Data Controller:</strong> {site.legalEntity || site.name}</li>
+    {site.address.town && <li><strong>Location:</strong> {site.address.town}, {site.address.county}, {site.address.country}</li>}
+    <li><strong>Email Enquiries:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></li>
+    {site.phone && <li><strong>Telephone:</strong> <a href={`tel:${site.phoneE164 || site.phone}`}>{site.phoneDisplay || site.phone}</a></li>}
+  </ul>
+
+  <h2 id="data-we-collect">2. Personal Data We Collect</h2>
+  <p>
+    When you contact us, request a project quote, use our interactive cost estimator, or enter into a commercial development agreement, we collect the following personal and commercial information:
+  </p>
+  <ul>
+    <li><strong>Identity & Contact Details:</strong> Full name, business email address, direct contact telephone number, and company name.</li>
+    <li><strong>Project Specifications:</strong> Current website URL, commercial scope, technical requirements, desired launch milestones, and estimated budget ranges.</li>
+    <li><strong>Technical Telemetry:</strong> IP address, browser type and version, operating system, and approximate geographical location (anonymised at the edge via Google Consent Mode v2).</li>
+    <li><strong>Billing & Contract Records:</strong> Invoicing address, VAT details (where applicable), bank transaction references, and payment histories. We do not store raw debit or credit card credentials.</li>
+  </ul>
+
+  <h2 id="lawful-basis">3. Lawful Basis for Processing</h2>
+  <p>
+    Under Article 6 of the UK GDPR, we only process your personal information when a clear lawful basis exists:
+  </p>
+  <ul>
+    <li><strong>Performance of a Contract (Art. 6(1)(b)):</strong> Processing necessary to prepare tailored quotations, execute commercial scopes of work, deliver web software, and provide ongoing technical support.</li>
+    <li><strong>Legitimate Interests (Art. 6(1)(f)):</strong> Processing necessary to protect our infrastructure from malicious automated spam (e.g. Cloudflare Turnstile), troubleshoot server errors, and manage our business operations efficiently.</li>
+    <li><strong>Consent (Art. 6(1)(a)):</strong> Processing based on your explicit, affirmative opt-in consent (e.g. subscribing to technical marketing updates or enabling non-essential analytics cookies).</li>
+    <li><strong>Legal Obligation (Art. 6(1)(c)):</strong> Processing necessary to maintain commercial tax, accounting, and company audit records in accordance with UK statutory law.</li>
+  </ul>
+
+  <h2 id="how-we-use-data">4. How We Use Your Data</h2>
+  <p>
+    We never sell, rent, or lease your personal information to third-party data brokers or marketing agencies. We use your data strictly for:
+  </p>
+  <ul>
+    <li>Evaluating technical feasibility and providing accurate, fixed-price project estimates.</li>
+    <li>Communicating directly regarding milestones, staging reviews, and deployment scheduling.</li>
+    <li>Issuing statutory tax invoices and processing bank payments.</li>
+    <li>Fulfilling our post-launch warranty and ongoing care plan commitments.</li>
+  </ul>
+
+  <h2 id="data-retention">5. Data Retention Periods</h2>
+  <p>
+    We retain personal data only for as long as strictly necessary to fulfill the purposes for which it was gathered:
+  </p>
+  <ul>
+    <li><strong>General Enquiries & Quotations:</strong> Contact form submissions and unaccepted project quotes are retained for <strong>24 months</strong> from the date of last communication, after which they are securely deleted.</li>
+    <li><strong>Active Client & Project Records:</strong> Source code repositories, client correspondence, contracts, and deliverable documentation are retained for the duration of the commercial relationship plus <strong>6 years</strong> following project completion to satisfy UK HMRC tax and statutory limitation requirements.</li>
+    <li><strong>Analytics & Web Logs:</strong> Anonymised server access logs are retained for <strong>90 days</strong> for security triage and bot analysis.</li>
+  </ul>
+
+  <h2 id="third-party-processors">6. Third-Party Data Processors</h2>
+  <p>
+    To operate our studio infrastructure efficiently, we engage vetted sub-processors who adhere to strict data security standards:
+  </p>
+  <ul>
+    <li><strong>Cloud Hosting & Edge Delivery:</strong> Vercel Inc. (hosting and edge routing with standard contractual clauses).</li>
+    <li><strong>Spam Prevention & Security:</strong> Cloudflare Inc. (Turnstile bot verification).</li>
+    <li><strong>Analytics (Optional):</strong> Google Analytics 4 (only activated if explicit user consent is granted via our consent banner).</li>
+    <li><strong>Banking & Invoicing:</strong> Registered UK clearing banks and certified accounting software for statutory transaction processing.</li>
+  </ul>
+
+  <h2 id="international-transfers">7. International Data Transfers</h2>
+  <p>
+    Where personal information is transferred outside the United Kingdom or the European Economic Area (EEA), we ensure that appropriate safeguards are in place, such as UK International Data Transfer Agreements (IDTAs), European Commission Standard Contractual Clauses (SCCs), or adequacy regulations recognised under UK law.
+  </p>
+
+  <h2 id="data-subject-rights">8. Your UK GDPR Statutory Rights</h2>
+  <p>
+    Under the UK GDPR, you hold specific statutory rights regarding your personal information:
+  </p>
+  <ul>
+    <li><strong>Right of Access:</strong> You may request a copy of the personal data we hold about you (Subject Access Request).</li>
+    <li><strong>Right to Rectification:</strong> You may request the correction of inaccurate or incomplete information.</li>
+    <li><strong>Right to Erasure (&ldquo;Right to be Forgotten&rdquo;):</strong> You may request deletion of your personal data where retention is no longer legally necessary.</li>
+    <li><strong>Right to Restrict Processing:</strong> You may ask us to suspend processing your data in certain scenarios.</li>
+    <li><strong>Right to Data Portability:</strong> You may request your data in a structured, machine-readable format.</li>
+    <li><strong>Right to Object:</strong> You may object to data processing based on legitimate interests.</li>
+    <li><strong>Right to Withdraw Consent:</strong> Where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing.</li>
+  </ul>
+  <p>
+    To exercise any of these rights, please email us directly at <a href={`mailto:${site.email}`}>{site.email}</a>. We respond to all verified requests within one calendar month at zero charge.
+  </p>
+
+  <h2 id="ico-complaints">9. Right to Lodge a Complaint (ICO)</h2>
+  <p>
+    If you have any concerns regarding our handling of your personal data, we request that you contact us first so we can resolve the matter swiftly. However, you retain the statutory right to lodge a complaint with the UK supervisory authority:
+  </p>
+  <p>
+    <strong>Information Commissioner&rsquo;s Office (ICO)</strong><br />
+    Wycliffe House, Water Lane, Wilmslow, Cheshire, SK9 5AF<br />
+    Helpline: 0303 123 1113<br />
+    Website: <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer">ico.org.uk</a>
+  </p>
+</LegalLayout>

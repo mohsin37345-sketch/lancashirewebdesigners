@@ -1,0 +1,780 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import TrustStrip from 'theme/components/TrustStrip.astro';
+import ServiceGrid from 'theme/components/ServiceGrid.astro';
+import HowItWorks from 'theme/components/HowItWorks.astro';
+import ComparisonTable from 'theme/components/ComparisonTable.astro';
+import PortfolioGrid from 'theme/components/PortfolioGrid.astro';
+import TechStack from 'theme/components/TechStack.astro';
+import PricingTable from 'theme/components/PricingTable.astro';
+import AreaCoverageMap from 'theme/components/AreaCoverageMap.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import Icon from 'theme/components/Icon.astro';
+import { site } from 'src/data/site';
+import { getCollection } from 'astro:content';
+
+const title = 'Web Design Lancashire | Bespoke Websites | Lancashire Web Designers';
+const description = `Bespoke web design in Lancashire. Hand-coded, sub-second websites for Blackburn, Preston and Lancaster businesses. Fixed pricing, you own the code. Call ${site.nap.phone}.`;
+
+// Services for ServiceGrid
+const services = [
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Custom-coded from scratch for sub-second speeds, total brand distinction, and zero template bloat.',
+    icon: 'palette',
+    priceFrom: 300,
+    tag: 'Bespoke UI/UX',
+    color: 'blue',
+    benefits: ['Sub-second mobile speed', '100% bespoke architecture', 'Extra pages at +£50/page']
+  },
+  {
+    title: 'B2B Web Design',
+    href: '/b2b-web-design/',
+    description: 'Engineered for multi-stakeholder purchasing journeys, CRM integrations, and qualified commercial lead capture.',
+    icon: 'layers',
+    priceFrom: 1200,
+    tag: 'Lead Pipelines',
+    color: 'purple',
+    benefits: ['CRM pipeline integration', 'Buyer persona pathways', 'Extra pages at +£50/page']
+  },
+  {
+    title: 'Ecommerce Design',
+    href: '/ecommerce-web-design/',
+    description: 'High-converting Shopify and custom storefronts with frictionless checkouts and rapid catalog browsing.',
+    icon: 'shopping-bag',
+    priceFrom: 500,
+    tag: 'Shopify & Woo',
+    color: 'emerald',
+    benefits: ['Optimised mobile checkout', 'Zero app subscription bloat', 'Stripe & Apple Pay ready']
+  },
+  {
+    title: 'Web Design & Marketing',
+    href: '/web-design-and-marketing/',
+    description: 'Integrated website design and organic search strategy built to attract, engage, and convert commercial buyers.',
+    icon: 'trending-up',
+    priceFrom: 600,
+    tag: 'Technical SEO',
+    color: 'amber',
+    benefits: ['Built-in technical SEO', 'Conversion rate optimization', 'GA4 attribution tracking']
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Proactive maintenance, 24/7 uptime checks, daily cloud backups, and dedicated monthly developer time.',
+    icon: 'shield-check',
+    priceFrom: 99,
+    tag: '24/7 Protection',
+    color: 'sky',
+    benefits: ['24/7 uptime monitoring', 'Safe staging updates', 'Zero contract lock-in']
+  },
+  {
+    title: 'Website Redesign',
+    href: '/services/website-redesign/',
+    description: 'Overhaul sluggish, outdated websites while protecting hard-earned search rankings with complete 301 maps.',
+    icon: 'refresh-cw',
+    priceFrom: 400,
+    tag: 'Modern Overhaul',
+    color: 'rose',
+    benefits: ['Preserve existing SEO equity', 'Modern component refresh', 'Zero-downtime cutover']
+  }
+];
+
+// FAQs with rich schema
+const homeFaqs = [
+  {
+    question: 'How much does a website cost in Lancashire?',
+    answer: 'Our builds start at £300 + VAT for a bespoke 1–5 page site, with extra pages at £50 each. B2B lead platforms and ecommerce builds are quoted individually. Every quote is fixed-price before we start — you won\'t get an invoice you weren\'t expecting.'
+  },
+  {
+    question: 'How long does it take?',
+    answer: 'Two to three weeks for a brochure site, four to six for a B2B build, six to eight for ecommerce. The timeline starts when your content is ready.'
+  },
+  {
+    question: 'Do I own the website?',
+    answer: 'Yes, completely, once the final payment clears. Code, content and design all transfer to you. You can host it anywhere and hire anyone to work on it.'
+  },
+  {
+    question: 'Do you write the content?',
+    answer: 'Yes, included as standard. You review and correct it.'
+  },
+  {
+    question: 'What happens after launch?',
+    answer: 'Thirty days of fixes are included. After that you can take a care plan from £99/month for monitoring, backups, updates and developer time, or manage it yourself — there\'s no lock-in either way.'
+  },
+  {
+    question: 'Can you fix my existing website instead of rebuilding it?',
+    answer: 'Sometimes. If the underlying build is sound and the problem is speed, structure or content, a rebuild is a waste of your money and we\'ll say so. If it\'s a page builder site with four hundred plugins, honestly, no.'
+  },
+  {
+    question: 'Will I lose my Google rankings if you redesign my site?',
+    answer: 'Not if it\'s done properly. We map every existing URL to its replacement with 301 redirects before cutover. Rankings usually recover within a couple of weeks and often improve, because the new site is faster.'
+  },
+  {
+    question: 'Do you work with businesses outside Lancashire?',
+    answer: 'Yes. Roughly half our work is UK-wide and remote. Lancashire clients get the option of meeting in person.'
+  },
+  {
+    question: 'Do you use WordPress?',
+    answer: 'Where it\'s genuinely the right tool — usually when a client needs to edit content constantly. Most business sites are better served by a hand-coded static build, which is faster and has almost no security surface. We\'ll recommend based on your situation, not our preference.'
+  }
+];
+
+// Collections
+const portfolioEntries = await getCollection('portfolio');
+const sortedPortfolio = portfolioEntries.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const portfolioItems = sortedPortfolio.map((entry) => ({
+  title: entry.data.title,
+  client: entry.data.client,
+  industry: entry.data.industry,
+  year: entry.data.year,
+  href: `/portfolio/${entry.data.slug || entry.id}/`,
+  brief: entry.data.brief,
+  services: entry.data.services,
+  metrics: entry.data.metrics,
+  image: entry.data.images?.[0]?.src
+}));
+
+const testimonialEntries = await getCollection('testimonials');
+const testimonialsList = testimonialEntries.map(t => t.data);
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="home"
+  faqs={homeFaqs}
+>
+  <!-- Section 1: Hero -->
+  <Hero
+    variant="home"
+    heading="Web Design Lancashire"
+    subheading="Hand-coded websites for Lancashire businesses that need their site to bring in work. Built from scratch for speed, search visibility and enquiries — not assembled from a theme."
+    badge="Bespoke UK Engineering · No Templates"
+    primaryCtaText="Get a Fixed-Price Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText={`Call ${site.nap.phone}`}
+    secondaryCtaHref={`tel:${site.nap.phoneE164}`}
+  />
+
+  <!-- Section 2: TrustStrip -->
+  <TrustStrip />
+
+  <!-- Narrative Lead Block: Why Lancashire Businesses Choose a Bespoke Build -->
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Text Column (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/60">
+            <span class="w-2 h-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
+            <span>Commercial Web Engineering</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Why Lancashire Businesses Choose a Bespoke Build
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            Most business websites in Lancashire are built on a theme somebody bought for forty pounds. It works, roughly. Then it loads in four seconds on a phone, the plugins start conflicting, a Google update knocks it back, and nobody can tell you why because nobody wrote the code.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            We do web design in Lancashire the other way round. Every site is hand-coded from scratch — no page builder, no bought theme, no forty plugins holding it together. The result loads in under a second, passes Core Web Vitals on mobile, and belongs to you completely once the project is paid.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            That approach suits some businesses more than others. It suits a Preston consultancy that needs to look credible to procurement teams. It suits a manufacturer on the M65 corridor whose buyers are comparing three suppliers on a phone in a car park. It suits anyone who has already paid for a cheap website once and doesn't want to do it again.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            If you're weighing up a <strong>digital agency in Lancashire</strong> and you want to know what you'd actually be getting, the honest answer is: fewer people, more of their attention, and code you can take anywhere.
+          </p>
+        </div>
+
+        <!-- Visual Column (5 cols) with Image 1 -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative rounded-3xl overflow-hidden bg-slate-100 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-800 shadow-xl group hover-lift transition-all duration-300">
+            <div class="aspect-[4/3] w-full overflow-hidden relative">
+              <img
+                src="/images/bespoke-web-design-lancashire-architecture.webp"
+                alt="Wireframe sketches and layout plans for a client website build"
+                width="740"
+                height="604"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            </div>
+
+            <!-- Floating Modern Badge overlay -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-lg flex items-center justify-between">
+              <div>
+                <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Architectural Precision</span>
+                </div>
+                <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                  Hand-coded semantic layouts • 0% bloat
+                </div>
+              </div>
+              <span class="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-lg">
+                HTML5 / CSS3
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: ServiceGrid -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Core Capabilities
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          Tailored Web Solutions for Growing Companies
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+          From corporate brochure platforms to high-volume ecommerce and custom B2B web applications, we provide fixed-price engineering without agency fluff.
+        </p>
+      </div>
+
+      <ServiceGrid services={services} />
+    </div>
+  </section>
+
+  <!-- Section 4: HowItWorks (Process) -->
+  <HowItWorks />
+
+  <!-- Section 5: ComparisonTable (Bespoke vs Generic Templates) -->
+  <ComparisonTable compact={true} />
+
+  <!-- Section 6: NEW - Project Timelines (How Long a Website Takes) -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+          <Icon name="clock" class="w-3.5 h-3.5" />
+          <span>Realistic Turnaround Times</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          How Long a Website Takes
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 text-base leading-relaxed">
+          Nobody on your current page answers this, and it's one of the first two questions every buyer asks.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover-lift">
+          <span class="text-xs font-mono font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md">Brochure Site</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3">1–5 Page Brochure Site</h3>
+          <div class="text-2xl font-extrabold text-slate-900 dark:text-white mt-4 font-mono">2–3 weeks</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Design, hand-coded build, mobile optimization, and testing.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover-lift">
+          <span class="text-xs font-mono font-semibold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-md">Commercial Engine</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3">B2B Lead Platform</h3>
+          <div class="text-2xl font-extrabold text-slate-900 dark:text-white mt-4 font-mono">4–6 weeks</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">CRM integrations, qualification funnels, and technical SEO architecture.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover-lift">
+          <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md">Transactional Store</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3">Ecommerce Build</h3>
+          <div class="text-2xl font-extrabold text-slate-900 dark:text-white mt-4 font-mono">6–8 weeks</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Product setup, custom checkout, payment gateways, and shipping rules.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm hover-lift">
+          <span class="text-xs font-mono font-semibold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2.5 py-1 rounded-md">Safe SEO Cutover</span>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white mt-3">Redesign with Migration</h3>
+          <div class="text-2xl font-extrabold text-slate-900 dark:text-white mt-4 font-mono">4–6 weeks</div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Complete 301 URL redirects, content re-architecture, and zero ranking loss.</p>
+        </div>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-blue-50/60 dark:bg-slate-800/60 border border-blue-100 dark:border-slate-700/80 space-y-3">
+        <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-medium">
+          The clock starts when we have your content and images, not when you pay the deposit. That's the honest version — most delays on a web project are content delays, and saying so upfront saves everyone a fortnight.
+        </p>
+        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          If you have a hard launch date — a trade show, a rebrand, a funding round — say so on the enquiry and we'll tell you straight whether it's achievable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: NEW - Content, Hosting and Domains (What You Supply, What We Handle) -->
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Clarity & Ownership
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          What You Supply, What We Handle
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+          Practical answers to the questions that decide web projects before you spend a penny.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Card 1: Copywriting -->
+        <div class="rounded-2xl p-7 bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-3 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 border border-blue-200/60 dark:border-blue-800/60 flex items-center justify-center font-bold">
+            <Icon name="file-text" class="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            Do I have to write the copy?
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            No. Most clients don't. We write it as part of the build — you'll review it and tell us where we've got the tone wrong. If you'd rather write it yourself, that's fine and it shortens the timeline.
+          </p>
+        </div>
+
+        <!-- Card 2: Photography -->
+        <div class="rounded-2xl p-7 bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-3 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 border border-purple-200/60 dark:border-purple-800/60 flex items-center justify-center font-bold">
+            <Icon name="camera" class="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            Photography?
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            We'll use your own images where you have them, since real photos of a real business outperform stock every time. Where you don't, we source properly licensed imagery. If your business would benefit from a photography session, we'll tell you rather than paper over it.
+          </p>
+        </div>
+
+        <!-- Card 3: Hosting -->
+        <div class="rounded-2xl p-7 bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-3 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center font-bold">
+            <Icon name="server" class="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            Hosting?
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Sites are deployed to Vercel or Cloudflare, both of which are fast and cheap. You own the account. Hosting for a typical brochure site costs nothing to a few pounds a month, and it's billed to you directly, not marked up through us.
+          </p>
+        </div>
+
+        <!-- Card 4: Domains -->
+        <div class="rounded-2xl p-7 bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-3 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 border border-amber-200/60 dark:border-amber-800/60 flex items-center justify-center font-bold">
+            <Icon name="globe" class="w-5 h-5" />
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            Domain?
+          </h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Stays in your name, in your registrar account. If you're currently locked out of your own domain by a previous developer, we've dealt with that before and can walk you through recovering it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: NEW - What's Included and What Isn't (What's In the Price) -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Upfront Scope
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          What's In the Price
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+          Stating exclusions plainly reads as confidence, pre-qualifies enquiries, and prevents the scope arguments that ruin web projects.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Included Column (7 cols) -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-800/90 border border-emerald-200/80 dark:border-emerald-800/70 rounded-3xl p-7 lg:p-9 shadow-sm">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 mb-6">
+            <Icon name="check" class="w-3.5 h-3.5 text-emerald-600" />
+            <span>Included in every build</span>
+          </div>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm text-slate-700 dark:text-slate-200">
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Bespoke design, prototyped in Figma before a line of code</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Hand-coded build — semantic HTML, Tailwind, no page builder</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Mobile-first responsive across phone, tablet, laptop and desktop</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Core Web Vitals tuning to 95+ on mobile</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Technical SEO: schema, meta, canonicals, sitemap, robots</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Google Analytics 4 with conversion events configured</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>WCAG 2.2 AA accessibility standards</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>UK legal pages: privacy, cookies, terms</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>30 days of post-launch fixes</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60 flex items-center justify-center shrink-0 mt-0.5 text-xs font-bold">✓</span>
+              <span>Full code and IP transfer on final payment</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Not Included Column (5 cols) -->
+        <div class="lg:col-span-5 bg-white dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700/80 rounded-3xl p-7 lg:p-9 shadow-sm">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 mb-6">
+            <span>Not included as standard — quoted separately</span>
+          </div>
+          <ul class="space-y-3.5 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Logo design and full brand identity</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Professional photography or video production</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Ongoing SEO and content marketing after launch</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Paid advertising management</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Third-party software licences and subscriptions</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-slate-400 font-bold mt-0.5">—</span>
+              <span>Ongoing maintenance beyond the 30-day window (see care plans, from £99/month)</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: NEW - Industries (Who We Build For) -->
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Target Sectors
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          Who We Build For
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-3 text-base leading-relaxed">
+          We work mainly with businesses selling something considered — where the buyer researches, compares and takes a few days to decide.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1: Professional Services -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-xs">
+          <div class="text-xs font-bold font-mono text-blue-600 dark:text-blue-400 uppercase tracking-wider">Professional Services</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Consultancies, Accountants, Solicitors & Surveyors</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Credibility does the selling; the site has to look like the firm charges what it charges.
+          </p>
+        </div>
+
+        <!-- Card 2: Manufacturing and B2B -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-xs">
+          <div class="text-xs font-bold font-mono text-purple-600 dark:text-purple-400 uppercase tracking-wider">Manufacturing & Trade</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Industrial & M65 Supply Chain Firms</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Where the buyer is a procurement manager checking capability and certifications before they'll make contact.
+          </p>
+        </div>
+
+        <!-- Card 3: Healthcare & Clinical -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-xs">
+          <div class="text-xs font-bold font-mono text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Healthcare & Clinical</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Clinics, Practices & Specialist Care</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Where compliance, accessibility and clarity matter more than visual flourish.
+          </p>
+        </div>
+
+        <!-- Card 4: Trades & Home Services -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-xs">
+          <div class="text-xs font-bold font-mono text-amber-600 dark:text-amber-400 uppercase tracking-wider">Trades & Home Services</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Contractors, Engineers & Local Trades</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Where the job is to be found locally and get the phone ringing.
+          </p>
+        </div>
+
+        <!-- Card 5: Ecommerce -->
+        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/90 border border-slate-200/80 dark:border-slate-700/80 space-y-2.5 shadow-xs">
+          <div class="text-xs font-bold font-mono text-rose-600 dark:text-rose-400 uppercase tracking-wider">Ecommerce</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Shopify & Custom Storefronts</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Particularly brands outgrowing a slow, generic template.
+          </p>
+        </div>
+
+        <!-- Note Card -->
+        <div class="p-6 rounded-2xl bg-blue-50/60 dark:bg-slate-800/90 border border-blue-200/60 dark:border-blue-800/60 flex flex-col justify-center shadow-xs">
+          <div class="text-sm font-bold text-slate-900 dark:text-white">Not on this list?</div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
+            If you're a Lancashire business and you're not on that list, ask anyway. It's a description of where we've worked, not a restriction.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 10: NEW - Who Actually Builds It (Who You'll Work With) -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-700/80 rounded-3xl p-8 sm:p-10 lg:p-12 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <!-- Founder Photo (4 cols) -->
+          <div class="lg:col-span-4 flex flex-col items-center sm:items-start">
+            <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 shadow-xl">
+              <img
+                src="/images/mohsin-ali-founder.jpg"
+                alt="Mohsin Ali — Founder and Lead Developer of Lancashire Web Designers"
+                width="400"
+                height="400"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div class="absolute bottom-2 left-2 right-2 px-2.5 py-1 rounded-lg bg-slate-900/85 backdrop-blur-sm text-center text-[11px] font-semibold text-white">
+                Blackburn, Lancashire
+              </div>
+            </div>
+            <div class="mt-4 text-center sm:text-left">
+              <div class="text-lg font-bold text-slate-900 dark:text-white">Mohsin Ali</div>
+              <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Founder & Lead Developer</div>
+            </div>
+          </div>
+
+          <!-- Founder Bio & Details (8 cols) -->
+          <div class="lg:col-span-8 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+              <Icon name="user-check" class="w-3.5 h-3.5" />
+              <span>Direct Developer Access</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Who Actually Builds It
+            </h2>
+
+            <p class="text-base text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
+              You'll deal with me directly, from the first call to the handover. There's no account manager, no offshore team, and no situation where the person who sold you the site is different from the person building it.
+            </p>
+
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Background: computer science degree, around four years building and running commercial websites — SEO, Google and Meta advertising, WordPress, Shopify, and modern frameworks like Astro. Before starting the studio I ran the digital side of several businesses, which is a useful thing to have done before building websites for other people: I've been the one waiting on a developer who stopped replying.
+            </p>
+
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Based in Blackburn. Happy to meet in person anywhere in Lancashire.
+            </p>
+
+            <div class="pt-3 flex flex-wrap items-center gap-3">
+              <a
+                href="https://www.linkedin.com/in/iammohsinmughal/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors shadow-xs"
+              >
+                <Icon name="linkedin" class="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href={`mailto:${site.nap.email}`}
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-600 bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-xs font-semibold text-slate-800 dark:text-slate-200 transition-colors shadow-xs"
+              >
+                <Icon name="mail" class="w-3.5 h-3.5 text-slate-500 dark:text-slate-400" />
+                <span>{site.nap.email}</span>
+              </a>
+              <a
+                href={`tel:${site.nap.phoneE164}`}
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-xs font-bold text-white transition-colors shadow-sm"
+              >
+                <Icon name="phone" class="w-3.5 h-3.5" />
+                <span>{site.nap.phone}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 11: PortfolioGrid (Recent Work) -->
+  {portfolioItems.length > 0 ? (
+    <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="max-w-2xl">
+            <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+              Selected Work
+            </span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+              Recent Work
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+              Six recent projects across healthcare, B2B, ecommerce and logistics. Where a client has agreed to it, we've included the numbers.
+            </p>
+          </div>
+          <div>
+            <a
+              href="/portfolio/"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-sm font-semibold transition-colors"
+            >
+              <span>Explore All Projects</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+        <PortfolioGrid items={portfolioItems.slice(0, 6)} />
+      </div>
+    </section>
+  ) : null}
+
+  <!-- Section 12: Responsive Cross-Device Engineering & Analytics -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30 border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Visual Column (5 cols) with Image 3 -->
+        <div class="lg:col-span-5 order-2 lg:order-1 relative">
+          <div class="rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 shadow-xl group hover-lift transition-all duration-300">
+            <div class="aspect-[16/10] w-full overflow-hidden relative">
+              <img
+                src="/images/responsive-web-design-analytics-lancashire.webp"
+                alt="The same website shown on desktop, tablet and mobile"
+                width="740"
+                height="493"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-60"></div>
+            </div>
+
+            <div class="p-5 sm:p-6 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
+                  <span>Fluid Multi-Screen Architecture</span>
+                </span>
+                <span class="text-[11px] font-mono font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2 py-0.5 rounded-md">
+                  100% Mobile Ready
+                </span>
+              </div>
+              <div class="grid grid-cols-3 gap-2 text-center pt-1 border-t border-slate-100 dark:border-slate-800/80">
+                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <div class="text-xs font-black text-slate-900 dark:text-white">0 CLS</div>
+                  <div class="text-[10px] text-slate-500 dark:text-slate-400">Zero Shift</div>
+                </div>
+                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <div class="text-xs font-black text-slate-900 dark:text-white">&lt;0.8s</div>
+                  <div class="text-[10px] text-slate-500 dark:text-slate-400">Page Load</div>
+                </div>
+                <div class="p-2 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                  <div class="text-xs font-black text-slate-900 dark:text-white">GA4</div>
+                  <div class="text-[10px] text-slate-500 dark:text-slate-400">Attribution</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Column (7 cols) -->
+        <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">
+            <Icon name="trending-up" class="w-3.5 h-3.5" />
+            <span>Built-in Analytics & Growth</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+            Responsive Architecture Meets Commercial Conversion Analytics
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            Over 65% of UK commercial website traffic originates on smartphones and tablets (Statcounter UK, 2025). We engineer fluid, multi-breakpoint interfaces that adapt seamlessly across iPhone, Android, iPad, laptops, and ultra-wide 4K workstations.
+          </p>
+
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Every build includes pre-configured server-side telemetry, Google Analytics 4 conversion events, phone click attribution, and form submission tracking—allowing you to accurately measure your exact return on investment from day one.
+          </p>
+
+          <!-- Embedded TechStack -->
+          <div class="pt-2">
+            <TechStack />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 13: PricingTable -->
+  <PricingTable />
+
+  <!-- Section 14: AreaCoverageMap (Web Design Across Lancashire) -->
+  <section class="py-16 lg:py-24 bg-slate-50/50 dark:bg-slate-900/30">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <AreaCoverageMap />
+    </div>
+  </section>
+
+  <!-- Section 15: Testimonials (Verified only) -->
+  <Testimonials testimonials={testimonialsList} />
+
+  <!-- Section 16: FAQ (9 High-Intent FAQs) -->
+  <FAQ faqs={homeFaqs} />
+
+  <!-- Section 17: CTABand (Lead Magnet: Free Diagnostic Audit) -->
+  <CTABand
+    heading="Is your current website silently losing you customers?"
+    subheading="Request a free, forensic website diagnostic. We inspect your mobile load speed, Core Web Vitals, and SEO code quality with zero obligation."
+    primaryCtaText="Claim Free Website Audit"
+    primaryCtaHref="/free-website-audit/"
+    secondaryCtaText="Calculate Project Cost"
+    secondaryCtaHref="/website-cost-calculator/"
+  />
+
+  <!-- Section 18: Direct Quote Enquiry -->
+  <section class="py-16 lg:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <QuoteFormInline
+        heading="Start Your Bespoke Website Project"
+        subheading="Submit your requirements below to receive a fixed-price estimate and architectural breakdown from a senior developer within 24 hours."
+      />
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,125 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import PricingTable from 'theme/components/PricingTable.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import Icon from 'theme/components/Icon.astro';
+
+const title = 'Web Design Pricing & Packages | Lancashire Web Designers';
+const description = 'Clear, fixed-price website packages and maintenance plans. No surprise invoices, no monthly platform lock-ins, and full code ownership.';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Pricing', url: '/pricing/' }
+];
+
+const pricingFaqs = [
+  {
+    question: 'Are your quotes truly fixed-price?',
+    answer: 'Yes. Once we review your technical brief and issue a proposal, that price is 100% fixed for the agreed scope. If you choose to expand project features during the build, we provide a clear written change request before undertaking extra work.'
+  },
+  {
+    question: 'Do you charge ongoing monthly platform fees?',
+    answer: 'No. Unlike proprietary website builders (Wix, Squarespace) or agencies that hold your domain hostage, we build using open standards. You own your code outright. Our ongoing website support plans are completely optional on a rolling 30-day basis.'
+  },
+  {
+    question: 'What additional costs should I expect outside your build fee?',
+    answer: 'The only standard third-party costs are your domain registration (typically £10-£15/year) and web hosting (we recommend fast, edge-cached hosting from £15-£30/month). For ecommerce, standard Shopify or payment gateway processing fees apply.'
+  },
+  {
+    question: 'Can I pay in instalments?',
+    answer: 'Yes. Our standard payment schedule is split across project milestones: 40% upon commencement, 30% upon design prototype approval, and 30% upon final testing and live deployment.'
+  }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="article"
+  breadcrumbs={breadcrumbs}
+  faqs={pricingFaqs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Transparent, Fixed-Price Web Design
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          No vague estimates, no hidden charges. Every project is scoped to a clear specification with defined deliverables and unconditional IP ownership.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <PricingTable />
+
+  <!-- Maintenance Plans Overview -->
+  <section class="py-16 lg:py-24 bg-slate-50/60 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Ongoing Care
+        </span>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          Website Support & Maintenance Plans
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+          Keep your platform secure, fast, and constantly updated with rolling 30-day care packages.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Essential Care</h3>
+          <div class="text-3xl font-black text-slate-900 dark:text-white">£99<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">For standard corporate brochure websites.</p>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Daily off-site cloud backups</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> 24/7 uptime monitoring</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Monthly staging security updates</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> 30 mins included dev tasks</li>
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-3xl border-2 border-blue-600 bg-white dark:bg-slate-900 shadow-lg space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Professional Growth</h3>
+          <div class="text-3xl font-black text-slate-900 dark:text-white">£175<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">For active B2B firms with ongoing content needs.</p>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Everything in Essential</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> 2 hours included developer time</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Priority 4-hour emergency SLA</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Monthly Core Web Vitals audit</li>
+          </ul>
+        </div>
+
+        <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-4">
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white">Ecommerce & Enterprise</h3>
+          <div class="text-3xl font-black text-slate-900 dark:text-white">£295<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
+          <p class="text-xs text-slate-500 dark:text-slate-400">For transactional online stores and large catalogs.</p>
+          <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Real-time hourly database backups</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> 4 hours included developer time</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> 1-hour critical response SLA</li>
+            <li class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-blue-600" /> Checkout flow conversion audit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ faqs={pricingFaqs} />
+
+  <CTABand
+    heading="Need an exact price for your specific requirements?"
+    subheading="Use our interactive project cost estimator or request a written breakdown from our lead developer."
+    primaryCtaText="Calculate Project Cost"
+    primaryCtaHref="/website-cost-calculator/"
+    secondaryCtaText="Request a Bespoke Quote"
+    secondaryCtaHref="/get-a-quote/"
+  />
+</BaseLayout>

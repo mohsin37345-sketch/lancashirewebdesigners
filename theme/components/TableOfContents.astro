@@ -1,0 +1,92 @@
+---
+import Icon from './Icon.astro';
+
+export interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+export interface Props {
+  headings: Heading[];
+  class?: string;
+}
+
+const { headings, class: className = '' } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <div class={`toc-container ${className}`}>
+    <!-- Mobile Collapsible TOC -->
+    <div class="lg:hidden mb-8 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900/50">
+      <details class="group">
+        <summary class="flex items-center justify-between p-4 cursor-pointer font-semibold text-sm text-slate-800 dark:text-slate-200 select-none">
+          <span>Table of Contents ({filteredHeadings.length} sections)</span>
+          <Icon name="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180 text-slate-500" />
+        </summary>
+        <ul class="p-4 pt-0 space-y-2 border-t border-slate-200/60 dark:border-slate-800/60 text-sm">
+          {filteredHeadings.map((h) => (
+            <li style={`padding-left: ${(h.depth - 2) * 0.75}rem`}>
+              <a
+                href={`#${h.slug}`}
+                class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+
+    <!-- Desktop Sticky TOC with ScrollSpy -->
+    <div class="hidden lg:block sticky top-28 p-6 bg-slate-50 dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800">
+      <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
+        Table of Contents
+      </h2>
+      <nav aria-label="Page Outline">
+        <ul class="space-y-2 text-sm">
+          {filteredHeadings.map((h) => (
+            <li style={`padding-left: ${(h.depth - 2) * 0.75}rem`}>
+              <a
+                href={`#${h.slug}`}
+                data-slug={h.slug}
+                class="toc-link text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+)}
+
+<script is:inline>
+  (function () {
+    const links = document.querySelectorAll('.toc-link');
+    if (!links.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            links.forEach((link) => {
+              if (link.getAttribute('data-slug') === id) {
+                link.classList.add('text-blue-600', 'dark:text-blue-400', 'font-semibold');
+              } else {
+                link.classList.remove('text-blue-600', 'dark:text-blue-400', 'font-semibold');
+              }
+            });
+          }
+        });
+      },
+      { rootMargin: '-80px 0px -70% 0px' }
+    );
+
+    document.querySelectorAll('h2[id], h3[id]').forEach((h) => observer.observe(h));
+  })();
+</script>

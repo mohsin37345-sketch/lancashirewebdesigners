@@ -1,0 +1,177 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  title: string;
+  href: string;
+  description: string;
+  icon?: string;
+  priceFrom?: number;
+  benefits?: string[];
+  tag?: string;
+  color?: 'blue' | 'purple' | 'emerald' | 'amber' | 'sky' | 'rose' | string;
+}
+
+const {
+  title,
+  href,
+  description,
+  icon = 'code',
+  priceFrom,
+  benefits = [],
+  tag,
+  color = 'blue'
+} = Astro.props;
+
+const colorThemes: Record<string, {
+  iconBg: string;
+  iconText: string;
+  iconBorder: string;
+  tagBg: string;
+  tagText: string;
+  tagBorder: string;
+  beam: string;
+  hoverBorder: string;
+  checkColor: string;
+  btnHover: string;
+}> = {
+  blue: {
+    iconBg: 'bg-blue-500/10 dark:bg-blue-950/70',
+    iconText: 'text-blue-600 dark:text-cyan-400',
+    iconBorder: 'border-blue-200 dark:border-blue-800/80',
+    tagBg: 'bg-blue-50 dark:bg-blue-950/60',
+    tagText: 'text-blue-600 dark:text-cyan-400',
+    tagBorder: 'border-blue-200/80 dark:border-blue-800/60',
+    beam: 'from-blue-600 via-cyan-400 to-blue-500',
+    hoverBorder: 'hover:border-blue-500/60 dark:hover:border-cyan-500/60',
+    checkColor: 'text-blue-600 dark:text-cyan-400',
+    btnHover: 'group-hover:text-blue-600 dark:group-hover:text-cyan-400'
+  },
+  purple: {
+    iconBg: 'bg-purple-500/10 dark:bg-purple-950/70',
+    iconText: 'text-purple-600 dark:text-purple-400',
+    iconBorder: 'border-purple-200 dark:border-purple-800/80',
+    tagBg: 'bg-purple-50 dark:bg-purple-950/60',
+    tagText: 'text-purple-600 dark:text-purple-400',
+    tagBorder: 'border-purple-200/80 dark:border-purple-800/60',
+    beam: 'from-purple-600 via-fuchsia-400 to-indigo-500',
+    hoverBorder: 'hover:border-purple-500/60 dark:hover:border-purple-400/60',
+    checkColor: 'text-purple-600 dark:text-purple-400',
+    btnHover: 'group-hover:text-purple-600 dark:group-hover:text-purple-400'
+  },
+  emerald: {
+    iconBg: 'bg-emerald-500/10 dark:bg-emerald-950/70',
+    iconText: 'text-emerald-600 dark:text-emerald-400',
+    iconBorder: 'border-emerald-200 dark:border-emerald-800/80',
+    tagBg: 'bg-emerald-50 dark:bg-emerald-950/60',
+    tagText: 'text-emerald-600 dark:text-emerald-400',
+    tagBorder: 'border-emerald-200/80 dark:border-emerald-800/60',
+    beam: 'from-emerald-600 via-teal-400 to-green-500',
+    hoverBorder: 'hover:border-emerald-500/60 dark:hover:border-emerald-400/60',
+    checkColor: 'text-emerald-600 dark:text-emerald-400',
+    btnHover: 'group-hover:text-emerald-600 dark:group-hover:text-emerald-400'
+  },
+  amber: {
+    iconBg: 'bg-amber-500/10 dark:bg-amber-950/70',
+    iconText: 'text-amber-600 dark:text-amber-400',
+    iconBorder: 'border-amber-200 dark:border-amber-800/80',
+    tagBg: 'bg-amber-50 dark:bg-amber-950/60',
+    tagText: 'text-amber-600 dark:text-amber-400',
+    tagBorder: 'border-amber-200/80 dark:border-amber-800/60',
+    beam: 'from-amber-500 via-orange-400 to-yellow-500',
+    hoverBorder: 'hover:border-amber-500/60 dark:hover:border-amber-400/60',
+    checkColor: 'text-amber-600 dark:text-amber-400',
+    btnHover: 'group-hover:text-amber-600 dark:group-hover:text-amber-400'
+  },
+  sky: {
+    iconBg: 'bg-sky-500/10 dark:bg-sky-950/70',
+    iconText: 'text-sky-600 dark:text-sky-400',
+    iconBorder: 'border-sky-200 dark:border-sky-800/80',
+    tagBg: 'bg-sky-50 dark:bg-sky-950/60',
+    tagText: 'text-sky-600 dark:text-sky-400',
+    tagBorder: 'border-sky-200/80 dark:border-sky-800/60',
+    beam: 'from-sky-500 via-blue-400 to-cyan-500',
+    hoverBorder: 'hover:border-sky-500/60 dark:hover:border-sky-400/60',
+    checkColor: 'text-sky-600 dark:text-sky-400',
+    btnHover: 'group-hover:text-sky-600 dark:group-hover:text-sky-400'
+  },
+  rose: {
+    iconBg: 'bg-rose-500/10 dark:bg-rose-950/70',
+    iconText: 'text-rose-600 dark:text-rose-400',
+    iconBorder: 'border-rose-200 dark:border-rose-800/80',
+    tagBg: 'bg-rose-50 dark:bg-rose-950/60',
+    tagText: 'text-rose-600 dark:text-rose-400',
+    tagBorder: 'border-rose-200/80 dark:border-rose-800/60',
+    beam: 'from-rose-500 via-pink-400 to-fuchsia-500',
+    hoverBorder: 'hover:border-rose-500/60 dark:hover:border-rose-400/60',
+    checkColor: 'text-rose-600 dark:text-rose-400',
+    btnHover: 'group-hover:text-rose-600 dark:group-hover:text-rose-400'
+  }
+};
+
+const theme = colorThemes[color] || colorThemes.blue;
+---
+
+<article class={`relative bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800/90 rounded-2xl sm:rounded-3xl p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 hover-lift shadow-xs hover:shadow-xl ${theme.hoverBorder} group overflow-hidden`}>
+  <!-- Top Animated Colored Accent Beam on Hover -->
+  <div class={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${theme.beam} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+
+  <div class="space-y-4">
+    <!-- Header: Themed Icon Box + Tag Badge -->
+    <div class="flex items-center justify-between">
+      <div class={`w-12 h-12 rounded-xl sm:rounded-2xl border ${theme.iconBg} ${theme.iconText} ${theme.iconBorder} flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-xs`}>
+        <Icon name={icon} class="w-6 h-6" />
+      </div>
+
+      {tag && (
+        <span class={`text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border ${theme.tagBg} ${theme.tagText} ${theme.tagBorder}`}>
+          {tag}
+        </span>
+      )}
+    </div>
+
+    <!-- Title -->
+    <h3 class={`text-xl font-bold text-slate-900 dark:text-white tracking-tight ${theme.btnHover} transition-colors`}>
+      <a href={href} class="focus-visible:ring-2 focus-visible:ring-blue-600 rounded">
+        {title}
+      </a>
+    </h3>
+
+    <!-- Description -->
+    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+      {description}
+    </p>
+
+    <!-- Key Deliverable Benefits -->
+    {benefits.length > 0 && (
+      <ul class="space-y-2 pt-3 border-t border-slate-100 dark:border-slate-800/80 text-xs text-slate-600 dark:text-slate-400">
+        {benefits.slice(0, 3).map((b) => (
+          <li class="flex items-center gap-2">
+            <span class={`font-bold ${theme.checkColor}`}>✓</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+
+  <!-- Footer: Pricing + Action Link -->
+  <div class="pt-5 mt-5 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+    {priceFrom ? (
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+        From <span class="text-sm font-bold text-slate-900 dark:text-white font-mono">£{priceFrom.toLocaleString('en-GB')}</span>
+      </span>
+    ) : (
+      <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Bespoke Scope</span>
+    )}
+
+    <a
+      href={href}
+      class={`text-xs font-bold text-slate-700 dark:text-slate-300 ${theme.btnHover} flex items-center gap-1.5 transition-colors`}
+      aria-label={`Explore ${title} service details`}
+    >
+      <span>Explore</span>
+      <Icon name="arrow-right" class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+    </a>
+  </div>
+</article>

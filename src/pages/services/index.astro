@@ -1,0 +1,71 @@
+---
+import BaseLayout from 'theme/layouts/BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import ServiceCard from 'theme/components/ServiceCard.astro';
+import CTABand from 'theme/components/CTABand.astro';
+import { getCollection } from 'astro:content';
+
+const title = 'Web Design & Development Services | Lancashire Web Designers';
+const description = 'Explore our full range of bespoke web design, B2B development, ecommerce, SEO, and website maintenance services across Lancashire and the UK.';
+
+const allServices = await getCollection('services');
+const sortedServices = allServices.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services/' }
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="service"
+  breadcrumbs={breadcrumbs}
+>
+  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <Hero
+    variant="service"
+    heading="Web Design & Digital Engineering Services"
+    subheading="From hand-crafted bespoke corporate websites to complex B2B platforms, high-speed ecommerce, and technical SEO, explore our complete commercial capabilities."
+    breadcrumbs={breadcrumbs}
+    badge="Bespoke UK Engineering • Full Service Capability"
+    primaryCtaText="Get a Bespoke Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+
+  <div class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <!-- Grid of all services -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        {sortedServices.map((service) => {
+          // Check if it's one of the 5 root services or in /services/
+          const rootSlugs = ['bespoke-web-design', 'b2b-web-design', 'ecommerce-web-design', 'web-design-and-marketing', 'website-support'];
+          const href = rootSlugs.includes(service.id) ? `/${service.id}/` : `/services/${service.id}/`;
+
+          return (
+            <ServiceCard
+              title={service.data.title}
+              href={href}
+              description={service.data.summary}
+              icon={service.data.icon}
+              priceFrom={service.data.priceFrom}
+              benefits={service.data.benefits.slice(0, 3)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </div>
+
+  <CTABand
+    heading="Unsure which service matches your commercial brief?"
+    subheading="Speak directly with our senior engineer. We will audit your current setup and provide a clear, transparent recommendation."
+    primaryCtaText="Request a Consultation"
+    primaryCtaHref="/contact/"
+    secondaryCtaText="Calculate Project Cost"
+    secondaryCtaHref="/website-cost-calculator/"
+  />
+</BaseLayout>

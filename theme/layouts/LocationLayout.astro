@@ -1,0 +1,69 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Hero from 'theme/components/Hero.astro';
+import CTABand from 'theme/components/CTABand.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  town: string;
+  county?: string;
+  postcodes?: string[];
+  lat?: number;
+  lng?: number;
+  breadcrumbs?: { name: string; url: string }[];
+  faqs?: { question: string; answer: string; display?: boolean }[];
+}
+
+const {
+  title,
+  description,
+  town,
+  county = 'Lancashire',
+  postcodes = [],
+  lat,
+  lng,
+  breadcrumbs = [
+    { name: 'Home', url: '/' },
+    { name: 'Areas', url: '/areas/' },
+    { name: `Web Design ${town}`, url: Astro.url.pathname }
+  ],
+  faqs = []
+} = Astro.props;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  schemaType="location"
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+  locationData={{
+    town,
+    postcodes,
+    lat,
+    lng
+  }}
+>
+  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <Hero
+    variant="location"
+    heading={`Web Design ${town}`}
+    subheading={`Bespoke, high-performance websites engineered for ambitious businesses in ${town} and across ${county}. Hand-coded for sub-second speeds and commercial lead generation.`}
+    breadcrumbs={breadcrumbs}
+    badge={`Web Design ${town} • No Templates`}
+    primaryCtaText="Get a Local Quote"
+    primaryCtaHref="/get-a-quote/"
+    secondaryCtaText="Explore Pricing"
+    secondaryCtaHref="/pricing/"
+  />
+
+  <div class="w-full">
+    <slot />
+  </div>
+
+  <CTABand
+    heading={`Ready to build a website that delivers results for your ${town} business?`}
+    subheading="Speak directly with a senior developer today. No pushy sales reps, no cookie-cutter templates."
+  />
+</BaseLayout>

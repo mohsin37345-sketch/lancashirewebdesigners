@@ -1,0 +1,175 @@
+---
+import Icon from './Icon.astro';
+import { site } from 'src/data/site';
+
+export interface Props {
+  heading?: string;
+  subheading?: string;
+  class?: string;
+}
+
+const {
+  heading = 'Get a Fast, Fixed-Price Quote',
+  subheading = 'Tell us briefly what you need. A senior developer will review and reply within 24 hours.',
+  class: className = ''
+} = Astro.props;
+
+const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
+---
+
+<div class={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-sm ${className}`}>
+  <div class="max-w-xl mx-auto space-y-6">
+    <div class="text-center space-y-2">
+      <h3 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {heading}
+      </h3>
+      <p class="text-sm text-slate-600 dark:text-slate-400">
+        {subheading}
+      </p>
+    </div>
+
+    <form id="inline-quote-form" class="space-y-4" novalidate data-email={site.email}>
+      <input type="hidden" name="access_key" value={formAccessKey} />
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="inline-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+            Your Name <span class="text-blue-600 dark:text-blue-400">*</span>
+          </label>
+          <input
+            type="text"
+            id="inline-name"
+            name="name"
+            required
+            placeholder="e.g. Rachel Barnes"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+          />
+        </div>
+
+        <div>
+          <label for="inline-email" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+            Business Email <span class="text-blue-600 dark:text-blue-400">*</span>
+          </label>
+          <input
+            type="email"
+            id="inline-email"
+            name="email"
+            required
+            placeholder="rachel@domain.co.uk"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="inline-project" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+          Project Type <span class="text-blue-600 dark:text-blue-400">*</span>
+        </label>
+        <select
+          id="inline-project"
+          name="project_type"
+          required
+          class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+        >
+          <option value="Bespoke Web Design">Bespoke Web Design</option>
+          <option value="B2B Web Design">B2B Web Design</option>
+          <option value="WordPress Projects">WordPress Projects</option>
+          <option value="Ecommerce">Ecommerce</option>
+          <option value="Redesign">Website Redesign</option>
+          <option value="Speed & SEO">Speed & SEO</option>
+          <option value="Care Plan">Care Plan</option>
+          <option value="Others">Others / Custom</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="inline-details" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+          Brief Requirements <span class="text-blue-600 dark:text-blue-400">*</span>
+        </label>
+        <textarea
+          id="inline-details"
+          name="details"
+          rows="3"
+          required
+          placeholder="Approximate page count, launch timeline, or key features needed..."
+          class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+        ></textarea>
+      </div>
+
+      <div id="inline-status" class="hidden p-3 rounded-xl text-xs font-medium" role="status" aria-live="polite"></div>
+
+      <div class="flex flex-col sm:flex-row items-center gap-3 pt-1">
+        <button
+          type="submit"
+          id="inline-submit"
+          class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift focus-visible:ring-2 focus-visible:ring-blue-500 disabled:opacity-50"
+        >
+          <span id="inline-btn-text">Request Fixed-Price Estimate</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </button>
+        <a
+          href={`tel:${site.nap.phoneE164}`}
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all shadow-sm"
+        >
+          <Icon name="phone" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
+          <span>Call {site.nap.phone}</span>
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const form = document.getElementById('inline-quote-form');
+    const statusDiv = document.getElementById('inline-status');
+    const submitBtn = document.getElementById('inline-submit');
+    const btnText = document.getElementById('inline-btn-text');
+
+    if (!form || !statusDiv || !submitBtn || !btnText) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('inline-name').value.trim();
+      const email = document.getElementById('inline-email').value.trim();
+      const details = document.getElementById('inline-details').value.trim();
+
+      if (!name || !email || !details) {
+        statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
+        statusDiv.textContent = 'Please complete all required fields.';
+        statusDiv.classList.remove('hidden');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      btnText.textContent = 'Submitting Request...';
+      statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-blue-50 text-blue-800 border border-blue-200';
+      statusDiv.textContent = 'Submitting your enquiry...';
+      statusDiv.classList.remove('hidden');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          window.location.href = '/thank-you/';
+        } else {
+          throw new Error();
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        btnText.textContent = 'Retry Request';
+        statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
+        const fallbackEmail = form.getAttribute('data-email');
+        if (fallbackEmail) {
+          statusDiv.innerHTML = `Submission error. Email us directly at <a href="mailto:${fallbackEmail}" class="underline font-bold">${fallbackEmail}</a>.`;
+        } else {
+          statusDiv.textContent = 'Submission error. Please check your connection or try again shortly.';
+        }
+      }
+    });
+  })();
+</script>

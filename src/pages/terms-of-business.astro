@@ -1,0 +1,156 @@
+---
+import LegalLayout from 'theme/layouts/LegalLayout.astro';
+import { site } from 'src/data/site';
+
+export const prerender = true;
+
+const headings = [
+  { depth: 2, slug: 'introduction-scope', text: '1. Introduction & Agreement Scope' },
+  { depth: 2, slug: 'quotations-validity', text: '2. Quotation Validity & Pricing' },
+  { depth: 2, slug: 'payment-milestones', text: '3. Deposit & Milestone Payment Schedule' },
+  { depth: 2, slug: 'client-responsibilities', text: '4. Client Responsibilities & Asset Supply' },
+  { depth: 2, slug: 'project-delays', text: '5. Project Delays & Holding Policy' },
+  { depth: 2, slug: 'revisions-scope-changes', text: '6. Revision Allowance vs New Requests' },
+  { depth: 2, slug: 'project-completion', text: '7. Staging Sign-Off & Project Completion' },
+  { depth: 2, slug: 'intellectual-property', text: '8. Intellectual Property & Code Ownership Transfer' },
+  { depth: 2, slug: 'hosting-domains', text: '9. Hosting, Edge Infrastructure & Domains' },
+  { depth: 2, slug: 'warranty-period', text: '10. 30-Day Post-Launch Warranty' },
+  { depth: 2, slug: 'support-care-plans', text: '11. Ongoing Support Boundaries' },
+  { depth: 2, slug: 'cancellation-kill-fee', text: '12. Cancellation, Kill-Fee & Statutory Rights' },
+  { depth: 2, slug: 'consumer-rights', text: '13. Consumer Rights Act 2015 & Cancellation Rights' },
+  { depth: 2, slug: 'limitation-of-liability', text: '14. Limitation of Liability' },
+  { depth: 2, slug: 'governing-law', text: '15. Governing Law & Dispute Resolution' }
+];
+---
+
+<LegalLayout
+  title="Terms of Business (Contract Terms)"
+  description="Formal commercial contract terms for bespoke web design and software engineering engagements with Lancashire Web Designers."
+  lastUpdated="2026-06-10"
+  headings={headings}
+>
+  <p class="lead">
+    These Terms of Business establish the clear commercial contract between <strong>{site.legalEntity || site.name}</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;the Studio&rdquo;) and the client identified in the project proposal or quotation (&ldquo;you&rdquo; or &ldquo;the Client&rdquo;). We believe in transparent, plain-English contract terms that protect both parties without ambiguous legalese.
+  </p>
+
+  <h2 id="introduction-scope">1. Introduction & Agreement Scope</h2>
+  <p>
+    These terms apply to all bespoke website design, web application development, technical consulting, search engine optimisation, and monthly care plan services provided by the Studio. Any variations must be agreed in writing by both parties.
+  </p>
+
+  <h2 id="quotations-validity">2. Quotation Validity & Pricing</h2>
+  <p>
+    All written quotations issued by the Studio remain valid for <strong>30 calendar days</strong> from the date of issue. Once accepted, pricing for the agreed Statement of Work (SOW) is fixed. All prices quoted exclude UK Value Added Tax (VAT), which will be charged at the prevailing rate where applicable.
+  </p>
+
+  <h2 id="payment-milestones">3. Deposit & Milestone Payment Schedule</h2>
+  <p>
+    Unless explicitly agreed otherwise in writing, our standard milestone payment structure for bespoke builds is structured as follows:
+  </p>
+  <ul>
+    <li><strong>Deposit (40%):</strong> Due upon project booking to secure scheduling and commence architectural discovery. Non-refundable once discovery work begins.</li>
+    <li><strong>Milestone 2 (30%):</strong> Due upon client approval of interactive design prototypes (e.g. Figma wireframes and UI components) prior to coding.</li>
+    <li><strong>Final Balance (30%):</strong> Due upon completion of development and staging demonstration, immediately prior to live production deployment and domain cutover.</li>
+  </ul>
+  <p>
+    Payment terms for all invoices are strictly <strong>7 calendar days</strong> from invoice date. We reserve the right to pause active development or suspend staging environments if milestone invoices remain overdue.
+  </p>
+
+  <h2 id="client-responsibilities">4. Client Responsibilities & Asset Supply</h2>
+  <p>
+    Successful, on-time delivery requires collaborative participation. The Client agrees to provide all required high-resolution assets, branding guidelines, high-fidelity copy, account credentials, and third-party API keys within agreed project sprints.
+  </p>
+
+  <h2 id="project-delays">5. Project Delays & Holding Policy</h2>
+  <p>
+    We reserve dedicated studio engineering capacity for your build. If a project is delayed by more than <strong>30 consecutive calendar days</strong> due to client inaction, failure to provide necessary assets, or absence of review feedback:
+  </p>
+  <ul>
+    <li>The project will be placed on administrative hold and removed from the active engineering schedule.</li>
+    <li>Work completed up to that point will be invoiced immediately.</li>
+    <li>A project reactivation fee of £250 + VAT may apply to reschedule the build into future studio capacity when the Client is ready to resume.</li>
+  </ul>
+
+  <h2 id="revisions-scope-changes">6. Revision Allowance vs New Requests</h2>
+  <p>
+    Every bespoke project includes <strong>two comprehensive revision cycles</strong> at the prototype design stage, and one final review cycle at the functional staging stage.
+  </p>
+  <ul>
+    <li><strong>Included Revisions:</strong> Adjustments to typography, color palettes, spacing, copy tweaks, layout arrangements, and content replacements within the agreed wireframe scope.</li>
+    <li><strong>Out-of-Scope Requests:</strong> New functionality not defined in the original SOW (e.g. adding unexpected ecommerce capabilities, custom third-party ERP integrations, or multi-currency portals). Out-of-scope requests will be quoted transparently as a separate change order or charged at our standard engineering day rate.</li>
+  </ul>
+
+  <h2 id="project-completion">7. Staging Sign-Off & Project Completion</h2>
+  <p>
+    Once development is complete, the website will be deployed to a secure private staging environment for final client review. Project sign-off is formally established when:
+  </p>
+  <ul>
+    <li>The Client provides written confirmation (via email) approving launch; or</li>
+    <li>The Client requests that the site be pushed to production; or</li>
+    <li>14 calendar days elapse following delivery of staging without substantive bug reports from the Client.</li>
+  </ul>
+
+  <h2 id="intellectual-property">8. Intellectual Property & Code Ownership Transfer</h2>
+  <p>
+    We believe you should own the product you pay for. Our IP transfer policy is completely clear:
+  </p>
+  <ul>
+    <li><strong>Client Ownership Upon Final Payment:</strong> Upon receipt of full and final payment of all project invoices, full copyright, intellectual property rights, and ownership of the bespoke source code, visual design files, HTML/CSS templates, and custom scripts created specifically for your project transfer <strong>100% to you</strong>.</li>
+    <li><strong>Pre-Existing Studio Libraries:</strong> The Studio retains ownership of its proprietary base utilities, development scaffolding, and reusable helper functions, but grants you a perpetual, irrevocable, royalty-free, worldwide licence to use, modify, and host them as part of your completed website.</li>
+    <li><strong>Third-Party Components:</strong> Any third-party software, fonts, open-source libraries (e.g. Astro, Tailwind CSS), stock media, or SaaS plugins remain governed by their respective vendor licences.</li>
+    <li><strong>Withholding for Non-Payment:</strong> Full IP ownership does not pass until final invoices are settled in full.</li>
+  </ul>
+
+  <h2 id="hosting-domains">9. Hosting, Edge Infrastructure & Domains</h2>
+  <p>
+    Unless enrolled in our monthly care plan, the Client is responsible for maintaining their own domain registrar accounts, edge hosting accounts (e.g. Vercel, Cloudflare), and third-party SaaS subscriptions. We assist with initial DNS cutover and domain verification as part of project launch.
+  </p>
+
+  <h2 id="warranty-period">10. 30-Day Post-Launch Warranty</h2>
+  <p>
+    All bespoke projects include a <strong>30-calendar-day post-launch warranty</strong> commencing on the date of public deployment. During this window, we fix any software bugs, broken layout alignments, or rendering discrepancies reported by the Client that deviate from the agreed scope at zero charge.
+  </p>
+  <p>
+    The warranty excludes: issues caused by client code tampering, modifications made by third-party contractors, breaking updates from external third-party APIs, or hosting failures outside our control.
+  </p>
+
+  <h2 id="support-care-plans">11. Ongoing Support Boundaries</h2>
+  <p>
+    Following the 30-day warranty, ongoing maintenance, Core Web Vitals monitoring, security patches, backups, and feature enhancements are covered under our monthly Website Care Plans or billed at our standard hourly engineering rate.
+  </p>
+
+  <h2 id="cancellation-kill-fee">12. Cancellation, Kill-Fee & Statutory Rights</h2>
+  <p>
+    Either party may terminate the project agreement upon 14 days&rsquo; written notice. In the event of client cancellation before launch:
+  </p>
+  <ul>
+    <li>The initial deposit remains non-refundable to cover discovery, planning, and allocated studio capacity.</li>
+    <li>The Client will be invoiced for all unbilled engineering and design hours incurred up to the date of termination (the &ldquo;kill-fee&rdquo;).</li>
+    <li>Upon settlement of the termination invoice, all completed assets and work in progress will be delivered to the Client.</li>
+  </ul>
+
+  <h2 id="consumer-rights">13. Consumer Rights Act 2015 & Cancellation Rights</h2>
+  <p>
+    If you engage our services as an individual consumer (acting outside your trade, business, craft, or profession):
+  </p>
+  <ul>
+    <li>Under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013, you have the right to cancel this contract within <strong>14 calendar days</strong> without giving any reason.</li>
+    <li>If you explicitly request that services begin within the 14-day cancellation period, you acknowledge that you will be required to pay an amount proportional to the services performed up to the point of cancellation. If the bespoke services are fully completed within that period upon your request, your right to cancel ceases.</li>
+    <li>Nothing in these terms limits your statutory rights under the Consumer Rights Act 2015 that digital content and services must be delivered with reasonable care and skill.</li>
+  </ul>
+
+  <h2 id="limitation-of-liability">14. Limitation of Liability</h2>
+  <p>
+    To the maximum extent permitted by the laws of England and Wales:
+  </p>
+  <ul>
+    <li>Neither party shall be liable for indirect, incidental, or consequential losses, including loss of profits, commercial revenue, anticipated savings, goodwill, or business interruption.</li>
+    <li>Our total aggregate liability under or in connection with any project shall be strictly capped at the total amount paid by the Client to the Studio under the specific Statement of Work.</li>
+    <li>Nothing in these terms shall exclude or limit either party&rsquo;s liability for death or personal injury caused by negligence, fraud or fraudulent misrepresentation, or any other statutory liability that cannot be excluded by law.</li>
+  </ul>
+
+  <h2 id="governing-law">15. Governing Law & Dispute Resolution</h2>
+  <p>
+    These Terms of Business and any disputes or claims arising out of or in connection with them (including non-contractual disputes) shall be governed by and construed in accordance with the laws of England and Wales. Both parties irrevocably agree that the courts of England and Wales shall have exclusive jurisdiction to settle any disputes.
+  </p>
+</LegalLayout>

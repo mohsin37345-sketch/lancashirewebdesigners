@@ -1,0 +1,387 @@
+---
+import { site } from 'src/data/site';
+import socialData from 'src/data/social.json';
+import navData from 'src/data/navigation.json';
+import { absoluteUrl } from 'theme/utils/absoluteUrl';
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+  display?: boolean;
+}
+
+export interface ReviewItem {
+  name: string;
+  rating: number;
+  date: string | Date;
+  body: string;
+  company?: string;
+  verified?: boolean;
+}
+
+export interface Props {
+  type?: 'home' | 'service' | 'location' | 'portfolio' | 'blog' | 'blog-post' | 'about' | 'contact' | 'legal' | 'article';
+  title?: string;
+  description?: string;
+  canonical?: string;
+  breadcrumbs?: BreadcrumbItem[];
+  faqs?: FAQItem[];
+  serviceData?: {
+    name: string;
+    serviceType: string;
+    priceFrom?: number;
+  };
+  locationData?: {
+    town: string;
+    postcodes?: string[];
+    lat?: number;
+    lng?: number;
+  };
+  portfolioData?: {
+    title: string;
+    client: string;
+    year: number;
+    image?: string;
+  };
+  blogData?: {
+    headline: string;
+    description: string;
+    datePublished: string | Date;
+    dateModified?: string | Date;
+    authorName?: string;
+    image?: string;
+    wordCount?: number;
+    articleSection?: string;
+  };
+  reviews?: ReviewItem[];
+}
+
+const {
+  type = 'home',
+  title = site.name,
+  description = 'Bespoke web design and development studio in Lancashire.',
+  canonical = Astro.url.href,
+  breadcrumbs = [],
+  faqs = [],
+  serviceData,
+  locationData,
+  portfolioData,
+  blogData,
+  reviews = []
+} = Astro.props;
+
+const orgId = `${site.siteUrl}/#organisation`;
+const websiteId = `${site.siteUrl}/#website`;
+
+// Filter active social links
+const sameAs = Object.values(socialData).filter((url) => typeof url === 'string' && url.length > 0);
+
+// Global Area Served definitions
+const areasServed = [
+  { '@type': 'AdministrativeArea', name: 'Lancashire' },
+  { '@type': 'City', name: 'Blackburn' },
+  { '@type': 'City', name: 'Preston' },
+  { '@type': 'City', name: 'Lancaster' },
+  { '@type': 'City', name: 'Burnley' },
+  { '@type': 'City', name: 'Blackpool' },
+  { '@type': 'City', name: 'Accrington' },
+  { '@type': 'City', name: 'Chorley' },
+  { '@type': 'City', name: 'Darwen' },
+  {
+    '@type': 'GeoCircle',
+    geoMidpoint: {
+      '@type': 'GeoCoordinates',
+      latitude: site.geo.lat,
+      longitude: site.geo.lng
+    },
+    geoRadius: '50000'
+  }
+];
+
+// Global OfferCatalog
+const offerCatalog = {
+  '@type': 'OfferCatalog',
+  name: 'Bespoke Web Design & Development Services',
+  itemListElement: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Bespoke Web Design',
+        description: 'Custom-built, ultra-fast websites designed and coded from scratch.',
+        url: `${site.siteUrl}/bespoke-web-design/`,
+        areaServed: areasServed
+      },
+      priceSpecification: site.pricing.brochureFrom
+        ? {
+            '@type': 'PriceSpecification',
+            price: site.pricing.brochureFrom.replace(/[^0-9]/g, ''),
+            priceCurrency: 'GBP'
+          }
+        : undefined
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'B2B Web Design',
+        description: 'Lead generation and commercial web development for B2B enterprises.',
+        url: `${site.siteUrl}/b2b-web-design/`,
+        areaServed: areasServed
+      }
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Ecommerce Web Design',
+        description: 'High-performing Shopify and bespoke ecommerce solutions.',
+        url: `${site.siteUrl}/ecommerce-web-design/`,
+        areaServed: areasServed
+      },
+      priceSpecification: site.pricing.ecommerceFrom
+        ? {
+            '@type': 'PriceSpecification',
+            price: site.pricing.ecommerceFrom.replace(/[^0-9]/g, ''),
+            priceCurrency: 'GBP'
+          }
+        : undefined
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Website Support & Care Plans',
+        description: 'Proactive maintenance, edge hosting, and security care.',
+        url: `${site.siteUrl}/website-support/`,
+        areaServed: areasServed
+      }
+    }
+  ]
+};
+
+// Verified Reviews and AggregateRating
+const verifiedReviews = reviews.filter((r) => r.verified === true);
+let aggregateRatingNode = undefined;
+if (verifiedReviews.length > 0) {
+  const avgRating =
+    verifiedReviews.reduce((sum, r) => sum + r.rating, 0) / verifiedReviews.length;
+  aggregateRatingNode = {
+    '@type': 'AggregateRating',
+    ratingValue: avgRating.toFixed(1),
+    reviewCount: verifiedReviews.length,
+    bestRating: '5',
+    worstRating: '1'
+  };
+}
+
+// 1. Organization / ProfessionalService Node
+const professionalServiceNode: Record<string, any> = {
+  '@type': 'ProfessionalService',
+  '@id': orgId,
+  name: site.name,
+  url: site.siteUrl,
+  description: 'Lancashire-based web design studio specialising in bespoke, high-performance websites.',
+  email: site.email,
+  priceRange: site.priceRange,
+  currenciesAccepted: 'GBP',
+  paymentAccepted: 'Bank Transfer, Direct Debit, Credit Card',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:30'
+    }
+  ],
+  areaServed: areasServed,
+  hasOfferCatalog: offerCatalog,
+  logo: `${site.siteUrl}/images/logo.webp`,
+  image: `${site.siteUrl}/images/logo.webp`
+};
+
+if (site.legalEntity) professionalServiceNode.legalName = site.legalEntity;
+if (site.phoneE164) professionalServiceNode.telephone = site.phoneE164;
+if (site.vatNumber) professionalServiceNode.vatID = site.vatNumber;
+if (sameAs.length > 0) professionalServiceNode.sameAs = sameAs;
+
+if (site.address.town) {
+  professionalServiceNode.address = {
+    '@type': 'PostalAddress',
+    ...(site.address.street ? { streetAddress: site.address.street } : {}),
+    addressLocality: site.address.town,
+    addressRegion: site.address.county,
+    ...(site.address.postcode ? { postalCode: site.address.postcode } : {}),
+    addressCountry: 'GB'
+  };
+}
+
+if (site.geo.lat && site.geo.lng) {
+  professionalServiceNode.geo = {
+    '@type': 'GeoCoordinates',
+    latitude: site.geo.lat,
+    longitude: site.geo.lng
+  };
+}
+
+if (aggregateRatingNode) {
+  professionalServiceNode.aggregateRating = aggregateRatingNode;
+}
+
+// 2. WebSite Node
+const websiteNode = {
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: site.siteUrl,
+  name: title,
+  description: description,
+  publisher: { '@id': orgId },
+  inLanguage: 'en-GB'
+};
+
+// 3. SiteNavigationElement Nodes
+const navigationNodes = navData.mainNav.map((item) => ({
+  '@type': 'SiteNavigationElement',
+  name: item.label,
+  url: absoluteUrl(item.href)
+}));
+
+// Graph accumulator
+const graph: any[] = [professionalServiceNode, websiteNode, ...navigationNodes];
+
+// 4. Breadcrumbs Graph
+if (breadcrumbs.length > 0 && type !== 'home') {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((bc, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: bc.name,
+      item: absoluteUrl(bc.url)
+    }))
+  });
+}
+
+// 5. FAQPage Graph
+const visibleFaqs = faqs.filter((f) => f.display !== false);
+if (visibleFaqs.length > 0) {
+  graph.push({
+    '@type': 'FAQPage',
+    mainEntity: visibleFaqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer
+      }
+    }))
+  });
+}
+
+// 6. Service Page Graph
+if (type === 'service' && serviceData) {
+  graph.push({
+    '@type': 'Service',
+    name: serviceData.name,
+    serviceType: serviceData.serviceType,
+    provider: { '@id': orgId },
+    areaServed: areasServed,
+    hasOfferCatalog: offerCatalog,
+    url: canonical
+  });
+}
+
+// 7. Location Page Graph
+if (type === 'location' && locationData) {
+  const localTown = locationData.town;
+  graph.push({
+    '@type': 'LocalBusiness',
+    name: `${site.name} — Web Design ${localTown}`,
+    parentOrganization: { '@id': orgId },
+    url: canonical,
+    areaServed: [
+      { '@type': 'City', name: localTown },
+      ...(locationData.postcodes ? locationData.postcodes.map((pc) => ({ '@type': 'PostalAddress', postalCode: pc })) : [])
+    ]
+  });
+}
+
+// 8. Portfolio / Case Study Graph
+if (type === 'portfolio' && portfolioData) {
+  graph.push({
+    '@type': 'CreativeWork',
+    headline: portfolioData.title,
+    name: portfolioData.title,
+    about: portfolioData.client,
+    dateCreated: `${portfolioData.year}`,
+    creator: { '@id': orgId },
+    url: canonical,
+    image: portfolioData.image ? absoluteUrl(portfolioData.image) : undefined
+  });
+}
+
+// 9. Blog Post Graph
+if (type === 'blog-post' && blogData) {
+  graph.push({
+    '@type': 'BlogPosting',
+    headline: blogData.headline.slice(0, 110),
+    description: blogData.description,
+    image: blogData.image ? absoluteUrl(blogData.image) : undefined,
+    datePublished: new Date(blogData.datePublished).toISOString(),
+    dateModified: blogData.dateModified ? new Date(blogData.dateModified).toISOString() : new Date(blogData.datePublished).toISOString(),
+    author: {
+      '@type': 'Person',
+      name: blogData.authorName || site.name,
+      url: `${site.siteUrl}/about/#author`
+    },
+    publisher: { '@id': orgId },
+    mainEntityOfPage: canonical,
+    wordCount: blogData.wordCount,
+    articleSection: blogData.articleSection
+  });
+}
+
+// 10. AboutPage & ContactPage Graphs
+if (type === 'about') {
+  graph.push({
+    '@type': 'AboutPage',
+    url: canonical,
+    name: `About ${site.name}`,
+    mainEntity: { '@id': orgId }
+  });
+}
+
+if (type === 'contact') {
+  graph.push({
+    '@type': 'ContactPage',
+    url: canonical,
+    name: `Contact ${site.name}`,
+    mainEntity: { '@id': orgId }
+  });
+}
+
+// Deep clean null/undefined/empty string values
+function cleanSchema(obj: any): any {
+  if (Array.isArray(obj)) {
+    return obj.map(cleanSchema).filter((v) => v !== null && v !== undefined);
+  } else if (obj !== null && typeof obj === 'object') {
+    const cleaned: Record<string, any> = {};
+    for (const [k, v] of Object.entries(obj)) {
+      if (v !== null && v !== undefined && v !== '') {
+        cleaned[k] = cleanSchema(v);
+      }
+    }
+    return cleaned;
+  }
+  return obj;
+}
+
+const cleanedGraph = cleanSchema(graph);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': cleanedGraph })} is:inline />

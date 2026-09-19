@@ -1,0 +1,80 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
+import { formatDate } from 'theme/utils/formatDate';
+
+export interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string | Date;
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const {
+  title,
+  description,
+  lastUpdated,
+  headings = []
+} = Astro.props;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: title, url: Astro.url.pathname }
+];
+---
+
+<BaseLayout
+  title={`${title} | Lancashire Web Designers`}
+  description={description}
+  schemaType="legal"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+
+      <div class="max-w-3xl">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          {title}
+        </h1>
+        <p class="mt-4 text-sm text-slate-500 dark:text-slate-400">
+          Last updated: <time datetime={new Date(lastUpdated).toISOString()}>{formatDate(lastUpdated)}</time>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Legal Document Content (max-w-3xl narrow measure) -->
+      <div class="lg:col-span-8 max-w-3xl">
+        <article class="prose prose-slate dark:prose-invert prose-headings:font-bold prose-headings:tracking-tight prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline">
+          <slot />
+        </article>
+      </div>
+
+      <!-- Sticky Document Navigation -->
+      {headings.length > 0 && (
+        <aside class="hidden lg:block lg:col-span-4">
+          <div class="sticky top-28 p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4">
+              On this page
+            </h2>
+            <ul class="space-y-2.5 text-sm">
+              {headings.filter((h) => h.depth <= 3).map((h) => (
+                <li style={`padding-left: ${(h.depth - 2) * 0.75}rem`}>
+                  <a
+                    href={`#${h.slug}`}
+                    class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block py-0.5"
+                  >
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      )}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,51 @@
+{
+  "title": "KIFL.PK — High-Growth Shopify Fashion E-Commerce Store",
+  "slug": "kifl-fashion-store",
+  "client": "KIFL.PK",
+  "clientType": "Direct-to-Consumer Retail",
+  "industry": "Fashion, Apparel & Lifestyle",
+  "year": 2024,
+  "services": [
+    "Shopify Development",
+    "E-Commerce Web Design",
+    "Collection Merchandising",
+    "Performance Tuning"
+  ],
+  "techStack": [
+    "Shopify Liquid",
+    "Shopify Plus",
+    "Meta Pixel",
+    "GA4",
+    "Cloudflare"
+  ],
+  "brief": "An expanding fashion and lifestyle accessories brand needed an end-to-end Shopify store build supporting menswear, kidswear, seasonal collections, and rapid mobile checkout under high advertising traffic.",
+  "approach": "Configured custom Shopify theme architecture, structured category navigation for Men and Kids, implemented seasonal campaign announcement bars, and engineered streamlined mobile product and cart templates.",
+  "outcome": "Enabled high-volume seasonal product drops supported by sub-second mobile page loads and a conversion-optimized checkout workflow.",
+  "metrics": [
+    {
+      "label": "Merchandising Scope",
+      "value": "Full Catalog",
+      "note": "Menswear, kidswear and leather accessories"
+    },
+    {
+      "label": "Platform Optimization",
+      "value": "Shopify Liquid",
+      "note": "Optimized for high mobile conversion velocity"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/portfolio/kifl-fashion-store.jpg",
+      "alt": "KIFL.PK Shopify store homepage slider and seasonal arrival showcase",
+      "caption": "Clean e-commerce hero slider with seasonal New Arrival campaign focus."
+    },
+    {
+      "src": "/images/portfolio/kifl-social-presence.jpg",
+      "alt": "KIFL brand identity and social shopping presence",
+      "caption": "Cohesive brand identity and product highlight collection architecture."
+    }
+  ],
+  "liveUrl": "https://kifl.pk",
+  "featured": true,
+  "order": 3
+}

@@ -1,0 +1,206 @@
+{
+  "mainNav": [
+    {
+      "label": "Services",
+      "href": "/services/",
+      "megaMenu": {
+        "groups": [
+          {
+            "title": "Core Services",
+            "items": [
+              {
+                "label": "Bespoke Web Design",
+                "href": "/bespoke-web-design/",
+                "description": "Custom-built, ultra-fast websites designed from scratch.",
+                "icon": "code"
+              },
+              {
+                "label": "B2B Web Design",
+                "href": "/b2b-web-design/",
+                "description": "High-converting lead generation engines for B2B brands.",
+                "icon": "briefcase"
+              },
+              {
+                "label": "Ecommerce Web Design",
+                "href": "/ecommerce-web-design/",
+                "description": "Scalable Shopify & bespoke online stores.",
+                "icon": "shopping-cart"
+              },
+              {
+                "label": "Web Design & Marketing",
+                "href": "/web-design-and-marketing/",
+                "description": "Unified design, local SEO, and digital growth campaigns.",
+                "icon": "trending-up"
+              },
+              {
+                "label": "Website Support & Care",
+                "href": "/website-support/",
+                "description": "Proactive maintenance, security, and performance hosting.",
+                "icon": "shield-check"
+              }
+            ]
+          },
+          {
+            "title": "Specialised Solutions",
+            "items": [
+              {
+                "label": "SEO Services",
+                "href": "/services/seo/",
+                "description": "Organic search visibility for Lancashire and UK markets.",
+                "icon": "search"
+              },
+              {
+                "label": "WordPress Development",
+                "href": "/services/wordpress-development/",
+                "description": "Bespoke themes and headless WordPress builds.",
+                "icon": "layers"
+              },
+              {
+                "label": "Shopify Development",
+                "href": "/services/shopify-development/",
+                "description": "Tailored ecommerce storefronts optimized for revenue.",
+                "icon": "tag"
+              },
+              {
+                "label": "Website Redesign",
+                "href": "/services/website-redesign/",
+                "description": "Modernise legacy sites into fast conversion drivers.",
+                "icon": "refresh-cw"
+              },
+              {
+                "label": "Landing Pages",
+                "href": "/services/landing-page-design/",
+                "description": "Laser-focused landing pages engineered for paid ads.",
+                "icon": "target"
+              },
+              {
+                "label": "Speed Optimisation",
+                "href": "/services/website-speed-optimisation/",
+                "description": "Core Web Vitals remediation and sub-second load times.",
+                "icon": "zap"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Areas",
+      "href": "/areas/",
+      "megaMenu": {
+        "groups": [
+          {
+            "title": "Tier 1 Locations",
+            "items": [
+              {
+                "label": "Web Design Blackburn",
+                "href": "/areas/web-design-blackburn/",
+                "description": "Our local studio base serving Blackburn & Darwen businesses.",
+                "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Preston",
+                "href": "/areas/web-design-preston/",
+                "description": "High-impact web design for Preston & Central Lancashire.",
+                "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Lancaster",
+                "href": "/areas/web-design-lancaster/",
+                "description": "Modern digital solutions for Lancaster & Morecambe Bay.",
+                "icon": "map-pin"
+              }
+            ]
+          },
+          {
+            "title": "Coverage & Regional Hubs",
+            "items": [
+              {
+                "label": "All Lancashire Areas",
+                "href": "/areas/",
+                "description": "Explore our full Lancashire and North West service area.",
+                "icon": "globe"
+              },
+              {
+                "label": "Bespoke Design Blackburn",
+                "href": "/bespoke-web-design/blackburn/",
+                "description": "Bespoke development for Blackburn manufacturers & firms.",
+                "icon": "code"
+              },
+              {
+                "label": "Bespoke Design Preston",
+                "href": "/bespoke-web-design/preston/",
+                "description": "Enterprise-grade web solutions for Preston businesses.",
+                "icon": "code"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Portfolio",
+      "href": "/portfolio/"
+    },
+    {
+      "label": "How It Works",
+      "href": "/how-it-works/"
+    },
+    {
+      "label": "Pricing",
+      "href": "/pricing/"
+    },
+    {
+      "label": "About",
+      "href": "/about/"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog/"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact/"
+    }
+  ],
+  "footerNav": {
+    "services": [
+      { "label": "Bespoke Web Design", "href": "/bespoke-web-design/" },
+      { "label": "B2B Web Design", "href": "/b2b-web-design/" },
+      { "label": "Ecommerce Web Design", "href": "/ecommerce-web-design/" },
+      { "label": "Web Design & Marketing", "href": "/web-design-and-marketing/" },
+      { "label": "Website Support Plans", "href": "/website-support/" },
+      { "label": "SEO Services", "href": "/services/seo/" },
+      { "label": "WordPress Development", "href": "/services/wordpress-development/" },
+      { "label": "Shopify Development", "href": "/services/shopify-development/" },
+      { "label": "Speed Optimisation", "href": "/services/website-speed-optimisation/" }
+    ],
+    "areas": [
+      { "label": "Blackburn Web Design", "href": "/areas/web-design-blackburn/" },
+      { "label": "Preston Web Design", "href": "/areas/web-design-preston/" },
+      { "label": "Lancaster Web Design", "href": "/areas/web-design-lancaster/" },
+      { "label": "Lancashire Coverage Hub", "href": "/areas/" },
+      { "label": "Bespoke Design Blackburn", "href": "/bespoke-web-design/blackburn/" },
+      { "label": "Bespoke Design Preston", "href": "/bespoke-web-design/preston/" }
+    ],
+    "company": [
+      { "label": "About Us", "href": "/about/" },
+      { "label": "Portfolio", "href": "/portfolio/" },
+      { "label": "Pricing & Packages", "href": "/pricing/" },
+      { "label": "How It Works", "href": "/how-it-works/" },
+      { "label": "Client Reviews", "href": "/reviews/" },
+      { "label": "Latest Articles", "href": "/blog/" },
+      { "label": "Cost Calculator", "href": "/website-cost-calculator/" },
+      { "label": "Free Website Audit", "href": "/free-website-audit/" },
+      { "label": "HTML Sitemap", "href": "/sitemap/" }
+    ],
+    "legal": [
+      { "label": "Privacy Policy", "href": "/privacy-policy/" },
+      { "label": "Terms & Conditions", "href": "/terms-and-conditions/" },
+      { "label": "Terms of Business", "href": "/terms-of-business/" },
+      { "label": "Cookie Policy", "href": "/cookie-policy/" },
+      { "label": "Accessibility Statement", "href": "/accessibility-statement/" },
+      { "label": "Complaints Procedure", "href": "/complaints-procedure/" }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Website Redesign",
+  "slug": "website-redesign",
+  "shortTitle": "Website Redesign",
+  "metaTitle": "Website Redesign Services | Lancashire Web Designers",
+  "metaDescription": "Strategic website redesign services for UK businesses. Transform your outdated site into a fast, mobile-friendly, lead-generating commercial asset.",
+  "primaryKeyword": "website redesign services",
+  "secondaryKeywords": [
+    "website redesign agency",
+    "business website redesign",
+    "rebuild outdated website",
+    "website overhaul"
+  ],
+  "heroHeading": "Website Redesign Services",
+  "heroSubheading": "Transforming outdated digital presences into high-performance, conversion-engineered commercial platforms.",
+  "icon": "refresh-cw",
+  "summary": "Is your current website looking dated, loading slowly on smartphones, or failing to generate qualified enquiries? Our strategic website redesign services rebuild your online presence from the ground up, preserving your hard-won SEO equity while dramatically elevating your brand perception and lead conversion rates.",
+  "benefits": [
+    "Modern, brand-aligned visual design that reflects your current market maturity",
+    "Complete technical overhaul achieving sub-second mobile page loads",
+    "Rigorous 301 redirect mapping to protect and enhance existing Google rankings",
+    "Modernised user experience (UX) optimized for higher conversion rates",
+    "Full accessibility compliance (WCAG 2.2 Level AA) across all devices"
+  ],
+  "process": [
+    {
+      "step": 1,
+      "title": "Legacy Site Audit & SEO Crawl",
+      "description": "We crawl your existing website to extract all ranking URLs, traffic patterns, and content gaps to create a bulletproof redirect matrix."
+    },
+    {
+      "step": 2,
+      "title": "Brand Positioning & UX Refresh",
+      "description": "Reimagining your visual identity, typography, visual hierarchy, and customer pathways to reflect where your business is today."
+    },
+    {
+      "step": 3,
+      "title": "Modern Component Development",
+      "description": "Hand-coding the new architecture with modern static or headless frameworks for lightning-fast speeds and top security."
+    },
+    {
+      "step": 4,
+      "title": "Redirect Testing & Staging Review",
+      "description": "Verifying every single 301 redirect rule in staging to prevent 404 errors and guarantee zero loss of search engine rankings."
+    },
+    {
+      "step": 5,
+      "title": "Live Switchover & Search Console Verification",
+      "description": "Executing an instantaneous DNS switchover, submitting updated sitemaps, and monitoring real-time crawl statistics."
+    }
+  ],
+  "whatsIncluded": [
+    "Full UX/UI redesign aligned with your evolved commercial objectives",
+    "Comprehensive 301 redirection matrix preserving legacy SEO authority",
+    "Content migration and modern typography restructuring",
+    "Mobile-first responsive development with sub-second Core Web Vitals",
+    "60-day post-launch SEO traffic monitoring and indexing check"
+  ],
+  "whatsNotIncluded": [
+    "Complete rebranding or new corporate logo design (available as an add-on)",
+    "Extensive rewriting of legacy content (editorial copywriting add-ons available)",
+    "Payment of outstanding debt on legacy hosting platforms"
+  ],
+  "priceFrom": 400,
+  "priceUnit": "fixed project",
+  "priceNotes": "Complete website redesign overhauls start from £400, with extra pages easily added at +£50/page.",
+  "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Vite", "Screaming Frog"],
+  "typicalTimeline": "4-6 weeks",
+  "faqs": [
+    {
+      "question": "Will a website redesign hurt my existing Google search rankings?",
+      "answer": "Not when done professionally. We conduct an exhaustive URL audit of your existing website and build a comprehensive 1-to-1 301 redirect map. By matching legacy URLs with improved, faster pages, our redesigns frequently increase search visibility rather than damaging it.",
+      "display": true
+    },
+    {
+      "question": "How do I know if my website actually needs a redesign?",
+      "answer": "Common warning signs include: mobile visitors bouncing rapidly, taking longer than 2.5 seconds to load, inability to easily update copy yourself, looking dated compared to competitors, or failing to generate consistent phone calls and email enquiries.",
+      "display": true
+    },
+    {
+      "question": "Can we keep our existing content and case studies?",
+      "answer": "Yes. We safely migrate your existing articles, case studies, client reviews, and photography into the modern design layout, updating heading structures and image formats for optimal performance.",
+      "display": true
+    },
+    {
+      "question": "How long will our website be offline during the redesign?",
+      "answer": "Zero minutes. We build and test your new website completely on a private staging server. Your existing website remains fully live and operational until the exact moment we point DNS to the new build.",
+      "display": true
+    }
+  ],
+  "relatedServices": ["bespoke-web-design", "website-speed-optimisation", "seo"],
+  "order": 9,
+  "featured": false
+}

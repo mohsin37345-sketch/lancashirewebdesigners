@@ -1,0 +1,16 @@
+{
+  "name": "Lancashire Web Designers",
+  "short_name": "LancashireWeb",
+  "description": "Bespoke Web Design & Engineering Studio in Lancashire",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0a0f1d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
