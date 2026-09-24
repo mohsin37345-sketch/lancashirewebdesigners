@@ -25,6 +25,7 @@ export default defineConfig({
       },
       serialize: (item) => {
         const p = new URL(item.url).pathname;
+        item.lastmod = new Date();
         if (p === '/') {
           item.changefreq = 'weekly';
           item.priority = 1.0;

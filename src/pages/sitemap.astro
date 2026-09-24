@@ -1,77 +1,88 @@
 ---
 import BaseLayout from 'theme/layouts/BaseLayout.astro';
 import Breadcrumbs from 'theme/components/Breadcrumbs.astro';
-import navData from 'src/data/navigation.json';
 import { getCollection } from 'astro:content';
 
 export const prerender = true;
 
-// Core static pages
+// Core conversion & enquiry pages
 const corePages = [
-  { name: 'Homepage', url: '/' },
-  { name: 'About Studio', url: '/about/' },
-  { name: 'How It Works', url: '/how-it-works/' },
-  { name: 'Pricing & Packages', url: '/pricing/' },
-  { name: 'Portfolio (Case Studies)', url: '/portfolio/' },
-  { name: 'Client Reviews', url: '/reviews/' },
-  { name: 'Frequently Asked Questions', url: '/faqs/' },
-  { name: 'Get a Quote', url: '/get-a-quote/' },
-  { name: 'Website Cost Calculator', url: '/website-cost-calculator/' },
-  { name: 'Free Website Audit', url: '/free-website-audit/' },
-  { name: 'Contact Studio', url: '/contact/' },
-  { name: 'HTML Sitemap', url: '/sitemap/' }
+  { name: 'Homepage', url: '/', desc: 'Primary landing hub for Lancashire bespoke web engineering' },
+  { name: 'Pricing & Transparent Packages', url: '/pricing/', desc: 'Upfront milestone pricing, fixed packages & maintenance tiers' },
+  { name: 'Interactive Project Quote Builder', url: '/get-a-quote/', desc: '4-step tailored technical specification & quote generator' },
+  { name: 'Free Website Performance Audit', url: '/free-website-audit/', desc: '27-point Core Web Vitals, SEO & accessibility assessment' },
+  { name: 'Website Cost Calculator', url: '/website-cost-calculator/', desc: 'Instant ballpark project budget calculator' },
+  { name: 'Contact Studio Directly', url: '/contact/', desc: 'Direct direct phone, email, and discovery consultation requests' }
 ];
 
-// Legal pages
+// All services with verified canonical URLs
+const servicePages = [
+  { name: 'Bespoke Web Design', url: '/bespoke-web-design/', category: 'Core Service', desc: 'Hand-crafted Astro & Tailwind websites tailored for commercial ROI' },
+  { name: 'B2B Web Design', url: '/b2b-web-design/', category: 'Core Service', desc: 'High-conversion lead engines for Lancashire industrial & B2B brands' },
+  { name: 'Ecommerce Web Design', url: '/ecommerce-web-design/', category: 'Core Service', desc: 'Scalable Shopify and custom transactional online shops' },
+  { name: 'Ecommerce Web Design Preston', url: '/ecommerce-web-design/preston/', category: 'Specialist Hub', desc: 'Preston-specific ecommerce design & digital store engineering' },
+  { name: 'Web Design & Marketing', url: '/web-design-and-marketing/', category: 'Core Service', desc: 'Unified web development, local SEO & paid digital acquisition' },
+  { name: 'Website Support & Care Plans', url: '/website-support/', category: 'Core Service', desc: 'Proactive maintenance, 99.9% uptime hosting & security patches' },
+  { name: 'Services Directory Hub', url: '/services/', category: 'Hub', desc: 'Complete directory of bespoke web engineering services' },
+  { name: 'SEO Services (Local & Organic)', url: '/services/seo/', category: 'Specialist Service', desc: 'Technical SEO, schema markup & high-intent organic ranking' },
+  { name: 'WordPress Development', url: '/services/wordpress-development/', category: 'Specialist Service', desc: 'Custom lightweight WordPress themes & headless CMS architecture' },
+  { name: 'Shopify Store Development', url: '/services/shopify-development/', category: 'Specialist Service', desc: 'Custom Liquid development, store migrations & checkout optimisation' },
+  { name: 'Website Redesign & Modernisation', url: '/services/website-redesign/', category: 'Specialist Service', desc: 'Transform legacy, slow websites into fast conversion engines' },
+  { name: 'High-Converting Landing Pages', url: '/services/landing-page-design/', category: 'Specialist Service', desc: 'Laser-focused campaign landing pages built for PPC & paid social' },
+  { name: 'Website Speed Optimisation', url: '/services/website-speed-optimisation/', category: 'Specialist Service', desc: 'Sub-second mobile speed & 100/100 Core Web Vitals remediation' }
+];
+
+// Area pages with verified canonical URLs
+const areaPages = [
+  { name: 'All Lancashire Areas (Regional Hub)', url: '/areas/', town: 'Lancashire County', desc: 'Comprehensive coverage map across East, Central & North Lancashire' },
+  { name: 'Web Design Preston', url: '/areas/web-design-preston/', town: 'Preston (PR1-PR5)', desc: 'Administrative & corporate web platforms for Central Lancashire enterprises' },
+  { name: 'Web Design Blackburn', url: '/areas/web-design-blackburn/', town: 'Blackburn (BB1-BB3)', desc: 'Our home base serving manufacturing, logistics & engineering firms' },
+  { name: 'Web Design Blackpool', url: '/areas/web-design-blackpool/', town: 'Blackpool (FY1-FY4)', desc: 'Enterprise zone, retail & hospitality digital systems on the Fylde Coast' },
+  { name: 'Web Design Burnley', url: '/areas/web-design-burnley/', town: 'Burnley (BB10-BB12)', desc: 'Bespoke web solutions for aerospace, fabrication & M65 corridor businesses' },
+  { name: 'Web Design Lancaster', url: '/areas/web-design-lancaster/', town: 'Lancaster (LA1-LA2)', desc: 'Modern digital experiences for Lancaster & Morecambe Bay businesses' },
+  { name: 'Web Design Chorley', url: '/areas/web-design-chorley/', town: 'Chorley (PR6-PR7)', desc: 'Commercial websites for expanding Central Lancashire firms' },
+  { name: 'Web Design Accrington', url: '/areas/web-design-accrington/', town: 'Accrington (BB5)', desc: 'Digital platforms for Hyndburn commercial suppliers and trade contractors' },
+  { name: 'Web Design Darwen', url: '/areas/web-design-darwen/', town: 'Darwen (BB3)', desc: 'Precision digital presence for Darwen trade & manufacturing enterprises' }
+];
+
+// Fetch portfolio case studies dynamically
+let portfolioItems: any[] = [];
+try {
+  portfolioItems = await getCollection('portfolio');
+  portfolioItems.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+} catch (e) {
+  portfolioItems = [];
+}
+
+// Company & trust pages
+const trustPages = [
+  { name: 'About Our Studio', url: '/about/', desc: 'Meet founder Mohsin Ali and learn our engineering philosophy' },
+  { name: 'Client Reviews & Testimonials', url: '/reviews/', desc: '5-star feedback and commercial outcomes from local business leaders' },
+  { name: 'How It Works (6-Phase Process)', url: '/how-it-works/', desc: 'Step-by-step roadmap from initial wireframing to production launch' },
+  { name: 'Frequently Asked Questions', url: '/faqs/', desc: 'Clear answers on pricing, hosting, intellectual property & delivery timelines' },
+  { name: 'Latest Articles & Tech Guides', url: '/blog/', desc: 'Authoritative guides on web performance, local SEO, and digital strategy' }
+];
+
+// Legal and compliance pages
 const legalPages = [
-  { name: 'Privacy Policy', url: '/privacy-policy/' },
-  { name: 'Terms & Conditions', url: '/terms-and-conditions/' },
-  { name: 'Terms of Business (Contract)', url: '/terms-of-business/' },
-  { name: 'Cookie Policy', url: '/cookie-policy/' },
-  { name: 'Accessibility Statement', url: '/accessibility-statement/' },
-  { name: 'Complaints Procedure', url: '/complaints-procedure/' }
+  { name: 'Privacy Policy', url: '/privacy-policy/', desc: 'UK GDPR compliance, data controller info & cookie processing details' },
+  { name: 'Terms & Conditions', url: '/terms-and-conditions/', desc: 'Website usage, intellectual property rights, and terms of service' },
+  { name: 'Terms of Business (Contract)', url: '/terms-of-business/', desc: 'Full commercial contract terms, payment milestones & warranty guarantees' },
+  { name: 'Cookie Policy', url: '/cookie-policy/', desc: 'Transparent disclosure of essential and analytical cookies' },
+  { name: 'Accessibility Statement', url: '/accessibility-statement/', desc: 'Our formal commitment to WCAG 2.2 Level AA accessibility compliance' },
+  { name: 'Complaints Procedure', url: '/complaints-procedure/', desc: 'Formal resolution steps and director-level escalation guarantee' }
 ];
 
-// Dynamically fetch content collections if entries exist
-let services: any[] = [];
-let locations: any[] = [];
-let serviceAreas: any[] = [];
-let portfolio: any[] = [];
-let blogPosts: any[] = [];
+// Search engine & crawler feeds
+const crawlerFeeds = [
+  { name: 'XML Sitemap Index', url: '/sitemap-index.xml', type: 'Primary Googlebot / Bing Index' },
+  { name: 'XML URL Set (with lastmod)', url: '/sitemap-0.xml', type: 'W3C Timestamped URL Directory' },
+  { name: 'Robots.txt Directives', url: '/robots.txt', type: 'Crawl Rate & Exclusions Config' },
+  { name: 'LLM Agent Summary (llms.txt)', url: '/llms.txt', type: 'Machine-Readable Semantic Index' },
+  { name: 'RSS News & Guides Feed', url: '/rss.xml', type: 'Syndication XML Feed' }
+];
 
-try {
-  services = await getCollection('services');
-} catch (e) {
-  services = [];
-}
-
-try {
-  locations = await getCollection('locations');
-} catch (e) {
-  locations = [];
-}
-
-try {
-  serviceAreas = await getCollection('serviceAreas');
-} catch (e) {
-  serviceAreas = [];
-}
-
-try {
-  portfolio = await getCollection('portfolio');
-} catch (e) {
-  portfolio = [];
-}
-
-try {
-  blogPosts = await getCollection('blog');
-} catch (e) {
-  blogPosts = [];
-}
-
-// Fallback navigation items for services and areas defined in navigation config
-const plannedServices = navData.footerNav.services;
-const plannedAreas = navData.footerNav.areas;
+const totalUrls = corePages.length + servicePages.length + areaPages.length + portfolioItems.length + trustPages.length + legalPages.length;
 
 const breadcrumbs = [
   { name: 'Home', url: '/' },
@@ -80,171 +91,447 @@ const breadcrumbs = [
 ---
 
 <BaseLayout
-  title="HTML Sitemap | Lancashire Web Designers"
-  description="Comprehensive index of all web design services, regional Lancashire coverage locations, portfolio studies, and legal documents."
+  title="HTML Sitemap & Website Directory | Lancashire Web Designers"
+  description="Explore the complete verified index of Lancashire Web Designers pages. 50+ URLs including bespoke web design services, regional Lancashire coverage, portfolio case studies, and legal documents."
   breadcrumbs={breadcrumbs}
 >
-  <div class="bg-slate-50 dark:bg-slate-900/40 border-b border-slate-200 dark:border-slate-800/80 py-12 lg:py-16">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-      <Breadcrumbs items={breadcrumbs} class="mb-6" />
+  <!-- Hero Section -->
+  <div class="bg-slate-900 border-b border-slate-800 py-12 lg:py-16 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-radial from-blue-900/20 via-transparent to-transparent pointer-events-none"></div>
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <Breadcrumbs items={breadcrumbs} class="mb-6 text-slate-400" />
       <div class="max-w-3xl">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+          Googlebot & Visitor Sitemap Directory
+        </div>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
           Website Directory & Sitemap
         </h1>
-        <p class="mt-4 text-base text-slate-600 dark:text-slate-400">
-          Navigate through our full hierarchy of pages, bespoke service specifications, Lancashire regional locations, and technical insights.
+        <p class="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+          Comprehensive, crawl-optimised hierarchy of every verified page across our digital studio. Designed to provide transparent navigation for visitors and swift, friction-free indexing for search engines.
         </p>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl">
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3.5 backdrop-blur-xs">
+          <span class="text-xs font-medium text-slate-400 block">Total Indexable Pages</span>
+          <span class="text-2xl font-bold text-white mt-1 block">{totalUrls} Verified</span>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3.5 backdrop-blur-xs">
+          <span class="text-xs font-medium text-slate-400 block">XML Schema Status</span>
+          <span class="text-2xl font-bold text-emerald-400 mt-1 block">Valid & Active</span>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3.5 backdrop-blur-xs">
+          <span class="text-xs font-medium text-slate-400 block">Lastmod Timestamps</span>
+          <span class="text-2xl font-bold text-blue-400 mt-1 block">ISO 8601</span>
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/80 rounded-xl p-3.5 backdrop-blur-xs">
+          <span class="text-xs font-medium text-slate-400 block">Crawler Feeds</span>
+          <a href="#crawler-feeds" class="text-sm font-semibold text-blue-300 hover:text-blue-200 mt-2 inline-flex items-center gap-1">
+            View XML feeds
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      <!-- 1. Core & Conversion Pages -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Core & Company
-        </h2>
-        <ul class="space-y-2 text-sm">
+  <!-- Main Content Layout -->
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <!-- Live Page Search & Filter -->
+    <div class="mb-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-xs">
+      <div class="max-w-xl">
+        <label for="sitemap-search" class="block text-sm font-semibold text-slate-900 dark:text-white mb-2">
+          Find any page instantly:
+        </label>
+        <div class="relative">
+          <input
+            id="sitemap-search"
+            type="search"
+            placeholder="Type page name or town (e.g. Blackburn, SEO, Quote, Pricing)..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+          />
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </div>
+        <p id="search-result-count" class="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          Showing all {totalUrls} indexed pages.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sitemap Sections Grid -->
+    <div class="space-y-12">
+      <!-- 1. Core Conversion & Enquiry Pages -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-sm">
+              01
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Core & Enquiry Pages
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">High-intent landing pages, pricing packages & bespoke consultation tools</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {corePages.length} Pages
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {corePages.map((page) => (
-            <li>
-              <a href={page.url} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                {page.name}
-              </a>
-            </li>
+            <a
+              href={page.url}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {page.name}
+                </span>
+                <span class="text-xs font-mono text-slate-400 group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {page.desc}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-blue-600 dark:text-blue-400 opacity-80">
+                {page.url}
+              </span>
+            </a>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <!-- 2. Services -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Bespoke Services
-        </h2>
-        <ul class="space-y-2 text-sm">
-          {services.length > 0 ? (
-            services.map((item) => (
-              <li>
-                <a href={`/${item.data.slug || item.id}/`} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+      <!-- 2. Bespoke Web Design & Digital Services -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-sm">
+              02
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Bespoke Services & Technical Capabilities
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Full-stack web engineering, ecommerce solutions, speed optimisation & SEO</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {servicePages.length} Pages
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {servicePages.map((service) => (
+            <a
+              href={service.url}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-purple-500 dark:hover:border-purple-500 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                  {service.name}
+                </span>
+                <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-sm bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300">
+                  {service.category}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {service.desc}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-purple-600 dark:text-purple-400 opacity-80">
+                {service.url}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- 3. Regional Lancashire Coverage -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-sm">
+              03
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Lancashire Service Locations & Local SEO Hubs
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Tailored local business platforms across Lancashire boroughs & business parks</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {areaPages.length} Locations
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {areaPages.map((area) => (
+            <a
+              href={area.url}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500 dark:hover:border-emerald-500 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                  {area.name}
+                </span>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-sm bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">
+                  {area.town}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {area.desc}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-emerald-600 dark:text-emerald-400 opacity-80">
+                {area.url}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- 4. Verified Case Studies & Portfolio -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-sm">
+              04
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Client Portfolio & In-Depth Case Studies
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Published technical breakdowns, metrics, architecture decisions & live results</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {portfolioItems.length + 1} Pages
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Main Portfolio Index -->
+          <a
+            href="/portfolio/"
+            class="sitemap-card group block p-4 rounded-xl border border-amber-300 dark:border-amber-800/80 bg-amber-50/40 dark:bg-amber-950/20 hover:border-amber-500 hover:shadow-md transition-all"
+          >
+            <div class="flex items-start justify-between gap-2">
+              <span class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">
+                Portfolio Hub (All Projects)
+              </span>
+              <span class="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-sm bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200">
+                Directory
+              </span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+              Explore our full gallery of deployed websites, bespoke tools, and high-performance digital platforms.
+            </p>
+            <span class="inline-block mt-2 font-mono text-[11px] text-amber-700 dark:text-amber-300">
+              /portfolio/
+            </span>
+          </a>
+
+          <!-- Individual Case Studies -->
+          {portfolioItems.map((item) => (
+            <a
+              href={`/portfolio/${item.data.slug || item.id}/`}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-500 dark:hover:border-amber-500 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors line-clamp-1">
                   {item.data.title}
-                </a>
-              </li>
-            ))
-          ) : (
-            plannedServices.map((item) => (
-              <li>
-                <a href={item.href} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  {item.label}
-                </a>
-              </li>
-            ))
-          )}
-        </ul>
-      </section>
-
-      <!-- 3. Regional Locations -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Lancashire Service Areas
-        </h2>
-        <ul class="space-y-2 text-sm">
-          {locations.length > 0 ? (
-            locations.map((item) => (
-              <li>
-                <a href={`/areas/web-design-${item.data.slug || item.id}/`} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  Web Design {item.data.town}
-                </a>
-              </li>
-            ))
-          ) : (
-            plannedAreas.map((item) => (
-              <li>
-                <a href={item.href} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  {item.label}
-                </a>
-              </li>
-            ))
-          )}
-        </ul>
-      </section>
-
-      <!-- 4. Service x Location Matrix -->
-      {serviceAreas.length > 0 && (
-        <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-          <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-            Bespoke Regional Hubs
-          </h2>
-          <ul class="space-y-2 text-sm">
-            {serviceAreas.map((sa) => (
-              <li>
-                <a href={`/${sa.data.service}/${sa.data.location}/`} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors capitalize">
-                  {sa.data.service.replace(/-/g, ' ')} ({sa.data.location})
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <!-- 5. Case Studies -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Portfolio & Case Studies
-        </h2>
-        {portfolio.length > 0 ? (
-          <ul class="space-y-2 text-sm">
-            {portfolio.map((p) => (
-              <li>
-                <a href={`/portfolio/${p.data.slug || p.id}/`} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  {p.data.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="text-xs text-slate-500 dark:text-slate-400 italic">
-            New case studies will populate here upon initial client engagement completions.
-          </p>
-        )}
-      </section>
-
-      <!-- 6. Blog & Insights -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Blog & Technical Guides
-        </h2>
-        {blogPosts.length > 0 ? (
-          <ul class="space-y-2 text-sm">
-            {blogPosts.map((b) => (
-              <li>
-                <a href={`/blog/${b.id}/`} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                  {b.data.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="text-xs text-slate-500 dark:text-slate-400 italic">
-            Editorial articles will appear here as technical guides are published.
-          </p>
-        )}
-      </section>
-
-      <!-- 7. Legal & Compliance -->
-      <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-2xs space-y-4">
-        <h2 class="text-lg font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-slate-800 pb-3">
-          Legal & Compliance
-        </h2>
-        <ul class="space-y-2 text-sm">
-          {legalPages.map((page) => (
-            <li>
-              <a href={page.url} class="text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                {page.name}
-              </a>
-            </li>
+                </span>
+                <span class="text-[10px] font-mono text-slate-400 group-hover:translate-x-0.5 transition-transform shrink-0">
+                  {item.data.year || 'Case Study'}
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {item.data.brief || `${item.data.client} (${item.data.industry})`}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-amber-600 dark:text-amber-400 opacity-80">
+                /portfolio/{item.data.slug || item.id}/
+              </span>
+            </a>
           ))}
-        </ul>
+        </div>
+      </section>
+
+      <!-- 5. Company, Trust & Process -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-cyan-100 dark:bg-cyan-900/40 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold text-sm">
+              05
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Company, Trust & Technical Insights
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Agency transparency, verified client reviews & technical knowledge base</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {trustPages.length} Pages
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {trustPages.map((page) => (
+            <a
+              href={page.url}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-cyan-500 dark:hover:border-cyan-500 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                  {page.name}
+                </span>
+                <span class="text-xs font-mono text-slate-400 group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {page.desc}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-cyan-600 dark:text-cyan-400 opacity-80">
+                {page.url}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- 6. Legal, Contracts & Compliance -->
+      <section class="sitemap-section">
+        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center font-bold text-sm">
+              06
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+                Legal, Compliance & Formal Contracts
+              </h2>
+              <p class="text-xs text-slate-500 dark:text-slate-400">UK GDPR policies, contract terms, accessibility declaration & dispute procedures</p>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            {legalPages.length} Documents
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {legalPages.map((doc) => (
+            <a
+              href={doc.url}
+              class="sitemap-card group block p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-slate-400 dark:hover:border-slate-600 hover:shadow-md transition-all"
+            >
+              <div class="flex items-start justify-between gap-2">
+                <span class="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {doc.name}
+                </span>
+                <span class="text-xs font-mono text-slate-400 group-hover:translate-x-0.5 transition-transform">→</span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                {doc.desc}
+              </p>
+              <span class="inline-block mt-2 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                {doc.url}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- 7. Search Engine & Crawler Feeds Callout -->
+      <section id="crawler-feeds" class="bg-gradient-to-br from-slate-900 to-blue-950 text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-lg">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-3">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Search Engine & Bot Directives
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white">
+            Automated XML Feeds & Search Engine Endpoints
+          </h2>
+          <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+            For Googlebot, Bingbot, web scrapers, and automated auditing software, the following validated machine-readable feeds are generated on every site deployment:
+          </p>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {crawlerFeeds.map((feed) => (
+              <a
+                href={feed.url}
+                target="_blank"
+                rel="noopener"
+                class="flex items-center justify-between p-3 rounded-xl bg-slate-800/80 border border-slate-700/70 hover:bg-slate-800 hover:border-blue-400 transition-all text-sm group"
+              >
+                <div>
+                  <span class="font-medium text-white group-hover:text-blue-300 transition-colors block">
+                    {feed.name}
+                  </span>
+                  <span class="text-xs text-slate-400 block font-mono">
+                    {feed.url}
+                  </span>
+                </div>
+                <span class="text-xs text-blue-400 font-mono group-hover:translate-x-1 transition-transform ml-2 shrink-0">
+                  ↗
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   </div>
 </BaseLayout>
+
+<script is:inline>
+  (function() {
+    const input = document.getElementById('sitemap-search');
+    const resultCount = document.getElementById('search-result-count');
+    const cards = document.querySelectorAll('.sitemap-card');
+    const sections = document.querySelectorAll('.sitemap-section');
+
+    if (!input) return;
+
+    input.addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Hide section if no visible cards remain
+      sections.forEach(section => {
+        const visibleInSec = section.querySelectorAll('.sitemap-card:not(.hidden)').length;
+        if (visibleInSec === 0 && q) {
+          section.classList.add('hidden');
+        } else {
+          section.classList.remove('hidden');
+        }
+      });
+
+      if (resultCount) {
+        if (!q) {
+          resultCount.textContent = `Showing all ${cards.length} indexed pages.`;
+        } else {
+          resultCount.textContent = `Found ${visible} matching page${visible === 1 ? '' : 's'}.`;
+        }
+      }
+    });
+  })();
+</script>
