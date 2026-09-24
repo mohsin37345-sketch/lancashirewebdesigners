@@ -1,16 +1,64 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'website-redesign');
 if (!serviceEntry) {
   throw new Error('Service entry website-redesign not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const redesignProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'smart-rcm-billing', 'the-royals-removals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Clean hand-coded digital platforms with sub-second speeds and full intellectual property ownership.',
+    icon: 'palette'
+  },
+  {
+    title: 'Website Speed Optimisation',
+    href: '/services/website-speed-optimisation/',
+    description: 'Core Web Vitals tuning and JavaScript minification to supercharge slow platforms.',
+    icon: 'zap'
+  },
+  {
+    title: 'SEO Services Lancashire',
+    href: '/services/seo/',
+    description: 'Protect rankings, repair redirect chains, and dominate regional Google organic search.',
+    icon: 'search'
+  }
+];
+
+const heroTrustBullets = [
+  'Rigorous 301 URL redirect mapping process',
+  'Zero SEO ranking loss guarantee workflow',
+  'Modern mobile-first UI and layout overhaul',
+  'Direct collaboration with Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -18,49 +66,97 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Website Redesign Services • Traffic & Conversion Growth"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Website Redesign"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Straightforward answers regarding our website redesign process, 301 URL mapping, and SEO preservation."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Commercial Modernisation
+          Digital Modernisation
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Transform Your Outdated Website into a Lead-Generating Commercial Asset
+          Strategic Website Redesign Services Lancashire Businesses Trust to Win More Clients
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          An outdated website does more than look tired—it actively repels prospective high-value clients, fails Google Core Web Vitals checks, and suppresses organic search visibility. Our comprehensive website redesign services rebuild your online presence from the foundation up.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Investing in professional <strong>website redesign services</strong> transforms an outdated, sluggish web presence into a high-performance commercial engine. Whether your current site is hampered by slow mobile load times, broken layouts, or dated branding, we rebuild your online identity from the foundation up, preserving your hard-won SEO equity while dramatically elevating inbound lead conversion rates.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          We combine a complete brand aesthetic overhaul with exhaustive 1-to-1 301 redirection mapping. Your hard-earned search engine rankings remain fully protected, while your conversion rates and commercial credibility receive an immediate, permanent boost.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          A redesign should never be a visual gamble. We take a disciplined engineering approach: cataloguing every ranking URL, mapping redirects, modernising typography and colour contrasts, and replacing fragile third-party page builders with clean, resilient code.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="refresh-cw" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Transformation Benefits
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for Commercial Impact
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
+      <!-- Section 3: Deep-dive H2 - Signs Your Website Needs a Redesign -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Audit Your Current Site
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Signs Your Website Needs a Redesign
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Technology evolves rapidly. A website created four or five years ago is almost certainly losing prospective clients to competitors who offer faster, more mobile-responsive experiences. Common symptoms include high mobile bounce rates, poor Google Core Web Vitals scores, layout shifts while scrolling, and an inability to easily edit copy without breaking the layout.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            If your website fails to communicate your current level of operational maturity or no longer reflects your primary services, a strategic overhaul delivers an immediate competitive advantage.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - How We Protect Your Rankings -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            SEO Safety
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            How We Protect Your Rankings: 301 Redirect Mapping & SEO Preservation
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            The greatest risk of a poorly executed redesign is the sudden collapse of Google search rankings. We prevent this by performing a deep crawl of your existing site before writing a line of code. Every ranking URL, backlink destination, and metadata tag is catalogued into a strict 1-to-1 301 redirection matrix.
+          </p>
+        </div>
+
+        <TechStack />
+      </div>
+
+      <!-- Section: Visual Architecture & Wireframing Process -->
+      <DesignProcessVisuals
+        heading="Wireframing & Rebuilding Modern Web Standards"
+        subheading="How we remodel existing layouts into intuitive, mobile-optimised wireframes and high-speed semantic architecture."
+      />
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Safe Redirection
+            Disciplined Overhaul
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Redesign & Migration Methodology
+            Our 5-Stage Redesign Process
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            Zero lost search rankings. Built on private staging with instant DNS cutover.
+            Zero downtime, zero ranking loss, and milestone-verified delivery.
           </p>
         </div>
 
@@ -75,6 +171,7 @@ const data = serviceEntry.data;
         </div>
       </div>
 
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
@@ -94,7 +191,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Optional Scope Extensions</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -107,15 +204,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <TechStack />
-      <FAQ faqs={data.faqs} />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Redesign Case Studies & Before / After Builds"
+        subheading="Real businesses that modernised outdated web presences into fast, lead-generating commercial platforms."
+        items={redesignProjects}
+      />
 
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Discuss Your Website Redesign"
-          subheading="Submit your current website URL for a free forensic review and fixed-price redesign proposal."
+      <!-- Section 8: Deep-dive H2 - Before & After: Measuring Redesign Commercial Success -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Commercial Metrics
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Before & After: Measuring Redesign Commercial Success
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            We don't measure the success of a redesign by subjective artistic opinions. We track tangible commercial metrics: reduction in bounce rate, increase in average session duration, mobile conversion volume, and Google Core Web Vitals audit scores.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            By eliminating legacy code friction, modernising typography, and placing high-converting enquiry callouts at critical decision points, our redesigns consistently increase the number of qualified inbound enquiries our clients receive.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Redesigning Legacy Builders to Clean Modern Code -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Overview
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Redesigning Legacy Builders to Clean Modern Code
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Complete website redesign packages start from £400 for focused 1-to-5 page overhauls with full 301 redirection mapping, scaling to £1,200+ for large corporate platforms and complex catalogues.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Website Redesigns from £400"
+          subtitle="Fixed milestone invoicing with full 301 URL redirect preservation and complete code ownership."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What business owners say about modernising their digital presences with Mohsin Ali."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire website redesign studio"
+        leadSentence="From our studio in Blackburn, we rebuild outdated websites for ambitious companies throughout Lancashire."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Common questions regarding our website redesign process, 301 redirect mapping, and SEO preservation."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Connected solutions to support your website performance, search visibility, and speed."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Start Your Website Redesign"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Request Redesign Consultation"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

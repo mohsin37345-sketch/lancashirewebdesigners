@@ -36,8 +36,12 @@ const rawPath = Astro.url.pathname;
 const resolvedCanonical = canonical || absoluteUrl(rawPath);
 const absoluteOgImage = ogImage.startsWith('http') ? ogImage : absoluteUrl(ogImage);
 
-// Robots directive
-const robotsContent = `${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`;
+// Robots directive with staging safety for *.netlify.app
+const hostname = Astro.url.hostname || '';
+const isStaging = hostname.endsWith('netlify.app');
+const effectiveNoindex = noindex || isStaging;
+const effectiveNofollow = nofollow || isStaging;
+const robotsContent = `${effectiveNoindex ? 'noindex' : 'index'}, ${effectiveNofollow ? 'nofollow' : 'follow'}`;
 
 // Verification codes
 const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || verificationData.google;

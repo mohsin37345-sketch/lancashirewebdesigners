@@ -1,0 +1,45 @@
+{
+  "town": "Blackpool",
+  "slug": "web-design-blackpool",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Blackpool | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Blackpool businesses rely on. Fast, accessible websites crafted for Fylde Coast tourism, retail, and enterprise zone businesses.",
+  "primaryKeyword": "web design blackpool",
+  "intro": "When your commercial enterprise requires high-impact web design Blackpool visitors and clients can rely on, Lancashire Web Designers engineers bespoke, ultra-fast digital experiences tailored specifically for Fylde Coast businesses. From boutique hotels, bustling seafront venues, and independent retail outlets to advanced manufacturing and aviation ventures established within the Blackpool Airport Enterprise Zone, we construct websites that genuinely stand out against regional competition. We deliberately avoid sluggish, bloated templates in favour of clean, hand-crafted code architectures that render in fractions of a second on mobile smartphones, ensuring seamless direct booking workflows, prominent Google Map Pack visibility, and maximum commercial conversions for ambitious coastal operators.",
+  "localKnowledge": "Blackpool's economic landscape is undergoing extensive regeneration, supported by multi-million pound investments in the Talbot Gateway commercial district, modern civil service hubs, the tramway extension, and the 144-hectare Blackpool Airport Enterprise Zone focusing on advanced manufacturing and energy technology. Along the Promenade and throughout the town centre, hospitality operators, commercial service contractors, and retailers require modern digital storefronts that engage mobile visitors and capture advance online bookings. We build accessible, high-performance platforms engineered to convert local and national visitors alike.",
+  "postcodes": ["FY1", "FY2", "FY3", "FY4"],
+  "nearbyAreas": [
+    { "name": "Lytham St Annes", "slug": "lytham-st-annes" },
+    { "name": "Fleetwood", "slug": "fleetwood" },
+    { "name": "Poulton-le-Fylde", "slug": "poulton-le-fylde" },
+    { "name": "Preston", "slug": "web-design-preston" },
+    { "name": "Lancaster", "slug": "web-design-lancaster" }
+  ],
+  "localIndustries": ["Tourism & Hospitality", "Retail & Leisure", "Aviation & Enterprise Zone", "Commercial Trade Services"],
+  "servicesOffered": ["Bespoke Web Design", "Ecommerce Storefronts", "Fast Booking Integration", "Website Redesign", "Local SEO & Map Pack"],
+  "localFaqs": [
+    {
+      "question": "Can you integrate online booking and ticketing systems for Blackpool hospitality businesses?",
+      "answer": "Yes. We integrate bespoke web platforms with leading booking engines, ticketing APIs, and table reservation systems while maintaining sub-second mobile page speeds.",
+      "display": true
+    },
+    {
+      "question": "How do you help Blackpool businesses rank on Google Maps and local search?",
+      "answer": "Every website we engineer includes technical on-page SEO, rich schema markup, and Google Business Profile optimization to help your company dominate local search and Map Pack listings across Blackpool and the Fylde Coast.",
+      "display": true
+    },
+    {
+      "question": "Can you support businesses operating in the Blackpool Airport Enterprise Zone?",
+      "answer": "Yes. We build high-trust corporate websites and B2B portals for energy, engineering, and technology businesses operating within the enterprise zone.",
+      "display": true
+    },
+    {
+      "question": "Do I own all code and assets upon project completion?",
+      "answer": "Yes, 100%. Upon final project sign-off, full copyright and source code ownership transfer completely to your business with zero recurring platform license fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.8175,
+  "lng": -3.0530,
+  "tier": 1
+}

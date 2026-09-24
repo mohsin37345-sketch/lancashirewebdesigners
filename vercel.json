@@ -2,7 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": false,
   "trailingSlash": true,
-  "redirects": [
+    {
+      "source": "/bespoke-web-design/blackburn/",
+      "destination": "/areas/web-design-blackburn/",
+      "permanent": true
+    },
+    {
+      "source": "/bespoke-web-design/preston/",
+      "destination": "/areas/web-design-preston/",
+      "permanent": true
+    },
     {
       "source": "/(.*)",
       "has": [

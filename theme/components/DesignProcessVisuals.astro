@@ -1,0 +1,153 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  town?: string;
+  heading?: string;
+  subheading?: string;
+  class?: string;
+}
+
+const {
+  town,
+  heading,
+  subheading,
+  class: className = ''
+} = Astro.props;
+
+const sectionHeading = heading || (town 
+  ? `Bespoke Web Design & Prototyping in ${town}`
+  : 'Bespoke Architecture & Prototyping Methodology');
+
+const sectionSubheading = subheading || (town
+  ? `How we plan, wireframe, and engineer high-performance digital platforms for ${town} businesses — from initial concept sketches to lightning-fast, accessible code.`
+  : 'We replace slow, generic off-the-shelf templates with intentional UX wireframing, semantic code standards, and conversion-focused digital architecture.');
+---
+
+<section class={`py-12 sm:py-16 ${className}`}>
+  <div class="space-y-10">
+    <div class="max-w-3xl space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
+        <Icon name="code" class="w-3.5 h-3.5" />
+        <span>Design & Engineering Standards</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        {sectionHeading}
+      </h2>
+      <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        {sectionSubheading}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+      <!-- Card 1: Wireframing, Layout Planning & Prototyping -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+        <div>
+          <div class="relative w-full aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+            <img
+              src="/images/web-design-wireframing-sketches.webp"
+              alt="Hands-on responsive web design wireframing, layout sketching, and prototyping process on desk"
+              width="1024"
+              height="512"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent opacity-60"></div>
+            
+            <div class="absolute top-4 left-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white backdrop-blur-md shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                <span>Stage 1: Wireframing & UX</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Collaborative Wireframing & Journey Mapping
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                Before writing any code, we sketch content hierarchies, mobile navigation paths, and lead conversion funnels. This eliminates costly guesswork and guarantees your users find exactly what they need within seconds.
+              </p>
+            </div>
+
+            <div class="pt-2 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                Mobile-First Wireframes
+              </span>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                User Journey Architecture
+              </span>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                Zero Template Constraints
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
+            <span class="font-semibold text-slate-800 dark:text-slate-200">Outcome:</span>
+            <span>Clarity on every layout before development</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Core Web Design Elements & Modern Architecture -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+        <div>
+          <div class="relative w-full aspect-[16/10] overflow-hidden bg-slate-50 dark:bg-slate-800/80 p-3 sm:p-4 flex items-center justify-center">
+            <img
+              src="/images/web-design-principles-ecosystem.webp"
+              alt="Diagram of core web design elements including usability, layout, internet protocols, CSS styling, homepage architecture, media optimisation, content hierarchy, and CMS management"
+              width="1024"
+              height="790"
+              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+            
+            <div class="absolute top-4 left-4">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/95 dark:bg-slate-900/95 text-slate-900 dark:text-white backdrop-blur-md shadow-sm border border-slate-200/60 dark:border-slate-700/60">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span>Stage 2: Technical Architecture</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-4">
+            <div class="space-y-2">
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">
+                Modern Standards & High-Speed Ecosystem
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                We integrate clean semantic HTML, modular CSS, accessible layouts, responsive media formats (WebP/AVIF), and straightforward CMS options. Every page is engineered for instant loading and natural search ranking.
+              </p>
+            </div>
+
+            <div class="pt-2 flex flex-wrap gap-2">
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                WCAG 2.2 AA Usability
+              </span>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                Modern Semantic CSS
+              </span>
+              <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                Next-Gen WebP Media
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between">
+            <span class="font-semibold text-slate-800 dark:text-slate-200">Outcome:</span>
+            <span>Clean code owned 100% outright by you</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

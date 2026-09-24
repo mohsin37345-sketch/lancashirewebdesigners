@@ -28,15 +28,15 @@ const { class: className = '' } = Astro.props;
             1. Website Scope & Approximate Page Count
           </label>
           <span class="text-[11px] font-medium text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2 py-0.5 rounded-full border border-blue-200 dark:border-blue-900">
-            +£30–£50 per extra page
+            +£20–£30 per extra page
           </span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
           {[
-            { label: '1–5 Pages', val: 'small', price: 300, desc: 'Starter / Bespoke' },
-            { label: '6–10 Pages', val: 'standard', price: 450, desc: 'Corporate / B2B' },
-            { label: '11–20 Pages', val: 'medium', price: 750, desc: 'Multi-Service' },
-            { label: '20+ Pages', val: 'large', price: 1100, desc: 'Extensive Site' }
+            { label: '1–5 Pages', val: 'small', price: 150, desc: 'Starter / Bespoke' },
+            { label: '6–10 Pages', val: 'standard', price: 250, desc: 'Corporate / B2B' },
+            { label: '11–20 Pages', val: 'medium', price: 400, desc: 'Multi-Service' },
+            { label: '20+ Pages', val: 'large', price: 600, desc: 'Extensive Site' }
           ].map((item, idx) => (
             <label class="calc-scope-card flex flex-col p-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 cursor-pointer text-center hover:border-blue-400 transition-all">
               <input type="radio" name="calc_scope" value={item.val} data-price={item.price} checked={idx === 0} class="hidden" />
@@ -54,12 +54,12 @@ const { class: className = '' } = Astro.props;
         </label>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           {[
-            { label: 'Ecommerce Storefront (Shopify / Stripe)', price: 200, id: 'feat-ecom' },
-            { label: 'Web Design & Marketing / SEO Package', price: 300, id: 'feat-marketing' },
-            { label: 'WordPress CMS & Custom Gutenberg', price: 200, id: 'feat-wordpress' },
-            { label: 'Website Speed & Core Web Vitals Optimization', price: 150, id: 'feat-speed' },
-            { label: 'Technical SEO Audit & Schema Graph', price: 70, id: 'feat-seo' },
-            { label: 'Dedicated Campaign Landing Page', price: 100, id: 'feat-landing' }
+            { label: 'Ecommerce Storefront (Shopify / Stripe)', price: 150, id: 'feat-ecom' },
+            { label: 'Web Design & Marketing / SEO Package', price: 150, id: 'feat-marketing' },
+            { label: 'WordPress CMS & Custom Gutenberg', price: 100, id: 'feat-wordpress' },
+            { label: 'Website Speed & Core Web Vitals Optimisation', price: 75, id: 'feat-speed' },
+            { label: 'Technical SEO Audit & Schema Graph', price: 50, id: 'feat-seo' },
+            { label: 'Dedicated Campaign Landing Page', price: 75, id: 'feat-landing' }
           ].map((item) => (
             <label class="flex items-center justify-between p-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/40 dark:bg-slate-800/30 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800">
               <div class="flex items-center gap-2">
@@ -160,10 +160,10 @@ const { class: className = '' } = Astro.props;
     const resultRange = document.getElementById('calc-result-range');
 
     function calculate() {
-      let base = 300;
+      let base = 150;
       scopeRadios.forEach((r) => {
         if (r.checked) {
-          base = parseInt(r.getAttribute('data-price') || '300', 10);
+          base = parseInt(r.getAttribute('data-price') || '150', 10);
         }
       });
 

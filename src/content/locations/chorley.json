@@ -1,0 +1,45 @@
+{
+  "town": "Chorley",
+  "slug": "web-design-chorley",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Chorley | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Chorley companies trust. Fast, custom-built websites for Central Lancashire professional services, technology parks, and retailers.",
+  "primaryKeyword": "web design chorley",
+  "intro": "When your company requires high-performance web design Chorley businesses trust to generate qualified enquiries and win new commercial clients, Lancashire Web Designers engineers bespoke, ultra-fast digital platforms tailored specifically for Central Lancashire enterprises. Strategically positioned between Preston, Greater Manchester, and the bustling M6 and M61 logistics corridors, Chorley is home to innovative technology hubs, distribution specialists, leading legal and financial consultancies, and thriving independent retailers. We build clean, hand-crafted code architectures that load in under a second on mobile networks, ensuring high search rankings across Chorley and Leyland, frictionless user ergonomics, and total code ownership with zero ongoing platform lock-in.",
+  "localKnowledge": "Chorley's economy has transformed with landmark developments like the Strawberry Fields Digital Hub, thriving commercial business parks around Buckshaw Village and Euxton, and continuous regeneration throughout Market Street and the town centre. Local commercial consultancies, healthcare providers, and engineering suppliers require digital platforms that convey authority and handle complex client workflows. We engineer bespoke platforms that integrate seamlessly with your CRM and booking systems, giving Chorley businesses an insurmountable competitive edge across the North West.",
+  "postcodes": ["PR6", "PR7"],
+  "nearbyAreas": [
+    { "name": "Euxton", "slug": "euxton" },
+    { "name": "Clayton-le-Woods", "slug": "clayton-le-woods" },
+    { "name": "Preston", "slug": "web-design-preston" },
+    { "name": "Blackburn", "slug": "web-design-blackburn" },
+    { "name": "Leyland", "slug": "leyland" }
+  ],
+  "localIndustries": ["Digital & Technology (Strawberry Fields)", "Logistics & M6/M61 Distribution", "Professional Services & Legal", "Healthcare & Commercial Trade"],
+  "servicesOffered": ["Bespoke Web Design", "B2B Lead Architecture", "Corporate Rebuilds", "SEO Strategy", "Website Care Plans"],
+  "localFaqs": [
+    {
+      "question": "Do you work with technology businesses based at Strawberry Fields in Chorley?",
+      "answer": "Yes. We work closely with digital innovators, software studios, and consultancies operating in Strawberry Fields and across Central Lancashire, building custom web platforms and API integrations.",
+      "display": true
+    },
+    {
+      "question": "Can we meet face-to-face in Chorley to plan our website?",
+      "answer": "Yes, absolutely. We frequently meet business owners and directors in Chorley, Buckshaw Village, and surrounding business parks for in-person project discovery sessions.",
+      "display": true
+    },
+    {
+      "question": "How quickly can a bespoke Chorley business website go live?",
+      "answer": "A focused bespoke brochure website typically launches within 4 to 6 weeks. Larger B2B lead platforms or ecommerce stores generally take 6 to 8 weeks from initial design to live deployment.",
+      "display": true
+    },
+    {
+      "question": "Do I own my website and code once the project is finished?",
+      "answer": "Yes, 100%. Upon final milestone payment, full copyright and source code ownership transfer completely to your business. We do not charge ongoing proprietary licensing fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.6531,
+  "lng": -2.6323,
+  "tier": 1
+}

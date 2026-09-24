@@ -1,0 +1,90 @@
+---
+import Icon from './Icon.astro';
+
+export interface CaseStudyItem {
+  title: string;
+  clientType?: string;
+  problem: string;
+  whatWeDid: string;
+  result: string;
+  link: string;
+}
+
+export interface Props {
+  caseStudies?: CaseStudyItem[];
+  heading?: string;
+  subheading?: string;
+  class?: string;
+}
+
+const {
+  caseStudies = [],
+  heading = 'Recent Project Case Studies',
+  subheading = 'Real commercial challenges solved with bespoke web design and engineering.',
+  class: className = ''
+} = Astro.props;
+
+const hasCaseStudies = Array.isArray(caseStudies) && caseStudies.length > 0;
+---
+
+{hasCaseStudies ? (
+  <section class={`py-16 lg:py-24 bg-slate-50/60 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800 ${className}`}>
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="max-w-2xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          Proven Commercial Results
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+          {heading}
+        </h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2 text-base">
+          {subheading}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {caseStudies.slice(0, 3).map((study) => (
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-7 flex flex-col justify-between shadow-2xs hover:border-blue-500/40 transition-all">
+            <div class="space-y-4">
+              {study.clientType && (
+                <span class="inline-block text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-full">
+                  {study.clientType}
+                </span>
+              )}
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                {study.title}
+              </h3>
+
+              <div class="space-y-3 text-xs text-slate-600 dark:text-slate-400 leading-relaxed pt-2">
+                <div>
+                  <strong class="text-slate-900 dark:text-slate-200 font-semibold block mb-0.5">The Challenge:</strong>
+                  <p>{study.problem}</p>
+                </div>
+                <div>
+                  <strong class="text-slate-900 dark:text-slate-200 font-semibold block mb-0.5">What We Did:</strong>
+                  <p>{study.whatWeDid}</p>
+                </div>
+                <div>
+                  <strong class="text-slate-900 dark:text-slate-200 font-semibold block mb-0.5">Commercial Result:</strong>
+                  <p class="text-emerald-600 dark:text-emerald-400 font-medium">{study.result}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800">
+              <a
+                href={study.link}
+                class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+              >
+                <span>Read Full Case Study</span>
+                <Icon name="arrow-right" class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+) : (
+  <Fragment set:html="<!-- TODO(Mohsin): add real case study/testimonial -->" />
+)}

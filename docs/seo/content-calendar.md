@@ -36,7 +36,7 @@ This editorial calendar targets secondary, supporting, and question-based search
 - **Title**: How Lancashire Manufacturers Win High-Value Tenders Online
 - **Target Keyword**: `manufacturing web design uk` (Search Volume: 320)
 - **Angle**: Practical case study approach examining plant showcase pages, ISO accreditation proof, and supply-chain tender requirements.
-- **Internal Link Target**: `/areas/web-design-blackburn/`, `/bespoke-web-design/blackburn/`
+- **Internal Link Target**: `/areas/web-design-blackburn/`, `/bespoke-web-design/`
 
 ### Month 4: Platform Selection & Ecommerce
 - **Title**: Shopify vs Headless Commerce: Which Architecture Is Right for Your Brand?

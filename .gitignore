@@ -29,3 +29,7 @@ ehthumbs.db
 
 # Vercel
 .vercel/
+
+# Scratch & temporary
+scratch/
+

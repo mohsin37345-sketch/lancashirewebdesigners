@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'website-support');
 if (!serviceEntry) {
   throw new Error('Service entry website-support not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const supportProjects = allProjects
+  .filter((p) => ['smart-rcm-billing', 'haul-uk-international', 'jhs-professionals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'WordPress Development',
+    href: '/services/wordpress-development/',
+    description: 'Custom theme builds, database cleanups, and plugin modernisation without builder bloat.',
+    icon: 'code'
+  },
+  {
+    title: 'Shopify Development',
+    href: '/services/shopify-development/',
+    description: 'Theme optimisations, Shopify Functions, and checkout management for active storefronts.',
+    icon: 'shopping-bag'
+  },
+  {
+    title: 'Website Speed Optimisation',
+    href: '/services/website-speed-optimisation/',
+    description: 'Technical audits to remediate slow Largest Contentful Paint and Cumulative Layout Shift.',
+    icon: 'zap'
+  }
+];
+
+const heroTrustBullets = [
+  'Daily automated off-site cloud backups',
+  'Safe staging environment plugin testing',
+  'Direct communication with Mohsin Ali',
+  'Rolling 30-day agreement with zero contract lock-in'
+];
 ---
 
 <ServiceLayout
@@ -18,13 +65,18 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
-  serviceType="Website Support & Maintenance"
+  heroEyebrow="Web Support Agency • Proactive Maintenance"
+  heroTrustBullets={heroTrustBullets}
+  serviceType="Website Support"
   priceFrom={data.priceFrom}
+  priceUnit="/month"
   faqs={data.faqs}
+  faqIntro="Straightforward answers about our onboarding process, response times, included developer hours, and rolling care agreements."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      <!-- Section 1: In-depth Summary -->
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
           Proactive Technical Care
@@ -32,92 +84,73 @@ const data = serviceEntry.data;
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           A Dedicated Web Support Agency Protecting Your Digital Investment
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Operating as a proactive <strong>web support agency</strong>, Lancashire Web Designers provides comprehensive technical maintenance, continuous security hardening, and on-demand developer support. Leaving your corporate website unmanaged exposes your firm to malware injection, catastrophic plugin conflicts, broken customer checkout flows, and severe Google ranking penalties.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          As an experienced <strong>web support agency</strong>, Lancashire Web Designers provides ongoing technical maintenance and proactive care for mission-critical business websites. We protect your digital investment with automated uptime monitoring, daily off-site cloud backups, regular core security patching, Core Web Vitals performance tuning, and direct developer support whenever you need site updates.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Our managed website care plans protect your operations with automated 24/7 uptime monitoring, daily off-site European cloud backups, safe staging testing for all updates, and dedicated developer hours each month for your ongoing content edits and feature enhancements.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Websites are not static print brochures; they are living software platforms. Left unattended, unpatched plugins introduce critical security vulnerabilities, database tables gather bloat, and unexpected third-party API changes break contact forms. We manage your technical infrastructure so you can focus entirely on running your business.
         </p>
       </div>
 
-      <!-- Section 2: Care Plan Tiers -->
-      <div class="space-y-8">
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Care Packages
+            Care Inclusions
           </span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Monthly Website Support Plans
+            Proactive Protection Across Your Stack
           </h2>
-          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            No long-term contracts. Rolling 30-day agreements tailored to your platform scale.
+        </div>
+        <FeatureCards features={data.benefits} />
+      </div>
+
+      <!-- Section 3: Deep-dive H2 - What Proactive Web Support Entails -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Preventative Engineering
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            What Proactive Web Support Entails
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Reactive support waits for your website to crash or get defaced before taking action. Proactive web support prevents disasters before they happen. We test every software, framework, and plugin update in a private staging sandbox before applying changes to your live site, ensuring zero breaking changes.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            We continually monitor SSL expiry, DNS routing integrity, security firewalls, and spam defense mechanisms, ensuring your prospective clients always reach a secure, high-performing platform.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - WordPress, Shopify & Custom Stack Maintenance -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Multi-Platform Coverage
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            WordPress, Shopify & Custom Stack Maintenance
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Whether your website runs on a custom WordPress installation, a high-volume Shopify store, or a bespoke static framework built with Astro or Node.js, we have the technical competence to maintain it cleanly without introducing technical debt.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-4">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Essential Care</h3>
-            <div class="text-3xl font-black text-slate-900 dark:text-white">£99<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Ideal for standard commercial brochure websites.</p>
-            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Daily off-site cloud backups</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> 24/7 uptime monitoring</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Monthly staging security updates</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> 30 mins included dev tasks</li>
-            </ul>
-          </div>
-
-          <div class="p-6 rounded-2xl border-2 border-blue-600 bg-white dark:bg-slate-900 shadow-lg relative space-y-4">
-            <div class="absolute -top-3 left-6 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider py-0.5 px-2.5 rounded-full">Recommended</div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Professional Growth</h3>
-            <div class="text-3xl font-black text-slate-900 dark:text-white">£175<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">For active B2B firms requiring ongoing content updates.</p>
-            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Everything in Essential</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> 2 hours included developer time</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Priority 4-hour emergency SLA</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Monthly Core Web Vitals speed tune</li>
-            </ul>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-2xs space-y-4">
-            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ecommerce & Enterprise</h3>
-            <div class="text-3xl font-black text-slate-900 dark:text-white">£295<span class="text-xs text-slate-400 font-normal">/mo + VAT</span></div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">For transactional online stores and high-traffic portals.</p>
-            <ul class="space-y-2 text-xs text-slate-600 dark:text-slate-300 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Real-time hourly transactional backups</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> 4 hours included developer time</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> 1-hour critical emergency response</li>
-              <li class="flex items-center gap-2"><Icon name="check" class="w-3.5 h-3.5 text-blue-600" /> Checkout flow & payment auditing</li>
-            </ul>
-          </div>
-        </div>
+        <TechStack />
       </div>
 
-      <!-- Section 3: Key Benefits Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="shield-check" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Reliability Protection</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
-      </div>
-
-      <!-- Section 4: 5-Stage Process -->
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Rapid Onboarding
+            Care Protocol
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Onboarding & Support Workflow
+            Our 5-Stage Onboarding & Maintenance Protocol
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            We onboard your existing website within 24 to 48 hours.
+            Rapid 24-48 hour onboarding followed by structured monthly maintenance cycles.
           </p>
         </div>
 
@@ -132,12 +165,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 5: Inclusions / Boundaries -->
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Standard Support Deliverables</span>
+            <span>Included in Support Plans</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -152,7 +185,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Items Quoted Separately</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -165,19 +198,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 6: TechStack -->
-      <TechStack />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Platforms Maintained & Supported"
+        subheading="A look at healthcare, wholesale, and professional platforms maintained by our studio."
+        items={supportProjects}
+      />
 
-      <!-- Section 7: FAQs -->
-      <FAQ faqs={data.faqs} />
+      <!-- Section 8: Deep-dive H2 - Emergency Recovery & Realistic Response Times -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Dependable Service Level Agreement
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Emergency Recovery & Realistic Response Times
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            We believe in honest, dependable SLAs rather than marketing gimmicks. We provide direct developer support during UK business hours (Monday to Friday, 9:00am to 5:00pm). Urgent downtime issues receive same-day priority investigation, and standard tickets are routinely resolved within 1 to 2 business days.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            In the unlikely event of an unrecoverable server failure, our automated daily snapshots ensure your complete website and customer database can be restored to full operation with minimal disruption.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 8: Inline Quote Form -->
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Enquire About a Website Care Plan"
-          subheading="Tell us your current website platform and we will confirm onboarding details within 24 hours."
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Flexible Monthly Care Plans -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Transparent Retainers
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Flexible Monthly Care Plans
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our care plans start from £99 per month for brochure and service sites, scaling up for high-transaction ecommerce platforms requiring weekly staging testing. Every plan operates on a rolling 30-day agreement with zero long-term lock-in.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="/month"
+          whatsIncluded={data.whatsIncluded}
+          title="Support Retainers from £99/month"
+          subtitle="Rolling 30-day agreements, daily off-site cloud backups, and dedicated developer time every month."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What retained business clients say about partnering with Mohsin Ali for ongoing website support."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire website support provider"
+        leadSentence="From our studio base in Blackburn, we provide ongoing website maintenance and support for businesses throughout Lancashire and the UK."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Straightforward answers regarding our support agreements, response times, and monthly developer hours."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Connected technical solutions to keep your platform fast, modern, and commercially effective."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Secure Your Website Care Plan"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. We will audit your current setup and provide a clear recommendation."
+          submitLabel="Enquire About Support"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

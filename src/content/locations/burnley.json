@@ -1,0 +1,45 @@
+{
+  "town": "Burnley",
+  "slug": "web-design-burnley",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Burnley | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Burnley businesses trust. High-speed websites crafted for aerospace, manufacturing, and commercial firms along the M65 corridor.",
+  "primaryKeyword": "web design burnley",
+  "intro": "When your business requires high-performance web design Burnley companies trust to win commercial contracts and qualified customer enquiries, Lancashire Web Designers delivers bespoke digital platforms built for measurable results. Situated along the M65 manufacturing corridor, Burnley is home to world-class aerospace suppliers, precision engineers, digital creative agencies, and ambitious commercial operators. We deliberately bypass sluggish, generic WordPress themes and bloated page builders in favour of clean, hand-crafted code architectures that load in under a second on mobile devices. Every bespoke website we construct is designed around your specific commercial conversion goals, fully accessible to WCAG 2.2 AA standards, and owned outright by your business with zero restrictive agency lock-in.",
+  "localKnowledge": "Burnley's industrial prowess is anchored by its world-renowned aerospace engineering cluster, the growing educational footprint around the UCLan and Burnley College university campuses, and modern commercial hubs like Network 65 and the Weavers' Triangle digital creative district. From advanced CNC fabrication facilities and international freight forwarders to local retail and leisure enterprises near Turf Moor and the town centre, Burnley businesses need websites that convey technical excellence and commercial stability. We engineer bespoke platforms that position Burnley firms as authoritative industry leaders across Lancashire, the North West, and national UK supply chains.",
+  "postcodes": ["BB10", "BB11", "BB12"],
+  "nearbyAreas": [
+    { "name": "Padiham", "slug": "padiham" },
+    { "name": "Nelson", "slug": "nelson" },
+    { "name": "Colne", "slug": "colne" },
+    { "name": "Accrington", "slug": "web-design-accrington" },
+    { "name": "Blackburn", "slug": "web-design-blackburn" }
+  ],
+  "localIndustries": ["Aerospace & Advanced Engineering", "Precision Manufacturing", "Transport & Supply Chain Logistics", "Education & Digital Media"],
+  "servicesOffered": ["Bespoke Web Design", "B2B Lead Engineering", "Ecommerce Stores", "Website Support Plans", "SEO Strategy"],
+  "localFaqs": [
+    {
+      "question": "Can we meet face-to-face in Burnley to plan our web project?",
+      "answer": "Yes, absolutely. Based nearby in Blackburn, we regularly travel across the M65 corridor to meet Burnley business owners, directors, and marketing managers at your premises or local commercial centres.",
+      "display": true
+    },
+    {
+      "question": "Do you build B2B websites for Burnley engineering and manufacturing firms?",
+      "answer": "Yes. A significant portion of our work involves building high-trust B2B platforms for manufacturing, precision engineering, and logistics companies with technical specifications, buyer personas, and direct CRM integrations.",
+      "display": true
+    },
+    {
+      "question": "How quickly can a new website launch for a Burnley business?",
+      "answer": "A focused bespoke brochure website typically launches within 4 to 6 weeks. More complex B2B platforms or ecommerce storefronts typically launch within 6 to 8 weeks from initial discovery.",
+      "display": true
+    },
+    {
+      "question": "Do I own my code and website once payment is complete?",
+      "answer": "Yes, 100%. Upon final project sign-off, all code, design assets, and repository rights transfer directly to your company with zero ongoing agency license fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.7893,
+  "lng": -2.2405,
+  "tier": 1
+}

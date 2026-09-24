@@ -3,8 +3,11 @@ import LocationLayout from 'theme/layouts/LocationLayout.astro';
 import FAQ from 'theme/components/FAQ.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import ServiceGrid from 'theme/components/ServiceGrid.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const locationEntry = await getEntry('locations', 'web-design-blackburn');
 if (!locationEntry) {
@@ -12,13 +15,25 @@ if (!locationEntry) {
 }
 const data = locationEntry.data;
 
+const allProjects = await getCollection('portfolio');
+const blackburnProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'bitlance-group', 'the-royals-removals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
 const localServices = [
   {
     title: 'Bespoke Web Design Blackburn',
-    href: '/bespoke-web-design/blackburn/',
+    href: '/bespoke-web-design/',
     description: 'Custom-coded digital platforms built specifically for Blackburn manufacturers and expanding commercial firms.',
     icon: 'palette',
-    priceFrom: 300,
+    priceFrom: 150,
     benefits: ['Sub-second mobile speed', 'M65 tender readiness', 'Full code ownership']
   },
   {
@@ -26,7 +41,7 @@ const localServices = [
     href: '/b2b-web-design/',
     description: 'Specialised B2B architectures engineered for East Lancashire supply chains, precision engineering, and logistics.',
     icon: 'layers',
-    priceFrom: 300,
+    priceFrom: 250,
     benefits: ['CRM pipeline integration', 'Buyer persona funnels', 'WCAG 2.2 AA accessibility']
   },
   {
@@ -34,7 +49,7 @@ const localServices = [
     href: '/website-support/',
     description: 'Managed security updates, 24/7 uptime monitoring, and dedicated developer hours for Blackburn firms.',
     icon: 'shield-check',
-    priceFrom: 99,
+    priceFrom: 49,
     benefits: ['Daily off-site backups', 'Zero contract lock-in', 'Safe staging updates']
   }
 ];
@@ -104,6 +119,22 @@ const localServices = [
         <ServiceGrid services={localServices} />
       </div>
 
+      <!-- Section: Bespoke Architecture & Prototyping -->
+      <DesignProcessVisuals town={data.town} />
+
+      <!-- Section: Recent Portfolio Case Studies -->
+      <PortfolioShowcase
+        heading="Recent Client Builds & Commercial Portals"
+        subheading="Real platforms engineered for trade suppliers, commercial operators, and high-growth services."
+        items={blackburnProjects}
+      />
+
+      <!-- Section: Verified Client Reviews -->
+      <Testimonials
+        heading="Verified Reviews from Commercial Clients"
+        subheading="Genuine feedback from business owners and directors partnering with our Lancashire studio."
+      />
+
       <!-- Section 4: Nearby Towns Internal Graph -->
       <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-4">
         <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Nearby East Lancashire Towns We Serve</h3>
@@ -126,7 +157,7 @@ const localServices = [
       <div class="max-w-2xl mx-auto pt-8">
         <QuoteFormInline
           heading="Start Your Blackburn Web Project"
-          subheading="Direct consultation with our principal developer. Fixed-price proposals delivered within 24 hours."
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
         />
       </div>
     </div>

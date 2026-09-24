@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'seo');
 if (!serviceEntry) {
   throw new Error('Service entry seo not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const seoProjects = allProjects
+  .filter((p) => ['bitlance-group', 'the-royals-removals', 'blogworms-publishing'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Web Design & Marketing',
+    href: '/web-design-and-marketing/',
+    description: 'Integrated website design and paid ad funnels for rapid commercial customer acquisition.',
+    icon: 'trending-up'
+  },
+  {
+    title: 'Website Speed Optimisation',
+    href: '/services/website-speed-optimisation/',
+    description: 'Core Web Vitals tuning, database defragmentation, and script minification for search speed.',
+    icon: 'zap'
+  },
+  {
+    title: 'Website Redesign',
+    href: '/services/website-redesign/',
+    description: 'Modernise legacy platforms with zero SEO loss and comprehensive 301 URL redirect mapping.',
+    icon: 'refresh-cw'
+  }
+];
+
+const heroTrustBullets = [
+  'In-depth technical site audits and code fixes',
+  'Google Business Profile optimisation for local map packs',
+  'Transparent monthly ranking and enquiry attribution reports',
+  'Led by Mohsin Ali (4+ years search engine optimisation experience)'
+];
 ---
 
 <ServiceLayout
@@ -18,49 +65,91 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="SEO Services Lancashire • Organic Visibility"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Search Engine Optimisation"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Straightforward answers regarding our technical SEO audits, keyword ranking timelines, and Google Business Profile management."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Organic Search Dominance
+          Sustainable Search Rankings
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Technical SEO Services Engineered for Qualified Commercial Enquiries
+          Data-Driven SEO Services Lancashire Businesses Rely On for Long-Term Growth
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Search engine optimisation is fundamentally an engineering discipline, not a marketing gimmick. If your website code is bloated, takes multiple seconds to render on mobile devices, or serves broken Schema structured data, no amount of keyword stuffing will earn durable rankings on Google.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Investing in dedicated <strong>seo services lancashire</strong> allows your business to capture high-intent commercial buyers actively looking for your solutions on Google. Rather than relying on guesswork or automated spam tools, we deliver rigorous technical audits, Google Business Profile optimisations, structured schema data, and high-value keyword architectures designed to establish long-term search authority.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          At Lancashire Web Designers, our SEO services combine forensic technical audits, clean Core Web Vitals remediation, high-intent buyer keyword mapping, and local Google Business Profile optimization to ensure your brand captures high-value search demand across Lancashire and nationwide.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Google algorithms reward websites that load instantaneously, present logically structured information, and offer flawless mobile ergonomics. As a developer-led studio, we don't simply give you a PDF checklist of issues—we dive into your code repository and fix them directly.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="search" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Advantage</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            SEO Deliverables
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for Search Authority
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
+      <!-- Section 3: Deep-dive H2 - Local SEO & Google Business Profile: Dominating Lancashire Maps -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Map Pack Visibility
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Local SEO & Google Business Profile: Dominating Lancashire Maps
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            When potential clients in Blackburn, Preston, Lancaster, or Burnley search for commercial services on mobile devices, Google surfaces the Map 3-Pack before traditional organic results. Winning these placements requires cohesive NAP (Name, Address, Phone) consistency across UK business registers, geo-targeted category structuring, and regular client review generation.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            We optimise your Google Business Profile, align your local citation networks, and connect your profile directly with dedicated location landing pages on your primary website.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Technical SEO Audits: Fixing Crawlability, Speed & Schema -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Crawl Diagnostics
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Technical SEO Audits: Fixing Crawlability, Speed & Schema
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Technical flaws silently prevent search engines from ranking even the best written content. We crawl your website using enterprise diagnostic tools to uncover orphan pages, broken redirect chains, missing canonical links, duplicate title tags, and Core Web Vitals bottlenecks.
+          </p>
+        </div>
+
+        <TechStack />
+      </div>
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Methodical Growth
+            Systematic Methodology
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Search Optimization Roadmap
+            Our 5-Stage Search Optimisation Process
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            Sustainable organic growth grounded in clean technical code and commercial intent.
+            From technical discovery to keyword architecture and ongoing rank tracking.
           </p>
         </div>
 
@@ -75,11 +164,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Included in SEO Engagements</span>
+            <span>Included in Our SEO Work</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -94,7 +184,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Explicit Boundaries</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -107,15 +197,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <TechStack />
-      <FAQ faqs={data.faqs} />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="SEO Case Studies & Organic Growth"
+        subheading="How regional logistics, consulting, and publishing brands captured targeted Google rankings."
+        items={seoProjects}
+      />
 
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Enquire About Technical SEO"
-          subheading="Tell us your current website address and target keywords for a detailed technical review."
+      <!-- Section 8: Deep-dive H2 - On-Page & Keyword Strategy for Regional Commercial Terms -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Keyword Architecture
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            On-Page & Keyword Strategy for Regional Commercial Terms
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Rather than optimizing for generic single-word phrases that generate irrelevant national traffic, we focus on high-intent commercial keywords. For trade suppliers, engineering operators, and professional firms, long-tail phrases with location context represent prospects ready to award contracts.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Every core page is assigned a distinct primary keyword to avoid cannibalisation, backed by semantic heading hierarchies (H1, H2, H3) and contextual internal links that reinforce topical authority.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Transparent SEO Packages for Lancashire Companies -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Transparent Investment
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Transparent SEO Packages for Lancashire Companies
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Standalone technical audits start from £70 for initial diagnostics, with comprehensive ongoing local and technical SEO retainers starting from £300 per month.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed audit"
+          whatsIncluded={data.whatsIncluded}
+          title="Technical SEO Audits from £70"
+          subtitle="Fixed pricing for detailed diagnostic code audits, with monthly growth retainers from £300."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="Feedback from commercial directors who partnered with Mohsin Ali for organic search visibility."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire SEO and search marketing specialist"
+        leadSentence="Based in Blackburn, we provide technical search engine optimisation for ambitious businesses throughout Lancashire."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Straightforward answers about our SEO audits, ranking timelines, and search engine practices."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Complementary web engineering and digital marketing solutions for growing Lancashire firms."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Request Your Technical SEO Audit"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. We will audit your current Google standing within 24 hours."
+          submitLabel="Audit My Website"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

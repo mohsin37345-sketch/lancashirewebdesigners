@@ -1,0 +1,17 @@
+# Netlify Configuration for Lancashire Web Designers
+# Production domain: https://www.lancashirewebdesigners.co.uk
+
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Staging safety: any preview or branch build on *.netlify.app returns noindex, nofollow
+[[context.deploy-preview.headers]]
+  for = "/*"
+  [context.deploy-preview.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[context.branch-deploy.headers]]
+  for = "/*"
+  [context.branch-deploy.headers.values]
+    X-Robots-Tag = "noindex, nofollow"

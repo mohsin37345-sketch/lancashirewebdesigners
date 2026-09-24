@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'wordpress-development');
 if (!serviceEntry) {
   throw new Error('Service entry wordpress-development not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const wpProjects = allProjects
+  .filter((p) => ['the-royals-removals', 'blogworms-publishing', 'mindful-ecotherapy-center'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Website Speed Optimisation',
+    href: '/services/website-speed-optimisation/',
+    description: 'Diagnose and remediate slow WordPress database bloat and heavy script payloads.',
+    icon: 'zap'
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Proactive WordPress maintenance, staging updates, and daily cloud backup retainers.',
+    icon: 'shield-check'
+  },
+  {
+    title: 'Ecommerce Web Design',
+    href: '/ecommerce-web-design/',
+    description: 'Tailored WooCommerce and Shopify storefronts built for frictionless online retail checkout.',
+    icon: 'shopping-bag'
+  }
+];
+
+const heroTrustBullets = [
+  'Custom lightweight block themes engineered from scratch',
+  'Zero bloated Elementor or Divi builder clutter',
+  'Tailored WooCommerce store architecture',
+  'Direct communication with Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -18,49 +65,91 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="WordPress Development Lancashire • Custom Engineering"
+  heroTrustBullets={heroTrustBullets}
   serviceType="WordPress Development"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Everything you need to know about bespoke WordPress themes, Gutenberg blocks, WooCommerce development, and migrations."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Clean Gutenberg Engineering
+          Clean Code Architecture
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Bespoke WordPress Development Without the Bloat
+          Bespoke WordPress Development Lancashire Businesses Trust for Speed and Stability
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          WordPress powers over 40% of the web, but the vast majority of sites suffer from catastrophic theme bloat, sluggish drag-and-drop page builders, and unstable plugin dependencies. We build custom WordPress solutions the right way: with hand-crafted PHP, custom Gutenberg blocks, and zero commercial builder overhead.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Choosing professional <strong>wordpress development lancashire</strong> gives your organisation the editorial familiarity of the world's most popular CMS without the crippling bloat of off-the-shelf themes. We build custom, lightweight WordPress themes and tailored Gutenberg block systems from the ground up, guaranteeing sub-second page rendering, enterprise security, and effortless daily publishing.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Your marketing team enjoys complete creative control over page layouts through an intuitive, tailored WordPress admin, while your visitors experience sub-second mobile page loads and flawless performance.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Most agency WordPress sites are weighed down by 40+ third-party plugins and drag-and-drop builders that break every time an update is released. We build clean, native WordPress installations with minimal plugin dependencies, ensuring your website stays fast, reliable, and completely under your control.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="code" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Engineering Benefit</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Development Highlights
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for Editorial Performance
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
+      <!-- Section 3: Deep-dive H2 - Hire a WordPress Developer: Why Bespoke Beats Off-the-Shelf Themes -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Bespoke vs Commercial Themes
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Hire a WordPress Developer: Why Bespoke Beats Off-the-Shelf Themes
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            When you purchase a £50 ThemeForest template, you inherit code written to support every conceivable business type—packing sliders, portfolio filters, and mega menus your company will never use. This bloat drags down your Google Core Web Vitals and inflates server hosting requirements.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            When you hire an experienced WordPress developer, you receive code written exclusively for your company. Pages render in fractions of a second, the WordPress admin interface only shows the fields your team needs, and your website remains completely immune to generic theme vulnerabilities.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Moving Off Elementor or Divi -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Platform Modernisation
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Moving Off Elementor or Divi: Modernising Legacy WordPress Sites
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Are you frustrated by how slow your current Elementor or Divi site feels on mobile? We specialise in refactoring slow visual builder setups into native WordPress Gutenberg block patterns. You keep the visual layout flexibility you love, but gain a 3x speed boost and clean, maintainable code.
+          </p>
+        </div>
+
+        <TechStack />
+      </div>
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Lifecycle
+            Engineering Lifecycle
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our WordPress Development Process
+            Our 5-Stage WordPress Build Process
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            From custom post type modeling to secure deployment.
+            From data schema design to staging verification and editorial handover.
           </p>
         </div>
 
@@ -75,11 +164,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Included in Custom WP Builds</span>
+            <span>Included in Custom WordPress Builds</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -94,7 +184,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Items Quoted Separately</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -107,15 +197,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <TechStack />
-      <FAQ faqs={data.faqs} />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="WordPress Case Studies & Client Builds"
+        subheading="Bespoke WordPress, publishing portals, and wellness platforms engineered by our studio."
+        items={wpProjects}
+      />
 
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Start Your WordPress Development Project"
-          subheading="Speak directly with our technical lead. Fixed-price proposals delivered in 24 hours."
+      <!-- Section 8: Deep-dive H2 - WooCommerce Engineering for Lancashire Retailers -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Ecommerce Integration
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            WooCommerce Engineering for Lancashire Retailers
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            When standard retail templates aren't enough, we build custom WooCommerce experiences: wholesale trade portals with password-protected pricing, custom product customisers, automated invoice generation, and real-time inventory synchronisation with back-office accounting tools like Xero and Sage.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            By optimizing WooCommerce database queries and implementing object caching, we ensure checkout pages remain instantaneous even during high-traffic promotional periods.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Security Hardening, Speed & Custom Post Types -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Guide
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Security Hardening, Speed & Custom Post Types
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our custom WordPress builds start from £300 for focused landing pages and single-purpose setups, scaling to £500 to £1,200 for full corporate websites and multi-tier WooCommerce installations.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="WordPress Builds from £300"
+          subtitle="Fixed milestone pricing with zero hidden theme renewal fees and full code ownership on delivery."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What editors, directors, and marketers say about partnering with Mohsin Ali for WordPress development."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire WordPress developer"
+        leadSentence="From our studio base in Blackburn, we develop custom WordPress platforms for ambitious companies throughout Lancashire."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Have questions about bespoke WordPress themes, Elementor migrations, or WooCommerce? Here are straightforward answers."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Complementary services to keep your WordPress platform fast, secure, and commercially effective."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Build Your Custom WordPress Site"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Request WordPress Proposal"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

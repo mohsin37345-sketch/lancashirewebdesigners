@@ -1,0 +1,165 @@
+---
+import LocationLayout from 'theme/layouts/LocationLayout.astro';
+import FAQ from 'theme/components/FAQ.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import ServiceGrid from 'theme/components/ServiceGrid.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
+import Icon from 'theme/components/Icon.astro';
+import { getEntry, getCollection } from 'astro:content';
+
+const locationEntry = (await getEntry('locations', 'web-design-burnley')) || (await getEntry('locations', 'burnley'));
+if (!locationEntry) {
+  throw new Error('Location entry web-design-burnley not found');
+}
+const data = locationEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const burnleyProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'bitlance-group', 'the-royals-removals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const localServices = [
+  {
+    title: 'Bespoke Web Design Burnley',
+    href: '/bespoke-web-design/',
+    description: 'Custom-coded digital platforms engineered for Burnley aerospace, precision engineering, and commercial operators.',
+    icon: 'palette',
+    priceFrom: 150,
+    benefits: ['Sub-second mobile speed', 'M65 tender readiness', 'Full code ownership']
+  },
+  {
+    title: 'B2B Lead Engineering',
+    href: '/b2b-web-design/',
+    description: 'Specialised B2B architectures engineered for East Lancashire supply chains, manufacturing, and transport logistics.',
+    icon: 'layers',
+    priceFrom: 250,
+    benefits: ['CRM pipeline integration', 'Buyer persona funnels', 'WCAG 2.2 AA accessibility']
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Managed security updates, automated backups, and dedicated developer hours for Burnley firms.',
+    icon: 'shield-check',
+    priceFrom: 49,
+    benefits: ['Daily off-site backups', 'Zero contract lock-in', 'Safe staging updates']
+  }
+];
+---
+
+<LocationLayout
+  title={data.metaTitle}
+  description={data.metaDescription}
+  town={data.town}
+  county={data.county}
+  postcodes={data.postcodes}
+  lat={data.lat}
+  lng={data.lng}
+  faqs={data.localFaqs}
+>
+  <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      <!-- Section 1: Intro Narrative -->
+      <div class="max-w-4xl space-y-6">
+        <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+          M65 Engineering Excellence
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Bespoke Web Design Burnley Businesses Trust for Commercial Growth
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {data.intro}
+        </p>
+      </div>
+
+      <!-- Section 2: Deep Local Knowledge -->
+      <div class="p-8 lg:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400">
+          <Icon name="map-pin" class="w-3.5 h-3.5" />
+          <span>Local Context</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Aerospace Innovation, Weavers' Triangle & M65 Connectivity
+        </h2>
+        <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+          {data.localKnowledge}
+        </p>
+        <div class="pt-4 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Key Sectors:</span>
+          {data.localIndustries.map((ind) => (
+            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+              {ind}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 3: Tailored Services for Burnley -->
+      <div class="space-y-8">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Tailored Solutions
+          </span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Specialist Services for Burnley Businesses
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+            High-performance web software crafted for regional manufacturers, suppliers, and service providers.
+          </p>
+        </div>
+
+        <ServiceGrid services={localServices} />
+      </div>
+
+      <!-- Section: Bespoke Architecture & Prototyping -->
+      <DesignProcessVisuals town={data.town} />
+
+      <!-- Section: Recent Portfolio Case Studies -->
+      <PortfolioShowcase
+        heading="Recent Client Builds & Commercial Portals"
+        subheading="Real platforms engineered for trade suppliers, commercial operators, and high-growth services."
+        items={burnleyProjects}
+      />
+
+      <!-- Section: Verified Client Reviews -->
+      <Testimonials
+        heading="Verified Reviews from Commercial Clients"
+        subheading="Genuine feedback from business owners and directors partnering with our Lancashire studio."
+      />
+
+      <!-- Section 4: Nearby Towns Internal Graph -->
+      <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-4">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Nearby East Lancashire Towns We Serve</h3>
+        <div class="flex flex-wrap gap-3">
+          {data.nearbyAreas.map((area) => (
+            <a
+              href={`/areas/${area.slug}/`}
+              class="px-4 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors"
+            >
+              {area.name} &rarr;
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 5: Local FAQs -->
+      <FAQ faqs={data.localFaqs} heading="Burnley Web Design FAQs" />
+
+      <!-- Section 6: Direct Enquiry Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Start Your Burnley Web Project"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+        />
+      </div>
+    </div>
+  </article>
+</LocationLayout>

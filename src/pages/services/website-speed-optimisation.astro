@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'website-speed-optimisation');
 if (!serviceEntry) {
   throw new Error('Service entry website-speed-optimisation not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const speedProjects = allProjects
+  .filter((p) => ['hvac-duct-calculator', 'smart-rcm-billing', 'haul-uk-international'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'WordPress Development',
+    href: '/services/wordpress-development/',
+    description: 'Custom lightweight Gutenberg themes and database cleanups to eliminate builder lag.',
+    icon: 'code'
+  },
+  {
+    title: 'Shopify Development',
+    href: '/services/shopify-development/',
+    description: 'Liquid theme optimization, app audit, and frictionless checkout speed improvements.',
+    icon: 'shopping-bag'
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Proactive speed monitoring, staging plugin testing, and continuous server maintenance.',
+    icon: 'shield-check'
+  }
+];
+
+const heroTrustBullets = [
+  'LCP, CLS & INP forensic audit and code fixes',
+  'WordPress, Shopify & custom codebase tuning',
+  'Database optimization, image compression & script minification',
+  'Direct technical analysis by Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -18,49 +65,113 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Website Speed Optimisation • Core Web Vitals"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Website Speed Optimisation"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Straightforward answers about our speed auditing process, Core Web Vitals remediation, and expected gains."
+  includeUrlField={true}
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
           Sub-Second Performance
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Pass Core Web Vitals & Accelerate Your Business Website
+          Website Speed Optimisation Lancashire Businesses Trust to Win More Customers
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Google explicitly measures real-world user experience through Core Web Vitals (LCP, INP, and CLS) as a direct organic ranking signal. If your website takes more than 2.5 seconds to load, you are haemorrhaging mobile visitors, paying inflated Google Ads click costs, and handing market share to competitors.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Investing in dedicated <strong>website speed optimisation</strong> eliminates the frustrating mobile loading delays that drive prospective buyers straight to your competitors. Every fraction of a second matters: slow pages inflate bounce rates, depress Google organic search rankings, and increase the cost of your paid advertising campaigns.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Our forensic website speed optimisation service cleans up code bloat, optimizes asset pipelines, refactors render-blocking JavaScript, and implements edge-caching architectures that turn sluggish sites into sub-second powerhouses.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Rather than installing generic caching plugins that merely mask deeper architectural problems, we conduct deep-code audits. We inspect network waterfall charts, defragment databases, defer non-critical JavaScript, and optimize render-critical stylesheets to deliver tangible, sustained speed gains.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="zap" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Performance Impact</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Speed Deliverables
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for Core Web Vitals
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
+      </div>
+
+      <!-- Section 3: Deep-dive H2 - Why Speed Dictates Your Search Rankings and Conversions -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Commercial Impact
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Why Speed Dictates Your Search Rankings and Conversions
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Google officially incorporates page experience signals and Core Web Vitals into its search ranking algorithm. Websites with slow server response times (TTFB) or heavy image payloads are pushed down organic search rankings in favour of responsive, fast-loading competitors.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            From a commercial perspective, studies repeatedly confirm that a 1-second delay in page load time can reduce conversions by up to 20%. Ensuring your digital platform renders within one second directly improves your inbound commercial revenue.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Understanding Core Web Vitals: LCP, CLS, and INP in Plain English -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Metric Breakdown
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Understanding Core Web Vitals: LCP, CLS, and INP in Plain English
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Google evaluates website performance through three primary real-world user metrics:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Largest Contentful Paint (LCP)</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Measures perceived loading speed. How quickly does the main hero banner or headline appear on screen? Target: under 2.5 seconds.
+            </p>
           </div>
-        ))}
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Interaction to Next Paint (INP)</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Measures visual responsiveness. Does the page respond immediately when tapping a menu or button, or does JavaScript freeze the main thread?
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Cumulative Layout Shift (CLS)</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Measures visual stability. Do elements jump around unexpectedly while images and fonts finish loading? Target: less than 0.1.
+            </p>
+          </div>
+        </div>
+
+        <TechStack />
       </div>
 
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Remediation Sprint
+            Systematic Optimization
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Speed Remediation Process
+            Our 5-Stage Speed Remediation Process
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            Proven engineering steps to achieve straight 90+ Lighthouse scores.
+            Rapid 3-5 business day turnaround from initial waterfall profiling to verified handover.
           </p>
         </div>
 
@@ -75,11 +186,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Included in Speed Optimisation</span>
+            <span>Included in Speed Packages</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -94,7 +206,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Technical Exclusions</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -107,15 +219,93 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <TechStack />
-      <FAQ faqs={data.faqs} />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Speed Case Studies & Core Web Vitals Fixes"
+        subheading="Technical applications and commercial portals tuned for sub-second page performance."
+        items={speedProjects}
+      />
 
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Get a Free Speed Assessment"
-          subheading="Enter your website URL below. We will run an in-depth waterfall analysis and send recommendations within 24 hours."
+      <!-- Section 8: Deep-dive H2 - Speed Fixes by Platform -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Platform Tuning
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Speed Fixes by Platform: WordPress, Shopify, and Custom Web Applications
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Different platforms suffer from different bottlenecks. In WordPress, bloated database transients, uncompressed WooCommerce thumbnails, and heavy page builder styles usually cause lag. In Shopify, app script injection and un-minified theme Liquid assets are common culprits.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            We apply platform-specific remediation: configuring Redis object caching and image offloading for WordPress, deferring third-party tags and streamlining Liquid code for Shopify, and implementing edge CDN caching for custom applications.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - What Our Technical Speed Audit Delivers -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Overview
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            What Our Technical Speed Audit Delivers
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Speed optimisation packages start from £150 for targeted audits and quick wins, scaling to £250 for comprehensive codebase remediation across WordPress, Shopify, or custom platforms.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Speed Packages from £150"
+          subtitle="Fixed milestone pricing with before-and-after benchmark reporting and full code documentation."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What business directors and store managers say about our speed optimisation services."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire website speed optimisation specialist"
+        leadSentence="From our studio base in Blackburn, we tune websites for businesses throughout Lancashire and the UK."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Straightforward answers about our speed auditing process, Core Web Vitals remediation, and expected gains."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Connected solutions to keep your platform fast, modern, and commercially effective."
+      />
+
+      <!-- Section 15: Inline Quote Form (with URL field!) -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Request Your Website Speed Audit"
+          subheading="Enter your details and website URL below. Mohsin Ali will run a direct forensic performance audit within 24 hours."
+          submitLabel="Audit My Website Speed"
+          includeUrlField={true}
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

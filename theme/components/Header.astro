@@ -195,6 +195,15 @@ const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
           <span>{phone}</span>
         </a>
       )}
+      {site.email && (
+        <a
+          href={`mailto:${site.email}`}
+          class="mobile-nav-link flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-medium text-xs hover:text-blue-600 transition-colors"
+        >
+          <Icon name="mail" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
+          <span>{site.email}</span>
+        </a>
+      )}
       <a
         href="/get-a-quote/"
         class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-md hover:bg-blue-700"

@@ -1,0 +1,45 @@
+{
+  "town": "Accrington",
+  "slug": "web-design-accrington",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Accrington | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Accrington businesses trust. Fast, custom-built websites for manufacturers, trade suppliers, and commercial firms across Hyndburn.",
+  "primaryKeyword": "web design accrington",
+  "intro": "When your company requires high-performance web design Accrington businesses trust to capture high-value commercial contracts and steady local enquiries, Lancashire Web Designers delivers bespoke digital platforms built for long-term commercial success. Located right in the heart of East Lancashire, Hyndburn enterprises across Accrington, Altham, Church, Clayton-le-Moors, and Oswaldtwistle need authoritative websites that present absolute technical credibility to regional buyers and procurement teams. We deliberately reject bloated, sluggish WordPress page builders in favour of ultra-fast, hand-crafted code architectures that render in under a second on mobile 4G networks, ensuring exceptional Core Web Vitals, high local search rankings, and friction-free visitor conversions throughout Lancashire.",
+  "localKnowledge": "Accrington's industrial heritage is renowned for its historic brickworks, engineering innovation, and textile roots, which have evolved into modern plastics manufacturing, commercial freight logistics, and specialised supply chain hubs along Junction 7 of the M65. With active regeneration initiatives revitalising the town centre around the Market Hall and Town Hall, local independent firms, commercial trade contractors, and regional distributors need modern digital infrastructure that outperforms regional competitors. We build accessible, high-performance websites that convert casual visitors into contracted clients.",
+  "postcodes": ["BB5"],
+  "nearbyAreas": [
+    { "name": "Oswaldtwistle", "slug": "oswaldtwistle" },
+    { "name": "Church", "slug": "church" },
+    { "name": "Blackburn", "slug": "web-design-blackburn" },
+    { "name": "Burnley", "slug": "web-design-burnley" },
+    { "name": "Darwen", "slug": "web-design-darwen" }
+  ],
+  "localIndustries": ["Manufacturing & Plastics", "Commercial Transport & Freight", "Building & Trade Services", "Retail & Town Centre Commerce"],
+  "servicesOffered": ["Bespoke Web Design", "B2B Lead Generation", "Website Support Plans", "SEO & Local Search", "Speed Optimisation"],
+  "localFaqs": [
+    {
+      "question": "Can we meet in person in Accrington to discuss our web design project?",
+      "answer": "Yes, absolutely. Being based right next door in Blackburn, we can easily visit your premises in Accrington, Altham, or Oswaldtwistle for a face-to-face project discovery session.",
+      "display": true
+    },
+    {
+      "question": "How quickly can a bespoke website launch for an Accrington business?",
+      "answer": "A focused bespoke brochure website typically launches within 4 to 6 weeks. Larger B2B platforms or ecommerce stores generally take 6 to 8 weeks from initial wireframes to production deployment.",
+      "display": true
+    },
+    {
+      "question": "Do you help Accrington trade suppliers rank on Google local search?",
+      "answer": "Yes. Every website we build features complete semantic HTML5, local schema graphs (LocalBusiness & PostalAddress), and technical on-page optimisation targeting Accrington and Hyndburn commercial queries.",
+      "display": true
+    },
+    {
+      "question": "Do I own my code and website once payment is complete?",
+      "answer": "Yes, 100%. Upon final project sign-off, all code, design assets, and repository rights transfer directly to your company with zero ongoing agency license fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.7534,
+  "lng": -2.3638,
+  "tier": 1
+}

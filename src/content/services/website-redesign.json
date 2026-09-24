@@ -2,8 +2,8 @@
   "title": "Website Redesign",
   "slug": "website-redesign",
   "shortTitle": "Website Redesign",
-  "metaTitle": "Website Redesign Services | Lancashire Web Designers",
-  "metaDescription": "Strategic website redesign services for UK businesses. Transform your outdated site into a fast, mobile-friendly, lead-generating commercial asset.",
+  "metaTitle": "Website Redesign Services Lancashire | Modernise Your Site",
+  "metaDescription": "Transform underperforming websites with our Lancashire website redesign services. Zero SEO traffic loss, 301 redirect mapping, and modern design that converts.",
   "primaryKeyword": "website redesign services",
   "secondaryKeywords": [
     "website redesign agency",
@@ -11,16 +11,16 @@
     "rebuild outdated website",
     "website overhaul"
   ],
-  "heroHeading": "Website Redesign Services",
+  "heroHeading": "Website Redesign Services Lancashire",
   "heroSubheading": "Transforming outdated digital presences into high-performance, conversion-engineered commercial platforms.",
   "icon": "refresh-cw",
   "summary": "Is your current website looking dated, loading slowly on smartphones, or failing to generate qualified enquiries? Our strategic website redesign services rebuild your online presence from the ground up, preserving your hard-won SEO equity while dramatically elevating your brand perception and lead conversion rates.",
   "benefits": [
-    "Modern, brand-aligned visual design that reflects your current market maturity",
-    "Complete technical overhaul achieving sub-second mobile page loads",
-    "Rigorous 301 redirect mapping to protect and enhance existing Google rankings",
-    "Modernised user experience (UX) optimized for higher conversion rates",
-    "Full accessibility compliance (WCAG 2.2 Level AA) across all devices"
+    "Brand Modernisation — Modern, brand-aligned visual design that reflects your current market maturity",
+    "Sub-Second Rendering — Complete technical overhaul achieving sub-second mobile page loads",
+    "SEO Equity Protection — Rigorous 301 redirect mapping to protect and enhance existing Google rankings",
+    "Conversion Ergonomics — Modernised user experience (UX) optimised for higher conversion rates",
+    "Strict Accessibility — Full accessibility compliance (WCAG 2.2 Level AA) across all devices"
   ],
   "process": [
     {
@@ -61,9 +61,9 @@
     "Extensive rewriting of legacy content (editorial copywriting add-ons available)",
     "Payment of outstanding debt on legacy hosting platforms"
   ],
-  "priceFrom": 400,
+  "priceFrom": 200,
   "priceUnit": "fixed project",
-  "priceNotes": "Complete website redesign overhauls start from £400, with extra pages easily added at +£50/page.",
+  "priceNotes": "Complete website redesign overhauls start from £200, with extra pages easily added at +£25/page.",
   "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Vite", "Screaming Frog"],
   "typicalTimeline": "4-6 weeks",
   "faqs": [
@@ -88,7 +88,7 @@
       "display": true
     }
   ],
-  "relatedServices": ["bespoke-web-design", "website-speed-optimisation", "seo"],
+  "relatedServices": ["bespoke-web-design", "services/website-speed-optimisation", "services/seo"],
   "order": 9,
   "featured": false
 }

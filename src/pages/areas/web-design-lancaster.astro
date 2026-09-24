@@ -3,8 +3,11 @@ import LocationLayout from 'theme/layouts/LocationLayout.astro';
 import FAQ from 'theme/components/FAQ.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import ServiceGrid from 'theme/components/ServiceGrid.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const locationEntry = await getEntry('locations', 'web-design-lancaster');
 if (!locationEntry) {
@@ -12,13 +15,25 @@ if (!locationEntry) {
 }
 const data = locationEntry.data;
 
+const allProjects = await getCollection('portfolio');
+const lancasterProjects = allProjects
+  .filter((p) => ['blogworms-publishing', 'mindful-ecotherapy-center', 'maxora-design'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
 const localServices = [
   {
     title: 'Bespoke Web Design',
     href: '/bespoke-web-design/',
     description: 'Tailored digital platforms for Lancaster hospitality brands, heritage enterprises, and university spinouts.',
     icon: 'palette',
-    priceFrom: 300,
+    priceFrom: 150,
     benefits: ['Sub-second mobile speed', 'Brand prestige', 'Full code ownership']
   },
   {
@@ -26,7 +41,7 @@ const localServices = [
     href: '/ecommerce-web-design/',
     description: 'High-converting online storefronts engineered for North Lancashire retail and artisan brands.',
     icon: 'shopping-bag',
-    priceFrom: 500,
+    priceFrom: 350,
     benefits: ['Frictionless checkout', 'Zero app subscription bloat', 'Stripe & Apple Pay ready']
   },
   {
@@ -34,7 +49,7 @@ const localServices = [
     href: '/website-support/',
     description: 'Proactive maintenance, 24/7 uptime monitoring, and dedicated developer hours for Lancaster firms.',
     icon: 'shield-check',
-    priceFrom: 99,
+    priceFrom: 49,
     benefits: ['Daily cloud backups', 'Safe staging updates', 'Zero contract lock-in']
   }
 ];
@@ -104,6 +119,22 @@ const localServices = [
         <ServiceGrid services={localServices} />
       </div>
 
+      <!-- Section: Bespoke Architecture & Prototyping -->
+      <DesignProcessVisuals town={data.town} />
+
+      <!-- Section: Recent Portfolio Case Studies -->
+      <PortfolioShowcase
+        heading="Recent Client Builds & Digital Platforms"
+        subheading="Bespoke platforms engineered for publishing, healthcare, and creative businesses across North Lancashire."
+        items={lancasterProjects}
+      />
+
+      <!-- Section: Verified Client Reviews -->
+      <Testimonials
+        heading="Client Reviews & Feedback"
+        subheading="What founders, directors, and practice leads say about partnering with our Lancashire studio."
+      />
+
       <!-- Section 4: Nearby Towns -->
       <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 space-y-4">
         <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400">Nearby North Lancashire Areas We Serve</h3>
@@ -126,7 +157,7 @@ const localServices = [
       <div class="max-w-2xl mx-auto pt-8">
         <QuoteFormInline
           heading="Start Your Lancaster Web Project"
-          subheading="Direct consultation with our senior technical architect. Fixed-price proposals delivered within 24 hours."
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
         />
       </div>
     </div>

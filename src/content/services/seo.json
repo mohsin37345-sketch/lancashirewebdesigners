@@ -2,8 +2,8 @@
   "title": "Search Engine Optimisation",
   "slug": "seo",
   "shortTitle": "SEO Services",
-  "metaTitle": "SEO Services Lancashire | Lancashire Web Designers",
-  "metaDescription": "Data-driven SEO services for ambitious UK businesses. Technical search audits, local citations, high-intent keyword ranking, and sustainable organic traffic.",
+  "metaTitle": "SEO Services Lancashire | Local & Technical SEO Audits",
+  "metaDescription": "Data-driven SEO services for Lancashire businesses. We improve Google rankings with technical SEO audits, Google Business Profile optimisation, and content.",
   "primaryKeyword": "seo services lancashire",
   "secondaryKeywords": [
     "search engine optimisation lancashire",
@@ -11,16 +11,16 @@
     "local seo lancashire",
     "organic search marketing"
   ],
-  "heroHeading": "Search Engine Optimisation",
-  "heroSubheading": "Dominating organic search with technical precision, high-intent commercial keyword targeting, and authoritative digital relevance.",
+  "heroHeading": "SEO Services Lancashire",
+  "heroSubheading": "Dominating organic search with technical precision, high-intent regional keyword targeting, and authoritative digital relevance.",
   "icon": "search",
-  "summary": "Our search engine optimisation services help UK businesses earn sustainable top-tier visibility in Google organic search. Rather than chasing fleeting algorithm tricks, we focus on technical code perfection, sub-second page performance, rich Schema structured data, and content architectures engineered around genuine commercial intent.",
+  "summary": "Our search engine optimisation services help Lancashire businesses earn sustainable top-tier visibility in Google organic search. Rather than chasing fleeting algorithm tricks, we focus on technical code perfection, sub-second page performance, rich Schema structured data, and content architectures engineered around genuine commercial intent.",
   "benefits": [
-    "Technical SEO audits uncovering indexing barriers, broken redirects, and crawl inefficiencies",
-    "High-intent keyword research prioritising terms that generate qualified enquiries",
-    "Local SEO optimisation for Google Maps and high-authority UK citation networks",
-    "On-page content optimisation with structured JSON-LD schemas and semantic markup",
-    "Transparent monthly progress reports tracking keyword visibility and inbound revenue"
+    "Technical Audits — In-depth inspections uncovering indexing barriers, broken redirects, and crawl inefficiencies",
+    "High-Intent Research — Commercial keyword research prioritising terms that generate qualified customer enquiries",
+    "Local Map Dominance — Google Business Profile optimisation and high-authority UK citation network alignment",
+    "On-Page Precision — Semantic HTML, structured JSON-LD schemas, and heading hierarchy optimisations",
+    "Transparent Tracking — Clear monthly ranking reports tracking organic keyword visibility and inbound revenue"
   ],
   "process": [
     {
@@ -50,31 +50,31 @@
     }
   ],
   "whatsIncluded": [
-    "Full technical SEO codebase audit and remediation plan",
+    "Full technical SEO codebase audit and remediation punch list",
     "Comprehensive keyword research with search volume and intent classification",
     "Structured data and Schema.org markup implementation",
-    "Google Business Profile optimization and citation clean-up",
+    "Google Business Profile optimisation and citation clean-up",
     "Monthly keyword rank tracking and conversion attribution reporting"
   ],
   "whatsNotIncluded": [
-    "Spammy automated link-building schemes (we adhere strictly to Google Webmaster Guidelines)",
+    "Spammy automated link-building schemes (we adhere strictly to Google Search guidelines)",
     "Paid search ad spend (Google Ads management quoted separately)",
     "Guaranteed '#1 rankings in 48 hours' (no legitimate agency can guarantee third-party algorithms)"
   ],
   "priceFrom": 70,
   "priceUnit": "fixed audit",
-  "priceNotes": "Technical SEO audits and indexation setup start from £70.",
+  "priceNotes": "Technical SEO audits and indexation setup start from £70, with comprehensive monthly retainers from £300.",
   "techStack": ["Google Search Console", "Ahrefs", "Screaming Frog", "Semrush", "Google Analytics 4"],
   "typicalTimeline": "3-6 month growth campaigns",
   "faqs": [
     {
       "question": "How long does it take to see results from SEO?",
-      "answer": "While technical fixes and speed improvements provide immediate indexing benefits within weeks, significant ranking jumps for competitive commercial queries typically manifest within 3 to 6 months of steady optimization and content deployment.",
+      "answer": "While technical fixes and speed improvements provide immediate indexing benefits within weeks, significant ranking jumps for competitive commercial queries typically manifest within 3 to 6 months of steady optimisation and content deployment.",
       "display": true
     },
     {
       "question": "What is the difference between local SEO and national SEO?",
-      "answer": "Local SEO focuses on capturing geographically constrained searches (e.g. 'accountants in Preston' or map pack results), heavily leveraging Google Business Profiles and local citations. National SEO focuses on broader commercial keywords without geographic modifiers, requiring deeper domain authority and extensive topic clustering.",
+      "answer": "Local SEO focuses on capturing geographically constrained searches (such as 'accountants in Preston' or Google Maps 3-pack results), heavily leveraging Google Business Profiles and local citations. National SEO focuses on broader commercial keywords without geographic modifiers, requiring deeper domain authority and extensive topic clustering.",
       "display": true
     },
     {
@@ -88,7 +88,7 @@
       "display": true
     }
   ],
-  "relatedServices": ["web-design-and-marketing", "bespoke-web-design", "website-support"],
+  "relatedServices": ["web-design-and-marketing", "services/website-speed-optimisation", "services/website-redesign"],
   "order": 6,
   "featured": false
 }

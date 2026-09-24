@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'ecommerce-web-design');
 if (!serviceEntry) {
   throw new Error('Service entry ecommerce-web-design not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const ecommerceProjects = allProjects
+  .filter((p) => ['kifl-fashion-store', 'haul-uk-international', 'the-royals-removals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Shopify Development',
+    href: '/services/shopify-development/',
+    description: 'Custom Liquid themes, Shopify Functions, and checkout extensibility without app subscription bloat.',
+    icon: 'shopping-bag'
+  },
+  {
+    title: 'WordPress Development',
+    href: '/services/wordpress-development/',
+    description: 'Custom WooCommerce themes and lightweight block architectures engineered for performance.',
+    icon: 'code'
+  },
+  {
+    title: 'Website Speed Optimisation',
+    href: '/services/website-speed-optimisation/',
+    description: 'Audit and remediate slow mobile store load times, heavy JavaScript, and bloated asset payloads.',
+    icon: 'zap'
+  }
+];
+
+const heroTrustBullets = [
+  'Platform-neutral advice across Shopify & WooCommerce',
+  'Frictionless mobile checkout UX',
+  'Zero recurring theme bloat or unnecessary plugins',
+  'Direct collaboration with Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -18,93 +65,91 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Ecommerce Design Agency • Online Retail"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Ecommerce Web Design"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Everything you need to know about our ecommerce design, checkout optimisation, migrations, and payment setups."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      <!-- Section 1: In-depth Summary -->
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Transactional Excellence
+          Conversion-Driven Retail
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          A High-Performance Ecommerce Design Agency Driving Real Revenue
+          A Dedicated Ecommerce Design Agency Focused on Sustainable Revenue
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          As a specialized <strong>ecommerce design agency</strong>, Lancashire Web Designers builds custom online stores designed to eliminate friction at every stage of the customer purchasing journey. We recognise that in modern ecommerce, every 100 milliseconds of page latency directly degrades checkout conversion rates, lowers average order value, and wastes valuable paid advertising investment.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          As an experienced <strong>ecommerce design agency</strong>, we build high-performance online stores that turn casual browsers into repeat purchasers. We craft bespoke storefronts on Shopify, WooCommerce, and modern headless commerce architectures, eliminating slow checkout friction, optimising mobile product discovery, and engineering conversion-focused buying funnels that maximise your average order value.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Whether you are launching an ambitious direct-to-consumer brand on Shopify, migrating a multi-thousand SKU catalog from legacy WooCommerce, or requiring a high-speed headless storefront, we engineer custom storefronts that combine exquisite brand aesthetics with robust, sub-second transactional performance.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          Too many retailers get trapped in generic pre-made themes cluttered with twenty different third-party apps that slow down mobile checkouts and eat away at monthly margins. We hand-code lightweight ecommerce stores engineered for sub-second page loads, effortless catalog navigation, and rock-solid payment security.
         </p>
       </div>
 
-      <!-- Section 2: Platform Comparison -->
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
       <div class="space-y-6">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Platform Selection
+            Storefront Advantages
           </span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Choosing the Right Ecommerce Foundation
+            Engineered for Retail Conversions
           </h2>
-          <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            We advise objectively on the optimal platform architecture based on your inventory complexity and operational overhead.
+        </div>
+        <FeatureCards features={data.benefits} />
+      </div>
+
+      <!-- Section 3: Deep-dive H2 - Ecommerce SEO Built In -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Organic Discovery
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Ecommerce SEO Built In: Structured Product Visibility
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Ranking retail product pages on Google requires technical precision. We embed automated JSON-LD Product schema across every SKU, exposing live pricing, stock availability, review ratings, and delivery options directly to Google search results and Google Shopping snippets.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Furthermore, we structure clean category hierarchies, breadcrumb trails, and search-friendly faceted filtering URLs that prevent duplicate content issues while ensuring Google efficiently indexes your full product catalogue.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Conversion Rate Optimisation for Online Stores -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Frictionless Buying
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Conversion Rate Optimisation for Online Stores
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Cart abandonment is often driven by unexpected shipping fees, clunky mobile keyboards, or confusing step-by-step forms. Our ecommerce designs feature sticky mobile buy bars, quick-buy drawers, transparent delivery date calculators, and single-click checkout with Apple Pay and Google Pay.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="text-lg font-bold text-slate-900 dark:text-white">Shopify (Recommended)</div>
-            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Retail & DTC</div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Unmatched checkout reliability, zero server maintenance overhead, seamless Apple Pay/Shop Pay integrations, and global compliance.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="text-lg font-bold text-slate-900 dark:text-white">WooCommerce</div>
-            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Custom Configurations</div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Ideal for brands with complex bespoke product configurators, wholesale customer tiers, or deep existing WordPress integrations.
-            </p>
-          </div>
-
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="text-lg font-bold text-slate-900 dark:text-white">Headless Commerce</div>
-            <div class="text-xs font-semibold text-blue-600 dark:text-blue-400">Best for Enterprise Scale</div>
-            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Sub-millisecond static frontends powered by Astro or Next.js connected via GraphQL to Shopify or custom microservices.
-            </p>
-          </div>
-        </div>
+        <TechStack />
       </div>
 
-      <!-- Section 3: Key Benefits Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="check" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
-      </div>
-
-      <!-- Section 4: 5-Stage Build Process -->
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Launch Roadmap
+            Structured Delivery
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Ecommerce Development Process
+            Our 5-Stage Storefront Build Process
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            Rigorous checkout testing, payment sandbox validation, and zero-downtime store migration.
+            From catalogue architecture to merchant payment verification and launch.
           </p>
         </div>
 
@@ -119,12 +164,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 5: Inclusions / Boundaries -->
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Included in Every Store Build</span>
+            <span>What Is Included</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -139,7 +184,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Additional Storefront Services</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -152,19 +197,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 6: TechStack -->
-      <TechStack />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Ecommerce Portfolio & Client Stores"
+        subheading="Live online stores engineered for retail fashion, wholesale goods, and local logistics."
+        items={ecommerceProjects}
+      />
 
-      <!-- Section 7: FAQs -->
-      <FAQ faqs={data.faqs} />
+      <!-- Section 8: Deep-dive H2 - Shopify vs WooCommerce -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Platform Neutrality
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Shopify vs WooCommerce: Choosing the Right Engine
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            We are not tied to a single platform. If your priority is zero-maintenance hosting, PCI DSS compliance out of the box, and reliable worldwide payment gateways, Shopify is an exceptional choice. If your business requires complex custom product configurators, wholesale B2B pricing tiers, or tight integration with an existing WordPress ecosystem, WooCommerce gives you complete code control.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            During our initial discovery phase, we evaluate your operating model, transaction volume, and operational costs to recommend the most cost-effective platform for your long-term success.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 8: Inline Quote Form -->
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Discuss Your Ecommerce Storefront"
-          subheading="Fixed-price development proposals and catalog migration plans delivered within 24 hours."
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Transparent Store Development Costs -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Commercial Investment
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Transparent Store Development Costs
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our ecommerce store builds start from £500 for focused boutique stores with full payment gateway setup, extending to bespoke multi-category architectures with custom ERP or warehouse synchronization.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Ecommerce Stores from £500"
+          subtitle="Fixed milestone invoicing with zero hidden maintenance fees and full merchant control upon handover."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Retailer Reviews & Trust"
+        subheading="What store owners and brand managers say about partnering with our Lancashire studio."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire ecommerce web designers"
+        leadSentence="From our studio in Blackburn, we engineer high-converting online stores for retailers and independent brands across the North West."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Have questions about ecommerce platforms, payment processing, or catalogue migrations? Here are straightforward answers."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Specialised technical solutions to boost your storefront speed, security, and conversion rate."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Launch Your Ecommerce Store"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Request an Ecommerce Proposal"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

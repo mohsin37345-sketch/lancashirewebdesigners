@@ -2,6 +2,9 @@
 import BaseLayout from 'theme/layouts/BaseLayout.astro';
 import Hero from 'theme/components/Hero.astro';
 import ServiceCard from 'theme/components/ServiceCard.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import CTABand from 'theme/components/CTABand.astro';
 import { getCollection } from 'astro:content';
 
@@ -15,6 +18,18 @@ const breadcrumbs = [
   { name: 'Home', url: '/' },
   { name: 'Services', url: '/services/' }
 ];
+
+const allProjects = await getCollection('portfolio');
+const featuredProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'kifl-fashion-store', 'bitlance-group'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
 ---
 
 <BaseLayout
@@ -37,7 +52,7 @@ const breadcrumbs = [
   />
 
   <div class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       <!-- Grid of all services -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {sortedServices.map((service) => {
@@ -57,12 +72,31 @@ const breadcrumbs = [
           );
         })}
       </div>
+
+      <!-- Section: Engineering Standards & Prototyping Process -->
+      <DesignProcessVisuals
+        heading="Our Engineering Standards & Prototyping Process"
+        subheading="Every bespoke solution begins with tactile wireframing and user mapping, translated directly into high-speed, accessible web architecture."
+      />
+
+      <!-- Section: Featured Portfolio Projects -->
+      <PortfolioShowcase
+        heading="Selected Client Projects"
+        subheading="A snapshot of bespoke websites, ecommerce builds, and commercial platforms engineered by our studio."
+        items={featuredProjects}
+      />
+
+      <!-- Section: Testimonials & Reviews -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What business leaders and marketing managers say about working directly with Mohsin Ali."
+      />
     </div>
   </div>
 
   <CTABand
     heading="Unsure which service matches your commercial brief?"
-    subheading="Speak directly with our senior engineer. We will audit your current setup and provide a clear, transparent recommendation."
+    subheading="Speak directly with Mohsin Ali, founder and lead developer. We will audit your current setup and provide a clear, transparent recommendation."
     primaryCtaText="Request a Consultation"
     primaryCtaHref="/contact/"
     secondaryCtaText="Calculate Project Cost"

@@ -5,6 +5,7 @@ import Icon from './Icon.astro';
 export interface Props {
   heading?: string;
   subheading?: string;
+  text?: string;
   quoteBtnText?: string;
   primaryCtaText?: string;
   primaryCtaHref?: string;
@@ -14,8 +15,9 @@ export interface Props {
 }
 
 const {
-  heading = 'Ready to build a website that out-performs your competitors?',
-  subheading = 'Work directly with our senior engineer to create an ultra-fast, bespoke website owned 100% by you.',
+  heading = 'Ready to Build a High-Performance Commercial Website?',
+  subheading,
+  text,
   quoteBtnText,
   primaryCtaText,
   primaryCtaHref = '/get-a-quote/',
@@ -23,6 +25,8 @@ const {
   secondaryCtaHref,
   class: className = ''
 } = Astro.props;
+
+const finalSubheading = text || subheading || 'Work directly with Mohsin Ali, founder and lead developer, to create an ultra-fast bespoke website owned 100% by you.';
 
 const mainCtaText = primaryCtaText || quoteBtnText || 'Get a Free Quote';
 const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
@@ -39,7 +43,7 @@ const phone = site.phoneDisplay || site.phone;
         {heading}
       </h2>
       <p class="text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto">
-        {subheading}
+        {finalSubheading}
       </p>
 
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">

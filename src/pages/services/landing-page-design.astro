@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'landing-page-design');
 if (!serviceEntry) {
   throw new Error('Service entry landing-page-design not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const landingProjects = allProjects
+  .filter((p) => ['jhs-professionals', 'hvac-duct-calculator', 'maxora-design'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Web Design & Marketing',
+    href: '/web-design-and-marketing/',
+    description: 'Cohesive web development and paid ad campaign management for high-growth commercial firms.',
+    icon: 'trending-up'
+  },
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Full multi-page corporate websites hand-crafted with sub-second speeds and full code ownership.',
+    icon: 'palette'
+  },
+  {
+    title: 'SEO Services Lancashire',
+    href: '/services/seo/',
+    description: 'Technical audits, schema markup, and regional Google rankings for high-intent search terms.',
+    icon: 'search'
+  }
+];
+
+const heroTrustBullets = [
+  'Engineered exclusively for Google Ads & Meta traffic',
+  'Single-focus conversion architecture with zero exit leaks',
+  'Sub-second mobile rendering to maximise Ad Quality Scores',
+  'Direct consultation with Mohsin Ali (4+ years paid media experience)'
+];
 ---
 
 <ServiceLayout
@@ -18,49 +65,91 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Landing Page Design Services • Paid Ad Performance"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Landing Page Design"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Straightforward answers regarding our landing page design process, ad campaign integration, and conversion tracking."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Paid Advertising ROI
+          Laser-Focused Conversion
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          High-Converting Landing Pages Engineered for Maximum Ad Return
+          High-Converting Landing Page Design Services for Paid Media Campaigns
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Sending paid advertising traffic from Google Ads, Meta, or LinkedIn to your generic website homepage wastes significant advertising budget. Homepages contain too many exit links, navigation options, and conflicting messages.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Stop directing expensive paid clicks to generic company homepages that fail to convert. Our specialized <strong>landing page design services</strong> engineer focused, distraction-free destination experiences tailored precisely to your Google Ads, Meta Ads, and LinkedIn campaigns. Every element—from value proposition hooks to form architecture—is optimized to turn paid traffic into qualified commercial leads.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Our specialized landing page design services engineer distraction-free, lightning-fast destination pages focused solely on conversion. By aligning ad intent with clear value hooks and frictionless forms, we routinely double or triple lead conversion rates.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          When prospective clients click a targeted advertisement, they expect an immediate, compelling answer to their specific query. By eliminating extraneous navigation menus and aligning page copy directly with user search intent, we maximize your return on ad spend.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="target" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Conversion Advantage</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Conversion Features
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for High-Intent Inbound Leads
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
+      <!-- Section 3: Deep-dive H2 - Why Dedicated Landing Pages Outperform Homepage Traffic -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Conversion Ergonomics
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Why Dedicated Landing Pages Outperform Homepage Traffic
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Homepages are inherently multi-purpose: they explain corporate history, list diverse service divisions, provide investor relations, and offer social links. Sending expensive paid advertising traffic to a homepage forces users to hunt for what they need, causing immediate bounce rates.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            A bespoke landing page focuses entirely on one single call to action. We eliminate header menus, footer distractions, and tangential links, guiding visitors through a persuasive narrative that addresses objections and concludes with a frictionless enquiry action.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Conversion Architecture -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Anatomy of Success
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Conversion Architecture: Anatomy of a High-Performing Landing Page
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            We structure landing pages using proven psychological frameworks: an irresistible above-the-fold headline, clear value metrics, prominent trust credentials, direct social proof, and a multi-step form that minimizes cognitive effort for mobile visitors.
+          </p>
+        </div>
+
+        <TechStack />
+      </div>
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Sprint Timeline
+            Sprint Execution
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Rapid Landing Page Sprint
+            Our 5-Stage Landing Page Sprint
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            From audience analysis to live campaign deployment within 7 to 10 days.
+            Rapid 1-2 week delivery from campaign audit to conversion pixel validation.
           </p>
         </div>
 
@@ -75,6 +164,7 @@ const data = serviceEntry.data;
         </div>
       </div>
 
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
@@ -94,7 +184,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>External Advertising Costs</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -107,15 +197,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <TechStack />
-      <FAQ faqs={data.faqs} />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Landing Page Builds & Lead Funnels"
+        subheading="Interactive tools, calculation widgets, and high-converting single-purpose pages engineered for commercial conversion."
+        items={landingProjects}
+      />
 
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Launch a High-Converting Landing Page"
-          subheading="Share your campaign offer and target audience for a fixed-price proposal."
+      <!-- Section 8: Deep-dive H2 - Need the Ads Run Too? -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            End-to-End Acquisition
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Need the Ads Run Too? Google Ads & Meta Campaign Coordination
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Building a high-performance landing page is only half the battle. If you require complete ad campaign management, Mohsin Ali provides end-to-end campaign architecture across Google Ads and Meta Ads.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            We handle keyword match types, negative keyword pruning, compelling ad creative, and server-side conversion tracking so you have single-point accountability for both the ads and the pages they land on.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - A/B Testing & Continuous Conversion Tuning -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Overview
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            A/B Testing & Continuous Conversion Tuning
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our high-impact landing page builds start from £100 for standalone single-offer campaign pages, with multi-variant funnels and tracking integrations from £300.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Landing Pages from £100"
+          subtitle="Fixed project pricing with zero ongoing software licensing costs and full source code ownership."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What marketing leads and business directors say about partnering with Mohsin Ali for landing page design."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire landing page designer"
+        leadSentence="Based in Blackburn, we engineer high-converting landing pages for paid advertising campaigns throughout Lancashire."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Straightforward answers about our landing page development, paid ad integrations, and conversion tracking."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Connected digital solutions to drive qualified traffic and maximize commercial growth."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Build Your High-Converting Landing Page"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Request Landing Page Consultation"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

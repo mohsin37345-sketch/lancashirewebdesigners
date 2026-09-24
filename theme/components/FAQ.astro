@@ -12,15 +12,19 @@ export interface Props {
   faqs?: FAQItem[];
   heading?: string;
   subheading?: string;
+  intro?: string;
   class?: string;
 }
 
 const {
   faqs = [],
   heading = 'Frequently Asked Questions',
-  subheading = 'Clear answers about our bespoke development process, pricing, and project deliverables.',
+  subheading,
+  intro,
   class: className = ''
 } = Astro.props;
+
+const faqIntro = intro || subheading || 'Clear answers about our bespoke development process, pricing, and project deliverables.';
 
 // Filter strictly for items where display is NOT false
 const visibleFaqs = faqs.filter((item) => item.display !== false);
@@ -38,7 +42,7 @@ const visibleFaqs = faqs.filter((item) => item.display !== false);
             {heading}
           </h2>
           <p class="text-slate-600 dark:text-slate-400 text-base">
-            {subheading}
+            {faqIntro}
           </p>
         </div>
 

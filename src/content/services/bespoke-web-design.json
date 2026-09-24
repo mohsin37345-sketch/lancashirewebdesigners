@@ -2,25 +2,24 @@
   "title": "Bespoke Web Design",
   "slug": "bespoke-web-design",
   "shortTitle": "Bespoke Web Design",
-  "metaTitle": "Bespoke Web Design Agency | Lancashire Web Designers",
-  "metaDescription": "Bespoke web design engineered from the ground up for ambitious UK businesses. Hand-coded for speed, search visibility, and maximum conversion rates.",
+  "metaTitle": "Bespoke Web Design Lancashire | Custom Website Development",
+  "metaDescription": "Hand-crafted bespoke web design for Lancashire businesses. No templates, sub-second load speeds, and full code ownership. From £300. Get a quote.",
   "primaryKeyword": "bespoke web design",
   "secondaryKeywords": [
-    "bespoke website design",
-    "bespoke web development",
+    "custom web design lancashire",
     "bespoke website development",
-    "bespoke web design agency"
+    "tailored web design uk"
   ],
-  "heroHeading": "Bespoke Web Design",
-  "heroSubheading": "Bespoke web design engineered from the ground up for ambitious UK businesses. Hand-coded for speed, search visibility, and maximum conversion rates.",
+  "heroHeading": "Bespoke Web Design Lancashire",
+  "heroSubheading": "Hand-crafted web design engineered from the ground up for ambitious Lancashire businesses. Fast, clean code with zero template bloat.",
   "icon": "palette",
   "summary": "Bespoke web design engineered from the ground up for ambitious UK businesses. At Lancashire Web Designers, we craft hand-coded, high-performance web platforms that outperform bloated off-the-shelf templates and slow page builders. Every pixel, layout structure, and interaction model is purposefully tailored to your distinct brand proposition, customer purchasing journey, and commercial growth objectives.",
   "benefits": [
-    "Zero template bloat — sub-second initial load speeds on mobile networks",
-    "Hand-crafted component architectures designed exclusively for your workflow",
-    "Enterprise-grade Core Web Vitals performance directly improving organic search ranking",
-    "Strict WCAG 2.2 Level AA accessibility compliance across all screen sizes",
-    "Full intellectual property and code ownership upon completion with zero agency lock-in"
+    "Zero Template Bloat — Sub-second initial load speeds on all mobile and desktop networks",
+    "Tailored Architectures — Hand-crafted component layouts engineered exclusively for your workflow",
+    "Core Web Vitals — Sub-second LCP and zero layout shifts directly improving search rankings",
+    "Strict Accessibility — WCAG 2.2 Level AA compliance across all screen sizes and devices",
+    "Full IP Ownership — 100% intellectual property and code ownership upon completion with zero agency lock-in"
   ],
   "process": [
     {
@@ -62,9 +61,9 @@
     "Third-party software subscription licensing (CRM, ERP, payment gateways)",
     "Ongoing monthly maintenance retainers after the 30-day warranty period"
   ],
-  "priceFrom": 300,
+  "priceFrom": 150,
   "priceUnit": "fixed project",
-  "priceNotes": "Bespoke web design starts from £300 for a standard 1–5 page architecture, with additional pages at +£50/page.",
+  "priceNotes": "Bespoke web design starts from £150 for focused builds and starter architectures, with multi-page setups from £300 and additional pages at +£25/page.",
   "techStack": ["Astro", "Tailwind CSS", "TypeScript", "Vite", "Node.js"],
   "typicalTimeline": "4-6 weeks",
   "faqs": [

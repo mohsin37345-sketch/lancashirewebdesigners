@@ -1,0 +1,86 @@
+---
+import Icon from './Icon.astro';
+
+export interface Props {
+  priceFrom?: string | number;
+  priceUnit?: string;
+  whatsIncluded?: string[];
+  pricingHref?: string;
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  priceFrom,
+  priceUnit = 'fixed project',
+  whatsIncluded = [],
+  pricingHref = '/pricing/',
+  title,
+  subtitle,
+  class: className = ''
+} = Astro.props;
+
+if (!priceFrom) {
+  // If no pricing anchor is defined, omit section
+  return null;
+}
+
+const formattedPrice = typeof priceFrom === 'number' ? `£${priceFrom.toLocaleString('en-GB')}` : priceFrom;
+const headingText = title || `Projects from ${formattedPrice}`;
+---
+
+<section class={`py-12 lg:py-16 ${className}`}>
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-slate-950 text-white p-8 sm:p-10 lg:p-12 border border-blue-500/20 shadow-xl">
+      <!-- Ambient Glow -->
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-400">
+            Transparent Pricing
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            {headingText}
+          </h2>
+          <p class="text-slate-300 text-base leading-relaxed max-w-xl">
+            {subtitle || 'Clear milestone invoicing, zero hidden monthly license fees, and complete code ownership on project sign-off.'}
+          </p>
+
+          {whatsIncluded.length > 0 && (
+            <div class="pt-2">
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">What is included:</p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-200">
+                {whatsIncluded.slice(0, 6).map((item) => (
+                  <li class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-between gap-4">
+          <div class="text-left lg:text-right">
+            <span class="text-xs uppercase tracking-wider text-slate-400 block">Starting investment</span>
+            <div class="text-4xl sm:text-5xl font-black text-white mt-1">
+              {formattedPrice}
+            </div>
+            <span class="text-xs text-blue-300 block mt-1">{priceUnit}</span>
+          </div>
+
+          <a
+            href={pricingHref}
+            class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-md transition-all hover-lift focus-visible:ring-2 focus-visible:ring-blue-400"
+          >
+            <span>View Full Pricing & Packages</span>
+            <Icon name="arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

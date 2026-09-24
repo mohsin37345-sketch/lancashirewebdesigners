@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import rawTestimonials from 'src/data/testimonials.json';
 
 export interface Testimonial {
   name: string;
@@ -15,23 +16,32 @@ export interface Testimonial {
 
 export interface Props {
   testimonials?: Testimonial[];
+  serviceTag?: string;
   heading?: string;
   subheading?: string;
   class?: string;
 }
 
 const {
-  testimonials = [],
+  testimonials: propTestimonials,
+  serviceTag,
   heading = 'Trusted by Lancashire Business Owners',
   subheading = 'Verified feedback from genuine clients across Blackburn, Preston, Lancaster, and beyond.',
   class: className = ''
 } = Astro.props;
 
-// Filter strictly for verified testimonials
-const verifiedItems = testimonials.filter((t) => t.verified === true);
+// Use props if provided, otherwise pull from shared testimonials data file
+const sourceList: Testimonial[] = (propTestimonials && propTestimonials.length > 0)
+  ? propTestimonials
+  : (rawTestimonials as Testimonial[]);
+
+// Filter strictly for verified testimonials, optionally by service tag
+const verifiedItems = sourceList
+  .filter((t) => t.verified === true)
+  .filter((t) => (!serviceTag ? true : t.service?.toLowerCase().includes(serviceTag.toLowerCase())));
 ---
 
-{verifiedItems.length > 0 && (
+{verifiedItems.length > 0 ? (
   <section class={`py-16 lg:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800 ${className}`}>
     <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       <div class="max-w-2xl">
@@ -83,4 +93,6 @@ const verifiedItems = testimonials.filter((t) => t.verified === true);
       </div>
     </div>
   </section>
+) : (
+  <Fragment set:html="<!-- TODO(Mohsin): add real case study/testimonial -->" />
 )}

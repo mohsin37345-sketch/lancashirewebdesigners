@@ -1,20 +1,13 @@
 ---
 import Icon from './Icon.astro';
+import { engineeringTechnologies } from 'src/data/techStack';
 
 export interface Props {
   technologies?: string[];
   class?: string;
 }
 
-const defaultTech = [
-  'Astro',
-  'Tailwind CSS',
-  'TypeScript',
-  'Shopify',
-  'WordPress Headless',
-  'Next.js',
-  'Vercel Edge'
-];
+const defaultTech = engineeringTechnologies;
 
 const { technologies = defaultTech, class: className = '' } = Astro.props;
 ---

@@ -2,25 +2,25 @@
   "title": "WordPress Development",
   "slug": "wordpress-development",
   "shortTitle": "WordPress Dev",
-  "metaTitle": "WordPress Development Lancashire | Lancashire Web Designers",
-  "metaDescription": "Custom, lightweight WordPress development. Custom Gutenberg blocks, zero-bloat code, headless setups, and enterprise security for UK businesses.",
+  "metaTitle": "WordPress Development Lancashire | Custom Themes & Woo",
+  "metaDescription": "Custom WordPress development in Lancashire. Bespoke lightweight themes, WooCommerce builds, and Elementor cleanups. Fast, secure, and editor-friendly.",
   "primaryKeyword": "wordpress development lancashire",
   "secondaryKeywords": [
-    "custom wordpress agency",
-    "gutenberg block development",
-    "wordpress speed optimisation",
-    "bespoke wordpress theme"
+    "custom wordpress developer lancashire",
+    "bespoke wordpress themes",
+    "woocommerce development lancashire",
+    "gutenberg block development"
   ],
-  "heroHeading": "WordPress Development",
+  "heroHeading": "WordPress Development Lancashire",
   "heroSubheading": "High-speed, bespoke WordPress solutions built with clean custom code, tailored Gutenberg blocks, and zero plugin bloat.",
   "icon": "code",
-  "summary": "We build fast, secure, custom WordPress websites that banish sluggish page builders and unstable plugin stacks. Our development approach pairs WordPress's familiar publishing interface with lightweight, bespoke themes and custom Gutenberg blocks engineered specifically for your editorial workflow.",
+  "summary": "We deliver high-performance, bespoke wordpress development lancashire businesses trust to banish sluggish page builders and unstable plugin stacks. Our development approach pairs WordPress's familiar publishing interface with lightweight, bespoke themes and custom Gutenberg blocks engineered specifically for your editorial workflow.",
   "benefits": [
-    "Hand-coded bespoke themes with zero dependence on bloated commercial builders (Elementor/Divi)",
-    "Tailored Gutenberg block suites giving your editorial team complete creative layout freedom",
-    "Sub-second mobile loading speeds adhering strictly to Google Core Web Vitals thresholds",
-    "Hardened security posture eliminating common attack vectors and third-party vulnerabilities",
-    "Headless WordPress options pairing WP as a content backend with an Astro or Next.js frontend"
+    "Clean Custom Themes — Hand-coded bespoke themes with zero dependence on bloated commercial builders (Elementor/Divi)",
+    "Custom Gutenberg Blocks — Tailored block suites giving your editorial team complete creative layout freedom",
+    "Core Web Vitals — Sub-second mobile loading speeds adhering strictly to Google performance thresholds",
+    "Hardened Security — Proactive security posture eliminating common attack vectors and third-party vulnerabilities",
+    "Headless Capability — Headless WordPress options pairing WP as a content backend with an ultra-fast Astro frontend"
   ],
   "process": [
     {
@@ -41,7 +41,7 @@
     {
       "step": 4,
       "title": "Security Hardening & Speed Tuning",
-      "description": "Implementing Redis object caching, WebP conversion, database optimization, and two-factor authentication."
+      "description": "Implementing Redis object caching, WebP conversion, database optimisation, and two-factor authentication."
     },
     {
       "step": 5,
@@ -58,12 +58,12 @@
   ],
   "whatsNotIncluded": [
     "Support for deprecated visual builders (Divi, WP Bakery, Elementor)",
-    "Commercial plugin license fees where specialized third-party software is required",
+    "Commercial plugin license fees where specialised third-party software is required",
     "Ongoing server hosting fees (managed hosting recommendations provided)"
   ],
-  "priceFrom": 500,
+  "priceFrom": 150,
   "priceUnit": "fixed project",
-  "priceNotes": "Custom WordPress developments start from £500, with extra pages easily added at +£50/page.",
+  "priceNotes": "Custom WordPress developments start from £150 for focused builds and £300 for multi-page corporate sites.",
   "techStack": ["WordPress", "PHP 8.2+", "Gutenberg", "ACF Pro", "Tailwind CSS", "MySQL"],
   "typicalTimeline": "4-6 weeks",
   "faqs": [
@@ -74,7 +74,7 @@
     },
     {
       "question": "Can you fix or speed up an existing slow WordPress site?",
-      "answer": "Yes. We offer forensic WordPress audits and refactoring services, stripping out bloated plugins, streamlining database queries, and implementing advanced caching to restore rapid load times.",
+      "answer": "Yes. If your current WordPress site is slow, our website speed optimisation service cleans database bloat, strips unnecessary plugins, and resolves server bottlenecks to restore rapid load times.",
       "display": true
     },
     {
@@ -84,11 +84,11 @@
     },
     {
       "question": "Can you migrate our content from an older website?",
-      "answer": "Yes. We execute automated and manual database migrations to carry across existing blog posts, news archives, customer records, and media libraries while preserving URL paths and SEO juice.",
+      "answer": "Yes. We execute automated and manual database migrations to carry across existing blog posts, news archives, customer records, and media libraries while preserving URL paths and SEO rankings.",
       "display": true
     }
   ],
-  "relatedServices": ["bespoke-web-design", "website-support", "website-speed-optimisation"],
+  "relatedServices": ["services/website-speed-optimisation", "website-support", "ecommerce-web-design"],
   "order": 7,
   "featured": false
 }

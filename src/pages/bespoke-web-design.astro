@@ -1,17 +1,65 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import ComparisonTable from 'theme/components/ComparisonTable.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'bespoke-web-design');
 if (!serviceEntry) {
   throw new Error('Service entry bespoke-web-design not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const caseStudyProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'bitlance-group', 'the-royals-removals'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'B2B Web Design',
+    href: '/b2b-web-design/',
+    description: 'High-conversion lead engineering and CRM pipelines for Lancashire trade and manufacturing companies.',
+    icon: 'layers'
+  },
+  {
+    title: 'Ecommerce Web Design',
+    href: '/ecommerce-web-design/',
+    description: 'Fast, secure Shopify and WooCommerce stores built for frictionless purchasing.',
+    icon: 'shopping-bag'
+  },
+  {
+    title: 'Website Redesign',
+    href: '/services/website-redesign/',
+    description: 'Modernise legacy platforms with zero SEO traffic loss and comprehensive 301 URL mapping.',
+    icon: 'refresh-cw'
+  }
+];
+
+const heroTrustBullets = [
+  'Zero bloated templates or slow page builders',
+  'Sub-second mobile rendering speeds',
+  '100% intellectual property & code ownership',
+  'Direct communication with Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -19,14 +67,17 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Bespoke Web Design • Lancashire & UK"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Bespoke Web Design"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Everything you need to know about our bespoke web design process, technology stack, and commercial delivery."
 >
-  <!-- Main Content Body -->
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      <!-- Section 1: In-depth Summary & Core Advantage -->
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
           Hand-Crafted Performance
@@ -34,31 +85,70 @@ const data = serviceEntry.data;
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           Why True Bespoke Web Design Outperforms Off-the-Shelf Templates
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
           Choosing authentic <strong>bespoke web design</strong> gives your commercial enterprise an insurmountable digital advantage. Most agencies deploy bloated multi-purpose themes or sluggish page builders that package thousands of lines of unused CSS and JavaScript into every single page. This creates severe Core Web Vitals penalties, high mobile bounce rates, and constant security vulnerabilities.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
           At Lancashire Web Designers, we engineer your website from a completely blank canvas. Every UI component, stylesheet, and data query is hand-crafted specifically for your business workflow. The result is instantaneous sub-second page rendering, flawless mobile responsiveness, and an interface that guides your prospective clients directly into high-value commercial enquiries.
         </p>
       </div>
 
-      <!-- Section 2: Key Benefits Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="check" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Impact</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Core Advantages
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered Exclusively for Your Business Needs
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
-      <!-- Section 3: Engineering Comparison Table -->
-      <ComparisonTable />
+      <!-- Section 3: Deep-dive H2 - What Bespoke Web Design Actually Means -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Technical Distinction
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            What Bespoke Web Design Actually Means
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            The web design industry is flooded with agencies charging bespoke prices for pre-made WordPress themes or drag-and-drop Elementor layouts. Authentic bespoke web design means writing clean semantic markup from scratch without inheriting hundreds of kilobytes of unused vendor styles.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            When your code is clean, search engines crawl your pages effortlessly. You eliminate plugin conflicts, reduce server memory usage, and retain complete control over your technical roadmap without vendor lock-in.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 4: 5-Stage Build Process -->
+      <!-- Section 4: Deep-dive H2 - Bespoke Web Development: How We Build -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Modern Tech Stack
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Bespoke Web Development: How We Build
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            We build modern web architectures using Astro, Tailwind CSS, TypeScript, and high-performance headless or native CMS backends. Every project is strictly benchmarked against Google Core Web Vitals to deliver sub-second Largest Contentful Paint (LCP) and zero Cumulative Layout Shift (CLS).
+          </p>
+        </div>
+
+        <ComparisonTable />
+        <TechStack />
+      </div>
+
+      <!-- Section: Visual Architecture & Wireframing Process -->
+      <DesignProcessVisuals
+        heading="Bespoke Architecture & Wireframing Methodology"
+        subheading="How we translate your commercial objectives into tactile wireframe sketches and modern, sub-second web standards before coding begins."
+      />
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -83,7 +173,7 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 5: Inclusions & Clear Boundaries -->
+      <!-- Section 6: Inclusions & Clear Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
@@ -116,19 +206,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 6: TechStack -->
-      <TechStack />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Recent Bespoke Projects & Client Builds"
+        subheading="Real commercial platforms hand-crafted for logistics, transport, and technology businesses."
+        items={caseStudyProjects}
+      />
 
-      <!-- Section 7: FAQs -->
-      <FAQ faqs={data.faqs} />
+      <!-- Section 8: Deep-dive H2 - Bespoke Web Design in Lancashire -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            County-Wide Impact
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Bespoke Web Design in Lancashire: Local Businesses We Serve
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            From precision manufacturers in Blackburn and commercial distribution hubs across the M65 corridor to professional practices in Preston and creative enterprises in Lancaster and the Ribble Valley, our bespoke websites are engineered to give local firms a competitive national profile.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            We understand the Lancashire commercial landscape. Whether your buyers are procurement teams reviewing tender documentation or local consumers looking for dependable trade services, your digital presence will communicate reliability, professionalism, and modern technical competence.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 8: Inline Quote Form -->
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - What a Bespoke Website Costs -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Guide
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            What a Bespoke Website Costs
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Transparent pricing is central to how we operate. Typical projects start from £150 for focused landing pages and single-service setups, £300 to £600 for comprehensive multi-page corporate sites, and £800+ for complex portals and custom ecommerce builds.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Bespoke Projects from £150"
+          subtitle="Fixed milestone pricing with zero hidden maintenance fees and full code ownership on delivery."
+        />
+      </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="Feedback from commercial directors and founders who partnered with Mohsin Ali for bespoke digital platforms."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire web design company"
+        leadSentence="From our studio base in Blackburn, we deliver bespoke websites and digital platforms for ambitious businesses across the North West."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Have questions about bespoke web development, pricing, or our code ownership guarantee? Here are straightforward answers."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Complementary web engineering and digital marketing solutions for growing Lancashire firms."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
       <div class="max-w-2xl mx-auto pt-8">
         <QuoteFormInline
           heading="Start Your Bespoke Website Project"
-          subheading="Direct consultation with our principal engineer. Fixed-price milestone proposals delivered in 24 hours."
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered in 24 hours."
+          submitLabel="Get Your Bespoke Quote"
         />
       </div>
+
     </div>
   </article>
 </ServiceLayout>

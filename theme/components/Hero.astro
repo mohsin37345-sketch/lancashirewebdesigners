@@ -12,6 +12,8 @@ export interface Props {
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
   badge?: string;
+  eyebrow?: string;
+  trustBullets?: string[];
   breadcrumbs?: { name: string; url: string }[];
   class?: string;
 }
@@ -24,10 +26,14 @@ const {
   primaryCtaHref = '/get-a-quote/',
   secondaryCtaText = 'Explore Pricing',
   secondaryCtaHref = '/pricing/',
-  badge = 'Bespoke UK Engineering • No Templates',
+  badge,
+  eyebrow,
+  trustBullets,
   breadcrumbs,
   class: className = ''
 } = Astro.props;
+
+const heroEyebrow = eyebrow || badge;
 
 // Split heading to apply gradient highlight to the last word
 const words = heading.trim().split(' ');
@@ -64,15 +70,15 @@ const highlightWord = words[words.length - 1];
         )}
 
         <!-- Live Status Radar Pill -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-800 dark:text-slate-200 border border-slate-200/90 dark:border-slate-800 shadow-xs">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-cyan-400"></span>
-          </span>
-          <span class="tracking-wide">{badge}</span>
-          <span class="text-slate-300 dark:text-slate-700">|</span>
-          <span class="text-blue-600 dark:text-cyan-400 font-bold">100/100 Speed</span>
-        </div>
+        {heroEyebrow && (
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold bg-white/80 dark:bg-slate-900/80 backdrop-blur-md text-slate-800 dark:text-slate-200 border border-slate-200/90 dark:border-slate-800 shadow-xs">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600 dark:bg-cyan-400"></span>
+            </span>
+            <span class="tracking-wide">{heroEyebrow}</span>
+          </div>
+        )}
 
         <!-- Headline with Modern Multi-Stop Gradient Accent -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-slate-900 dark:text-white">
@@ -120,20 +126,16 @@ const highlightWord = words[words.length - 1];
         )}
 
         <!-- Micro Trust Signals Strip -->
-        <div class="pt-4 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-600 dark:text-slate-400">
-          <div class="flex items-center gap-2">
-            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
-            <span class="font-medium text-slate-700 dark:text-slate-300">Sub-second mobile load times</span>
+        {trustBullets && trustBullets.length > 0 && (
+          <div class="pt-4 border-t border-slate-200/60 dark:border-slate-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-600 dark:text-slate-400">
+            {trustBullets.map((bullet) => (
+              <div class="flex items-center gap-2">
+                <span class="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                <span class="font-medium text-slate-700 dark:text-slate-300">{bullet}</span>
+              </div>
+            ))}
           </div>
-          <div class="flex items-center gap-2">
-            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500/10 text-blue-600 dark:text-blue-400 font-bold">✓</span>
-            <span class="font-medium text-slate-700 dark:text-slate-300">You own the code outright</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold">✓</span>
-            <span class="font-medium text-slate-700 dark:text-slate-300">Direct access to the developer building it</span>
-          </div>
-        </div>
+        )}
       </div>
 
       <!-- Right Column: Interactive Hero Quote Form with 9 Floating Framework Badges -->

@@ -2,31 +2,31 @@
   "title": "Ecommerce Web Design",
   "slug": "ecommerce-web-design",
   "shortTitle": "Ecommerce Web Design",
-  "metaTitle": "Ecommerce Design Agency | Lancashire Web Designers",
-  "metaDescription": "Specialist ecommerce design agency building high-converting Shopify and custom online stores. Engineered for speed, checkout flow, and revenue growth.",
+  "metaTitle": "Ecommerce Design Agency Lancashire | High-Converting Stores",
+  "metaDescription": "High-converting ecommerce web design for Lancashire retailers and DTC brands. Platform-neutral Shopify and WooCommerce solutions engineered to sell.",
   "primaryKeyword": "ecommerce design agency",
   "secondaryKeywords": [
-    "ecommerce web design",
-    "shopify web design",
-    "custom ecommerce development",
-    "online store design"
+    "ecommerce web design lancashire",
+    "online store web design",
+    "shopify ecommerce agency",
+    "custom ecommerce development"
   ],
-  "heroHeading": "Ecommerce Design Agency",
-  "heroSubheading": "High-converting online stores engineered for frictionless checkout experiences, lightning page speeds, and sustainable revenue growth.",
+  "heroHeading": "Ecommerce Design Agency Lancashire",
+  "heroSubheading": "High-converting online stores engineered for frictionless checkout experiences, lightning page speeds, and sustainable retail revenue growth.",
   "icon": "shopping-bag",
-  "summary": "As an experienced ecommerce design agency, Lancashire Web Designers builds high-performance online stores that turn casual browsers into repeat purchasers. We craft bespoke storefronts on Shopify, WooCommerce, and modern headless commerce architectures, eliminating slow checkout friction, optimizing mobile product discovery, and engineering conversion-focused buying funnels that maximize your average order value.",
+  "summary": "As an experienced ecommerce design agency, Lancashire Web Designers builds high-performance online stores that turn casual browsers into repeat purchasers. We craft bespoke storefronts on Shopify, WooCommerce, and modern headless commerce architectures, eliminating slow checkout friction, optimising mobile product discovery, and engineering conversion-focused buying funnels that maximise your average order value.",
   "benefits": [
-    "Optimized mobile checkout journeys designed to minimize cart abandonment",
-    "Lightning-fast product catalogue filtering and instant instant-search indexing",
-    "Tailored merchant administration dashboards with inventory and warehouse syncing",
-    "Robust conversion rate optimization (CRO) built directly into product layout architecture",
-    "Seamless integration with leading UK payment gateways (Stripe, Apple Pay, Klarna, PayPal)"
+    "Mobile Checkout UX — Optimised mobile checkout journeys designed to minimise cart abandonment",
+    "Instant Search & Filters — Lightning-fast product catalogue filtering and instant search indexing",
+    "Inventory Synchronisation — Tailored merchant administration dashboards with inventory and warehouse syncing",
+    "Built-In CRO — Robust conversion rate optimisation built directly into product layout architecture",
+    "Payment Integration — Seamless integration with leading UK payment gateways (Stripe, Apple Pay, Klarna, PayPal)"
   ],
   "process": [
     {
       "step": 1,
       "title": "Catalogue & Customer Journey Blueprint",
-      "description": "We analyze your SKU architecture, category hierarchies, shipping rules, and buyer behavior to structure intuitive product browsing and checkout workflows."
+      "description": "We analyse your SKU architecture, category hierarchies, shipping rules, and buyer behaviour to structure intuitive product browsing and checkout workflows."
     },
     {
       "step": 2,
@@ -41,20 +41,20 @@
     {
       "step": 4,
       "title": "Payment, Shipping & ERP Automation Testing",
-      "description": "Comprehensive sandbox testing of payment capture, multi-currency processing, automatic tax calculations, stock synchronization, and carrier dispatch."
+      "description": "Comprehensive sandbox testing of payment capture, multi-currency processing, automatic tax calculations, stock synchronisation, and carrier dispatch."
     },
     {
       "step": 5,
       "title": "Storefront Launch & Post-Launch Support",
-      "description": "Executing zero-downtime domain pointing, 301 redirection of legacy product URLs, merchant order fulfillment training, and initial conversion monitoring."
+      "description": "Executing zero-downtime domain pointing, 301 redirection of legacy product URLs, merchant order fulfilment training, and initial conversion monitoring."
     }
   ],
   "whatsIncluded": [
-    "Fully custom ecommerce storefront design tailored to your product catalog",
+    "Fully custom ecommerce storefront design tailored to your product catalogue",
     "Clean, performant theme development adhering to strict Core Web Vitals standards",
     "Configuration of payment gateways, shipping zones, tax rules, and transactional notifications",
     "Full product data migration assistance for existing stores (up to 250 SKUs)",
-    "Comprehensive merchant fulfillment training and operating documentation",
+    "Comprehensive merchant fulfilment training and operating documentation",
     "30-day post-launch technical warranty covering all checkout functionality"
   ],
   "whatsNotIncluded": [
@@ -62,9 +62,9 @@
     "Platform transaction fees or recurring Shopify/SaaS subscription costs",
     "Manual data entry for thousands of unformatted product descriptions"
   ],
-  "priceFrom": 500,
+  "priceFrom": 350,
   "priceUnit": "fixed project",
-  "priceNotes": "Complete ecommerce stores start from £500, with additional custom pages or product batches at +£50.",
+  "priceNotes": "Complete ecommerce stores start from £350, with additional custom pages or product batches at +£25.",
   "techStack": ["Shopify", "Liquid", "WooCommerce", "Tailwind CSS", "TypeScript", "Stripe API"],
   "typicalTimeline": "6-10 weeks",
   "faqs": [
@@ -89,7 +89,7 @@
       "display": true
     }
   ],
-  "relatedServices": ["bespoke-web-design", "web-design-and-marketing", "website-support"],
+  "relatedServices": ["services/shopify-development", "services/wordpress-development", "services/website-speed-optimisation"],
   "order": 3,
   "featured": true
 }

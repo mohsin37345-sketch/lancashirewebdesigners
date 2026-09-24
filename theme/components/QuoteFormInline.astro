@@ -5,12 +5,16 @@ import { site } from 'src/data/site';
 export interface Props {
   heading?: string;
   subheading?: string;
+  submitLabel?: string;
+  includeUrlField?: boolean;
   class?: string;
 }
 
 const {
   heading = 'Get a Fast, Fixed-Price Quote',
-  subheading = 'Tell us briefly what you need. A senior developer will review and reply within 24 hours.',
+  subheading = 'Tell us briefly what you need. Mohsin Ali, founder and lead developer, will review and reply within 24 hours.',
+  submitLabel = 'Request Fixed-Price Estimate',
+  includeUrlField = false,
   class: className = ''
 } = Astro.props;
 
@@ -30,6 +34,7 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
 
     <form id="inline-quote-form" class="space-y-4" novalidate data-email={site.email}>
       <input type="hidden" name="access_key" value={formAccessKey} />
+      <input type="hidden" name="to" value={site.email} />
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -83,6 +88,21 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
         </select>
       </div>
 
+      {includeUrlField && (
+        <div>
+          <label for="inline-url" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
+            Website URL <span class="text-blue-600 dark:text-blue-400">*</span>
+          </label>
+          <input
+            type="url"
+            id="inline-url"
+            name="website_url"
+            placeholder="https://yourwebsite.co.uk"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white placeholder-slate-400 focus-visible:ring-2 focus-visible:ring-blue-600 text-sm"
+          />
+        </div>
+      )}
+
       <div>
         <label for="inline-details" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1">
           Brief Requirements <span class="text-blue-600 dark:text-blue-400">*</span>
@@ -105,7 +125,7 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
           id="inline-submit"
           class="w-full sm:flex-1 inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift focus-visible:ring-2 focus-visible:ring-blue-500 disabled:opacity-50"
         >
-          <span id="inline-btn-text">Request Fixed-Price Estimate</span>
+          <span id="inline-btn-text">{submitLabel}</span>
           <Icon name="arrow-right" class="w-4 h-4" />
         </button>
         <a
@@ -116,6 +136,10 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
           <span>Call {site.nap.phone}</span>
         </a>
       </div>
+
+      <p class="text-center text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
+        Prefer direct email? Send your project brief to <a href={`mailto:${site.email}`} class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">{site.email}</a>
+      </p>
     </form>
   </div>
 </div>
@@ -148,27 +172,67 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
       statusDiv.textContent = 'Submitting your enquiry...';
       statusDiv.classList.remove('hidden');
 
+      const formData = new FormData(form);
+      const accessKey = form.querySelector('input[name="access_key"]')?.value;
+      const targetEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: new FormData(form)
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
+        let sent = false;
+
+        // 1. Try Web3Forms if an access key is set
+        if (accessKey && accessKey.trim().length > 0) {
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              sent = true;
+            }
+          } catch (e) {
+            // Fall through to FormSubmit
+          }
+        }
+
+        // 2. Fall back to FormSubmit directly
+        if (!sent) {
+          const fsResponse = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: formData
+          });
+          const fsData = await fsResponse.json();
+
+          if (fsResponse.ok && (fsData.success === 'true' || fsData.success === true)) {
+            sent = true;
+          } else if (fsData.message && fsData.message.toLowerCase().includes('activation')) {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Enquiry Queued';
+            statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200';
+            statusDiv.innerHTML = `Your request is queued! A one-time activation email was sent to <strong>${targetEmail}</strong>. Please click <em>'Activate Form'</em> in that email to enable instant delivery.`;
+            return;
+          } else {
+            throw new Error(fsData.message || 'Submission failed');
+          }
+        }
+
+        if (sent) {
           window.location.href = '/thank-you/';
-        } else {
-          throw new Error();
         }
       } catch (err) {
         submitBtn.disabled = false;
         btnText.textContent = 'Retry Request';
         statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
-        const fallbackEmail = form.getAttribute('data-email');
-        if (fallbackEmail) {
-          statusDiv.innerHTML = `Submission error. Email us directly at <a href="mailto:${fallbackEmail}" class="underline font-bold">${fallbackEmail}</a>.`;
-        } else {
-          statusDiv.textContent = 'Submission error. Please check your connection or try again shortly.';
-        }
+        const fallbackEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+        const nameVal = form.querySelector('[name="name"]')?.value || '';
+        const emailVal = form.querySelector('[name="email"]')?.value || '';
+        const detailsVal = form.querySelector('[name="details"]')?.value || '';
+        const mailSubject = encodeURIComponent('New Fixed-Price Quote Request');
+        const mailBody = encodeURIComponent(`Name: ${nameVal}\nEmail: ${emailVal}\nDetails: ${detailsVal}`);
+        statusDiv.innerHTML = `Unable to send via automated gateway. <a href="mailto:${fallbackEmail}?subject=${mailSubject}&body=${mailBody}" class="underline font-bold text-rose-900">Click here to email directly to ${fallbackEmail}</a>.`;
       }
     });
   })();

@@ -13,6 +13,7 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
 <div class={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-10 shadow-sm ${className}`}>
   <form id="audit-form" class="space-y-6" data-email={site.email} novalidate>
     <input type="hidden" name="access_key" value={formAccessKey} />
+    <input type="hidden" name="to" value={site.email} />
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
 
     <div class="space-y-4">
@@ -117,21 +118,66 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
       statusDiv.textContent = 'Submitting URL for manual senior engineer review...';
       statusDiv.classList.remove('hidden');
 
+      const formData = new FormData(form);
+      const accessKey = form.querySelector('input[name="access_key"]')?.value;
+      const targetEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: new FormData(form)
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
+        let sent = false;
+
+        // 1. Try Web3Forms if access key is present
+        if (accessKey && accessKey.trim().length > 0) {
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              sent = true;
+            }
+          } catch (e) {
+            // Fall through to FormSubmit
+          }
+        }
+
+        // 2. Fall back to FormSubmit directly
+        if (!sent) {
+          const fsResponse = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: formData
+          });
+          const fsData = await fsResponse.json();
+
+          if (fsResponse.ok && (fsData.success === 'true' || fsData.success === true)) {
+            sent = true;
+          } else if (fsData.message && fsData.message.toLowerCase().includes('activation')) {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Diagnostic Queued';
+            statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200';
+            statusDiv.innerHTML = `Audit request received! A one-time activation email was sent to <strong>${targetEmail}</strong>. Please click <em>'Activate Form'</em> in that email to enable instant notifications.`;
+            return;
+          } else {
+            throw new Error(fsData.message || 'Submission failed');
+          }
+        }
+
+        if (sent) {
           window.location.href = '/thank-you/';
-        } else {
-          throw new Error();
         }
       } catch (err) {
-        const directEmail = form.getAttribute('data-email') || 'mohsin37345@gmail.com';
+        submitBtn.disabled = false;
+        btnText.textContent = 'Retry Request';
+        const directEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
         statusDiv.className = 'p-3 rounded-xl text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200';
-        statusDiv.innerHTML = `Submission failed. Email your URL directly to <a href="mailto:${directEmail}" class="underline font-bold">${directEmail}</a>.`;
+        const urlVal = form.querySelector('[name="website_url"]')?.value || '';
+        const emailVal = form.querySelector('[name="email"]')?.value || '';
+        const mailSubject = encodeURIComponent('Free Website Audit Request');
+        const mailBody = encodeURIComponent(`Website URL: ${urlVal}\nEmail: ${emailVal}`);
+        statusDiv.innerHTML = `Submission failed. <a href="mailto:${directEmail}?subject=${mailSubject}&body=${mailBody}" class="underline font-bold text-rose-900">Click here to email your URL directly to ${directEmail}</a>.`;
       }
     });
   })();

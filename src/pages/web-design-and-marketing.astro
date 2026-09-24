@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'web-design-and-marketing');
 if (!serviceEntry) {
   throw new Error('Service entry web-design-and-marketing not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const marketingProjects = allProjects
+  .filter((p) => ['the-royals-removals', 'bitlance-group', 'mindful-ecotherapy-center'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'SEO Services Lancashire',
+    href: '/services/seo/',
+    description: 'Local citation building, technical audits, and organic Google search engine rankings.',
+    icon: 'search'
+  },
+  {
+    title: 'Landing Page Design',
+    href: '/services/landing-page-design/',
+    description: 'High-converting landing pages built specifically to maximise Google Ads and Meta paid traffic.',
+    icon: 'target'
+  },
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Clean, hand-crafted code with sub-second speeds and complete intellectual property ownership.',
+    icon: 'palette'
+  }
+];
+
+const heroTrustBullets = [
+  'Design + acquisition unified under one roof',
+  'Google Ads & Meta Ads campaign management',
+  'Technical on-page SEO & Schema markup built in',
+  'Direct collaboration with Mohsin Ali (4+ yrs SEO/Ads experience)'
+];
 ---
 
 <ServiceLayout
@@ -18,52 +65,91 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="Web Design and Marketing • Integrated Growth"
+  heroTrustBullets={heroTrustBullets}
   serviceType="Web Design and Marketing"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Straightforward answers regarding our integrated web design, digital marketing campaigns, and search ranking strategies."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      <!-- Section 1: In-depth Summary -->
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-          Integrated Growth Systems
+          Unified Commercial Growth
         </span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Unifying Strategic Web Design and Marketing for Measurable Revenue
+          Why Web Design and Marketing Must Work as One System
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          Aligning bespoke <strong>web design and marketing</strong> turns your online platform into an active, self-sustaining customer acquisition engine. In traditional setups, designers build visually pleasing websites without SEO architecture, while digital marketers struggle to drive traffic to pages that fail to convert visitors.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          Combining strategic <strong>web design and marketing</strong> creates a unified digital growth system rather than treating website creation and customer acquisition as disconnected silos. At Lancashire Web Designers, we engineer websites built specifically to rank in organic search, capture commercial buyer intent, and convert incoming traffic into measurable revenue through conversion-focused design and targeted digital strategies.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          At Lancashire Web Designers, we eliminate this friction. We integrate technical search engine optimisation, conversion rate ergonomics, and multi-channel attribution directly into the codebase. Your new website launches fully prepared to attract qualified organic search traffic and convert clicks into contracted business.
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+          A visually impressive website that attracts zero qualified traffic generates zero commercial value. Equally, sending paid Google Ads or Meta traffic to slow, unconvincing web pages wastes valuable marketing budget. We unite technical website engineering with strategic audience targeting to maximize your return on investment.
         </p>
       </div>
 
-      <!-- Section 2: Key Benefits Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="check" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
-          </div>
-        ))}
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Integrated Advantages
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Engineered for Customer Acquisition
+          </h2>
+        </div>
+        <FeatureCards features={data.benefits} />
       </div>
 
-      <!-- Section 3: 5-Stage Process -->
+      <!-- Section 3: Deep-dive H2 - Google Ads & Meta Ads Management -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Paid Acquisition
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Google Ads & Meta Ads Management
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Running profitable paid ad campaigns requires tight alignment between the advertisement creative, keyword intent, and the destination landing page. As a developer with 4+ years managing Google Ads and Meta Ads campaigns, Mohsin Ali designs both the marketing funnels and the high-speed landing pages they lead to.
+          </p>
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            We configure server-side conversion tracking via Google Tag Manager and Meta Conversions API (CAPI), ensuring accurate measurement despite cookie restrictions. Every ad penny is accounted for with clear cost-per-lead and acquisition metrics.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 4: Deep-dive H2 - Local SEO & Google Business Profile -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Organic Search Dominance
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Local SEO & Google Business Profile: Dominating Map Packs
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            For service businesses across Lancashire, dominating the Google Map Pack and local 3-pack search results delivers immediate, high-intent phone enquiries. We synchronise your Google Business Profile with structured local schemas, geo-tagged case studies, and localized service landing pages across Blackburn, Preston, and Lancaster.
+          </p>
+        </div>
+
+        <TechStack />
+      </div>
+
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-            Growth Methodology
+            Methodical Growth
           </span>
           <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
-            Our Web Design & Marketing Activation Process
+            Our 5-Stage Design & Marketing Lifecycle
           </h2>
           <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
-            From search intent mapping to live conversion attribution.
+            From search intent research to launch and ongoing acquisition scaling.
           </p>
         </div>
 
@@ -78,12 +164,12 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 4: Inclusions / Boundaries -->
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
             <Icon name="check" class="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-            <span>Included in Foundation Package</span>
+            <span>Included in the Package</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-700 dark:text-slate-300">
             {data.whatsIncluded.map((item) => (
@@ -98,7 +184,7 @@ const data = serviceEntry.data;
         <div class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
           <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-            <span>Retainer & Advertising Options</span>
+            <span>Transparent Boundaries (Optional Add-ons)</span>
           </h3>
           <ul class="space-y-2.5 text-sm text-slate-600 dark:text-slate-400">
             {data.whatsNotIncluded.map((item) => (
@@ -111,19 +197,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 5: TechStack -->
-      <TechStack />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="Client Case Studies & Marketing Growth"
+        subheading="Real businesses that expanded regional reach through custom web architecture and targeted search visibility."
+        items={marketingProjects}
+      />
 
-      <!-- Section 6: FAQs -->
-      <FAQ faqs={data.faqs} />
+      <!-- Section 8: Deep-dive H2 - SEO and Web Design Services Together: Why Silos Fail -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Why Silos Fail
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            SEO and Web Design Services Together: Why Silos Fail
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            When marketing agencies and development teams operate independently, friction is inevitable. Marketers produce long lists of technical recommendations that developers reject as impractical, while developers launch visual overhauls that unintentionally wipe out years of accumulated Google rankings and URL backlinks.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            By working with a single technical lead who understands both code and customer acquisition, you eliminate miscommunication. Every technical element—from canonical URLs and heading structures to image compression and responsive layouts—is engineered from day one to win search visibility and generate qualified leads.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 7: Inline Quote Form -->
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Start Your Web & Marketing Project"
-          subheading="Discuss your customer acquisition goals with our technical director. Fixed-price proposals delivered in 24 hours."
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - Flexible Web Design and Marketing Packages -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Transparent Pricing
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Flexible Web Design and Marketing Packages
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our combined web design and marketing builds start from £600 for core lead-generation setups with full technical SEO, GA4 event tracking, and Google Business Profile alignment.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="Design & Marketing from £600"
+          subtitle="Fixed milestone invoicing with zero long-term agency contracts and full code ownership on completion."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What business directors and marketing managers say about working with Mohsin Ali."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire web design and digital marketing studio"
+        leadSentence="Based in Blackburn, we partner with expanding commercial operations across Central and East Lancashire."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Common questions regarding our combined web design and digital marketing workflows, SEO timelines, and tracking."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Specialised growth services tailored to elevate your business search visibility and conversion rates."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Build Your Growth Platform"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Request Marketing Consultation"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>

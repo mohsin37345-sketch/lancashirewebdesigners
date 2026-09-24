@@ -1,0 +1,45 @@
+{
+  "town": "Darwen",
+  "slug": "web-design-darwen",
+  "county": "Lancashire",
+  "metaTitle": "Web Design Darwen | Lancashire Web Designers",
+  "metaDescription": "Bespoke web design Darwen businesses trust. Fast, custom-built websites for manufacturers, building trades, and local companies in Blackburn with Darwen.",
+  "primaryKeyword": "web design darwen",
+  "intro": "When your enterprise needs high-performance web design Darwen companies trust to win local contracts and qualified online enquiries, Lancashire Web Designers engineers bespoke digital platforms crafted for sustainable commercial growth. Operating throughout the Blackburn with Darwen borough, Darwen is home to historic fabrication plants, precision engineering specialists, innovative polymer producers, and a dedicated network of skilled building contractors. We firmly reject generic templates and bloated page builders in favour of clean, hand-crafted code architectures that load in under a second on mobile devices, ensuring sub-second Core Web Vitals, outstanding Google local rankings, and complete technical reliability for ambitious local businesses.",
+  "localKnowledge": "Nestled beneath the iconic Darwen Tower and the West Pennine Moors, Darwen combines a rich industrial legacy with substantial modern commercial investment through the Darwen Town Deal. From specialist chemical and plastics manufacturing along the A666 corridor to lively artisan businesses surrounding the Victorian Market Hall, local firms need websites that communicate reliability, craftsmanship, and technical competence. We engineer accessible, high-performance websites that elevate Darwen businesses and help them win commercial clients across Lancashire and the North West.",
+  "postcodes": ["BB3"],
+  "nearbyAreas": [
+    { "name": "Blackburn", "slug": "web-design-blackburn" },
+    { "name": "Accrington", "slug": "web-design-accrington" },
+    { "name": "Bolton", "slug": "bolton" },
+    { "name": "Chorley", "slug": "web-design-chorley" },
+    { "name": "Burnley", "slug": "web-design-burnley" }
+  ],
+  "localIndustries": ["Plastics & Chemical Coatings", "Paper & Packaging Manufacturing", "Construction & Building Trades", "Independent Retail & Hospitality"],
+  "servicesOffered": ["Bespoke Web Design", "Trade & Supplier Lead Funnels", "Website Support Retainers", "Local SEO & Map Pack", "Speed Remediation"],
+  "localFaqs": [
+    {
+      "question": "Can we meet in person in Darwen to discuss our website project?",
+      "answer": "Yes, absolutely. Being based right here in Blackburn with Darwen, we can meet you at your office or facility in Darwen for a face-to-face discovery session at short notice.",
+      "display": true
+    },
+    {
+      "question": "Do you work with local Darwen trade and manufacturing companies?",
+      "answer": "Yes. We work extensively with commercial suppliers, manufacturing plants, and skilled trade specialists, engineering websites that showcase accreditations, past projects, and direct quote request funnels.",
+      "display": true
+    },
+    {
+      "question": "How quickly can a bespoke Darwen business website go live?",
+      "answer": "A focused bespoke brochure website typically launches within 4 to 6 weeks. Larger B2B portals or ecommerce websites generally take 6 to 8 weeks from initial wireframes to production deployment.",
+      "display": true
+    },
+    {
+      "question": "Do I own my code and website once payment is complete?",
+      "answer": "Yes, 100%. Upon final project sign-off, all code, design assets, and repository rights transfer directly to your company with zero ongoing agency license fees.",
+      "display": true
+    }
+  ],
+  "lat": 53.6983,
+  "lng": -2.4633,
+  "tier": 1
+}

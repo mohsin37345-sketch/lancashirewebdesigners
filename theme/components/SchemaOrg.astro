@@ -75,7 +75,7 @@ const {
   reviews = []
 } = Astro.props;
 
-const orgId = `${site.siteUrl}/#organisation`;
+const businessId = `${site.siteUrl}/#business`;
 const websiteId = `${site.siteUrl}/#website`;
 
 // Filter active social links
@@ -84,23 +84,7 @@ const sameAs = Object.values(socialData).filter((url) => typeof url === 'string'
 // Global Area Served definitions
 const areasServed = [
   { '@type': 'AdministrativeArea', name: 'Lancashire' },
-  { '@type': 'City', name: 'Blackburn' },
-  { '@type': 'City', name: 'Preston' },
-  { '@type': 'City', name: 'Lancaster' },
-  { '@type': 'City', name: 'Burnley' },
-  { '@type': 'City', name: 'Blackpool' },
-  { '@type': 'City', name: 'Accrington' },
-  { '@type': 'City', name: 'Chorley' },
-  { '@type': 'City', name: 'Darwen' },
-  {
-    '@type': 'GeoCircle',
-    geoMidpoint: {
-      '@type': 'GeoCoordinates',
-      latitude: site.geo.lat,
-      longitude: site.geo.lng
-    },
-    geoRadius: '50000'
-  }
+  { '@type': 'Country', name: 'United Kingdom' }
 ];
 
 // Global OfferCatalog
@@ -183,11 +167,12 @@ if (verifiedReviews.length > 0) {
 // 1. Organization / ProfessionalService Node
 const professionalServiceNode: Record<string, any> = {
   '@type': 'ProfessionalService',
-  '@id': orgId,
+  '@id': businessId,
   name: site.name,
   url: site.siteUrl,
   description: 'Lancashire-based web design studio specialising in bespoke, high-performance websites.',
   email: site.email,
+  telephone: site.phoneE164 || site.phone,
   priceRange: site.priceRange,
   currenciesAccepted: 'GBP',
   paymentAccepted: 'Bank Transfer, Direct Debit, Credit Card',
@@ -199,14 +184,24 @@ const professionalServiceNode: Record<string, any> = {
       closes: '17:30'
     }
   ],
-  areaServed: areasServed,
+  areaServed: {
+    '@type': 'AdministrativeArea',
+    name: 'Lancashire'
+  },
+  founder: {
+    '@type': 'Person',
+    name: site.founder?.name || 'Mohsin Ali',
+    jobTitle: site.founder?.role || 'founder and lead developer',
+    sameAs: site.founder?.linkedin || socialData.linkedin
+  },
   hasOfferCatalog: offerCatalog,
   logo: `${site.siteUrl}/images/logo.webp`,
   image: `${site.siteUrl}/images/logo.webp`
 };
 
-if (site.legalEntity) professionalServiceNode.legalName = site.legalEntity;
-if (site.phoneE164) professionalServiceNode.telephone = site.phoneE164;
+if (site.companyName || site.legalEntity) {
+  professionalServiceNode.legalName = site.companyName || site.legalEntity;
+}
 if (site.vatNumber) professionalServiceNode.vatID = site.vatNumber;
 if (sameAs.length > 0) professionalServiceNode.sameAs = sameAs;
 
@@ -240,7 +235,7 @@ const websiteNode = {
   url: site.siteUrl,
   name: title,
   description: description,
-  publisher: { '@id': orgId },
+  publisher: { '@id': businessId },
   inLanguage: 'en-GB'
 };
 
@@ -255,7 +250,7 @@ const navigationNodes = navData.mainNav.map((item) => ({
 const graph: any[] = [professionalServiceNode, websiteNode, ...navigationNodes];
 
 // 4. Breadcrumbs Graph
-if (breadcrumbs.length > 0 && type !== 'home') {
+if (breadcrumbs && breadcrumbs.length > 0 && type !== 'home') {
   graph.push({
     '@type': 'BreadcrumbList',
     itemListElement: breadcrumbs.map((bc, index) => ({
@@ -289,9 +284,12 @@ if (type === 'service' && serviceData) {
     '@type': 'Service',
     name: serviceData.name,
     serviceType: serviceData.serviceType,
-    provider: { '@id': orgId },
-    areaServed: areasServed,
-    hasOfferCatalog: offerCatalog,
+    description: description,
+    provider: { '@id': businessId },
+    areaServed: [
+      { '@type': 'AdministrativeArea', name: 'Lancashire' },
+      { '@type': 'Country', name: 'United Kingdom' }
+    ],
     url: canonical
   });
 }
@@ -302,7 +300,7 @@ if (type === 'location' && locationData) {
   graph.push({
     '@type': 'LocalBusiness',
     name: `${site.name} — Web Design ${localTown}`,
-    parentOrganization: { '@id': orgId },
+    parentOrganization: { '@id': businessId },
     url: canonical,
     areaServed: [
       { '@type': 'City', name: localTown },
@@ -319,7 +317,7 @@ if (type === 'portfolio' && portfolioData) {
     name: portfolioData.title,
     about: portfolioData.client,
     dateCreated: `${portfolioData.year}`,
-    creator: { '@id': orgId },
+    creator: { '@id': businessId },
     url: canonical,
     image: portfolioData.image ? absoluteUrl(portfolioData.image) : undefined
   });
@@ -339,7 +337,7 @@ if (type === 'blog-post' && blogData) {
       name: blogData.authorName || site.name,
       url: `${site.siteUrl}/about/#author`
     },
-    publisher: { '@id': orgId },
+    publisher: { '@id': businessId },
     mainEntityOfPage: canonical,
     wordCount: blogData.wordCount,
     articleSection: blogData.articleSection
@@ -352,7 +350,7 @@ if (type === 'about') {
     '@type': 'AboutPage',
     url: canonical,
     name: `About ${site.name}`,
-    mainEntity: { '@id': orgId }
+    mainEntity: { '@id': businessId }
   });
 }
 
@@ -361,7 +359,7 @@ if (type === 'contact') {
     '@type': 'ContactPage',
     url: canonical,
     name: `Contact ${site.name}`,
-    mainEntity: { '@id': orgId }
+    mainEntity: { '@id': businessId }
   });
 }
 

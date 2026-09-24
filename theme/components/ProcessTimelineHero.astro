@@ -1,64 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import { site } from 'src/data/site';
-
-// The 9 official technology & framework SVG assets uploaded by the user to public/icons/
-const techBadges = [
-  {
-    name: 'React',
-    src: '/icons/reactjs-ar21.svg',
-    position: 'top-[-12px] left-[50%] -translate-x-1/2',
-    anim: 'animate-float-slow'
-  },
-  {
-    name: 'Node.js',
-    src: '/icons/nodejs-ar21.svg',
-    position: 'top-[-8px] left-[8%] sm:left-[10%]',
-    anim: 'animate-float-reverse'
-  },
-  {
-    name: 'Shopify',
-    src: '/icons/shopify-ar21.svg',
-    position: 'top-[-8px] right-[8%] sm:right-[10%]',
-    anim: 'animate-float-slow'
-  },
-  {
-    name: 'HTML5',
-    src: '/icons/w3_html5-ar21.svg',
-    position: 'top-[26%] -left-3 sm:-left-7',
-    anim: 'animate-float-slow'
-  },
-  {
-    name: 'Tailwind CSS',
-    src: '/icons/tailwindcss-ar21.svg',
-    position: 'top-[26%] -right-3 sm:-right-7',
-    anim: 'animate-float-reverse'
-  },
-  {
-    name: 'CSS3',
-    src: '/icons/w3_css-ar21~old.svg',
-    position: 'top-[64%] -left-3 sm:-left-7',
-    anim: 'animate-float-reverse'
-  },
-  {
-    name: 'WordPress',
-    src: '/icons/wordpress-ar21.svg',
-    position: 'top-[64%] -right-3 sm:-right-7',
-    anim: 'animate-float-slow'
-  },
-  {
-    name: 'PHP',
-    src: '/icons/php-ar21.svg',
-    position: 'bottom-[-10px] left-[16%] sm:left-[20%]',
-    anim: 'animate-float-slow'
-  },
-  {
-    name: 'phpMyAdmin',
-    src: '/icons/phpmyadmin-ar21.svg',
-    position: 'bottom-[-10px] right-[16%] sm:right-[20%]',
-    anim: 'animate-float-reverse'
-  }
-];
+import { heroTechBadges as techBadges } from 'src/data/techStack';
 
 const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
 ---
@@ -137,6 +80,7 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
     <!-- Interactive Hero Quote Request Form -->
     <form id="hero-quote-form" class="space-y-3 pt-1" novalidate data-email={site.email}>
       <input type="hidden" name="access_key" value={formAccessKey} />
+      <input type="hidden" name="to" value={site.email} />
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
 
       <!-- Row 1: Name & Business Email -->
@@ -293,27 +237,67 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
       statusDiv.textContent = 'Submitting your quote request...';
       statusDiv.classList.remove('hidden');
 
+      const formData = new FormData(form);
+      const accessKey = form.querySelector('input[name="access_key"]')?.value;
+      const targetEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+
       try {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          body: new FormData(form)
-        });
-        const data = await res.json();
-        if (res.ok && data.success) {
+        let sent = false;
+
+        // 1. Try Web3Forms if access key is present
+        if (accessKey && accessKey.trim().length > 0) {
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              sent = true;
+            }
+          } catch (e) {
+            // Fall through to FormSubmit
+          }
+        }
+
+        // 2. Fall back to FormSubmit directly
+        if (!sent) {
+          const fsResponse = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: formData
+          });
+          const fsData = await fsResponse.json();
+
+          if (fsResponse.ok && (fsData.success === 'true' || fsData.success === true)) {
+            sent = true;
+          } else if (fsData.message && fsData.message.toLowerCase().includes('activation')) {
+            submitBtn.disabled = false;
+            btnText.textContent = 'Request Queued';
+            statusDiv.className = 'p-2.5 rounded-lg text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200 dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-800/60';
+            statusDiv.innerHTML = `Quote request received! A one-time activation email was sent to <strong>${targetEmail}</strong>. Please click <em>'Activate Form'</em> in that email to enable instant notifications.`;
+            return;
+          } else {
+            throw new Error(fsData.message || 'Submission failed');
+          }
+        }
+
+        if (sent) {
           window.location.href = '/thank-you/';
-        } else {
-          throw new Error();
         }
       } catch (err) {
         submitBtn.disabled = false;
         btnText.textContent = 'Retry Request';
         statusDiv.className = 'p-2.5 rounded-lg text-xs font-medium bg-rose-50 text-rose-800 border border-rose-200 dark:bg-rose-950/60 dark:text-rose-200 dark:border-rose-800/60';
-        const fallbackEmail = form.getAttribute('data-email');
-        if (fallbackEmail) {
-          statusDiv.innerHTML = `Submission error. Email us directly at <a href="mailto:${fallbackEmail}" class="underline font-bold">${fallbackEmail}</a>.`;
-        } else {
-          statusDiv.textContent = 'Submission error. Please check your connection or try again.';
-        }
+        const fallbackEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+        const nameVal = form.querySelector('[name="name"]')?.value || '';
+        const emailVal = form.querySelector('[name="email"]')?.value || '';
+        const detailsVal = form.querySelector('[name="details"]')?.value || '';
+        const mailSubject = encodeURIComponent('New Website Project Enquiry');
+        const mailBody = encodeURIComponent(`Name: ${nameVal}\nEmail: ${emailVal}\nDetails: ${detailsVal}`);
+        statusDiv.innerHTML = `Unable to send via automated gateway. <a href="mailto:${fallbackEmail}?subject=${mailSubject}&body=${mailBody}" class="underline font-bold text-rose-900 dark:text-rose-100">Click here to email directly to ${fallbackEmail}</a>.`;
       }
     });
   })();

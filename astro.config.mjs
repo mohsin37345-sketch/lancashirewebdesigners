@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -13,9 +12,6 @@ export default defineConfig({
   site: 'https://www.lancashirewebdesigners.co.uk',
   trailingSlash: 'always',
   output: 'static',
-  adapter: vercel({
-    webAnalytics: { enabled: false }
-  }),
   integrations: [
     mdx(),
     sitemap({

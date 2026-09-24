@@ -2,25 +2,25 @@
   "title": "Website Speed Optimisation",
   "slug": "website-speed-optimisation",
   "shortTitle": "Speed Optimisation",
-  "metaTitle": "Website Speed Optimisation UK | Lancashire Web Designers",
-  "metaDescription": "Professional website speed optimisation services for WordPress, Shopify, and custom websites. Pass Core Web Vitals, improve SEO rankings, and boost conversions.",
-  "primaryKeyword": "website speed optimisation uk",
+  "metaTitle": "Website Speed Optimisation Lancashire | Core Web Vitals Fix",
+  "metaDescription": "Improve Core Web Vitals and load times with our website speed optimisation service in Lancashire. Fast WordPress, Shopify, and custom code fixes.",
+  "primaryKeyword": "website speed optimisation",
   "secondaryKeywords": [
     "core web vitals optimisation",
     "speed up slow wordpress",
     "page speed agency",
     "improve google page speed"
   ],
-  "heroHeading": "Website Speed Optimisation",
-  "heroSubheading": "Transforming sluggish websites into sub-second powerhouses that pass Google Core Web Vitals with straight 90+ Lighthouse scores.",
+  "heroHeading": "Website Speed Optimisation Lancashire",
+  "heroSubheading": "Transforming sluggish websites into sub-second powerhouses that satisfy Google Core Web Vitals and deliver frictionless mobile experiences.",
   "icon": "zap",
   "summary": "Every second of page load latency costs your business qualified leads, search engine rankings, and sales revenue. Our website speed optimisation service conducts deep-code audits, asset compression, cache architecture engineering, and server tuning to eliminate bloat and achieve lightning-fast loading speeds on mobile networks.",
   "benefits": [
-    "Pass all three Google Core Web Vitals metrics (LCP, INP, CLS) guaranteed",
-    "Drastic reduction in mobile bounce rates and abandoned visits",
-    "Improved organic search engine positioning and crawl budget efficiency",
-    "Lower Google Ads Cost Per Click through improved landing page experience ratings",
-    "Lean, clean codebase with unneeded bloat and redundant JavaScript removed"
+    "Core Web Vitals Remediated — Address critical thresholds across Largest Contentful Paint (LCP), INP, and CLS",
+    "Lower Bounce Rates — Drastic reduction in mobile bounce rates and abandoned visitor journeys",
+    "Organic Rank Efficiency — Improved organic search engine positioning and Google crawl budget efficiency",
+    "Lower Google Ad Costs — Lower Cost Per Click through improved landing page experience scores",
+    "Lean Codebase — Streamlined codebase with dormant plugins, redundant JavaScript, and render-blocking CSS removed"
   ],
   "process": [
     {
@@ -36,7 +36,7 @@
     {
       "step": 3,
       "title": "Code Minimisation & Script Pruning",
-      "description": "Deferring non-critical JavaScript, removing dormant plugins, eliminating render-blocking CSS, and optimizing DOM size."
+      "description": "Deferring non-critical JavaScript, removing dormant plugins, eliminating render-blocking CSS, and optimising DOM size."
     },
     {
       "step": 4,
@@ -50,10 +50,10 @@
     }
   ],
   "whatsIncluded": [
-    "Deep forensic speed audit identifying all bottlenecks",
+    "Deep forensic speed audit identifying all performance bottlenecks",
     "Full remediation of Largest Contentful Paint (LCP) and Cumulative Layout Shift (CLS)",
-    "Interaction to Next Paint (INP) JavaScript execution profiling and optimization",
-    "Image format modernization and responsive sizing configuration",
+    "Interaction to Next Paint (INP) JavaScript execution profiling and optimisation",
+    "Image format modernisation and responsive sizing configuration",
     "Cloudflare edge CDN and caching setup",
     "Before-and-after performance benchmark report"
   ],
@@ -64,7 +64,7 @@
   ],
   "priceFrom": 150,
   "priceUnit": "fixed project",
-  "priceNotes": "Speed and Core Web Vitals optimization packages start from £150.",
+  "priceNotes": "Speed and Core Web Vitals optimisation packages start from £150 for targeted audits, and £250 for comprehensive codebase remediation.",
   "techStack": ["Chrome DevTools", "Cloudflare", "Lighthouse", "WebPageTest", "Redis"],
   "typicalTimeline": "3-5 business days",
   "faqs": [
@@ -75,12 +75,12 @@
     },
     {
       "question": "Can you speed up my existing WordPress site without redesigning it?",
-      "answer": "Yes. Most speed issues are caused by unoptimized images, render-blocking scripts, dormant plugins, and lack of proper edge caching. We can dramatically improve performance while keeping your current design and content completely intact.",
+      "answer": "Yes. Most speed issues are caused by unoptimised images, render-blocking scripts, dormant plugins, and lack of proper edge caching. We can dramatically improve performance while keeping your current design and content completely intact.",
       "display": true
     },
     {
-      "question": "Do you guarantee a 90+ Google PageSpeed score?",
-      "answer": "On clean codebases and modern hosting environments, we routinely achieve 95-100 on desktop and 90+ on mobile. If third-party tracking scripts (like Facebook Pixel or HubSpot) impose hard limits, we isolate and defer them so real users still experience sub-second load times.",
+      "question": "What kind of performance improvements can we expect?",
+      "answer": "On clean codebases and modern hosting environments, we regularly achieve sub-second LCP and high 90s mobile performance scores. Where third-party scripts (such as Facebook Pixel or chat widgets) are necessary, we isolate and defer them so real visitors experience instant initial page loads.",
       "display": true
     },
     {
@@ -89,7 +89,7 @@
       "display": true
     }
   ],
-  "relatedServices": ["website-support", "wordpress-development", "website-redesign"],
+  "relatedServices": ["services/wordpress-development", "services/shopify-development", "website-support"],
   "order": 11,
   "featured": false
 }

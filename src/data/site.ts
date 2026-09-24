@@ -2,13 +2,21 @@ export interface SiteConfig {
   siteUrl: string;
   name: string;
   legalEntity?: string;
-  companyNumber?: string;
+  companyName: string;
+  companyNumber: string;
+  registeredOffice: string;
+  legalLine: string;
   vatNumber?: string;
   email: string;
   phone?: string;
   phoneE164?: string;
   phoneDisplay?: string;
   whatsAppE164?: string;
+  founder: {
+    name: string;
+    role: string;
+    linkedin: string;
+  };
   address: {
     street?: string;
     locality?: string;
@@ -51,14 +59,22 @@ export interface SiteConfig {
 export const site: SiteConfig = {
   siteUrl: 'https://www.lancashirewebdesigners.co.uk',
   name: 'Lancashire Web Designers',
-  legalEntity: '',
-  companyNumber: '14892014',
+  legalEntity: '[COMPANY NAME]',
+  companyName: '[COMPANY NAME]',
+  companyNumber: '[NUMBER]',
+  registeredOffice: '[ADDRESS]',
+  legalLine: 'Lancashire Web Designers is a trading name of [COMPANY NAME], registered in England & Wales, Company No. [NUMBER]. Registered office: [ADDRESS].',
   vatNumber: '',
-  email: 'mohsin37345@gmail.com',
+  email: 'lancashirewebdesigners@gmail.com',
   phone: '07466 361298',
   phoneE164: '+447466361298',
   phoneDisplay: '07466 361298',
   whatsAppE164: '+447466361298',
+  founder: {
+    name: 'Mohsin Ali',
+    role: 'founder and lead developer',
+    linkedin: 'https://www.linkedin.com/in/iammohsinmughal/'
+  },
   address: {
     street: 'Suite 3, Cathedral Quarter, Railway Road',
     locality: 'Cathedral Quarter',
@@ -75,8 +91,8 @@ export const site: SiteConfig = {
     postcode: 'BB1 1EZ',
     phone: '07466 361298',
     phoneE164: '+447466361298',
-    email: 'mohsin37345@gmail.com',
-    companyNumber: '14892014'
+    email: 'lancashirewebdesigners@gmail.com',
+    companyNumber: '[NUMBER]'
   },
   geo: {
     lat: 53.7488,
@@ -89,10 +105,10 @@ export const site: SiteConfig = {
   },
   priceRange: '££',
   pricing: {
-    brochureFrom: '£300',
-    b2bFrom: '£1,200',
-    ecommerceFrom: '£500',
-    carePlanFrom: '£99/month'
+    brochureFrom: '£150',
+    b2bFrom: '£300',
+    ecommerceFrom: '£350',
+    carePlanFrom: '£49/month'
   },
   accreditations: [],
   clientLogos: []

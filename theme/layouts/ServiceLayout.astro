@@ -2,16 +2,27 @@
 import BaseLayout from './BaseLayout.astro';
 import Hero from 'theme/components/Hero.astro';
 import CTABand from 'theme/components/CTABand.astro';
+import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 
 export interface Props {
   title: string;
   description: string;
   h1: string;
   heroSubheading?: string;
+  heroEyebrow?: string;
+  heroTrustBullets?: string[];
   serviceType: string;
-  priceFrom?: number;
+  priceFrom?: number | string;
+  priceUnit?: string;
+  ogImage?: string;
   breadcrumbs?: { name: string; url: string }[];
   faqs?: { question: string; answer: string; display?: boolean }[];
+  faqIntro?: string;
+  formHeading?: string;
+  formSubmitLabel?: string;
+  includeUrlField?: boolean;
+  finalCtaHeading?: string;
+  finalCtaText?: string;
 }
 
 const {
@@ -19,36 +30,53 @@ const {
   description,
   h1,
   heroSubheading,
+  heroEyebrow,
+  heroTrustBullets,
   serviceType,
   priceFrom,
+  priceUnit: _priceUnit = 'fixed project',
+  ogImage,
   breadcrumbs = [
     { name: 'Home', url: '/' },
     { name: 'Services', url: '/services/' },
     { name: h1, url: Astro.url.pathname }
   ],
-  faqs = []
+  faqs = [],
+  faqIntro: _faqIntro,
+  formHeading,
+  formSubmitLabel,
+  includeUrlField = false,
+  finalCtaHeading,
+  finalCtaText
 } = Astro.props;
+
+// Per-page OG image with fallback to /assets/og/{slug}.jpg
+const pathname = Astro.url.pathname.replace(/^\/|\/$/g, '');
+const pageSlug = pathname.replace(/^services\//, '');
+const resolvedOgImage = ogImage || (pageSlug ? `/assets/og/${pageSlug}.jpg` : '/assets/og-default.jpg');
 ---
 
 <BaseLayout
   title={title}
   description={description}
+  ogImage={resolvedOgImage}
   schemaType="service"
   breadcrumbs={breadcrumbs}
   faqs={faqs}
   serviceData={{
     name: h1,
     serviceType,
-    priceFrom
+    priceFrom: typeof priceFrom === 'number' ? priceFrom : undefined
   }}
 >
-  <!-- Interactive Modern Hero Section with Quote Form & Floating SVG Tech Badges -->
+  <!-- Hero Section with per-page eyebrow & trust bullets (no shared defaults) -->
   <Hero
     variant="service"
     heading={h1}
     subheading={heroSubheading}
+    eyebrow={heroEyebrow}
+    trustBullets={heroTrustBullets}
     breadcrumbs={breadcrumbs}
-    badge={`${serviceType} • 100% Bespoke Code`}
     primaryCtaText="Get a Bespoke Quote"
     primaryCtaHref="/get-a-quote/"
     secondaryCtaText="Explore Pricing"
@@ -59,5 +87,23 @@ const {
     <slot />
   </div>
 
-  <CTABand />
+  <!-- Optional Per-Page Final Quote Form -->
+  {formHeading && (
+    <div class="py-16 bg-slate-50 dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <QuoteFormInline
+          heading={formHeading}
+          submitLabel={formSubmitLabel}
+          includeUrlField={includeUrlField}
+        />
+      </div>
+    </div>
+  )}
+
+  <!-- Final CTA Band with per-page heading & text -->
+  <CTABand
+    heading={finalCtaHeading}
+    text={finalCtaText}
+    primaryCtaHref="/get-a-quote/"
+  />
 </BaseLayout>

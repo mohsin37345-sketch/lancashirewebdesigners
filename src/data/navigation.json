@@ -58,7 +58,7 @@
               {
                 "label": "Shopify Development",
                 "href": "/services/shopify-development/",
-                "description": "Tailored ecommerce storefronts optimized for revenue.",
+                "description": "Tailored ecommerce storefronts optimised for revenue.",
                 "icon": "tag"
               },
               {
@@ -90,7 +90,7 @@
       "megaMenu": {
         "groups": [
           {
-            "title": "Tier 1 Locations",
+            "title": "Primary Hubs",
             "items": [
               {
                 "label": "Web Design Blackburn",
@@ -109,29 +109,47 @@
                 "href": "/areas/web-design-lancaster/",
                 "description": "Modern digital solutions for Lancaster & Morecambe Bay.",
                 "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Burnley",
+                "href": "/areas/web-design-burnley/",
+                "description": "Engineered for aerospace, engineering, and M65 businesses.",
+                "icon": "map-pin"
               }
             ]
           },
           {
-            "title": "Coverage & Regional Hubs",
+            "title": "Regional Coverage",
             "items": [
+              {
+                "label": "Web Design Blackpool",
+                "href": "/areas/web-design-blackpool/",
+                "description": "Fylde Coast retail, tourism, and enterprise zone platforms.",
+                "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Accrington",
+                "href": "/areas/web-design-accrington/",
+                "description": "Digital platforms for Hyndburn commercial suppliers.",
+                "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Chorley",
+                "href": "/areas/web-design-chorley/",
+                "description": "Websites for Central Lancashire digital and corporate firms.",
+                "icon": "map-pin"
+              },
+              {
+                "label": "Web Design Darwen",
+                "href": "/areas/web-design-darwen/",
+                "description": "Bespoke web design for Darwen trade and manufacturing firms.",
+                "icon": "map-pin"
+              },
               {
                 "label": "All Lancashire Areas",
                 "href": "/areas/",
                 "description": "Explore our full Lancashire and North West service area.",
                 "icon": "globe"
-              },
-              {
-                "label": "Bespoke Design Blackburn",
-                "href": "/bespoke-web-design/blackburn/",
-                "description": "Bespoke development for Blackburn manufacturers & firms.",
-                "icon": "code"
-              },
-              {
-                "label": "Bespoke Design Preston",
-                "href": "/bespoke-web-design/preston/",
-                "description": "Enterprise-grade web solutions for Preston businesses.",
-                "icon": "code"
               }
             ]
           }
@@ -179,9 +197,12 @@
       { "label": "Blackburn Web Design", "href": "/areas/web-design-blackburn/" },
       { "label": "Preston Web Design", "href": "/areas/web-design-preston/" },
       { "label": "Lancaster Web Design", "href": "/areas/web-design-lancaster/" },
-      { "label": "Lancashire Coverage Hub", "href": "/areas/" },
-      { "label": "Bespoke Design Blackburn", "href": "/bespoke-web-design/blackburn/" },
-      { "label": "Bespoke Design Preston", "href": "/bespoke-web-design/preston/" }
+      { "label": "Burnley Web Design", "href": "/areas/web-design-burnley/" },
+      { "label": "Blackpool Web Design", "href": "/areas/web-design-blackpool/" },
+      { "label": "Accrington Web Design", "href": "/areas/web-design-accrington/" },
+      { "label": "Chorley Web Design", "href": "/areas/web-design-chorley/" },
+      { "label": "Darwen Web Design", "href": "/areas/web-design-darwen/" },
+      { "label": "Lancashire Coverage Hub", "href": "/areas/" }
     ],
     "company": [
       { "label": "About Us", "href": "/about/" },

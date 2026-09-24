@@ -17,8 +17,20 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
     </div>
   </div>
 
-  <form id="full-quote-form" class="space-y-8" action="https://api.web3forms.com/submit" method="POST" novalidate>
+  <form
+    id="full-quote-form"
+    class="space-y-8"
+    action={formAccessKey ? "https://api.web3forms.com/submit" : `https://formsubmit.co/${site.email}`}
+    method="POST"
+    novalidate
+    data-email={site.email}
+  >
     <input type="hidden" name="access_key" value={formAccessKey} />
+    <input type="hidden" name="to" value={site.email} />
+    <input type="hidden" id="quote-next-input" name="_next" value="/thank-you/" />
+    <input type="hidden" name="_subject" value="New Specification Quote Submission - Lancashire Web Designers" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="redirect" value="/thank-you/" />
     <!-- Honeypot -->
     <input type="checkbox" name="botcheck" class="hidden" style="display: none;" tabindex="-1" autocomplete="off" />
     <input type="hidden" id="form-start-time" name="form_time_ms" value="" />
@@ -145,10 +157,11 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
             Target Budget Range <span class="text-blue-600">*</span>
           </label>
           <select id="budget-band" name="budget" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm">
-            <option value="£1,500 - £2,500 (Bespoke Brochure)">£1,500 – £2,500 (Bespoke Brochure)</option>
-            <option value="£2,500 - £4,500 (B2B Lead Engine)" selected>£2,500 – £4,500 (B2B Growth Platform)</option>
-            <option value="£4,500 - £8,000 (Complex / Ecommerce)">£4,500 – £8,000 (Custom Ecommerce / Portal)</option>
-            <option value="£8,000+ (Enterprise scope)">£8,000+ (Enterprise Architecture)</option>
+            <option value="£150 - £300 (Starter / Landing Page)">£150 – £300 (Starter / Landing Page)</option>
+            <option value="£300 - £600 (Bespoke Brochure Site)" selected>£300 – £600 (Bespoke Brochure Site)</option>
+            <option value="£600 - £1,000 (B2B Growth Platform)">£600 – £1,000 (B2B Growth Platform)</option>
+            <option value="£1,000 - £1,800 (Custom Ecommerce / Portal)">£1,000 – £1,800 (Custom Ecommerce / Portal)</option>
+            <option value="£1,800+ (Enterprise Architecture)">£1,800+ (Enterprise Architecture)</option>
           </select>
         </div>
 
@@ -220,51 +233,63 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
       </div>
     </fieldset>
 
+    <div id="quote-status" class="hidden p-4 rounded-xl text-sm font-medium" role="status" aria-live="polite"></div>
+
     <!-- Navigation & Step Controls -->
     <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
       <button
         type="button"
         id="prev-step-btn"
+        style="display: none;"
         class="hidden px-6 py-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
       >
         &larr; Previous Step
       </button>
 
-      <button
-        type="button"
-        id="next-step-btn"
-        class="ml-auto inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift"
-      >
-        <span>Next Step</span>
-        <Icon name="arrow-right" class="w-4 h-4" />
-      </button>
-
-      <div class="flex items-center gap-3">
+      <div class="ml-auto flex items-center gap-3">
         <a
           href={`tel:${site.nap.phoneE164}`}
           id="quote-phone-call-btn"
+          style="display: none;"
           class="hidden sm:inline-flex items-center gap-2 px-5 py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-800 dark:text-slate-200 font-semibold text-sm transition-all"
         >
           <Icon name="phone" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
           <span>Call {site.nap.phone}</span>
         </a>
 
+        <!-- Next Step Button (Visible ONLY on steps 1, 2, 3) -->
+        <button
+          type="button"
+          id="next-step-btn"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-all hover-lift"
+        >
+          <span>Next Step</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
+        </button>
+
+        <!-- Submit Button (Visible ONLY on final step 4) -->
         <button
           type="submit"
           id="quote-submit-btn"
+          style="display: none;"
           class="hidden inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md transition-all hover-lift"
         >
-          <span>Submit Specification</span>
+          <span id="quote-submit-text">Submit Specification</span>
           <Icon name="check" class="w-4 h-4" />
         </button>
       </div>
     </div>
   </form>
+
+  <p class="text-center text-xs text-slate-500 dark:text-slate-400 mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+    Prefer direct email? Send your project brief directly to <a href={`mailto:${site.email}`} class="text-blue-600 dark:text-blue-400 hover:underline font-semibold">{site.email}</a>
+  </p>
 </div>
 
 <!-- Progressive Enhancement Multi-Step Client Script -->
 <script is:inline>
   (function () {
+    const form = document.getElementById('full-quote-form');
     const steps = [
       document.getElementById('quote-step-1'),
       document.getElementById('quote-step-2'),
@@ -275,15 +300,22 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
     const prevBtn = document.getElementById('prev-step-btn');
     const nextBtn = document.getElementById('next-step-btn');
     const submitBtn = document.getElementById('quote-submit-btn');
+    const submitBtnText = document.getElementById('quote-submit-text');
+    const statusDiv = document.getElementById('quote-status');
+    const phoneBtn = document.getElementById('quote-phone-call-btn');
     const indicatorText = document.getElementById('step-indicator-text');
     const percentageText = document.getElementById('step-percentage');
     const progressBar = document.getElementById('step-progress-bar');
     const startTimeInput = document.getElementById('form-start-time');
+    const nextInput = document.getElementById('quote-next-input');
 
-    if (!steps[0] || !prevBtn || !nextBtn || !submitBtn) return;
+    if (!steps[0] || !prevBtn || !nextBtn || !submitBtn || !form) return;
 
     if (startTimeInput) {
       startTimeInput.value = Date.now().toString();
+    }
+    if (nextInput) {
+      nextInput.value = window.location.origin + '/thank-you/';
     }
 
     let currentStep = 0;
@@ -310,21 +342,39 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
       if (percentageText) percentageText.textContent = `${pct}% Complete`;
       if (progressBar) progressBar.style.width = `${pct}%`;
 
+      // Previous button visibility
       if (currentStep === 0) {
         prevBtn.classList.add('hidden');
+        prevBtn.style.display = 'none';
       } else {
         prevBtn.classList.remove('hidden');
+        prevBtn.style.display = 'inline-flex';
       }
 
-      const phoneBtn = document.getElementById('quote-phone-call-btn');
+      // Step 4 (Final Step): HIDE Next Step completely! Show Submit button only!
       if (currentStep === 3) {
         nextBtn.classList.add('hidden');
+        nextBtn.style.display = 'none';
+
         submitBtn.classList.remove('hidden');
-        if (phoneBtn) phoneBtn.classList.remove('hidden');
+        submitBtn.style.display = 'inline-flex';
+
+        if (phoneBtn) {
+          phoneBtn.classList.remove('hidden');
+          phoneBtn.style.display = 'inline-flex';
+        }
       } else {
+        // Steps 1, 2, 3: Show Next Step, HIDE Submit button!
         nextBtn.classList.remove('hidden');
+        nextBtn.style.display = 'inline-flex';
+
         submitBtn.classList.add('hidden');
-        if (phoneBtn) phoneBtn.classList.add('hidden');
+        submitBtn.style.display = 'none';
+
+        if (phoneBtn) {
+          phoneBtn.classList.add('hidden');
+          phoneBtn.style.display = 'none';
+        }
       }
 
       // Preserve state in sessionStorage
@@ -349,6 +399,98 @@ const formAccessKey = import.meta.env.PUBLIC_FORM_ACCESS_KEY || '';
         currentStep--;
         updateStepUI();
         window.scrollTo({ top: steps[currentStep].offsetTop - 100, behavior: 'smooth' });
+      }
+    });
+
+    // Handle AJAX Submission on Final Step
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Validate required fields on Step 4
+      const nameInput = document.getElementById('quote-name');
+      const emailInput = document.getElementById('quote-email');
+      const phoneInput = document.getElementById('quote-phone');
+      const consentInput = document.getElementById('consent-processing');
+
+      if (!nameInput?.value.trim() || !emailInput?.value.trim() || !phoneInput?.value.trim() || !consentInput?.checked) {
+        if (statusDiv) {
+          statusDiv.className = 'p-4 rounded-xl text-sm font-medium bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-200 border border-rose-200 dark:border-rose-800';
+          statusDiv.textContent = 'Please fill in all required fields (Name, Work Email, Direct Phone, and Agreement) to submit your specification.';
+          statusDiv.classList.remove('hidden');
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      if (submitBtnText) submitBtnText.textContent = 'Submitting Specification...';
+      if (statusDiv) {
+        statusDiv.className = 'p-4 rounded-xl text-sm font-medium bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-blue-200 border border-blue-200 dark:border-blue-800';
+        statusDiv.textContent = 'Transmitting your specification to our lead engineer...';
+        statusDiv.classList.remove('hidden');
+      }
+
+      const formData = new FormData(form);
+      const accessKey = form.querySelector('input[name="access_key"]')?.value;
+      const targetEmail = form.getAttribute('data-email') || 'lancashirewebdesigners@gmail.com';
+
+      try {
+        let sent = false;
+
+        // 1. Try Web3Forms if access key is configured
+        if (accessKey && accessKey.trim().length > 0) {
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              body: formData
+            });
+            const data = await res.json();
+            if (res.ok && data.success) {
+              sent = true;
+            }
+          } catch (e) {}
+        }
+
+        // 2. Fall back to FormSubmit directly to email
+        if (!sent) {
+          const fsResponse = await fetch(`https://formsubmit.co/ajax/${targetEmail}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: formData
+          });
+          const fsData = await fsResponse.json();
+
+          if (fsResponse.ok && (fsData.success === 'true' || fsData.success === true)) {
+            sent = true;
+          } else if (fsData.message && fsData.message.toLowerCase().includes('activation')) {
+            submitBtn.disabled = false;
+            if (submitBtnText) submitBtnText.textContent = 'Submit Specification';
+            if (statusDiv) {
+              statusDiv.className = 'p-4 rounded-xl text-sm font-medium bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-200 border border-amber-200 dark:border-amber-800';
+              statusDiv.innerHTML = `Your specification has been queued! A one-time activation email was sent to <strong>${targetEmail}</strong>. Please click <em>'Activate Form'</em> in that email to enable instant notifications.`;
+            }
+            return;
+          } else {
+            throw new Error(fsData.message || 'Submission failed');
+          }
+        }
+
+        if (sent) {
+          window.location.href = '/thank-you/';
+        }
+      } catch (err) {
+        submitBtn.disabled = false;
+        if (submitBtnText) submitBtnText.textContent = 'Retry Submission';
+        if (statusDiv) {
+          statusDiv.className = 'p-4 rounded-xl text-sm font-medium bg-rose-50 dark:bg-rose-950/60 text-rose-800 dark:text-rose-200 border border-rose-200 dark:border-rose-800';
+          const nameVal = nameInput?.value || '';
+          const emailVal = emailInput?.value || '';
+          const phoneVal = phoneInput?.value || '';
+          const mailSubject = encodeURIComponent('Full Project Specification Enquiry');
+          const mailBody = encodeURIComponent(`Name: ${nameVal}\nEmail: ${emailVal}\nPhone: ${phoneVal}`);
+          statusDiv.innerHTML = `Unable to send via automated gateway. <a href="mailto:${targetEmail}?subject=${mailSubject}&body=${mailBody}" class="underline font-bold text-rose-900 dark:text-rose-100">Click here to send directly to ${targetEmail}</a>.`;
+        }
       }
     });
   })();

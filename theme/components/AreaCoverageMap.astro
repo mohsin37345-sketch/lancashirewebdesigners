@@ -12,11 +12,11 @@ const towns: AreaTown[] = [
   { name: 'Blackburn', href: '/areas/web-design-blackburn/', tier: 1, postcodes: 'BB1, BB2' },
   { name: 'Preston', href: '/areas/web-design-preston/', tier: 1, postcodes: 'PR1, PR2' },
   { name: 'Lancaster', href: '/areas/web-design-lancaster/', tier: 1, postcodes: 'LA1, LA2' },
-  { name: 'Burnley', href: '/areas/', tier: 2, postcodes: 'BB10, BB11' },
-  { name: 'Blackpool', href: '/areas/', tier: 2, postcodes: 'FY1, FY2' },
-  { name: 'Accrington', href: '/areas/', tier: 2, postcodes: 'BB5' },
-  { name: 'Chorley', href: '/areas/', tier: 2, postcodes: 'PR6, PR7' },
-  { name: 'Darwen', href: '/areas/', tier: 2, postcodes: 'BB3' }
+  { name: 'Burnley', href: '/areas/web-design-burnley/', tier: 1, postcodes: 'BB10, BB11' },
+  { name: 'Blackpool', href: '/areas/web-design-blackpool/', tier: 1, postcodes: 'FY1, FY2' },
+  { name: 'Accrington', href: '/areas/web-design-accrington/', tier: 1, postcodes: 'BB5' },
+  { name: 'Chorley', href: '/areas/web-design-chorley/', tier: 1, postcodes: 'PR6, PR7' },
+  { name: 'Darwen', href: '/areas/web-design-darwen/', tier: 1, postcodes: 'BB3' }
 ];
 ---
 
@@ -82,16 +82,28 @@ const towns: AreaTown[] = [
           <circle cx="160" cy="70" r="5" fill="#60a5fa" />
           <text x="105" y="74" fill="#94a3b8" font-size="10">Lancaster</text>
           <!-- Burnley -->
-          <circle cx="280" cy="165" r="4" fill="#64748b" />
-          <text x="290" y="169" fill="#64748b" font-size="9">Burnley</text>
+          <circle cx="280" cy="165" r="5" fill="#60a5fa" />
+          <text x="290" y="169" fill="#94a3b8" font-size="10">Burnley</text>
           <!-- Blackpool -->
-          <circle cx="80" cy="140" r="4" fill="#64748b" />
-          <text x="30" y="144" fill="#64748b" font-size="9">Blackpool</text>
+          <circle cx="80" cy="140" r="5" fill="#60a5fa" />
+          <text x="30" y="144" fill="#94a3b8" font-size="10">Blackpool</text>
+          <!-- Accrington -->
+          <circle cx="250" cy="172" r="4.5" fill="#60a5fa" />
+          <text x="256" y="184" fill="#94a3b8" font-size="9">Accrington</text>
+          <!-- Darwen -->
+          <circle cx="210" cy="225" r="4.5" fill="#60a5fa" />
+          <text x="220" y="229" fill="#94a3b8" font-size="9">Darwen</text>
+          <!-- Chorley -->
+          <circle cx="150" cy="215" r="4.5" fill="#60a5fa" />
+          <text x="105" y="219" fill="#94a3b8" font-size="9">Chorley</text>
           <!-- Connecting lines -->
           <line x1="220" y1="180" x2="150" y2="160" stroke="#3b82f6" stroke-width="1.5" />
           <line x1="150" y1="160" x2="160" y2="70" stroke="#3b82f6" stroke-width="1.5" />
-          <line x1="220" y1="180" x2="280" y2="165" stroke="#334155" stroke-width="1" stroke-dasharray="2 2" />
-          <line x1="150" y1="160" x2="80" y2="140" stroke="#334155" stroke-width="1" stroke-dasharray="2 2" />
+          <line x1="220" y1="180" x2="250" y2="172" stroke="#3b82f6" stroke-width="1.5" />
+          <line x1="250" y1="172" x2="280" y2="165" stroke="#3b82f6" stroke-width="1.5" />
+          <line x1="150" y1="160" x2="80" y2="140" stroke="#3b82f6" stroke-width="1.5" />
+          <line x1="220" y1="180" x2="210" y2="225" stroke="#3b82f6" stroke-width="1.5" />
+          <line x1="150" y1="160" x2="150" y2="215" stroke="#3b82f6" stroke-width="1.5" />
         </svg>
 
         <div class="relative z-10 flex items-center justify-between">
@@ -106,7 +118,7 @@ const towns: AreaTown[] = [
 
         <div class="relative z-10 bg-slate-900/90 backdrop-blur-md p-4 rounded-xl border border-slate-800 text-xs text-slate-300">
           <div class="font-bold text-white mb-1">Central Lancashire Tech Corridor</div>
-          <div>Direct face-to-face consultations available across Blackburn, Preston, and Lancaster.</div>
+          <div>Direct face-to-face consultations available across all primary Lancashire commercial centres.</div>
         </div>
       </div>
     </div>

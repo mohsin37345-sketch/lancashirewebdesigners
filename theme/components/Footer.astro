@@ -147,24 +147,29 @@ const hasInsurance =
       </div>
     </div>
 
-    <!-- Bottom Bar: Copyright & Cookie Preferences -->
-    <div class="pt-8 mt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-      <div>
-        &copy; {currentYear} {site.name}. All rights reserved. Built bespoke in Lancashire, UK.
-      </div>
+    <!-- Bottom Bar: Copyright, Legal line & Cookie Preferences -->
+    <div class="pt-8 mt-8 border-t border-slate-800/80 space-y-3 text-xs text-slate-500">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          &copy; {currentYear} {site.name}. All rights reserved. Built bespoke in Lancashire, UK.
+        </div>
 
-      <div class="flex items-center gap-6">
-        <a href="/sitemap/" class="hover:text-slate-400 transition-colors">
-          HTML Sitemap
-        </a>
-        <button
-          type="button"
-          id="cookie-preferences-btn"
-          class="hover:text-slate-300 underline underline-offset-4 transition-colors focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
-        >
-          Cookie Preferences
-        </button>
+        <div class="flex items-center gap-6">
+          <a href="/sitemap/" class="hover:text-slate-400 transition-colors">
+            HTML Sitemap
+          </a>
+          <button
+            type="button"
+            id="cookie-preferences-btn"
+            class="hover:text-slate-300 underline underline-offset-4 transition-colors focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
+          >
+            Cookie Preferences
+          </button>
+        </div>
       </div>
+      <p class="text-slate-500 text-left leading-relaxed">
+        {site.legalLine}
+      </p>
     </div>
   </div>
 </footer>

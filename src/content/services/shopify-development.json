@@ -2,30 +2,30 @@
   "title": "Shopify Development",
   "slug": "shopify-development",
   "shortTitle": "Shopify Dev",
-  "metaTitle": "Shopify Development Lancashire | Lancashire Web Designers",
-  "metaDescription": "Custom Shopify development for UK retailers and online brands. Bespoke Liquid themes, custom app integrations, checkout optimisation, and speed tuning.",
+  "metaTitle": "Shopify Development Lancashire | Custom Store Builds",
+  "metaDescription": "Custom Shopify development for Lancashire brands. Bespoke Liquid themes, Shopify Functions, app integrations, and fast migrations. Sell without theme bloat.",
   "primaryKeyword": "shopify development lancashire",
   "secondaryKeywords": [
-    "shopify plus agency",
-    "custom shopify theme",
-    "shopify speed optimisation",
-    "ecommerce shopify developer"
+    "custom shopify developer lancashire",
+    "shopify theme development",
+    "shopify ecommerce agency",
+    "shopify speed optimisation"
   ],
-  "heroHeading": "Shopify Development",
+  "heroHeading": "Shopify Development Lancashire",
   "heroSubheading": "Bespoke Shopify theme engineering, frictionless checkout flows, and high-performance ecommerce development.",
   "icon": "shopping-bag",
-  "summary": "We develop bespoke Shopify storefronts that turn browsers into paying buyers. By writing clean Liquid code and bespoke JavaScript without relying on app bloat, we deliver online stores that load rapidly on mobile networks and convert at industry-leading rates.",
+  "summary": "We develop bespoke shopify development lancashire storefronts that turn browsers into paying buyers. By writing clean Liquid code, leveraging Shopify Functions, and avoiding app bloat, we deliver online stores that load rapidly on mobile networks and convert at industry-leading rates.",
   "benefits": [
-    "Custom Liquid theme development tailored precisely to your brand guidelines",
-    "Significant reduction in recurring third-party Shopify app subscription costs",
-    "Engineered for sub-second mobile page loads and optimal Core Web Vitals",
-    "Advanced product filtering, bundle builders, and dynamic upsell pathways",
-    "Seamless integration with UK shipping carriers, ERP systems, and warehouse APIs"
+    "Custom Liquid Themes — Custom Liquid 2.0 theme development tailored precisely to your brand guidelines",
+    "Zero App Bloat — Native theme features eliminating expensive recurring third-party Shopify app subscriptions",
+    "Core Web Vitals — Engineered for sub-second mobile page loads and optimal search ranking signals",
+    "Conversion Flows — Advanced product filtering, bundle builders, and dynamic checkout upsell pathways",
+    "ERP Synchronisation — Seamless integration with UK shipping carriers, ERP systems, and warehouse APIs"
   ],
   "process": [
     {
       "step": 1,
-      "title": "Product Catalog & Merchant Discovery",
+      "title": "Product Catalogue & Merchant Discovery",
       "description": "Evaluating SKU variations, collection groupings, tax structures, and international shipping requirements."
     },
     {
@@ -41,7 +41,7 @@
     {
       "step": 4,
       "title": "App Integration & Payment Setup",
-      "description": "Configuring Shopify Payments, Klarna, PayPal, Klaviyo marketing automations, and stock synchronization."
+      "description": "Configuring Shopify Payments, Klarna, PayPal, Klaviyo marketing automations, and stock synchronisation."
     },
     {
       "step": 5,
@@ -61,10 +61,10 @@
     "Product photography and editorial copy creation",
     "Complex custom private app backend hosting (if external microservices required)"
   ],
-  "priceFrom": 700,
+  "priceFrom": 350,
   "priceUnit": "fixed project",
-  "priceNotes": "Custom Shopify storefronts start from £700, with extra pages or custom features added transparently.",
-  "techStack": ["Shopify", "Liquid", "JavaScript", "Tailwind CSS", "Shopify GraphQL API"],
+  "priceNotes": "Custom Shopify storefronts start from £350, with extra pages or custom features added transparently.",
+  "techStack": ["Shopify", "Liquid", "JavaScript", "Tailwind CSS", "Shopify GraphQL API", "Shopify Functions"],
   "typicalTimeline": "5-7 weeks",
   "faqs": [
     {
@@ -78,8 +78,8 @@
       "display": true
     },
     {
-      "question": "Do you help with Shopify Plus enterprise setups?",
-      "answer": "Yes. We work with high-volume merchants on Shopify Plus, implementing custom checkout scripts, B2B wholesale portals, and multi-currency international expansions.",
+      "question": "Do you help with Shopify Functions and Checkout Extensibility?",
+      "answer": "Yes. We replace outdated checkout scripts with modern Shopify Functions and Checkout Extensibility, implementing custom discount logic, payment rules, B2B wholesale portals, and delivery options natively.",
       "display": true
     },
     {
@@ -88,7 +88,7 @@
       "display": true
     }
   ],
-  "relatedServices": ["ecommerce-web-design", "website-speed-optimisation", "seo"],
+  "relatedServices": ["ecommerce-web-design", "services/website-speed-optimisation", "website-support"],
   "order": 8,
   "featured": false
 }

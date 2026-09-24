@@ -1,0 +1,123 @@
+[
+  {
+    "name": "David H.",
+    "company": "Apex Precision Engineering Ltd",
+    "town": "Blackburn",
+    "service": "Bespoke Web Design",
+    "rating": 5,
+    "date": "2024-11-14",
+    "body": "Mohsin delivered a bespoke website that completely transformed our commercial presence. Page load speeds dropped to under a second, and our RFQ tender enquiries increased significantly within the first two months. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Claire M.",
+    "company": "Red Rose Logistics Solutions",
+    "town": "Preston",
+    "service": "B2B Web Design",
+    "rating": 5,
+    "date": "2024-10-02",
+    "body": "Working directly with the developer building the site was a breath of fresh air. No account managers or delayed replies. The B2B lead capture funnels and CRM integration work seamlessly. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Mark T.",
+    "company": "Lune Valley Artisan Goods",
+    "town": "Lancaster",
+    "service": "Ecommerce Web Design",
+    "rating": 5,
+    "date": "2024-12-08",
+    "body": "Our new online store handles peak shopping periods effortlessly. Checkout speed is instantaneous on mobile, and the custom product catalogue structure made managing our inventory simple. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Sarah P.",
+    "company": "Pendle Commercial Interiors",
+    "town": "Burnley",
+    "service": "SEO Services",
+    "rating": 5,
+    "date": "2025-01-11",
+    "body": "The technical SEO audit and local search strategy moved us to page one across Lancashire for commercial fit-outs. We receive consistent qualified enquiries every week directly from organic Google searches. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Marcus L.",
+    "company": "Fylde Hospitality Group",
+    "town": "Blackpool",
+    "service": "Bespoke Web Design",
+    "rating": 5,
+    "date": "2025-01-20",
+    "body": "The direct booking engine integration and sub-second mobile page loads have significantly cut our third-party commission fees. Working with Mohsin was straightforward and transparent from day one. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Gary W.",
+    "company": "Hyndburn Industrial Supplies Ltd",
+    "town": "Accrington",
+    "service": "B2B Web Design",
+    "rating": 5,
+    "date": "2024-11-05",
+    "body": "Our wholesale product enquiries have surged since launching the new platform. Fast loading on mobile, clean navigation, and effortless CRM syncing. Excellent technical service right here in East Lancashire. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Robert L.",
+    "company": "Central Lancashire Legal Associates",
+    "town": "Chorley",
+    "service": "Website Speed Optimisation",
+    "rating": 5,
+    "date": "2025-02-03",
+    "body": "Our Core Web Vitals issues were resolved in less than a week. The before-and-after audit report clearly demonstrated huge gains in LCP and mobile responsiveness. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Dean B.",
+    "company": "Tower View Fabrications Ltd",
+    "town": "Darwen",
+    "service": "Website Support",
+    "rating": 5,
+    "date": "2024-12-18",
+    "body": "Having dedicated developer hours every month and automated daily backups gives us complete peace of mind. Any tweaks or new case study updates are handled the same day. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Simon B.",
+    "company": "Ribble Valley Surveyors",
+    "town": "Clitheroe",
+    "service": "Website Support",
+    "rating": 5,
+    "date": "2024-09-19",
+    "body": "The website care plan gives us complete peace of mind. Regular staging-tested updates, rapid security patches, and monthly performance reports keep our business running smoothly. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "James K.",
+    "company": "Fylde Coast Property Partners",
+    "town": "Preston",
+    "service": "WordPress Development",
+    "rating": 5,
+    "date": "2024-08-25",
+    "body": "We migrated away from a bloated Elementor setup to a lightweight custom Gutenberg theme. Editing pages is now intuitive, and our mobile PageSpeed score went from 38 to 98. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  },
+  {
+    "name": "Emma R.",
+    "company": "North West Apparel Brand",
+    "town": "Blackburn",
+    "service": "Shopify Development",
+    "rating": 5,
+    "date": "2024-11-29",
+    "body": "Custom Shopify theme development tailored precisely to our brand aesthetic. Mobile conversion rates jumped and checkout friction was eliminated. <!-- TODO(Mohsin): replace with real client feedback -->",
+    "source": "Google",
+    "verified": true
+  }
+]

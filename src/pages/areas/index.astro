@@ -3,6 +3,9 @@ import BaseLayout from 'theme/layouts/BaseLayout.astro';
 import Hero from 'theme/components/Hero.astro';
 import AreaCoverageMap from 'theme/components/AreaCoverageMap.astro';
 import LocationCard from 'theme/components/LocationCard.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import DesignProcessVisuals from 'theme/components/DesignProcessVisuals.astro';
 import CTABand from 'theme/components/CTABand.astro';
 import { getCollection } from 'astro:content';
 
@@ -15,6 +18,17 @@ const breadcrumbs = [
 ];
 
 const locations = await getCollection('locations');
+const allProjects = await getCollection('portfolio');
+const featuredProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'kifl-fashion-store', 'smart-rcm-billing'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
 ---
 
 <BaseLayout
@@ -65,6 +79,25 @@ const locations = await getCollection('locations');
           ))}
         </div>
       </div>
+
+      <!-- Section: Bespoke Prototyping & Architecture Across Lancashire -->
+      <DesignProcessVisuals
+        heading="Bespoke Prototyping & Architecture Across Lancashire"
+        subheading="How we plan, wireframe, and engineer high-performance digital platforms for companies throughout the county."
+      />
+
+      <!-- Section: Featured Portfolio Projects Across Lancashire -->
+      <PortfolioShowcase
+        heading="Featured Work Across Lancashire"
+        subheading="A selection of client projects engineered for transport, retail, and commercial operations across the county."
+        items={featuredProjects}
+      />
+
+      <!-- Section: Testimonials & Reviews -->
+      <Testimonials
+        heading="Client Reviews Across Lancashire"
+        subheading="Read feedback from business owners and directors who partner with Mohsin Ali for bespoke digital platforms."
+      />
     </div>
   </div>
 

@@ -1,16 +1,63 @@
 ---
 import ServiceLayout from 'theme/layouts/ServiceLayout.astro';
+import FeatureCards from 'theme/components/FeatureCards.astro';
 import TechStack from 'theme/components/TechStack.astro';
+import PortfolioShowcase from 'theme/components/PortfolioShowcase.astro';
+import PricingAnchor from 'theme/components/PricingAnchor.astro';
+import Testimonials from 'theme/components/Testimonials.astro';
+import FounderBlock from 'theme/components/FounderBlock.astro';
+import LocalCoverage from 'theme/components/LocalCoverage.astro';
 import FAQ from 'theme/components/FAQ.astro';
+import RelatedServices from 'theme/components/RelatedServices.astro';
 import QuoteFormInline from 'theme/components/QuoteFormInline.astro';
 import Icon from 'theme/components/Icon.astro';
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 
 const serviceEntry = await getEntry('services', 'b2b-web-design');
 if (!serviceEntry) {
   throw new Error('Service entry b2b-web-design not found');
 }
 const data = serviceEntry.data;
+
+const allProjects = await getCollection('portfolio');
+const b2bProjects = allProjects
+  .filter((p) => ['haul-uk-international', 'smart-rcm-billing', 'hvac-duct-calculator'].includes(p.id))
+  .map((p) => ({
+    title: p.data.title,
+    client: p.data.client,
+    industry: p.data.industry,
+    href: `/portfolio/${p.data.slug || p.id}/`,
+    brief: p.data.brief,
+    metrics: p.data.metrics
+  }));
+
+const relatedServicesList = [
+  {
+    title: 'Bespoke Web Design',
+    href: '/bespoke-web-design/',
+    description: 'Hand-crafted digital platforms with zero template bloat and complete intellectual property ownership.',
+    icon: 'palette'
+  },
+  {
+    title: 'SEO Services',
+    href: '/services/seo/',
+    description: 'Technical SEO audits, content strategy, and Google ranking growth for commercial B2B terms.',
+    icon: 'trending-up'
+  },
+  {
+    title: 'Website Support & Care',
+    href: '/website-support/',
+    description: 'Proactive maintenance, security hardening, and dedicated developer hours without lock-in.',
+    icon: 'shield-check'
+  }
+];
+
+const heroTrustBullets = [
+  'Buyer persona UX architecture',
+  'CRM & automated sales pipeline integration',
+  'Lead qualification funnels for commercial teams',
+  'Direct communication with Mohsin Ali'
+];
 ---
 
 <ServiceLayout
@@ -18,13 +65,17 @@ const data = serviceEntry.data;
   description={data.metaDescription}
   h1={data.heroHeading}
   heroSubheading={data.heroSubheading}
+  heroEyebrow="B2B Web Design Agency • Commercial Growth"
+  heroTrustBullets={heroTrustBullets}
   serviceType="B2B Web Design"
   priceFrom={data.priceFrom}
   faqs={data.faqs}
+  faqIntro="Answers to common questions regarding B2B lead generation architecture, CRM integrations, and commercial timelines."
 >
   <article class="py-16 lg:py-24 bg-white dark:bg-slate-900">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      <!-- Section 1: In-depth Summary & B2B Focus -->
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      
+      <!-- Section 1: Intro (Primary keyword in first 100 words) -->
       <div class="max-w-4xl space-y-6">
         <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
           Commercial Lead Generation
@@ -32,50 +83,84 @@ const data = serviceEntry.data;
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           A Strategic B2B Web Design Agency for Complex Buying Journeys
         </h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
-          As a specialized <strong>b2b web design agency</strong>, we recognise that business-to-business transactions are never simple impulse purchases. Your corporate website must satisfy diverse procurement stakeholders—from technical evaluators requiring exhaustive specification sheets to financial directors examining compliance, security, and proven return on investment.
+        <p class="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          As a specialised <strong>b2b web design agency</strong>, we recognise that business-to-business transactions are never simple impulse purchases. Your corporate website must satisfy diverse procurement stakeholders—from technical evaluators requiring exhaustive specification sheets to financial directors examining compliance, security, and proven return on investment.
         </p>
-        <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
           Generic marketing sites focus merely on surface aesthetic trends. In contrast, our B2B website design architecture establishes deep domain authority, articulates distinct commercial value, and provides friction-free lead qualification pathways. We replace passive digital brochures with active commercial platforms designed to turn senior industry researchers into contracted enterprise clients.
         </p>
       </div>
 
-      <!-- Section 2: Dedicated 200+ Word H2 on B2B Web Development -->
-      <div class="p-8 lg:p-12 rounded-3xl border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20 space-y-6">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300">
-          <Icon name="code" class="w-3.5 h-3.5" />
-          <span>Engineering Architecture</span>
+      <!-- Section 2: Feature Cards (<p class="card-title"><strong>) -->
+      <div class="space-y-6">
+        <div class="max-w-2xl">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Engineered for Revenue
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+            Key Capabilities of Our B2B Architecture
+          </h2>
         </div>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Technical B2B Web Development Engineered for Scalable Lead Generation
-        </h2>
-        <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 space-y-4 text-base leading-relaxed">
-          <p>
-            Modern <strong>b2b web development</strong> demands rigorous engineering standards that go far beyond standard visual styling. High-value enterprise customers and procurement departments evaluate your digital platform with extreme scrutiny. Sluggish page rendering, broken mobile tables, missing privacy compliance disclosures, or unhandled form validation errors signal technical neglect and immediately disqualify your firm from high-value supplier tenders.
+        <FeatureCards features={data.benefits} />
+      </div>
+
+      <!-- Section 3: Deep-dive H2 - How B2B Web Design Differs From Consumer Sites -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Strategic Distinction
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            How B2B Web Design Differs From Consumer Sites
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Consumer websites rely on emotional impulse, flash sales, and single-click checkouts. B2B transactions, by contrast, involve considered evaluations, committee sign-offs, and multi-week deliberation cycles. A procurement manager may review your compliance certifications, an engineering lead will evaluate technical specifications, and a managing director will scrutinise your commercial stability.
           </p>
-          <p>
-            Our specialized <strong>b2b web development</strong> methodology prioritises ultra-clean, component-based architectures hand-coded in modern static or headless frameworks. We engineer robust, typed API data pipelines that connect your customer-facing contact touchpoints directly to enterprise customer relationship management platforms, including HubSpot, Salesforce, Pipedrive, and ActiveCampaign. Inbound leads are instantly validated, enriched with source UTM parameters, and tagged with lead-scoring criteria before being automatically routed to your sales executives within seconds.
-          </p>
-          <p>
-            Furthermore, our development practices enforce rigorous enterprise data protection standards. We configure secure server-side form endpoints, automated anti-spam token validation that never frustrates legitimate corporate users, and granular GDPR-compliant consent architectures. Your corporate website renders in fractions of a second on global mobile networks, passes every Google Core Web Vitals benchmark, and scales effortlessly alongside your commercial pipeline without code fragility.
+          <p class="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
+            Our B2B website layouts are mapped to serve each decision-maker directly. We build clear technical documentation sections, interactive product configurators, case study proof libraries, and structured enquiry workflows that pre-qualify inbound enquiries before they reach your sales team.
           </p>
         </div>
       </div>
 
-      <!-- Section 3: Key Benefits Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {data.benefits.map((benefit) => (
-          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
-            <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-              <Icon name="check" class="w-5 h-5" />
-            </div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Commercial Result</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{benefit}</p>
+      <!-- Section 4: Deep-dive H2 - Industries We Work With -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Sector Expertise
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Industries We Work With Across Lancashire & the UK
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            We partner with ambitious B2B businesses in sectors where clarity, speed, and trust directly impact the bottom line:
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Manufacturing & Engineering</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Showcasing precision fabrication, CNC machinery, ISO accreditations, and engineering capabilities along the M65 corridor and nationwide.
+            </p>
           </div>
-        ))}
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Transport, Freight & Logistics</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Wholesale trade portals, fleet presentation, warehouse storage specifications, and automated commercial quote request funnels.
+            </p>
+          </div>
+          <div class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Professional Services & B2B Tech</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              Consultancies, medical billing providers, software studios, and financial practices seeking high-authority digital presence.
+            </p>
+          </div>
+        </div>
+
+        <TechStack />
       </div>
 
-      <!-- Section 4: 5-Step Process -->
+      <!-- Section 5: Process (5-stage) -->
       <div class="space-y-8">
         <div class="max-w-2xl">
           <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
@@ -100,7 +185,7 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 5: Inclusions / Boundaries -->
+      <!-- Section 6: Inclusions / Boundaries -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="p-8 rounded-3xl border border-emerald-200 dark:border-emerald-900/60 bg-emerald-50/30 dark:bg-emerald-950/20 space-y-4">
           <h3 class="text-xl font-bold text-emerald-950 dark:text-emerald-300 flex items-center gap-2">
@@ -133,19 +218,92 @@ const data = serviceEntry.data;
         </div>
       </div>
 
-      <!-- Section 6: TechStack -->
-      <TechStack />
+      <!-- Section 7: Case Studies / Portfolio Showcase (USER REQUEST) -->
+      <PortfolioShowcase
+        heading="B2B Portfolio & Case Studies"
+        subheading="Real commercial portals, billing systems, and trade platforms engineered for UK operators."
+        items={b2bProjects}
+      />
 
-      <!-- Section 7: FAQs -->
-      <FAQ faqs={data.faqs} />
+      <!-- Section 8: Deep-dive H2 - Lead Generation Architecture for Complex Sales Cycles -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 p-8 sm:p-12 space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Conversion Strategy
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Lead Generation Architecture for Complex Sales Cycles
+          </h2>
+          <p class="text-base text-slate-700 dark:text-slate-300 leading-relaxed">
+            Capturing qualified commercial enquiries requires multi-tiered engagement points. Instead of forcing visitors into a single generic "Contact Us" form, we implement strategic conversion funnels: gated whitepapers, live product calculators, specification downloads, and executive consultation booking integrations.
+          </p>
+          <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+            Every submission is programmatically connected to your sales pipeline via REST APIs or webhooks. Lead scores, referral origins, and campaign UTM parameters are preserved, enabling your sales reps to reach out with full contextual awareness.
+          </p>
+        </div>
+      </div>
 
-      <!-- Section 8: Inline Quote Form -->
-      <div class="max-w-2xl mx-auto pt-8">
-        <QuoteFormInline
-          heading="Discuss Your B2B Web Project"
-          subheading="Direct consultation with our principal technical architect. Fixed-scope enterprise proposals delivered within 24 hours."
+      <!-- Section 9: Deep-dive H2 & Pricing Anchor - What a B2B Website Investment Involves -->
+      <div class="space-y-6">
+        <div class="max-w-3xl space-y-4">
+          <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+            Investment Overview
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            What a B2B Website Investment Involves
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+            Our B2B platform development starts from £250 for focused lead-generation pages, £400 to £800 for full corporate builds with CRM integrations, and tailored scoping for multi-tier trade portals with ERP connectivity.
+          </p>
+        </div>
+
+        <PricingAnchor
+          priceFrom={data.priceFrom}
+          priceUnit="fixed project"
+          whatsIncluded={data.whatsIncluded}
+          title="B2B Platforms from £250"
+          subtitle="Fixed milestone invoicing with zero recurring platform retainers and complete source code ownership."
         />
       </div>
+
+      <!-- Section 10: Client Testimonials & Reviews (USER REQUEST) -->
+      <Testimonials
+        heading="Client Reviews & Trust"
+        subheading="What B2B commercial directors and operations managers say about partnering with our Lancashire studio."
+      />
+
+      <!-- Section 11: Founder Block -->
+      <FounderBlock />
+
+      <!-- Section 12: Local Coverage -->
+      <LocalCoverage
+        homeAnchor="Lancashire B2B web design agency"
+        leadSentence="From our base in Blackburn, we partner with B2B suppliers, manufacturers, and professional service firms across the North West."
+      />
+
+      <!-- Section 13: FAQs -->
+      <FAQ
+        faqs={data.faqs}
+        heading="Frequently Asked Questions"
+        intro="Have questions about B2B web development, CRM integrations, or project delivery? Here are transparent answers."
+      />
+
+      <!-- Section 14: Related Services -->
+      <RelatedServices
+        services={relatedServicesList}
+        heading="Explore Related Services"
+        subheading="Strategic digital capabilities engineered to support your commercial sales pipeline."
+      />
+
+      <!-- Section 15: Inline Quote Form -->
+      <div class="max-w-2xl mx-auto pt-8">
+        <QuoteFormInline
+          heading="Start Your B2B Web Project"
+          subheading="Direct consultation with Mohsin Ali, founder and lead developer. Fixed-price proposals delivered within 24 hours."
+          submitLabel="Discuss Your B2B Project"
+        />
+      </div>
+
     </div>
   </article>
 </ServiceLayout>
