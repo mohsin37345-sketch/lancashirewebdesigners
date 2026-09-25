@@ -142,78 +142,78 @@ const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
       </button>
     </div>
   </div>
-
-  <!-- Mobile Drawer Overlay & Panel -->
-  <div
-    id="mobile-menu-overlay"
-    class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-200 lg:hidden"
-    aria-hidden="true"
-  ></div>
-
-  <div
-    id="mobile-menu-drawer"
-    class="fixed top-20 right-0 bottom-0 w-full max-w-sm bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-200 ease-in-out flex flex-col justify-between overflow-y-auto lg:hidden"
-    aria-hidden="true"
-    role="dialog"
-    aria-label="Mobile Navigation"
-  >
-    <div class="p-6 space-y-6">
-      <nav class="space-y-1" aria-label="Mobile Menu Links">
-        {mainNav.map((item) => (
-          <div>
-            <a
-              href={item.href}
-              class="mobile-nav-link block px-4 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
-            >
-              {item.label}
-            </a>
-            {item.megaMenu && (
-              <div class="pl-4 space-y-1 mt-1 border-l-2 border-slate-100 dark:border-slate-800">
-                {item.megaMenu.groups.flatMap((g) => g.items).slice(0, 4).map((subItem) => (
-                  <a
-                    href={subItem.href}
-                    class="mobile-nav-link block px-3 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
-                  >
-                    {subItem.label}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </nav>
-    </div>
-
-    <!-- Mobile Drawer Footer CTA -->
-    <div class="p-6 border-t border-slate-100 dark:border-slate-800 space-y-3 bg-slate-50/50 dark:bg-slate-950/50">
-      {phoneHref && phone && (
-        <a
-          href={phoneHref}
-          class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm"
-        >
-          <Icon name="phone" class="w-4 h-4 text-blue-600" />
-          <span>{phone}</span>
-        </a>
-      )}
-      {site.email && (
-        <a
-          href={`mailto:${site.email}`}
-          class="mobile-nav-link flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-medium text-xs hover:text-blue-600 transition-colors"
-        >
-          <Icon name="mail" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
-          <span>{site.email}</span>
-        </a>
-      )}
-      <a
-        href="/get-a-quote/"
-        class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-md hover:bg-blue-700"
-      >
-        <span>Get a Quote</span>
-        <Icon name="arrow-right" class="w-4 h-4" />
-      </a>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile Drawer Overlay & Panel (outside header so fixed positioning is relative to viewport, not glass-header) -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 lg:hidden"
+  aria-hidden="true"
+></div>
+
+<div
+  id="mobile-menu-drawer"
+  class="fixed top-20 right-0 bottom-0 w-full max-w-sm bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl z-50 translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto lg:hidden"
+  aria-hidden="true"
+  role="dialog"
+  aria-label="Mobile Navigation"
+>
+  <div class="p-6 space-y-6">
+    <nav class="space-y-1" aria-label="Mobile Menu Links">
+      {mainNav.map((item) => (
+        <div>
+          <a
+            href={item.href}
+            class="mobile-nav-link block px-4 py-3 text-base font-semibold text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-colors"
+          >
+            {item.label}
+          </a>
+          {item.megaMenu && (
+            <div class="pl-4 space-y-1 mt-1 border-l-2 border-slate-100 dark:border-slate-800">
+              {item.megaMenu.groups.flatMap((g) => g.items).slice(0, 4).map((subItem) => (
+                <a
+                  href={subItem.href}
+                  class="mobile-nav-link block px-3 py-2 text-sm text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  {subItem.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+  </div>
+
+  <!-- Mobile Drawer Footer CTA -->
+  <div class="p-6 border-t border-slate-100 dark:border-slate-800 space-y-3 bg-slate-50/50 dark:bg-slate-950/50">
+    {phoneHref && phone && (
+      <a
+        href={phoneHref}
+        class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-sm"
+      >
+        <Icon name="phone" class="w-4 h-4 text-blue-600" />
+        <span>{phone}</span>
+      </a>
+    )}
+    {site.email && (
+      <a
+        href={`mailto:${site.email}`}
+        class="mobile-nav-link flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-medium text-xs hover:text-blue-600 transition-colors"
+      >
+        <Icon name="mail" class="w-4 h-4 text-blue-600 dark:text-blue-400" />
+        <span>{site.email}</span>
+      </a>
+    )}
+    <a
+      href="/get-a-quote/"
+      class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-md hover:bg-blue-700"
+    >
+      <span>Get a Quote</span>
+      <Icon name="arrow-right" class="w-4 h-4" />
+    </a>
+  </div>
+</div>
 
 <!-- Header & Mobile Drawer Client Controller -->
 <script is:inline>
@@ -229,6 +229,7 @@ const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
     let isOpen = false;
 
     function openMenu() {
+      if (isOpen) return;
       isOpen = true;
       trigger?.setAttribute('aria-expanded', 'true');
       trigger?.setAttribute('aria-label', 'Close mobile navigation menu');
@@ -239,19 +240,23 @@ const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
       iconClose?.classList.remove('hidden');
 
       overlay?.classList.remove('hidden');
-      setTimeout(() => overlay?.classList.remove('opacity-0'), 10);
-      drawer?.classList.remove('translate-x-full');
+      requestAnimationFrame(() => {
+        overlay?.classList.remove('opacity-0');
+        drawer?.classList.remove('translate-x-full');
+        drawer?.classList.add('translate-x-0');
+      });
 
       document.body.style.overflow = 'hidden';
 
-      // Focus trap
+      // Focus first focusable without forcing scroll
       const focusables = drawer?.querySelectorAll('a, button, input');
       if (focusables && focusables.length > 0) {
-        (focusables[0]).focus();
+        focusables[0].focus({ preventScroll: true });
       }
     }
 
     function closeMenu() {
+      if (!isOpen) return;
       isOpen = false;
       trigger?.setAttribute('aria-expanded', 'false');
       trigger?.setAttribute('aria-label', 'Open mobile navigation menu');
@@ -261,15 +266,21 @@ const phoneHref = site.phoneE164 ? `tel:${site.phoneE164}` : undefined;
       iconOpen?.classList.remove('hidden');
       iconClose?.classList.add('hidden');
 
+      drawer?.classList.remove('translate-x-0');
       drawer?.classList.add('translate-x-full');
       overlay?.classList.add('opacity-0');
-      setTimeout(() => overlay?.classList.add('hidden'), 200);
+      setTimeout(() => {
+        if (!isOpen) {
+          overlay?.classList.add('hidden');
+        }
+      }, 300);
 
       document.body.style.overflow = '';
       trigger?.focus();
     }
 
-    trigger?.addEventListener('click', () => {
+    trigger?.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (isOpen) closeMenu();
       else openMenu();
     });
