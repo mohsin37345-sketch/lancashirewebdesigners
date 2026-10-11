@@ -2,18 +2,19 @@
   "title": "Bespoke Web Design",
   "slug": "bespoke-web-design",
   "shortTitle": "Bespoke Web Design",
-  "metaTitle": "Bespoke Web Design Lancashire | Custom Website Development",
-  "metaDescription": "Hand-crafted bespoke web design for Lancashire businesses. No templates, sub-second load speeds, and full code ownership. From £300. Get a quote.",
+  "metaTitle": "Bespoke Web Design Lancashire | Expert Web Designers",
+  "metaDescription": "Bespoke web design Lancashire businesses rely on. Local web designers in Lancashire hand-coding fast, SEO-ready websites. No templates. From £150. Get a quote.",
   "primaryKeyword": "bespoke web design",
   "secondaryKeywords": [
+    "bespoke web design lancashire",
+    "web designers lancashire",
     "custom web design lancashire",
-    "bespoke website development",
-    "tailored web design uk"
+    "bespoke website development"
   ],
   "heroHeading": "Bespoke Web Design Lancashire",
-  "heroSubheading": "Hand-crafted web design engineered from the ground up for ambitious Lancashire businesses. Fast, clean code with zero template bloat.",
+  "heroSubheading": "Bespoke web design from Lancashire web designers who build every site from scratch. Fast, hand-coded websites for Lancashire businesses that need more enquiries, not another template.",
   "icon": "palette",
-  "summary": "Bespoke web design engineered from the ground up for ambitious UK businesses. At Lancashire Web Designers, we craft hand-coded, high-performance web platforms that outperform bloated off-the-shelf templates and slow page builders. Every pixel, layout structure, and interaction model is purposefully tailored to your distinct brand proposition, customer purchasing journey, and commercial growth objectives.",
+  "summary": "Bespoke web design for Lancashire businesses that want a website built around them, not squeezed into a template. As independent web designers in Lancashire, we hand-code fast, search-ready websites from a blank canvas. Every layout, page and enquiry path is planned around your customers, your services and the way you win work.",
   "benefits": [
     "Zero Template Bloat — Sub-second initial load speeds on all mobile and desktop networks",
     "Tailored Architectures — Hand-crafted component layouts engineered exclusively for your workflow",
@@ -80,6 +81,16 @@
     {
       "question": "Who owns the intellectual property and code once the project is finished?",
       "answer": "You own 100% of your website code, visual design assets, and content. Upon settlement of the final milestone invoice, we transfer full repository rights. We do not lock clients into proprietary systems or charge recurring licensing fees for code we built for you.",
+      "display": true
+    },
+    {
+      "question": "Why choose local web designers in Lancashire over a national agency?",
+      "answer": "You speak directly to the person designing and building your site, not an account manager. As Lancashire web designers based in Blackburn, we can meet you in person, we know the local market from Preston to Burnley, and we write content that targets the towns your customers actually search from. You also avoid the overheads national agencies pass on to clients.",
+      "display": true
+    },
+    {
+      "question": "How much does bespoke web design in Lancashire cost?",
+      "answer": "Bespoke web design starts from £150 for a focused single-page build, £300 to £600 for a multi-page business website, and £800+ for portals or custom ecommerce. Every quote is fixed-price and itemised, so you know exactly what you are paying for before work begins.",
       "display": true
     },
     {
