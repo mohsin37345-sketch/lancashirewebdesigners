@@ -1,0 +1,12 @@
+In the folder design-template/ there is a finished website design (index.html, styles.css, script.js). Use it as the exact visual template for my Pearl Removals website. Do not redesign it or "improve" it — copy it.
+
+1. Match the design exactly: same colours, fonts (Bricolage Grotesque + Inter), spacing, border radius, shadows, icons and layout. Keep the CSS variables in :root as the global design tokens and don't add new colours.
+2. Make the header (top bar + sticky menu + Services/Areas dropdowns + mobile slide-out menu) and the footer shared components that appear on every page.
+3. Turn each homepage section into its own reusable component with editable text/props: Hero with quote form, Trust strip, Services, Stats, How it works, Why choose us, Pricing, Areas we cover, Reviews, FAQ, CTA band.
+4. Replace my current homepage with these sections in the same order as design-template/index.html.
+5. Reuse the same components on my service pages and area pages, changing only the text (e.g. the "Harrow" page hero says "Removals in Harrow").
+6. Keep every interaction from script.js: sticky header shadow, dropdowns, mobile menu, fade-in on scroll, counting stats, quote form, postcode checker, sticky Call/Quote bar on mobile.
+7. Connect the quote form to my existing contact form / email handling.
+8. Keep it fully responsive and accessible. Remove the old dark theme and the light/dark toggle.
+
+When finished, show me the homepage on desktop and mobile so I can compare it with design-template/index.html.
